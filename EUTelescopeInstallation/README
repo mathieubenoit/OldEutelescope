@@ -1,0 +1,11 @@
+Edit the ilcsoft_install_dir variable to point to the location where you want to install the Eutelescope software.
+
+Source the ILCSoft_v01-16.sh environment file
+
+Run
+/afs/cern.ch/eng/clic/software/x86_64-slc5-gcc41/ILCSOFT/ilcsoftinstall/v01-16/ilcsoft-install Eutel_With_Existing_ILCSoft.cfg
+Make sure there are no errors and only eutelescope with be installed, and that the installation path is correct
+
+Run
+/afs/cern.ch/eng/clic/software/x86_64-slc5-gcc41/ILCSOFT/ilcsoftinstall/v01-16/ilcsoft-install -i Eutel_With_Existing_ILCSoft.cfg
+

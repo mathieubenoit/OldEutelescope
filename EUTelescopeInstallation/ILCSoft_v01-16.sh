@@ -1,0 +1,1 @@
+/afs/cern.ch/user/s/sailer/clic/software/x86_64-slc5-gcc41/ILCSOFT/v01-16/init_ilcsoft.sh
