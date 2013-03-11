@@ -1,0 +1,50 @@
+[Medipix]
+Custom name:
+Polarity:1
+Acq mode:16
+HW timer:2
+Ext DAC Index:-1
+Ext DAC Value:0
+[Layout]
+Width:0
+Height:0
+Chips:
+Angles:
+SubFrames:0
+[Chip0]
+IKrum:5
+Disc:100
+Preamp:255
+BuffAnalogA:127
+BuffAnalogB:127
+Hist:0
+THL:430
+THLCoarse:7
+Vcas:130
+FBK:128
+GND:80
+THS:85
+BiasLVDS:128
+RefLVDS:128
+[Interface]
+LogToFile:TRUE 
+LogErrs:TRUE 
+LogUSBCommunication:FALSE 
+LogStreams:FALSE 
+HV:81
+ExtDacOverride:0 
+Timepix clock:96 
+DacSetWait:0 
+TriggerDelay:0 
+PreReadWait:0 
+SignalDelay:300 
+TimeBetweenPixCfgAndAcq:50 
+TriggerSettings:3
+ExternalClock:FALSE 
+ContinueOnCommunicationError:TRUE 
+MaxCorrectionAcqCount:2 
+EmptyFrameOnError:FALSE 
+EraseMatrixParallel:TRUE 
+ExtGating:FALSE 
+ReadMatrixSync:FALSE 
+TimepixDacsMode:2 
