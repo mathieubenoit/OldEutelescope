@@ -1,0 +1,6 @@
+/afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/ILCsoft/EUTelescopeInstallation/Eutelescope/v00-08-00/lib/libeudaq.so
+/afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/ILCsoft/EUTelescopeInstallation/Eutelescope/v00-08-00/lib/libEutelescope.so.0.8.0
+/afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/ILCsoft/EUTelescopeInstallation/Eutelescope/v00-08-00/lib/libEutelescope.so.0.8
+/afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/ILCsoft/EUTelescopeInstallation/Eutelescope/v00-08-00/lib/libEutelescope.so
+/afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/ILCsoft/EUTelescopeInstallation/Eutelescope/v00-08-00/bin/pede2lcio
+/afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/ILCsoft/EUTelescopeInstallation/Eutelescope/v00-08-00/bin/pedestalmerge
