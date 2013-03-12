@@ -1,14 +1,23 @@
-Edit the ilcsoft_install_dir variable in file Eutel_With_Existing_ILCSoft.cfg to
-point to the location where you want to install the Eutelescope software.
+To install the EUTelescope reconstruction software package :
 
-Source the ILCSoft_v01-16.sh environment file
+Run, from the EUTelescopeInstallation folder: 
 
-Run
 /afs/cern.ch/eng/clic/software/x86_64-slc5-gcc41/ILCSOFT/ilcsoftinstall/v01-16/ilcsoft-install Eutel_With_Existing_ILCSoft.cfg
+
 Make sure there are no errors and only eutelescope with be installed, and that the installation path is correct
 
 Run
+
 /afs/cern.ch/eng/clic/software/x86_64-slc5-gcc41/ILCSOFT/ilcsoftinstall/v01-16/ilcsoft-install -i Eutel_With_Existing_ILCSoft.cfg
 
-There will be a init_ilcsoft.sh  in the folder, where Eutelescope was installed
-source init_ilcsoft.sh
+There should be a init_ilcsoft.sh  and ILCSoft_v01-16.sh in the folder, where Eutelescope was installed, do this in the shell : 
+
+source setup_eutelescope.sh
+cd Eutelescope/v00-08-00/jobsub
+./jobsub.py -c examples/clic_timepix/config.cfg converter 6424
+
+
+if everything is properly installed, this should start a Marlin job converting the data from run 6424
+
+
+
