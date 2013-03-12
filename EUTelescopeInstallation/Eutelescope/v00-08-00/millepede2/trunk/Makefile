@@ -11,12 +11,20 @@
 # ### Define gcc to be used ###
 #
 GCC=gcc
+FCOMP =gfortran
 GCCVERS=$(shell $(GCC) -dumpversion)
 # On SL5 replace default (gcc41) by gcc44
 ifeq ($(findstring 4.1., $(GCCVERS)), 4.1.)
   GCC=gcc44
+  FCOMP=gfortran44
   GCCVERS=$(shell $(GCC) -dumpversion)  
 endif
+ifeq ($(findstring 4.3., $(GCCVERS)), 4.3.)
+  GCC=gcc44
+  FCOMP=gfortran44
+  GCCVERS=$(shell $(GCC) -dumpversion)  
+endif
+
 $(info Using gcc version $(GCCVERS))
 #
 # #################################################################
@@ -39,7 +47,7 @@ OMPP =
 #
 # #################################################################
 #
-FCOMP = $(OMPP) $(GCC)
+#FCOMP = $(OMPP) $(GCC)
 F_FLAGS = -Wall -fautomatic -fno-backslash -O3 -cpp
 #
 CCOMP = $(OMPP) $(GCC) 
