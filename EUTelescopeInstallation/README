@@ -6,14 +6,31 @@ Run, from the EUTelescopeInstallation folder:
 
 Make sure there are no errors and only eutelescope with be installed, and that the installation path is correct
 
-Run
+source init_ilcsoft.sh and then run : 
 
 /afs/cern.ch/eng/clic/software/x86_64-slc5-gcc41/ILCSOFT/ilcsoftinstall/v01-16/ilcsoft-install -i Eutel_With_Existing_ILCSoft.cfg
+
+
+If, from the computer you are running on, you never connected to DESY database, a message might ask you to approve DESY certificate, chose option p, then relaunch the installation with the previous command. 
+
 
 There should be a init_ilcsoft.sh  and ILCSoft_v01-16.sh in the folder, where Eutelescope was installed, do this in the shell : 
 
 source setup_eutelescope.sh
 cd Eutelescope/v00-08-00/jobsub
+
+
+Edit the file examples/clic_timepix/config.cfg. Tha variable NativeFolder  should point to the folder where raw data are stored : 
+NativeFolder            = /afs/cern.ch/eng/clic/data/DESY_TB_DATA_11-15-02-2013
+
+
+The variable LocalFolderOutputBase should point to a personal folder containing the folders db,results,histo,logs lcio-raw,for example:
+LocalFolderOutputBase		= /VertexScratch/TB_Data/DESY_TB_DATA_11-15-02-2013_results
+
+
+You should now be able to run the reconstruction, try : 
+
+
 ./jobsub.py -c examples/clic_timepix/config.cfg converter 6424
 
 
