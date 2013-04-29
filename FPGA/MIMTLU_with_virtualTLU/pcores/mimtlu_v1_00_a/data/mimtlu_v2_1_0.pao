@@ -1,0 +1,14 @@
+##############################################################################
+## Filename:          C:/Users/mbenoit/Documents/FPGA_Projects/MIMTLU/pcores/mimtlu_v1_00_a/data/mimtlu_v2_1_0.pao
+## Description:       Peripheral Analysis Order
+## Date:              Thu Apr 18 10:32:20 2013 (by Create and Import Peripheral Wizard)
+##############################################################################
+
+lib proc_common_v3_00_a  all 
+lib axi_lite_ipif_v1_01_a  all
+lib mimtlu_v1_00_a clk_divider vhdl 
+lib mimtlu_v1_00_a MIMTLU_core vhdl
+lib mimtlu_v1_00_a TLU_SIMULATOR vhdl
+lib mimtlu_v1_00_a TOP vhdl
+lib mimtlu_v1_00_a user_logic vhdl
+lib mimtlu_v1_00_a mimtlu vhdl

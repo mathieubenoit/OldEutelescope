@@ -1,0 +1,108 @@
+#
+# pin constraints
+#
+NET CLK_66MHZ LOC = "K15"  |  IOSTANDARD = "LVCMOS33";
+NET DIP_Switches_4Bits_TRI_I[0] LOC = "B3"  |  IOSTANDARD = "LVCMOS33"  |  PULLDOWN;
+NET DIP_Switches_4Bits_TRI_I[1] LOC = "A3"  |  IOSTANDARD = "LVCMOS33"  |  PULLDOWN;
+NET DIP_Switches_4Bits_TRI_I[2] LOC = "B4"  |  IOSTANDARD = "LVCMOS33"  |  PULLDOWN;
+NET DIP_Switches_4Bits_TRI_I[3] LOC = "A4"  |  IOSTANDARD = "LVCMOS33"  |  PULLDOWN;
+NET Ethernet_MAC_COL LOC = "M18"  |  IOSTANDARD = "LVCMOS33";
+NET Ethernet_MAC_CRS LOC = "N17"  |  IOSTANDARD = "LVCMOS33";
+NET Ethernet_MAC_MDC LOC = "M16"  |  IOSTANDARD = "LVCMOS33";
+NET Ethernet_MAC_MDIO LOC = "L18"  |  IOSTANDARD = "LVCMOS33";
+NET Ethernet_MAC_PHY_RST_N LOC = "T18"  |  IOSTANDARD = "LVCMOS33"  |  TIG;
+NET Ethernet_MAC_RXD[0] LOC = "T17"  |  IOSTANDARD = "LVCMOS33";
+NET Ethernet_MAC_RXD[1] LOC = "N16"  |  IOSTANDARD = "LVCMOS33";
+NET Ethernet_MAC_RXD[2] LOC = "N15"  |  IOSTANDARD = "LVCMOS33";
+NET Ethernet_MAC_RXD[3] LOC = "P18"  |  IOSTANDARD = "LVCMOS33";
+NET Ethernet_MAC_RX_CLK LOC = "L15"  |  IOSTANDARD = "LVCMOS33";
+NET Ethernet_MAC_RX_DV LOC = "P17"  |  IOSTANDARD = "LVCMOS33";
+NET Ethernet_MAC_RX_ER LOC = "N18"  |  IOSTANDARD = "LVCMOS33";
+NET Ethernet_MAC_TXD[0] LOC = "K18"  |  IOSTANDARD = "LVCMOS33";
+NET Ethernet_MAC_TXD[1] LOC = "K17"  |  IOSTANDARD = "LVCMOS33";
+NET Ethernet_MAC_TXD[2] LOC = "J18"  |  IOSTANDARD = "LVCMOS33";
+NET Ethernet_MAC_TXD[3] LOC = "J16"  |  IOSTANDARD = "LVCMOS33";
+NET Ethernet_MAC_TX_CLK LOC = "H17"  |  IOSTANDARD = "LVCMOS33";
+NET Ethernet_MAC_TX_EN LOC = "L17"  |  IOSTANDARD = "LVCMOS33";
+NET LEDs_4Bits_TRI_O[0] LOC = "P4"  |  IOSTANDARD = "LVCMOS18";
+NET LEDs_4Bits_TRI_O[1] LOC = "L6"  |  IOSTANDARD = "LVCMOS18";
+NET LEDs_4Bits_TRI_O[2] LOC = "F5"  |  IOSTANDARD = "LVCMOS18";
+NET LEDs_4Bits_TRI_O[3] LOC = "C2"  |  IOSTANDARD = "LVCMOS18";
+#NET RESET LOC = "V4"  |  IOSTANDARD = "LVCMOS33"  |  TIG  |  PULLDOWN;
+NET USB_Uart_sin LOC = "R7"  |  IOSTANDARD = "LVCMOS33";
+NET USB_Uart_sout LOC = "T7"  |  IOSTANDARD = "LVCMOS33";
+#
+# additional constraints
+#
+
+NET "CLK_66MHZ" TNM_NET = sys_clk_pin;
+TIMESPEC TS_sys_clk_pin = PERIOD sys_clk_pin 66666 kHz;
+
+### Set Vccaux for S6LX9 MicroBoard to 3.3V ###
+CONFIG VCCAUX = "3.3" ;
+
+### Pull-ups on RXD are necessary to set the PHY AD to 11110b.  ###
+###   Must keep the PHY from defaulting to PHY AD = 00000b      ###
+###   because this is Isolate Mode                              ###
+Net Ethernet_MAC_RXD<0> PULLUP;
+Net Ethernet_MAC_RXD<1> PULLUP;
+Net Ethernet_MAC_RXD<2> PULLUP;
+Net Ethernet_MAC_RXD<3> PULLUP;
+
+
+
+############################################################################	
+# User Reset Push Button
+#   Ignore the timing for this signal
+#   Internal pull-down required since external resistor is not populated
+############################################################################	
+NET mimtlu_0_TEST_pin      LOC = V4  | IOSTANDARD = LVCMOS33 | PULLDOWN;    # "USER_RESET"
+NET mimtlu_0_TEST_pin      TIG;
+
+
+
+############################################################################	
+# Texas Instruments CDCE913 Triple-Output PLL Clock Chip
+#   Y1: 40 MHz, USER_CLOCK can be used as external configuration clock
+#   Y2: 66.667 MHz
+#   Y3: 100 MHz 
+############################################################################	
+#NET mimtlu_0_USER_CLOCK_pin        LOC = V10 | IOSTANDARD = LVCMOS33;               # "USER_CLOCK"
+NET mimtlu_0_CLOCK_Y3_pin         LOC = C10 | IOSTANDARD = LVCMOS33;               # "CLOCK_Y2"
+
+#NET mimtlu_0_USER_CLOCK_pin TNM_NET = mimtlu_0_USER_CLOCK_pin;
+#TIMESPEC TS_USER_CLOCK = PERIOD mimtlu_0_USER_CLOCK_pin 40000 kHz;
+NET mimtlu_0_CLOCK_Y3_pin TNM_NET = mimtlu_0_CLOCK_Y3_pin;
+TIMESPEC TS_CLOCK_Y3 = PERIOD mimtlu_0_CLOCK_Y3_pin 100 MHz;
+
+
+############################################################################	
+# Peripheral Modules and GPIO
+#   Peripheral Modules (PMODs) were invented by Digilent Inc. as small, 
+#   inexpensive add-on boards for FPGA development boards. With costs 
+#   starting as low as $10, PMODs allow you to add a number of capabilities 
+#   to your board, including A/D, D/A, Wireless Radio, SD Card, 2x16 
+#   Character LCD and a variety of LEDs, switches, and headers. See the 
+#   complete library of Digilent PMODs at 
+#     https://www.digilentinc.com/PMODs
+############################################################################	
+# Connector J5
+NET mimtlu_0_TRIGGER_COPY_pin          		LOC = F15 | IOSTANDARD = LVTTL;               # "PMOD1_P1"
+NET mimtlu_0_BUSY_DUT_pin        			   LOC = F16 | IOSTANDARD = LVTTL;               # "PMOD1_P2"
+NET mimtlu_0_BUSY_COPY_pin         		   LOC = C17 | IOSTANDARD = LVTTL;               # "PMOD1_P3"
+NET mimtlu_0_TRIGGER_DUT_pin        		   LOC = C18 | IOSTANDARD = LVTTL;               # "PMOD1_P4"
+#NET TEST_1          			LOC = F14 | IOSTANDARD = LVTTL;               # "PMOD1_P7"
+#NET TEST_2        				LOC = G14 | IOSTANDARD = LVTTL;               # "PMOD1_P8"
+#NET TEST_3         				LOC = D17 | IOSTANDARD = LVTTL;               # "PMOD1_P9"
+#NET TEST_4         				LOC = D18 | IOSTANDARD = LVTTL;               # "PMOD1_P10"
+
+# Connector J4
+#NET BUSY_P            			LOC = H12 | IOSTANDARD = LVDS_33;               # "PMOD2_P1"
+#NET BUSY_N            			LOC = G13 | IOSTANDARD = LVDS_33;               # "PMOD2_P2"
+#NET TRIGGER_CLOCK_P          	LOC = E16 | IOSTANDARD = LVDS_33;               # "PMOD2_P3"
+#NET TRIGGER_CLOCK_N          	LOC = E18 | IOSTANDARD = LVDS_33;               # "PMOD2_P4"
+#NET TRIGGER_P          			LOC = K12 | IOSTANDARD = LVDS_33;               # "PMOD2_P7"
+#NET TRIGGER_N          			LOC = K13 | IOSTANDARD = LVDS_33;               # "PMOD2_P8"
+#NET RESET_P         				LOC = F17 | IOSTANDARD = LVDS_33;               # "PMOD2_P9"
+#NET RESET_N         				LOC = F18 | IOSTANDARD = LVDS_33;               # "PMOD2_P10"
+

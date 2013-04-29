@@ -1,0 +1,20 @@
+V3 12
+EN mimtlu_v1_00_a/mimtlu 0 \
+      FL C:/Users/mbenoit/Documents/FPGA_Projects/MIMTLU/pcores/mimtlu_v1_00_a/devl/projnav/../../hdl/vhdl/mimtlu.vhd \
+      PB ieee/std_logic_1164 1354696159 PB ieee/std_logic_arith 1354696160 \
+      PB ieee/STD_LOGIC_UNSIGNED 1354696162 LB proc_common_v3_00_a \
+      LB axi_lite_ipif_v1_01_a LB mimtlu_v1_00_a EN mimtlu_v1_00_a/user_logic 0 \
+      PB proc_common_v3_00_a/proc_common_pkg 0 PB proc_common_v3_00_a/ipif_pkg 0 \
+      EN axi_lite_ipif_v1_01_a/axi_lite_ipif 0
+AR mimtlu_v1_00_a/mimtlu/IMP 0 \
+      FL C:/Users/mbenoit/Documents/FPGA_Projects/MIMTLU/pcores/mimtlu_v1_00_a/devl/projnav/../../hdl/vhdl/mimtlu.vhd \
+      EN mimtlu_v1_00_a/mimtlu 0 CP axi_lite_ipif_v1_01_a/axi_lite_ipif \
+      CP mimtlu_v1_00_a/user_logic
+EN mimtlu_v1_00_a/user_logic 0 \
+      FL C:/Users/mbenoit/Documents/FPGA_Projects/MIMTLU/pcores/mimtlu_v1_00_a/devl/projnav/../../hdl/vhdl/user_logic.vhd \
+      PB ieee/std_logic_1164 1354696159 PB ieee/std_logic_arith 1354696160 \
+      PB ieee/STD_LOGIC_UNSIGNED 1354696162 LB proc_common_v3_00_a \
+      LB mimtlu_v1_00_a PB proc_common_v3_00_a/proc_common_pkg 0
+AR mimtlu_v1_00_a/user_logic/IMP 0 \
+      FL C:/Users/mbenoit/Documents/FPGA_Projects/MIMTLU/pcores/mimtlu_v1_00_a/devl/projnav/../../hdl/vhdl/user_logic.vhd \
+      EN mimtlu_v1_00_a/user_logic 0 CP mimtlu_v1_00_a/TOP

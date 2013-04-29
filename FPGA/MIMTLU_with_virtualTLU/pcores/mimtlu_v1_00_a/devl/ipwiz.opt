@@ -1,0 +1,10 @@
+-batch 
+-create mimtlu 
+-ver 1.00.a 
+-dir "C:\Users\mbenoit\Documents\FPGA_Projects\MIMTLU" 
+-lang vhdl 
+-bus axi4lite s 
+-reg 4 
+-xps 
+-ise 
+-driver 

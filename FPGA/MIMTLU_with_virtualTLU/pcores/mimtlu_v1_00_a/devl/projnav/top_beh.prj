@@ -1,0 +1,3 @@
+vhdl work "../../hdl/vhdl/TLU_SIMULATOR.vhd"
+vhdl work "../../hdl/vhdl/MIMTLU_core.vhd"
+vhdl work "../../hdl/vhdl/TOP.vhd"
