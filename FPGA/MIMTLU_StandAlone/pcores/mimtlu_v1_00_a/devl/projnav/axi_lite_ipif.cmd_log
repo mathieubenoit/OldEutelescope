@@ -1,0 +1,3 @@
+xst -intstyle ise -ifn "C:/Users/mbenoit/Documents/FPGA_Projects/MIMTLU/pcores/mimtlu_v1_00_a/devl/projnav/axi_lite_ipif.xst" -ofn "C:/Users/mbenoit/Documents/FPGA_Projects/MIMTLU/pcores/mimtlu_v1_00_a/devl/projnav/axi_lite_ipif.syr" 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -i -p xc6slx9-csg324-2 axi_lite_ipif.ngc axi_lite_ipif.ngd  
+netgen -intstyle ise -insert_glbl true -w -dir netgen/translate -ofmt verilog -sim axi_lite_ipif.ngd axi_lite_ipif_translate.v 

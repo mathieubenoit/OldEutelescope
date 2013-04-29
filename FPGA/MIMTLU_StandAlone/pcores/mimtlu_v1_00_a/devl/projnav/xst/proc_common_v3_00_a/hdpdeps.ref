@@ -1,0 +1,42 @@
+V3 27
+FL C:/Users/mbenoit/Documents/FPGA_Projects/MIMTLU/pcores/mimtlu_v1_00_a/devl/projnav/../../../../../../../../../Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/counter_f.vhd 2012/12/05.12:41:23 P.49d
+EN proc_common_v3_00_a/counter_f 1366364373 \
+      FL C:/Users/mbenoit/Documents/FPGA_Projects/MIMTLU/pcores/mimtlu_v1_00_a/devl/projnav/../../../../../../../../../Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/counter_f.vhd \
+      PB ieee/std_logic_1164 1354696159 PB ieee/NUMERIC_STD 1354696164 LB unisim \
+      LB proc_common_v3_00_a PB proc_common_v3_00_a/family_support 1366364372
+AR proc_common_v3_00_a/counter_f/imp 1366364374 \
+      FL C:/Users/mbenoit/Documents/FPGA_Projects/MIMTLU/pcores/mimtlu_v1_00_a/devl/projnav/../../../../../../../../../Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/counter_f.vhd \
+      EN proc_common_v3_00_a/counter_f 1366364373 CP std_logic_vector CP std_logic \
+      CP MUXCY_L CP XORCY CP FDRE CP unsigned
+FL C:/Users/mbenoit/Documents/FPGA_Projects/MIMTLU/pcores/mimtlu_v1_00_a/devl/projnav/../../../../../../../../../Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/family_support.vhd 2012/12/05.12:41:24 P.49d
+PH proc_common_v3_00_a/family_support 1366364371 \
+      FL C:/Users/mbenoit/Documents/FPGA_Projects/MIMTLU/pcores/mimtlu_v1_00_a/devl/projnav/../../../../../../../../../Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/family_support.vhd
+PB proc_common_v3_00_a/family_support 1366364372 \
+      FL C:/Users/mbenoit/Documents/FPGA_Projects/MIMTLU/pcores/mimtlu_v1_00_a/devl/projnav/../../../../../../../../../Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/family_support.vhd \
+      PH proc_common_v3_00_a/family_support 1366364371
+FL C:/Users/mbenoit/Documents/FPGA_Projects/MIMTLU/pcores/mimtlu_v1_00_a/devl/projnav/../../../../../../../../../Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/ipif_pkg.vhd 2012/12/05.12:41:24 P.49d
+PH proc_common_v3_00_a/ipif_pkg 1366364377 \
+      FL C:/Users/mbenoit/Documents/FPGA_Projects/MIMTLU/pcores/mimtlu_v1_00_a/devl/projnav/../../../../../../../../../Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/ipif_pkg.vhd \
+      PB ieee/std_logic_1164 1354696159 PB ieee/std_logic_arith 1354696160 \
+      PB ieee/STD_LOGIC_UNSIGNED 1354696162
+PB proc_common_v3_00_a/ipif_pkg 1366364378 \
+      FL C:/Users/mbenoit/Documents/FPGA_Projects/MIMTLU/pcores/mimtlu_v1_00_a/devl/projnav/../../../../../../../../../Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/ipif_pkg.vhd \
+      PH proc_common_v3_00_a/ipif_pkg 1366364377 LB proc_common_v3_00_a \
+      PB proc_common_v3_00_a/proc_common_pkg 1366364370
+FL C:/Users/mbenoit/Documents/FPGA_Projects/MIMTLU/pcores/mimtlu_v1_00_a/devl/projnav/../../../../../../../../../Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/proc_common_pkg.vhd 2012/12/05.12:41:24 P.49d
+PH proc_common_v3_00_a/proc_common_pkg 1366364369 \
+      FL C:/Users/mbenoit/Documents/FPGA_Projects/MIMTLU/pcores/mimtlu_v1_00_a/devl/projnav/../../../../../../../../../Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/proc_common_pkg.vhd \
+      PB ieee/std_logic_1164 1354696159 PB ieee/std_logic_arith 1354696160 \
+      PB ieee/STD_LOGIC_UNSIGNED 1354696162
+PB proc_common_v3_00_a/proc_common_pkg 1366364370 \
+      FL C:/Users/mbenoit/Documents/FPGA_Projects/MIMTLU/pcores/mimtlu_v1_00_a/devl/projnav/../../../../../../../../../Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/proc_common_pkg.vhd \
+      PH proc_common_v3_00_a/proc_common_pkg 1366364369
+FL C:/Users/mbenoit/Documents/FPGA_Projects/MIMTLU/pcores/mimtlu_v1_00_a/devl/projnav/../../../../../../../../../Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/pselect_f.vhd 2012/12/05.12:41:24 P.49d
+EN proc_common_v3_00_a/pselect_f 1366364375 \
+      FL C:/Users/mbenoit/Documents/FPGA_Projects/MIMTLU/pcores/mimtlu_v1_00_a/devl/projnav/../../../../../../../../../Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/pselect_f.vhd \
+      PB ieee/std_logic_1164 1354696159 LB unisim LB proc_common_v3_00_a \
+      PB proc_common_v3_00_a/family_support 1366364372
+AR proc_common_v3_00_a/pselect_f/imp 1366364376 \
+      FL C:/Users/mbenoit/Documents/FPGA_Projects/MIMTLU/pcores/mimtlu_v1_00_a/devl/projnav/../../../../../../../../../Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/pselect_f.vhd \
+      EN proc_common_v3_00_a/pselect_f 1366364375 CP integer CP std_logic_vector \
+      CP natural CP positive CP MUXCY
