@@ -11,13 +11,13 @@
          <ClosedNode>/mimtlu - IMP C:|Users|mbenoit|Documents|FPGA_Projects|MIMTLU|pcores|mimtlu_v1_00_a|hdl|vhdl|mimtlu.vhd/AXI_LITE_IPIF_I - axi_lite_ipif - imp/I_SLAVE_ATTACHMENT - slave_attachment - imp</ClosedNode>
       </ClosedNodes>
       <SelectedItems>
-         <SelectedItem>TLU_SIM - TLU_SIMU - Behavioral (C:/Users/mbenoit/Documents/FPGA_Projects/MIMTLU/pcores/mimtlu_v1_00_a/hdl/vhdl/TLU_SIMULATOR.vhd)</SelectedItem>
+         <SelectedItem>MIMTLU_ent - top - Behavioral (M:/Git_projects/FPGA/MIMTLU_with_virtualTLU/pcores/mimtlu_v1_00_a/hdl/vhdl/TOP.vhd)</SelectedItem>
       </SelectedItems>
       <ScrollbarPosition orientation="vertical" >0</ScrollbarPosition>
       <ScrollbarPosition orientation="horizontal" >0</ScrollbarPosition>
       <ViewHeaderState orientation="horizontal" >000000ff000000000000000100000001000000000000000000000000000000000202000000010000000100000064000001d8000000020000000000000000000000000200000064ffffffff000000810000000300000002000001d80000000100000003000000000000000100000003</ViewHeaderState>
       <UserChangedColumnWidths orientation="horizontal" >true</UserChangedColumnWidths>
-      <CurrentItem>TLU_SIM - TLU_SIMU - Behavioral (C:/Users/mbenoit/Documents/FPGA_Projects/MIMTLU/pcores/mimtlu_v1_00_a/hdl/vhdl/TLU_SIMULATOR.vhd)</CurrentItem>
+      <CurrentItem>MIMTLU_ent - top - Behavioral (M:/Git_projects/FPGA/MIMTLU_with_virtualTLU/pcores/mimtlu_v1_00_a/hdl/vhdl/TOP.vhd)</CurrentItem>
    </ItemView>
    <ItemView engineview="SynthesisOnly" sourcetype="DESUT_VHDL_ARCHITECTURE" guiview="Process" >
       <ClosedNodes>

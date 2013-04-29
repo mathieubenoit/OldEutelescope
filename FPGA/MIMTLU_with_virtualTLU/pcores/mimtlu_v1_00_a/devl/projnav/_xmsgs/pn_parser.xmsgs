@@ -8,7 +8,13 @@
 <!-- Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.    -->
 
 <messages>
-<msg type="info" file="ProjectMgmt" num="1061" ><arg fmt="%s" index="1">Parsing VHDL file &quot;C:/Users/mbenoit/Documents/FPGA_Projects/MIMTLU/pcores/mimtlu_v1_00_a/hdl/vhdl/TOP.vhd&quot; into library work</arg>
+<msg type="info" file="ProjectMgmt" num="1845" ><arg fmt="%s" index="1">Analyzing Verilog file &quot;M:/Git_projects/FPGA/MIMTLU_with_virtualTLU/pcores/mimtlu_v1_00_a/devl/projnav/netgen/translate/axi_lite_ipif_translate.v&quot; into library work</arg>
+</msg>
+
+<msg type="info" file="ProjectMgmt" num="1061" ><arg fmt="%s" index="1">Parsing VHDL file &quot;M:/Git_projects/FPGA/MIMTLU_with_virtualTLU/pcores/mimtlu_v1_00_a/devl/projnav/tb.vhd&quot; into library work</arg>
+</msg>
+
+<msg type="info" file="ProjectMgmt" num="1061" ><arg fmt="%s" index="1">Parsing VHDL file &quot;M:/Git_projects/FPGA/MIMTLU_with_virtualTLU/pcores/mimtlu_v1_00_a/hdl/vhdl/mimtlu.vhd&quot; into library mimtlu_v1_00_a</arg>
 </msg>
 
 </messages>
