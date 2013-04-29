@@ -137,21 +137,20 @@ entity mimtlu is
   port
   (
     -- ADD USER PORTS BELOW THIS LINE ------------------
-    test : in  STD_LOGIC;
 	 CLOCK_Y3 : in STD_LOGIC;
 	 USER_CLOCK : in STD_LOGIC;
 
---	 TRIGGER_P : in std_logic;
---	 TRIGGER_N : in std_logic;
---	 
---	 TRIGGER_CLOCK_P : out std_logic;
---	 TRIGGER_CLOCK_N : out std_logic;	
---	 
---	 BUSY_P : out STD_LOGIC ;		
---	 BUSY_N : out STD_LOGIC ;					  
---	 
---	 RESET_P : in STD_LOGIC ;		
---	 RESET_N : in STD_LOGIC ;		
+	 TRIGGER_P : in std_logic;
+	 TRIGGER_N : in std_logic;
+	 
+	 TRIGGER_CLOCK_P : out std_logic;
+	 TRIGGER_CLOCK_N : out std_logic;	
+	 
+	 BUSY_P : out STD_LOGIC ;		
+	 BUSY_N : out STD_LOGIC ;					  
+	 
+	 RESET_P : in STD_LOGIC ;		
+	 RESET_N : in STD_LOGIC ;		
 	  
 	 TRIGGER_DUT : out std_logic;
 	 BUSY_DUT : in std_logic;
@@ -322,16 +321,17 @@ begin
     port map
     (
       -- MAP USER PORTS BELOW THIS LINE ------------------
-     test => test,
+--     test => test,
 	  CLOCK_Y3 => CLOCK_Y3,
---			  TRIGGER_P => TRIGGER_P,
---			  TRIGGER_N =>TRIGGER_N ,
---			  TRIGGER_CLOCK_P => TRIGGER_CLOCK_P,
---			  TRIGGER_CLOCK_N => TRIGGER_CLOCK_N,
---			  BUSY_P => BUSY_P ,		
---			  BUSY_N => BUSY_N,				  
---			  RESET_P => RESET_P,
---			  RESET_N => RESET_N,		
+	  
+	  TRIGGER_P => TRIGGER_P,
+	  TRIGGER_N =>TRIGGER_N ,
+	  TRIGGER_CLOCK_P => TRIGGER_CLOCK_P,
+	  TRIGGER_CLOCK_N => TRIGGER_CLOCK_N,
+	  BUSY_P => BUSY_P ,		
+	  BUSY_N => BUSY_N,				  
+	  RESET_P => RESET_P,
+	  RESET_N => RESET_N,		
 	  
 	  TRIGGER_DUT => TRIGGER_DUT,
 	  BUSY_DUT => BUSY_DUT,

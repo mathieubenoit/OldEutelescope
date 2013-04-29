@@ -1,34 +1,14 @@
-Running: C:\Xilinx\14.4\ISE_DS\ISE\bin\nt64\unwrapped\fuse.exe -intstyle ise -incremental -lib secureip -o C:/Users/mbenoit/Documents/FPGA_Projects/MIMTLU/pcores/mimtlu_v1_00_a/devl/projnav/tb_isim_beh.exe -prj C:/Users/mbenoit/Documents/FPGA_Projects/MIMTLU/pcores/mimtlu_v1_00_a/devl/projnav/tb_beh.prj work.tb 
+Running: C:\Xilinx\14.4\ISE_DS\ISE\bin\nt64\unwrapped\fuse.exe -intstyle ise -incremental -lib secureip -o M:/Git_projects/FPGA/MIMTLU_StandAlone/pcores/mimtlu_v1_00_a/devl/projnav/tb_isim_beh.exe -prj M:/Git_projects/FPGA/MIMTLU_StandAlone/pcores/mimtlu_v1_00_a/devl/projnav/tb_beh.prj work.tb 
 ISim P.49d (signature 0x7708f090)
 Number of CPUs detected in this system: 2
 Turning on mult-threading, number of parallel sub-compilation jobs: 4 
 Determining compilation order of HDL files
-Parsing VHDL file "C:/Users/mbenoit/Documents/FPGA_Projects/MIMTLU/pcores/mimtlu_v1_00_a/devl/projnav/../../hdl/vhdl/TLU_SIMULATOR.vhd" into library work
-Parsing VHDL file "C:/Users/mbenoit/Documents/FPGA_Projects/MIMTLU/pcores/mimtlu_v1_00_a/devl/projnav/../../hdl/vhdl/MIMTLU_core.vhd" into library work
-Parsing VHDL file "C:/Users/mbenoit/Documents/FPGA_Projects/MIMTLU/pcores/mimtlu_v1_00_a/devl/projnav/clk_divider.vhd" into library work
-Parsing VHDL file "C:/Users/mbenoit/Documents/FPGA_Projects/MIMTLU/pcores/mimtlu_v1_00_a/devl/projnav/../../hdl/vhdl/TOP.vhd" into library work
-Parsing VHDL file "C:/Users/mbenoit/Documents/FPGA_Projects/MIMTLU/pcores/mimtlu_v1_00_a/devl/projnav/tb.vhd" into library work
+Parsing VHDL file "M:/Git_projects/FPGA/MIMTLU_StandAlone/pcores/mimtlu_v1_00_a/devl/projnav/../../hdl/vhdl/MIMTLU_core.vhd" into library work
+Parsing VHDL file "M:/Git_projects/FPGA/MIMTLU_StandAlone/pcores/mimtlu_v1_00_a/devl/projnav/../../hdl/vhdl/dummy_diffpair.vhd" into library work
+Parsing VHDL file "M:/Git_projects/FPGA/MIMTLU_StandAlone/pcores/mimtlu_v1_00_a/devl/projnav/clk_divider.vhd" into library work
+Parsing VHDL file "M:/Git_projects/FPGA/MIMTLU_StandAlone/pcores/mimtlu_v1_00_a/devl/projnav/../../hdl/vhdl/TOP.vhd" into library work
+WARNING:HDLCompiler:946 - "M:/Git_projects/FPGA/MIMTLU_StandAlone/pcores/mimtlu_v1_00_a/devl/projnav/../../hdl/vhdl/TOP.vhd" Line 84: Actual for formal port c1 is neither a static name nor a globally static expression
+Parsing VHDL file "M:/Git_projects/FPGA/MIMTLU_StandAlone/pcores/mimtlu_v1_00_a/devl/projnav/tb.vhd" into library work
 Starting static elaboration
-Completed static elaboration
-Compiling package standard
-Compiling package std_logic_1164
-Compiling package numeric_std
-Compiling package vcomponents
-Compiling package textio
-Compiling package vital_timing
-Compiling package vital_primitives
-Compiling architecture bufgmux_v of entity BUFGMUX [\BUFGMUX("SYNC")(1,4)\]
-Compiling architecture inv_v of entity INV [inv_default]
-Compiling architecture bufgce_v of entity BUFGCE [bufgce_default]
-Compiling architecture behavioral of entity MIMTLU_core [mimtlu_core_default]
-Compiling architecture behavioral of entity TLU_SIMU [tlu_simu_default]
-Compiling architecture bufg_v of entity BUFG [bufg_default]
-Compiling architecture behavioral of entity clk_divider [clk_divider_default]
-Compiling architecture behavioral of entity top [top_default]
-Compiling architecture behavior of entity tb
-Time Resolution for simulation is 1ps.
-Waiting for 12 sub-compilation(s) to finish...
-Compiled 24 VHDL Units
-Built simulation executable C:/Users/mbenoit/Documents/FPGA_Projects/MIMTLU/pcores/mimtlu_v1_00_a/devl/projnav/tb_isim_beh.exe
-Fuse Memory Usage: 52764 KB
-Fuse CPU Usage: 920 ms
+ERROR:HDLCompiler:1156 - "M:/Git_projects/FPGA/MIMTLU_StandAlone/pcores/mimtlu_v1_00_a/devl/projnav/tb.vhd" Line 44: Formal port <test> does not exist in entity <top>.  Please compare the definition of block <top> to its component declaration and its instantion to detect the mismatch.
+ERROR:Simulator:777 - Static elaboration of top level VHDL design unit tb in library work failed

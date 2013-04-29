@@ -11,19 +11,13 @@ WARNING:EDK:4180 - PORT: Interrupt_address_in, CONNECTOR:
    driven to GND -
    C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\axi_intc_v1_03_a\dat
    a\axi_intc_v2_1_0.mpd line 130 
-WARNING:EDK:4181 - PORT: mimtlu_0_CLOCK_Y2_pin, CONNECTOR: mimtlu_0_CLOCK_Y2 -
-   floating connection -
-   C:\Users\mbenoit\Documents\FPGA_Projects\MIMTLU\system.mhs line 47 
-WARNING:EDK:4181 - PORT: mimtlu_0_USER_CLOCK_pin, CONNECTOR: mimtlu_0_USER_CLOCK
-   - floating connection -
-   C:\Users\mbenoit\Documents\FPGA_Projects\MIMTLU\system.mhs line 49 
 WARNING:EDK:4181 - PORT: Processor_ack_out, CONNECTOR:
    microblaze_0_interrupt_Processor_ack_out - floating connection -
    C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\axi_intc_v1_03_a\dat
    a\axi_intc_v2_1_0.mpd line 131 
 WARNING:EDK:4181 - PORT: CLKOUT3, CONNECTOR: clock_generator_0_CLKOUT3 -
-   floating connection -
-   C:\Users\mbenoit\Documents\FPGA_Projects\MIMTLU\system.mhs line 184 
+   floating connection - M:\Git_projects\FPGA\MIMTLU_StandAlone\system.mhs line
+   189 
 
 Performing Clock DRCs...
 

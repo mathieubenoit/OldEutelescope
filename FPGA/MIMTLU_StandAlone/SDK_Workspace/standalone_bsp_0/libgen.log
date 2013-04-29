@@ -2,8 +2,7 @@ Release 14.4 - libgen Xilinx EDK 14.4 Build EDK_P.49d
  (nt64)
 Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.
 
-Command Line: libgen -hw ../xps_hw_platform/system.xml -lp
-C:/Users/mbenoit/Documents/FPGA_Projects/MIMTLU/pcores/mimtlu_v1_00_a -pe
+Command Line: libgen -hw ../MIMTLU_StandAlone_hw_platform/system.xml -pe
 microblaze_0 -log libgen.log system.mss 
 
 

@@ -39,17 +39,14 @@
     <file xil_pn:fileType="FILE_XRPT" xil_pn:name="axi_lite_ipif_ngdbuild.xrpt"/>
     <file xil_pn:fileType="FILE_HTML" xil_pn:name="axi_lite_ipif_summary.html"/>
     <file xil_pn:fileType="FILE_XRPT" xil_pn:name="axi_lite_ipif_xst.xrpt"/>
-    <file xil_pn:fileType="FILE_LOG" xil_pn:name="fuse.log"/>
     <file xil_pn:fileType="FILE_DIRECTORY" xil_pn:name="isim"/>
     <file xil_pn:fileType="FILE_CMD" xil_pn:name="isim.cmd">
       <branch xil_pn:name="BehavioralSim"/>
       <branch xil_pn:name="PostTranslateSimulation"/>
     </file>
-    <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_LOG" xil_pn:name="isim.log"/>
     <file xil_pn:fileType="FILE_DIRECTORY" xil_pn:name="netgen"/>
     <file xil_pn:branch="PostTranslateSimulation" xil_pn:fileType="FILE_NETGEN_REPORT" xil_pn:name="netgen/translate/axi_lite_ipif_translate.nlf"/>
     <file xil_pn:branch="PostTranslateSimulation" xil_pn:fileType="FILE_VERILOG" xil_pn:name="netgen/translate/axi_lite_ipif_translate.v"/>
-    <file xil_pn:fileType="FILE_XST_PROJECT" xil_pn:name="tb_beh.prj"/>
     <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_ISIM_EXE" xil_pn:name="tb_isim_beh.exe"/>
     <file xil_pn:fileType="FILE_ISIM_MISC" xil_pn:name="tb_isim_beh.wdb"/>
     <file xil_pn:branch="PostTranslateSimulation" xil_pn:fileType="FILE_ISIM_EXE" xil_pn:name="tb_isim_translate.exe"/>
@@ -69,16 +66,13 @@
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
-    <transform xil_pn:end_ts="1366880819" xil_pn:in_ck="-1371693814861259544" xil_pn:name="TRAN_copyAbstractToPostAbstractSimulation" xil_pn:start_ts="1366880819">
+    <transform xil_pn:end_ts="1367234395" xil_pn:in_ck="3359044915769904077" xil_pn:name="TRAN_copyAbstractToPostAbstractSimulation" xil_pn:start_ts="1367234395">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
-      <status xil_pn:value="OutOfDateForInputs"/>
-      <status xil_pn:value="OutOfDateForOutputs"/>
-      <status xil_pn:value="InputChanged"/>
-      <status xil_pn:value="OutputChanged"/>
       <outfile xil_pn:name="../../hdl/vhdl/MIMTLU_core.vhd"/>
       <outfile xil_pn:name="../../hdl/vhdl/TLU_SIMULATOR.vhd"/>
       <outfile xil_pn:name="../../hdl/vhdl/TOP.vhd"/>
+      <outfile xil_pn:name="../../hdl/vhdl/dummy_diffpair.vhd"/>
       <outfile xil_pn:name="../../hdl/vhdl/mimtlu.vhd"/>
       <outfile xil_pn:name="../../hdl/vhdl/user_logic.vhd"/>
       <outfile xil_pn:name="C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/axi_lite_ipif_v1_01_a/hdl/vhdl/address_decoder.vhd"/>
@@ -106,17 +100,13 @@
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
-    <transform xil_pn:end_ts="1366880819" xil_pn:in_ck="-1371693814861259544" xil_pn:name="TRAN_copyPostAbstractToPreSimulation" xil_pn:start_ts="1366880819">
+    <transform xil_pn:end_ts="1367234395" xil_pn:in_ck="3359044915769904077" xil_pn:name="TRAN_copyPostAbstractToPreSimulation" xil_pn:start_ts="1367234395">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
-      <status xil_pn:value="OutOfDateForInputs"/>
-      <status xil_pn:value="OutOfDateForPredecessor"/>
-      <status xil_pn:value="OutOfDateForOutputs"/>
-      <status xil_pn:value="InputChanged"/>
-      <status xil_pn:value="OutputChanged"/>
       <outfile xil_pn:name="../../hdl/vhdl/MIMTLU_core.vhd"/>
       <outfile xil_pn:name="../../hdl/vhdl/TLU_SIMULATOR.vhd"/>
       <outfile xil_pn:name="../../hdl/vhdl/TOP.vhd"/>
+      <outfile xil_pn:name="../../hdl/vhdl/dummy_diffpair.vhd"/>
       <outfile xil_pn:name="../../hdl/vhdl/mimtlu.vhd"/>
       <outfile xil_pn:name="../../hdl/vhdl/user_logic.vhd"/>
       <outfile xil_pn:name="C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/axi_lite_ipif_v1_01_a/hdl/vhdl/address_decoder.vhd"/>
@@ -132,29 +122,16 @@
       <outfile xil_pn:name="clk_divider.vhd"/>
       <outfile xil_pn:name="tb.vhd"/>
     </transform>
-    <transform xil_pn:end_ts="1366880825" xil_pn:in_ck="-1371693814861259544" xil_pn:name="TRAN_ISimulateBehavioralModelRunFuse" xil_pn:prop_ck="4163379782494730050" xil_pn:start_ts="1366880819">
-      <status xil_pn:value="SuccessfullyRun"/>
+    <transform xil_pn:end_ts="1367234397" xil_pn:in_ck="3359044915769904077" xil_pn:name="TRAN_ISimulateBehavioralModelRunFuse" xil_pn:prop_ck="4163379782494730050" xil_pn:start_ts="1367234395">
+      <status xil_pn:value="FailedRun"/>
       <status xil_pn:value="ReadyToRun"/>
-      <status xil_pn:value="OutOfDateForInputs"/>
-      <status xil_pn:value="OutOfDateForPredecessor"/>
-      <status xil_pn:value="OutOfDateForOutputs"/>
-      <status xil_pn:value="InputChanged"/>
-      <status xil_pn:value="OutputChanged"/>
-      <outfile xil_pn:name="fuse.log"/>
-      <outfile xil_pn:name="isim"/>
-      <outfile xil_pn:name="isim.log"/>
-      <outfile xil_pn:name="tb_beh.prj"/>
-      <outfile xil_pn:name="tb_isim_beh.exe"/>
-      <outfile xil_pn:name="xilinxsim.ini"/>
     </transform>
     <transform xil_pn:end_ts="1366880825" xil_pn:in_ck="-4013799877376856314" xil_pn:name="TRAN_ISimulateBehavioralModel" xil_pn:prop_ck="-6270239681133993019" xil_pn:start_ts="1366880825">
-      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="AbortedRun"/>
       <status xil_pn:value="ReadyToRun"/>
       <status xil_pn:value="OutOfDateForPredecessor"/>
-      <status xil_pn:value="OutOfDateForOutputs"/>
-      <status xil_pn:value="OutputChanged"/>
+      <status xil_pn:value="OutOfDateForced"/>
       <outfile xil_pn:name="isim.cmd"/>
-      <outfile xil_pn:name="isim.log"/>
       <outfile xil_pn:name="tb_isim_beh.wdb"/>
     </transform>
     <transform xil_pn:end_ts="1366710511" xil_pn:name="TRAN_copyInitialToXSTAbstractSynthesis" xil_pn:start_ts="1366710511">
