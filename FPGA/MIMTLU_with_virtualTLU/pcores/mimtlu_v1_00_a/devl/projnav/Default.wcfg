@@ -3,10 +3,11 @@
    <wave_state>
    </wave_state>
    <db_ref_list>
-      <db_ref path="C:/Users/mbenoit/Documents/FPGA_Projects/MIMTLU/pcores/mimtlu_v1_00_a/devl/projnav/tb_isim_beh.wdb" id="1" type="auto">
+      <db_ref path="M:/Git_projects/FPGA/MIMTLU_with_virtualTLU/pcores/mimtlu_v1_00_a/devl/projnav/tb_isim_beh.wdb" id="1" type="auto">
          <top_modules>
             <top_module name="numeric_std" />
             <top_module name="std_logic_1164" />
+            <top_module name="std_logic_arith" />
             <top_module name="tb" />
             <top_module name="textio" />
             <top_module name="vcomponents" />
@@ -15,7 +16,7 @@
          </top_modules>
       </db_ref>
    </db_ref_list>
-   <WVObjectSize size="11" />
+   <WVObjectSize size="13" />
    <wvobject fp_name="/tb/test" type="logic" db_ref_id="1">
       <obj_property name="ElementShortName">test</obj_property>
       <obj_property name="ObjectShortName">test</obj_property>
@@ -48,6 +49,10 @@
       <obj_property name="ElementShortName">timestamp[31:0]</obj_property>
       <obj_property name="ObjectShortName">timestamp[31:0]</obj_property>
    </wvobject>
+   <wvobject fp_name="/tb/busy_cnt" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">busy_cnt[31:0]</obj_property>
+      <obj_property name="ObjectShortName">busy_cnt[31:0]</obj_property>
+   </wvobject>
    <wvobject fp_name="/tb/clock_y3_period" type="other" db_ref_id="1">
       <obj_property name="ElementShortName">clock_y3_period</obj_property>
       <obj_property name="ObjectShortName">clock_y3_period</obj_property>
@@ -56,8 +61,14 @@
       <obj_property name="ElementShortName">user_clock_period</obj_property>
       <obj_property name="ObjectShortName">user_clock_period</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb/uut/slow_clk" type="logic" db_ref_id="1">
-      <obj_property name="ElementShortName">slow_clk</obj_property>
-      <obj_property name="ObjectShortName">slow_clk</obj_property>
+   <wvobject fp_name="/tb/uut/TLU_SIM/running_timestamp" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">running_timestamp[31:0]</obj_property>
+      <obj_property name="ObjectShortName">running_timestamp[31:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/uut/TLU_SIM/timestamp" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">timestamp[31:0]</obj_property>
+      <obj_property name="ObjectShortName">timestamp[31:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
 </wave_config>

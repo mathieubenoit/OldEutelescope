@@ -28,6 +28,7 @@ use IEEE.NUMERIC_STD.ALL;
 -- any Xilinx primitives in this code.
 
 entity MIMTLU_core is
+	 Generic ( Nbits : integer );
     Port ( Trigger : in  STD_LOGIC;
            busy : out  STD_LOGIC;
 			  
@@ -48,13 +49,13 @@ end MIMTLU_core;
 architecture Behavioral of MIMTLU_core is
 
 type TLU_state is (idle,triggered,reading,isBusy);
-type ts is range 0 to 15;
+type ts is range 0 to 31;
 
-constant ts_length : ts:=15;
+constant ts_length : ts:=ts(Nbits);
 signal ts_cnt : ts;
 signal state_reg,state_next : TLU_state;
 
-signal timestamp_reg : std_logic_vector(15 downto 0);
+signal timestamp_reg : std_logic_vector(Nbits downto 0);
 
 signal busy_reg : std_logic:='0';
 signal clk_en_reg : std_logic:='0';
@@ -68,9 +69,9 @@ signal ts_reg : std_logic:='0';
 signal data_itr_reg : std_logic:='0';
 
 
-signal count : integer;
+signal count : natural ;
 
-signal wait_time : integer := 255;
+signal wait_time : natural := 255;
 
 
 begin
@@ -166,8 +167,8 @@ trigger_dut <= trigger when clk_en_reg='0' else
 busy_copy<=busy_reg or busy_dut_reg;
 trigger_copy<=trigger;
 
-timestamp(31 downto 16)<=(others=>'0');
-timestamp(15 downto 0)<=timestamp_reg;
+timestamp(31 downto Nbits+1)<=(others=>'0');
+timestamp(Nbits downto 0)<=timestamp_reg;
 
 data_itr<=data_itr_reg;
 

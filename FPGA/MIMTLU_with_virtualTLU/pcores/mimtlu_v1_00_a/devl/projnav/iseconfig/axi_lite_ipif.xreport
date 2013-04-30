@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <report-views version="2.0" >
  <header>
-  <DateModified>2013-04-29T13:46:37</DateModified>
+  <DateModified>2013-04-30T10:12:27</DateModified>
   <ModuleName>axi_lite_ipif</ModuleName>
   <SummaryTimeStamp>Unknown</SummaryTimeStamp>
   <SavedFilePath>M:/Git_projects/FPGA/MIMTLU_with_virtualTLU/pcores/mimtlu_v1_00_a/devl/projnav/iseconfig/axi_lite_ipif.xreport</SavedFilePath>

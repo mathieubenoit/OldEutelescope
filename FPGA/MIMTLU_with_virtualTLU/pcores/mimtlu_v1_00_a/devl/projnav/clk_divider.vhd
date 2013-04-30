@@ -30,7 +30,8 @@ library UNISIM;
 use UNISIM.VComponents.all;
 
 entity clk_divider is
-  Port (
+	Generic ( N : natural);
+	Port (
         clk_in : in  STD_LOGIC;
         reset  : in  STD_LOGIC;
         clk_out: out STD_LOGIC
@@ -40,7 +41,7 @@ end clk_divider;
 architecture Behavioral of clk_divider is
 signal temporal: STD_LOGIC:='0';
 signal unbuf_clk : std_logic:='0';
-signal counter : integer range 0 to 4 := 0;
+signal counter : integer range 0 to (N-1) := 0;
 
 begin
     frequency_divider: process (reset, clk_in) begin
@@ -48,7 +49,7 @@ begin
             temporal <= '0';
             counter <= 0;
         elsif rising_edge(clk_in) then
-            if (counter = 4) then
+            if (counter = (N-1)) then
                 temporal <= NOT(temporal);
                 counter <= 0;
             else

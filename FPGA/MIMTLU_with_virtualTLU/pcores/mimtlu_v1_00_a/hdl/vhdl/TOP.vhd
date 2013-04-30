@@ -119,7 +119,8 @@ BUFGCE_inst : BUFGCE port map ( O=>clk_out,CE=>clk_en,I=>SLOW_CLK );
 
 -- TLU Man-In-The-Middle	
 
-TLU_READ : entity work.MIMTLU_core port map(trigger=>TRIGGER,
+TLU_READ : entity work.MIMTLU_core generic map(Nbits =>31) 
+											port map(trigger=>TRIGGER,
 													busy=>BUSY,
 													reset=>RESET,
 													timestamp=>timestamp,
@@ -132,7 +133,8 @@ TLU_READ : entity work.MIMTLU_core port map(trigger=>TRIGGER,
 													trigger_copy=>trigger_copy,													
 													clk_out_en=>clk_en);
 													
-TLU_SIM : entity work.TLU_SIMU port map(trigger=>trigger,
+TLU_SIM : entity work.TLU_SIMU 	generic map(Nbits =>31)
+											port map(trigger=>trigger,
 													busy=>busy,
 													test=>test,
 													reset=>reset,
@@ -140,9 +142,12 @@ TLU_SIM : entity work.TLU_SIMU port map(trigger=>trigger,
 													clk=>clk_out);
 
 
-CLK_DIV : entity work.clk_divider port map(	clk_in  => CLOCK_Y3,
-															reset   => reset,
-															clk_out => SLOW_CLK);
+--CLK_DIV : entity work.clk_divider generic map(N=>5)
+--											port map(	clk_in  => CLOCK_Y3,
+--															reset   => reset,
+--															clk_out => SLOW_CLK);
+
+SLOW_CLK<=CLOCK_Y3;
 
 end Behavioral;
 
