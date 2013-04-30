@@ -41,12 +41,12 @@ entity system is
     Ethernet_MAC_COL : in std_logic;
     DIP_Switches_4Bits_TRI_I : in std_logic_vector(3 downto 0);
     CLK_66MHZ : in std_logic;
-    mimtlu_0_TEST_pin : in std_logic;
     mimtlu_0_BUSY_DUT_pin : in std_logic;
     mimtlu_0_TRIGGER_DUT_pin : out std_logic;
     mimtlu_0_TRIGGER_COPY_pin : out std_logic;
     mimtlu_0_BUSY_COPY_pin : out std_logic;
-    mimtlu_0_CLOCK_Y3_pin : in std_logic
+    mimtlu_0_CLOCK_Y3_pin : in std_logic;
+    mimtlu_0_TEST_pin : in std_logic
   );
 end system;
 
@@ -2279,7 +2279,6 @@ architecture STRUCTURE of system is
 
   component system_mimtlu_0_wrapper is
     port (
-      TEST : in std_logic;
       CLOCK_Y3 : in std_logic;
       USER_CLOCK : in std_logic;
       TRIGGER_DUT : out std_logic;
@@ -2287,6 +2286,7 @@ architecture STRUCTURE of system is
       BUSY_DUT : in std_logic;
       BUSY_COPY : out std_logic;
       DATA_ITR : out std_logic;
+      TEST : in std_logic;
       S_AXI_ACLK : in std_logic;
       S_AXI_ARESETN : in std_logic;
       S_AXI_AWADDR : in std_logic_vector(31 downto 0);
@@ -2552,7 +2552,6 @@ architecture STRUCTURE of system is
   signal mimtlu_0_BUSY_DUT : std_logic;
   signal mimtlu_0_CLOCK_Y3 : std_logic;
   signal mimtlu_0_DATA_ITR : std_logic;
-  signal mimtlu_0_TEST : std_logic;
   signal mimtlu_0_TRIGGER_COPY : std_logic;
   signal mimtlu_0_TRIGGER_DUT : std_logic;
   signal net_gnd0 : std_logic;
@@ -2564,6 +2563,7 @@ architecture STRUCTURE of system is
   signal net_gnd16 : std_logic_vector(0 to 15);
   signal net_gnd32 : std_logic_vector(0 to 31);
   signal net_gnd4096 : std_logic_vector(0 to 4095);
+  signal net_mimtlu_0_TEST_pin : std_logic;
   signal net_vcc0 : std_logic;
   signal pgassign1 : std_logic_vector(3 downto 0);
   signal pgassign2 : std_logic_vector(7 downto 0);
@@ -2602,12 +2602,12 @@ begin
 
   -- Internal assignments
 
-  mimtlu_0_TEST <= mimtlu_0_TEST_pin;
   mimtlu_0_BUSY_DUT <= mimtlu_0_BUSY_DUT_pin;
   mimtlu_0_TRIGGER_DUT_pin <= mimtlu_0_TRIGGER_DUT;
   mimtlu_0_TRIGGER_COPY_pin <= mimtlu_0_TRIGGER_COPY;
   mimtlu_0_BUSY_COPY_pin <= mimtlu_0_BUSY_COPY;
   mimtlu_0_CLOCK_Y3 <= mimtlu_0_CLOCK_Y3_pin;
+  net_mimtlu_0_TEST_pin <= mimtlu_0_TEST_pin;
   axi4lite_0_M_BID(0 downto 0) <= B"0";
   axi4lite_0_M_BID(1 downto 1) <= B"0";
   axi4lite_0_M_BID(2 downto 2) <= B"0";
@@ -4863,7 +4863,6 @@ begin
 
   mimtlu_0 : system_mimtlu_0_wrapper
     port map (
-      TEST => mimtlu_0_TEST,
       CLOCK_Y3 => mimtlu_0_CLOCK_Y3,
       USER_CLOCK => net_gnd0,
       TRIGGER_DUT => mimtlu_0_TRIGGER_DUT,
@@ -4871,6 +4870,7 @@ begin
       BUSY_DUT => mimtlu_0_BUSY_DUT,
       BUSY_COPY => mimtlu_0_BUSY_COPY,
       DATA_ITR => mimtlu_0_DATA_ITR,
+      TEST => net_mimtlu_0_TEST_pin,
       S_AXI_ACLK => pgassign2(7),
       S_AXI_ARESETN => axi4lite_0_M_ARESETN(7),
       S_AXI_AWADDR => axi4lite_0_M_AWADDR(255 downto 224),

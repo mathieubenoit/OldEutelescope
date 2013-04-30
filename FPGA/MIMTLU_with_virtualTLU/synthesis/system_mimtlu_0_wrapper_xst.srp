@@ -3,8 +3,8 @@ Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.
 --> Parameter TMPDIR set to M:\Git_projects\FPGA\MIMTLU_with_virtualTLU\synthesis\xst_temp_dir\
 
 
-Total REAL time to Xst completion: 1.00 secs
-Total CPU time to Xst completion: 0.11 secs
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.10 secs
  
 --> 
 TABLE OF CONTENTS
@@ -477,15 +477,13 @@ Elaborating entity <user_logic> (architecture <IMP>) with generics from library 
 Elaborating entity <top> (architecture <Behavioral>) from library <mimtlu_v1_00_a>.
 
 Elaborating entity <MIMTLU_core> (architecture <Behavioral>) from library <mimtlu_v1_00_a>.
+WARNING:HDLCompiler:92 - "M:/Git_projects/FPGA/MIMTLU_with_virtualTLU/pcores/mimtlu_v1_00_a/hdl/vhdl/MIMTLU_core.vhd" Line 151: wait_time should be on the sensitivity list of the process
 
 Elaborating entity <TLU_SIMU> (architecture <Behavioral>) from library <mimtlu_v1_00_a>.
 
 Elaborating entity <clk_divider> (architecture <Behavioral>) from library <mimtlu_v1_00_a>.
-WARNING:HDLCompiler:634 - "M:/Git_projects/FPGA/MIMTLU_with_virtualTLU/pcores/mimtlu_v1_00_a/hdl/vhdl/TOP.vhd" Line 61: Net <reset> does not have a driver.
-WARNING:HDLCompiler:1127 - "M:/Git_projects/FPGA/MIMTLU_with_virtualTLU/pcores/mimtlu_v1_00_a/hdl/vhdl/user_logic.vhd" Line 215: Assignment to slv_reg_write_sel ignored, since the identifier is never used
-WARNING:HDLCompiler:634 - "M:/Git_projects/FPGA/MIMTLU_with_virtualTLU/pcores/mimtlu_v1_00_a/hdl/vhdl/user_logic.vhd" Line 160: Net <slv_reg1[31]> does not have a driver.
-WARNING:HDLCompiler:634 - "M:/Git_projects/FPGA/MIMTLU_with_virtualTLU/pcores/mimtlu_v1_00_a/hdl/vhdl/user_logic.vhd" Line 161: Net <slv_reg2[31]> does not have a driver.
-WARNING:HDLCompiler:634 - "M:/Git_projects/FPGA/MIMTLU_with_virtualTLU/pcores/mimtlu_v1_00_a/hdl/vhdl/user_logic.vhd" Line 162: Net <slv_reg3[31]> does not have a driver.
+WARNING:HDLCompiler:634 - "M:/Git_projects/FPGA/MIMTLU_with_virtualTLU/pcores/mimtlu_v1_00_a/hdl/vhdl/TOP.vhd" Line 63: Net <reset> does not have a driver.
+WARNING:HDLCompiler:1127 - "M:/Git_projects/FPGA/MIMTLU_with_virtualTLU/pcores/mimtlu_v1_00_a/hdl/vhdl/user_logic.vhd" Line 223: Assignment to slv_reg2 ignored, since the identifier is never used
 
 =========================================================================
 *                           HDL Synthesis                               *
@@ -650,15 +648,10 @@ WARNING:Xst:37 - Detected unknown constraint/property "sigis". This constraint/p
         C_SLV_DWIDTH = 32
 WARNING:Xst:37 - Detected unknown constraint/property "sigis". This constraint/property is not supported by the current software release and will be ignored.
 WARNING:Xst:37 - Detected unknown constraint/property "sigis". This constraint/property is not supported by the current software release and will be ignored.
-WARNING:Xst:647 - Input <Bus2IP_Data> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
-WARNING:Xst:647 - Input <Bus2IP_BE> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
-WARNING:Xst:647 - Input <Bus2IP_Clk> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
-WARNING:Xst:647 - Input <Bus2IP_Resetn> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
-WARNING:Xst:653 - Signal <slv_reg1> is used but never assigned. This sourceless signal will be automatically connected to value GND.
-WARNING:Xst:653 - Signal <slv_reg2> is used but never assigned. This sourceless signal will be automatically connected to value GND.
-WARNING:Xst:653 - Signal <slv_reg3> is used but never assigned. This sourceless signal will be automatically connected to value GND.
+    Found 32-bit register for signal <slv_reg1>.
     Summary:
-	inferred   2 Multiplexer(s).
+	inferred  32 D-type flip-flop(s).
+	inferred  34 Multiplexer(s).
 Unit <user_logic> synthesized.
 
 Synthesizing Unit <top>.
@@ -670,7 +663,8 @@ Unit <top> synthesized.
 
 Synthesizing Unit <MIMTLU_core>.
     Related source file is "M:/Git_projects/FPGA/MIMTLU_with_virtualTLU/pcores/mimtlu_v1_00_a/hdl/vhdl/MIMTLU_core.vhd".
-    Found 8-bit register for signal <count>.
+WARNING:Xst:647 - Input <busy_cnt<31:31>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+    Found 32-bit register for signal <count>.
     Found 4-bit register for signal <ts_cnt>.
     Found 1-bit register for signal <busy_dut_reg>.
     Found 16-bit register for signal <timestamp_reg>.
@@ -687,11 +681,13 @@ Synthesizing Unit <MIMTLU_core>.
     | Encoding           | auto                                           |
     | Implementation     | LUT                                            |
     -----------------------------------------------------------------------
-    Found 4-bit adder for signal <ts_cnt[3]_GND_22_o_add_2_OUT> created at line 93.
-    Found 8-bit adder for signal <count[7]_GND_22_o_add_8_OUT> created at line 104.
+    Found 4-bit adder for signal <ts_cnt[3]_GND_22_o_add_2_OUT> created at line 95.
+    Found 32-bit adder for signal <count[31]_GND_22_o_add_8_OUT> created at line 106.
+    Found 32-bit comparator equal for signal <wait_time[31]_count[31]_equal_8_o> created at line 103
     Summary:
 	inferred   2 Adder/Subtractor(s).
-	inferred  30 D-type flip-flop(s).
+	inferred  54 D-type flip-flop(s).
+	inferred   1 Comparator(s).
 	inferred  19 Multiplexer(s).
 	inferred   1 Finite State Machine(s).
 Unit <MIMTLU_core> synthesized.
@@ -715,8 +711,8 @@ Synthesizing Unit <TLU_SIMU>.
     | Encoding           | auto                                           |
     | Implementation     | LUT                                            |
     -----------------------------------------------------------------------
-    Found 16-bit adder for signal <timestamp[15]_GND_23_o_add_8_OUT> created at line 1241.
-    Found 4-bit adder for signal <cnt[3]_GND_23_o_add_14_OUT> created at line 132.
+    Found 16-bit adder for signal <timestamp[15]_GND_24_o_add_8_OUT> created at line 1241.
+    Found 4-bit adder for signal <cnt[3]_GND_24_o_add_14_OUT> created at line 132.
     Found 1-bit 16-to-1 multiplexer for signal <cnt[3]_timestamp[15]_Mux_2_o> created at line 82.
     Summary:
 	inferred   2 Adder/Subtractor(s).
@@ -729,7 +725,7 @@ Synthesizing Unit <clk_divider>.
     Related source file is "M:/Git_projects/FPGA/MIMTLU_with_virtualTLU/pcores/mimtlu_v1_00_a/hdl/vhdl/clk_divider.vhd".
     Found 3-bit register for signal <counter>.
     Found 1-bit register for signal <temporal>.
-    Found 3-bit adder for signal <counter[2]_GND_24_o_add_1_OUT> created at line 55.
+    Found 3-bit adder for signal <counter[2]_GND_25_o_add_1_OUT> created at line 55.
     Summary:
 	inferred   1 Adder/Subtractor(s).
 	inferred   4 D-type flip-flop(s).
@@ -742,19 +738,20 @@ Macro Statistics
 # Adders/Subtractors                                   : 6
  16-bit adder                                          : 1
  3-bit adder                                           : 1
+ 32-bit adder                                          : 1
  4-bit adder                                           : 3
- 8-bit adder                                           : 1
-# Registers                                            : 25
+# Registers                                            : 26
  1-bit register                                        : 15
  16-bit register                                       : 2
  2-bit register                                        : 2
  3-bit register                                        : 1
- 32-bit register                                       : 1
+ 32-bit register                                       : 3
  4-bit register                                        : 3
- 8-bit register                                        : 1
-# Multiplexers                                         : 29
+# Comparators                                          : 1
+ 32-bit comparator equal                               : 1
+# Multiplexers                                         : 61
  1-bit 16-to-1 multiplexer                             : 1
- 1-bit 2-to-1 multiplexer                              : 24
+ 1-bit 2-to-1 multiplexer                              : 56
  16-bit 2-to-1 multiplexer                             : 1
  32-bit 2-to-1 multiplexer                             : 3
 # FSMs                                                 : 3
@@ -791,13 +788,15 @@ Macro Statistics
 # Counters                                             : 6
  16-bit up counter                                     : 1
  3-bit up counter                                      : 1
+ 32-bit up counter                                     : 1
  4-bit up counter                                      : 3
- 8-bit up counter                                      : 1
-# Registers                                            : 67
- Flip-Flops                                            : 67
-# Multiplexers                                         : 25
+# Registers                                            : 99
+ Flip-Flops                                            : 99
+# Comparators                                          : 1
+ 32-bit comparator equal                               : 1
+# Multiplexers                                         : 57
  1-bit 16-to-1 multiplexer                             : 1
- 1-bit 2-to-1 multiplexer                              : 20
+ 1-bit 2-to-1 multiplexer                              : 52
  16-bit 2-to-1 multiplexer                             : 1
  32-bit 2-to-1 multiplexer                             : 3
 # FSMs                                                 : 3
@@ -809,8 +808,6 @@ Macro Statistics
 =========================================================================
 WARNING:Xst:1293 - FF/Latch <s_axi_rresp_i_0> has a constant value of 0 in block <slave_attachment>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <s_axi_bresp_i_0> has a constant value of 0 in block <slave_attachment>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <s_axi_rresp_i_1> has a constant value of 0 in block <slave_attachment>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <s_axi_bresp_i_1> has a constant value of 0 in block <slave_attachment>. This FF/Latch will be trimmed during the optimization process.
 Analyzing FSM <MFsm> for best encoding.
 Optimizing FSM <mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/FSM_0> on signal <state[1:2]> with user encoding.
 ----------------------
@@ -822,15 +819,6 @@ Optimizing FSM <mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/FSM_0> on signal <st
  sm_resp  | 11
 ----------------------
 Analyzing FSM <MFsm> for best encoding.
-Optimizing FSM <mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_SIM/FSM_2> on signal <state_reg[1:2]> with user encoding.
------------------------
- State     | Encoding
------------------------
- idle      | 00
- triggered | 01
- isbusy    | 10
------------------------
-Analyzing FSM <MFsm> for best encoding.
 Optimizing FSM <mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/FSM_1> on signal <state_reg[1:2]> with gray encoding.
 -----------------------
  State     | Encoding
@@ -840,7 +828,16 @@ Optimizing FSM <mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/FSM_1> on signal <stat
  reading   | 11
  isbusy    | 10
 -----------------------
-INFO:Xst:1901 - Instance mimtlu_0/USER_LOGIC_I/MIMTLU_ent/BUFGCE_inst in unit system_mimtlu_0_wrapper of type BUFGCE has been replaced by BUFGMUX
+Analyzing FSM <MFsm> for best encoding.
+Optimizing FSM <mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_SIM/FSM_2> on signal <state_reg[1:2]> with user encoding.
+-----------------------
+ State     | Encoding
+-----------------------
+ idle      | 00
+ triggered | 01
+ isbusy    | 10
+-----------------------
+INFO:Xst:1901 - Instance MIMTLU_ent/BUFGCE_inst in unit user_logic of type BUFGCE has been replaced by BUFGMUX
 
 Optimizing unit <system_mimtlu_0_wrapper> ...
 
@@ -848,30 +845,37 @@ Optimizing unit <slave_attachment> ...
 
 Optimizing unit <address_decoder> ...
 
-Optimizing unit <TLU_SIMU> ...
+Optimizing unit <user_logic> ...
 
 Optimizing unit <MIMTLU_core> ...
-WARNING:Xst:1293 - FF/Latch <mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i_31> has a constant value of 0 in block <system_mimtlu_0_wrapper>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i_30> has a constant value of 0 in block <system_mimtlu_0_wrapper>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i_29> has a constant value of 0 in block <system_mimtlu_0_wrapper>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i_28> has a constant value of 0 in block <system_mimtlu_0_wrapper>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i_27> has a constant value of 0 in block <system_mimtlu_0_wrapper>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i_26> has a constant value of 0 in block <system_mimtlu_0_wrapper>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i_25> has a constant value of 0 in block <system_mimtlu_0_wrapper>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i_24> has a constant value of 0 in block <system_mimtlu_0_wrapper>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i_23> has a constant value of 0 in block <system_mimtlu_0_wrapper>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i_22> has a constant value of 0 in block <system_mimtlu_0_wrapper>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i_21> has a constant value of 0 in block <system_mimtlu_0_wrapper>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i_20> has a constant value of 0 in block <system_mimtlu_0_wrapper>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i_19> has a constant value of 0 in block <system_mimtlu_0_wrapper>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i_18> has a constant value of 0 in block <system_mimtlu_0_wrapper>. This FF/Latch will be trimmed during the optimization process.
+
+Optimizing unit <TLU_SIMU> ...
+WARNING:Xst:1293 - FF/Latch <mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i_16> has a constant value of 0 in block <system_mimtlu_0_wrapper>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i_17> has a constant value of 0 in block <system_mimtlu_0_wrapper>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i_16> has a constant value of 0 in block <system_mimtlu_0_wrapper>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i_18> has a constant value of 0 in block <system_mimtlu_0_wrapper>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i_19> has a constant value of 0 in block <system_mimtlu_0_wrapper>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i_20> has a constant value of 0 in block <system_mimtlu_0_wrapper>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i_21> has a constant value of 0 in block <system_mimtlu_0_wrapper>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i_22> has a constant value of 0 in block <system_mimtlu_0_wrapper>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i_23> has a constant value of 0 in block <system_mimtlu_0_wrapper>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i_24> has a constant value of 0 in block <system_mimtlu_0_wrapper>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i_25> has a constant value of 0 in block <system_mimtlu_0_wrapper>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i_26> has a constant value of 0 in block <system_mimtlu_0_wrapper>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i_27> has a constant value of 0 in block <system_mimtlu_0_wrapper>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i_28> has a constant value of 0 in block <system_mimtlu_0_wrapper>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i_29> has a constant value of 0 in block <system_mimtlu_0_wrapper>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i_30> has a constant value of 0 in block <system_mimtlu_0_wrapper>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i_31> has a constant value of 0 in block <system_mimtlu_0_wrapper>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rresp_i_1> has a constant value of 0 in block <system_mimtlu_0_wrapper>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_bresp_i_1> has a constant value of 0 in block <system_mimtlu_0_wrapper>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:2677 - Node <mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/cs_out_i_0> of sequential type is unconnected in block <system_mimtlu_0_wrapper>.
+WARNING:Xst:2677 - Node <mimtlu_0/USER_LOGIC_I/slv_reg1_31> of sequential type is unconnected in block <system_mimtlu_0_wrapper>.
 
 Mapping all equations...
 Building and optimizing final netlist ...
-Found area constraint ratio of 100 (+ 0) on block system_mimtlu_0_wrapper, actual ratio is 2.
+Found area constraint ratio of 100 (+ 0) on block system_mimtlu_0_wrapper, actual ratio is 3.
+FlipFlop mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/state_reg_FSM_FFd1 has been replicated 1 time(s)
+FlipFlop mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/state_reg_FSM_FFd2 has been replicated 1 time(s)
 
 Final Macro Processing ...
 
@@ -879,8 +883,8 @@ Final Macro Processing ...
 Final Register Report
 
 Macro Statistics
-# Registers                                            : 91
- Flip-Flops                                            : 91
+# Registers                                            : 148
+ Flip-Flops                                            : 148
 
 =========================================================================
 
@@ -903,24 +907,24 @@ Top Level Output File Name         : system_mimtlu_0_wrapper.ngc
 
 Primitive and Black Box Usage:
 ------------------------------
-# BELS                             : 178
+# BELS                             : 289
 #      GND                         : 1
 #      INV                         : 7
-#      LUT1                        : 22
-#      LUT2                        : 11
-#      LUT3                        : 9
-#      LUT4                        : 11
-#      LUT5                        : 15
-#      LUT6                        : 52
-#      MUXCY                       : 22
+#      LUT1                        : 46
+#      LUT2                        : 13
+#      LUT3                        : 12
+#      LUT4                        : 5
+#      LUT5                        : 38
+#      LUT6                        : 57
+#      MUXCY                       : 58
 #      MUXF7                       : 3
 #      VCC                         : 1
-#      XORCY                       : 24
-# FlipFlops/Latches                : 91
-#      FD                          : 24
+#      XORCY                       : 48
+# FlipFlops/Latches                : 148
+#      FD                          : 45
 #      FDE                         : 32
 #      FDR                         : 15
-#      FDRE                        : 20
+#      FDRE                        : 56
 # Clock Buffers                    : 2
 #      BUFG                        : 1
 #      BUFGMUX                     : 1
@@ -932,16 +936,16 @@ Selected Device : 6slx9csg324-2
 
 
 Slice Logic Utilization: 
- Number of Slice Registers:              91  out of  11440     0%  
- Number of Slice LUTs:                  127  out of   5720     2%  
-    Number used as Logic:               127  out of   5720     2%  
+ Number of Slice Registers:             148  out of  11440     1%  
+ Number of Slice LUTs:                  178  out of   5720     3%  
+    Number used as Logic:               178  out of   5720     3%  
 
 Slice Logic Distribution: 
- Number of LUT Flip Flop pairs used:    130
-   Number with an unused Flip Flop:      39  out of    130    30%  
-   Number with an unused LUT:             3  out of    130     2%  
-   Number of fully used LUT-FF pairs:    88  out of    130    67%  
-   Number of unique control sets:        11
+ Number of LUT Flip Flop pairs used:    206
+   Number with an unused Flip Flop:      58  out of    206    28%  
+   Number with an unused LUT:            28  out of    206    13%  
+   Number of fully used LUT-FF pairs:   120  out of    206    58%  
+   Number of unique control sets:        13
 
 IO Utilization: 
  Number of IOs:                         156
@@ -971,10 +975,10 @@ Clock Information:
 -------------------------------------------------+-----------------------------------------------------------------+-------+
 Clock Signal                                     | Clock buffer(FF name)                                           | Load  |
 -------------------------------------------------+-----------------------------------------------------------------+-------+
-CLOCK_Y3                                         | NONE(mimtlu_0/USER_LOGIC_I/MIMTLU_ent/CLK_DIV/counter_0)        | 4     |
-S_AXI_ACLK                                       | NONE(mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/state_FSM_FFd1)| 30    |
+S_AXI_ACLK                                       | NONE(mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/state_FSM_FFd1)| 61    |
+CLOCK_Y3                                         | NONE(mimtlu_0/USER_LOGIC_I/MIMTLU_ent/CLK_DIV/counter_2)        | 4     |
+mimtlu_0/USER_LOGIC_I/MIMTLU_ent/CLK_DIV/temporal| BUFG                                                            | 79    |
 mimtlu_0/USER_LOGIC_I/MIMTLU_ent/SLOW_CLK        | BUFGMUX                                                         | 4     |
-mimtlu_0/USER_LOGIC_I/MIMTLU_ent/CLK_DIV/temporal| BUFG                                                            | 53    |
 -------------------------------------------------+-----------------------------------------------------------------+-------+
 INFO:Xst:2169 - HDL ADVISOR - Some clock signals were not automatically buffered by XST with BUFG/BUFR resources. Please use the buffer_type constraint in order to insert these buffers to the clock signals to help prevent skew problems.
 
@@ -987,7 +991,7 @@ Timing Summary:
 Speed Grade: -2
 
    Minimum period: 4.725ns (Maximum Frequency: 211.640MHz)
-   Minimum input arrival time before clock: 2.893ns
+   Minimum input arrival time before clock: 2.233ns
    Maximum output required time after clock: 4.633ns
    Maximum combinational path delay: No path found
 
@@ -996,17 +1000,39 @@ Timing Details:
 All values displayed in nanoseconds (ns)
 
 =========================================================================
+Timing constraint: Default period analysis for Clock 'S_AXI_ACLK'
+  Clock period: 4.299ns (frequency: 232.595MHz)
+  Total number of paths / destination ports: 379 / 100
+-------------------------------------------------------------------------
+Delay:               4.299ns (Levels of Logic = 1)
+  Source:            mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/Bus_RNW_reg (FF)
+  Destination:       mimtlu_0/USER_LOGIC_I/slv_reg1_30 (FF)
+  Source Clock:      S_AXI_ACLK rising
+  Destination Clock: S_AXI_ACLK rising
+
+  Data Path: mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/Bus_RNW_reg to mimtlu_0/USER_LOGIC_I/slv_reg1_30
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FD:C->Q              20   0.525   1.716  mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/Bus_RNW_reg (mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/Bus_RNW_reg)
+     LUT5:I0->O           31   0.254   1.502  mimtlu_0/USER_LOGIC_I/_n0068<3>1 (mimtlu_0/USER_LOGIC_I/_n0068)
+     FDRE:CE                   0.302          mimtlu_0/USER_LOGIC_I/slv_reg1_0
+    ----------------------------------------
+    Total                      4.299ns (1.081ns logic, 3.218ns route)
+                                       (25.1% logic, 74.9% route)
+
+=========================================================================
 Timing constraint: Default period analysis for Clock 'CLOCK_Y3'
   Clock period: 2.978ns (frequency: 335.796MHz)
   Total number of paths / destination ports: 19 / 7
 -------------------------------------------------------------------------
 Delay:               2.978ns (Levels of Logic = 1)
   Source:            mimtlu_0/USER_LOGIC_I/MIMTLU_ent/CLK_DIV/counter_2 (FF)
-  Destination:       mimtlu_0/USER_LOGIC_I/MIMTLU_ent/CLK_DIV/counter_0 (FF)
+  Destination:       mimtlu_0/USER_LOGIC_I/MIMTLU_ent/CLK_DIV/counter_2 (FF)
   Source Clock:      CLOCK_Y3 rising
   Destination Clock: CLOCK_Y3 rising
 
-  Data Path: mimtlu_0/USER_LOGIC_I/MIMTLU_ent/CLK_DIV/counter_2 to mimtlu_0/USER_LOGIC_I/MIMTLU_ent/CLK_DIV/counter_0
+  Data Path: mimtlu_0/USER_LOGIC_I/MIMTLU_ent/CLK_DIV/counter_2 to mimtlu_0/USER_LOGIC_I/MIMTLU_ent/CLK_DIV/counter_2
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
@@ -1018,28 +1044,30 @@ Delay:               2.978ns (Levels of Logic = 1)
                                        (40.9% logic, 59.1% route)
 
 =========================================================================
-Timing constraint: Default period analysis for Clock 'S_AXI_ACLK'
-  Clock period: 4.035ns (frequency: 247.831MHz)
-  Total number of paths / destination ports: 231 / 69
+Timing constraint: Default period analysis for Clock 'mimtlu_0/USER_LOGIC_I/MIMTLU_ent/CLK_DIV/temporal'
+  Clock period: 4.725ns (frequency: 211.640MHz)
+  Total number of paths / destination ports: 2483 / 127
 -------------------------------------------------------------------------
-Delay:               4.035ns (Levels of Logic = 3)
-  Source:            mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/state_FSM_FFd2 (FF)
-  Destination:       mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_3 (FF)
-  Source Clock:      S_AXI_ACLK rising
-  Destination Clock: S_AXI_ACLK rising
+Delay:               4.725ns (Levels of Logic = 5)
+  Source:            mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_SIM/timestamp_14 (FF)
+  Destination:       mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/timestamp_reg_15 (FF)
+  Source Clock:      mimtlu_0/USER_LOGIC_I/MIMTLU_ent/CLK_DIV/temporal rising
+  Destination Clock: mimtlu_0/USER_LOGIC_I/MIMTLU_ent/CLK_DIV/temporal rising
 
-  Data Path: mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/state_FSM_FFd2 to mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_3
+  Data Path: mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_SIM/timestamp_14 to mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/timestamp_reg_15
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FDR:C->Q              8   0.525   1.052  mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/state_FSM_FFd2 (mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/state_FSM_FFd2)
-     LUT5:I3->O            8   0.250   0.944  mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/Mmux_start11 (mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/start)
-     LUT6:I5->O            1   0.254   0.682  mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/MEM_DECODE_GEN[0].PER_CE_GEN[3].MULTIPLE_CES_THIS_CS_GEN.CE_I/Mmux_CS11 (mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_expnd_i<3>)
-     LUT4:I3->O            1   0.254   0.000  mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_3_rstpot (mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_3_rstpot)
-     FD:D                      0.074          mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_3
+     FDE:C->Q              2   0.525   1.002  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_SIM/timestamp_14 (mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_SIM/timestamp_14)
+     LUT6:I2->O            1   0.254   0.000  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_SIM/Mmux_cnt[3]_timestamp[15]_Mux_2_o_4 (mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_SIM/Mmux_cnt[3]_timestamp[15]_Mux_2_o_4)
+     MUXF7:I1->O           2   0.175   0.834  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_SIM/Mmux_cnt[3]_timestamp[15]_Mux_2_o_3_f7 (mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_SIM/Mmux_cnt[3]_timestamp[15]_Mux_2_o_3_f7)
+     LUT6:I4->O            1   0.250   0.000  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mmux_timestamp_reg[15]_timestamp_reg[15]_mux_15_OUT171_G (N14)
+     MUXF7:I1->O          16   0.175   1.182  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mmux_timestamp_reg[15]_timestamp_reg[15]_mux_15_OUT171 (mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mmux_timestamp_reg[15]_timestamp_reg[15]_mux_15_OUT17)
+     LUT6:I5->O            1   0.254   0.000  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mmux_timestamp_reg[15]_timestamp_reg[15]_mux_15_OUT151 (mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/timestamp_reg[15]_timestamp_reg[15]_mux_15_OUT<8>)
+     FDE:D                     0.074          mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/timestamp_reg_8
     ----------------------------------------
-    Total                      4.035ns (1.357ns logic, 2.678ns route)
-                                       (33.6% logic, 66.4% route)
+    Total                      4.725ns (1.707ns logic, 3.018ns route)
+                                       (36.1% logic, 63.9% route)
 
 =========================================================================
 Timing constraint: Default period analysis for Clock 'mimtlu_0/USER_LOGIC_I/MIMTLU_ent/SLOW_CLK'
@@ -1064,66 +1092,38 @@ Delay:               2.510ns (Levels of Logic = 1)
                                        (34.0% logic, 66.0% route)
 
 =========================================================================
-Timing constraint: Default period analysis for Clock 'mimtlu_0/USER_LOGIC_I/MIMTLU_ent/CLK_DIV/temporal'
-  Clock period: 4.725ns (frequency: 211.640MHz)
-  Total number of paths / destination ports: 887 / 91
--------------------------------------------------------------------------
-Delay:               4.725ns (Levels of Logic = 5)
-  Source:            mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_SIM/timestamp_14 (FF)
-  Destination:       mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/timestamp_reg_15 (FF)
-  Source Clock:      mimtlu_0/USER_LOGIC_I/MIMTLU_ent/CLK_DIV/temporal rising
-  Destination Clock: mimtlu_0/USER_LOGIC_I/MIMTLU_ent/CLK_DIV/temporal rising
-
-  Data Path: mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_SIM/timestamp_14 to mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/timestamp_reg_15
-                                Gate     Net
-    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
-    ----------------------------------------  ------------
-     FDE:C->Q              2   0.525   1.002  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_SIM/timestamp_14 (mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_SIM/timestamp_14)
-     LUT6:I2->O            1   0.254   0.000  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_SIM/Mmux_cnt[3]_timestamp[15]_Mux_2_o_4 (mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_SIM/Mmux_cnt[3]_timestamp[15]_Mux_2_o_4)
-     MUXF7:I1->O           2   0.175   0.834  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_SIM/Mmux_cnt[3]_timestamp[15]_Mux_2_o_3_f7 (mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_SIM/Mmux_cnt[3]_timestamp[15]_Mux_2_o_3_f7)
-     LUT6:I4->O            1   0.250   0.000  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mmux_timestamp_reg[15]_timestamp_reg[15]_mux_15_OUT171_G (N16)
-     MUXF7:I1->O          16   0.175   1.182  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mmux_timestamp_reg[15]_timestamp_reg[15]_mux_15_OUT171 (mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mmux_timestamp_reg[15]_timestamp_reg[15]_mux_15_OUT17)
-     LUT6:I5->O            1   0.254   0.000  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mmux_timestamp_reg[15]_timestamp_reg[15]_mux_15_OUT151 (mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/timestamp_reg[15]_timestamp_reg[15]_mux_15_OUT<8>)
-     FDE:D                     0.074          mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/timestamp_reg_8
-    ----------------------------------------
-    Total                      4.725ns (1.707ns logic, 3.018ns route)
-                                       (36.1% logic, 63.9% route)
-
-=========================================================================
 Timing constraint: Default OFFSET IN BEFORE for Clock 'S_AXI_ACLK'
-  Total number of paths / destination ports: 62 / 10
+  Total number of paths / destination ports: 116 / 72
 -------------------------------------------------------------------------
-Offset:              2.893ns (Levels of Logic = 3)
-  Source:            S_AXI_ARVALID (PAD)
-  Destination:       mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_3 (FF)
+Offset:              2.233ns (Levels of Logic = 1)
+  Source:            S_AXI_ARESETN (PAD)
+  Destination:       mimtlu_0/USER_LOGIC_I/slv_reg1_30 (FF)
   Destination Clock: S_AXI_ACLK rising
 
-  Data Path: S_AXI_ARVALID to mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_3
+  Data Path: S_AXI_ARESETN to mimtlu_0/USER_LOGIC_I/slv_reg1_30
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     LUT5:I0->O            8   0.254   0.944  mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/Mmux_start11 (mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/start)
-     LUT6:I5->O            1   0.254   0.682  mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/MEM_DECODE_GEN[0].PER_CE_GEN[3].MULTIPLE_CES_THIS_CS_GEN.CE_I/Mmux_CS11 (mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_expnd_i<3>)
-     LUT4:I3->O            1   0.254   0.000  mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_3_rstpot (mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_3_rstpot)
-     FD:D                      0.074          mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_3
+     INV:I->O             32   0.255   1.519  mimtlu_0/USER_LOGIC_I/Bus2IP_Resetn_inv1_INV_0 (mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/rst_rstpot)
+     FDRE:R                    0.459          mimtlu_0/USER_LOGIC_I/slv_reg1_0
     ----------------------------------------
-    Total                      2.893ns (1.267ns logic, 1.626ns route)
-                                       (43.8% logic, 56.2% route)
+    Total                      2.233ns (0.714ns logic, 1.519ns route)
+                                       (32.0% logic, 68.0% route)
 
 =========================================================================
 Timing constraint: Default OFFSET IN BEFORE for Clock 'mimtlu_0/USER_LOGIC_I/MIMTLU_ent/CLK_DIV/temporal'
   Total number of paths / destination ports: 2 / 2
 -------------------------------------------------------------------------
 Offset:              0.074ns (Levels of Logic = 0)
-  Source:            TEST (PAD)
-  Destination:       mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_SIM/edge1 (FF)
+  Source:            BUSY_DUT (PAD)
+  Destination:       mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/busy_dut_reg (FF)
   Destination Clock: mimtlu_0/USER_LOGIC_I/MIMTLU_ent/CLK_DIV/temporal rising
 
-  Data Path: TEST to mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_SIM/edge1
+  Data Path: BUSY_DUT to mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/busy_dut_reg
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FD:D                      0.074          mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_SIM/edge1
+     FD:D                      0.074          mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/busy_dut_reg
     ----------------------------------------
     Total                      0.074ns (0.074ns logic, 0.000ns route)
                                        (100.0% logic, 0.0% route)
@@ -1132,7 +1132,7 @@ Offset:              0.074ns (Levels of Logic = 0)
 Timing constraint: Default OFFSET OUT AFTER for Clock 'S_AXI_ACLK'
   Total number of paths / destination ports: 36 / 21
 -------------------------------------------------------------------------
-Offset:              2.495ns (Levels of Logic = 1)
+Offset:              2.520ns (Levels of Logic = 1)
   Source:            mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/Bus_RNW_reg (FF)
   Destination:       S_AXI_ARREADY (PAD)
   Source Clock:      S_AXI_ACLK rising
@@ -1141,11 +1141,11 @@ Offset:              2.495ns (Levels of Logic = 1)
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FD:C->Q              19   0.525   1.716  mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/Bus_RNW_reg (mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/Bus_RNW_reg)
-     LUT6:I0->O            2   0.254   0.000  mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/wr_done1 (S_AXI_AWREADY)
+     FD:C->Q              20   0.525   1.741  mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/Bus_RNW_reg (mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/Bus_RNW_reg)
+     LUT6:I0->O            2   0.254   0.000  mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/rd_done1 (S_AXI_ARREADY)
     ----------------------------------------
-    Total                      2.495ns (0.779ns logic, 1.716ns route)
-                                       (31.2% logic, 68.8% route)
+    Total                      2.520ns (0.779ns logic, 1.741ns route)
+                                       (30.9% logic, 69.1% route)
 
 =========================================================================
 Timing constraint: Default OFFSET OUT AFTER for Clock 'mimtlu_0/USER_LOGIC_I/MIMTLU_ent/SLOW_CLK'
@@ -1209,7 +1209,7 @@ Clock to Setup on destination clock S_AXI_ACLK
                                                  | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock                                     |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 -------------------------------------------------+---------+---------+---------+---------+
-S_AXI_ACLK                                       |    4.035|         |         |         |
+S_AXI_ACLK                                       |    4.299|         |         |         |
 mimtlu_0/USER_LOGIC_I/MIMTLU_ent/CLK_DIV/temporal|    2.034|         |         |         |
 -------------------------------------------------+---------+---------+---------+---------+
 
@@ -1218,6 +1218,7 @@ Clock to Setup on destination clock mimtlu_0/USER_LOGIC_I/MIMTLU_ent/CLK_DIV/tem
                                                  | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock                                     |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 -------------------------------------------------+---------+---------+---------+---------+
+S_AXI_ACLK                                       |    4.161|         |         |         |
 mimtlu_0/USER_LOGIC_I/MIMTLU_ent/CLK_DIV/temporal|    4.725|         |         |         |
 mimtlu_0/USER_LOGIC_I/MIMTLU_ent/SLOW_CLK        |    5.129|         |         |         |
 -------------------------------------------------+---------+---------+---------+---------+
@@ -1234,14 +1235,14 @@ mimtlu_0/USER_LOGIC_I/MIMTLU_ent/SLOW_CLK        |    2.510|         |         |
 =========================================================================
 
 
-Total REAL time to Xst completion: 9.00 secs
-Total CPU time to Xst completion: 8.28 secs
+Total REAL time to Xst completion: 8.00 secs
+Total CPU time to Xst completion: 8.59 secs
  
 --> 
 
 Total memory usage is 278816 kilobytes
 
 Number of errors   :    0 (   0 filtered)
-Number of warnings :   48 (   0 filtered)
+Number of warnings :   41 (   0 filtered)
 Number of infos    :    6 (   0 filtered)
 

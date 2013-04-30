@@ -50,7 +50,7 @@ test_mimtlu.elf.size: test_mimtlu.elf
 
 test_mimtlu.elf.elfcheck: test_mimtlu.elf
 	@echo Invoking: Xilinx ELF Check
-	elfcheck test_mimtlu.elf -hw ../../xps_hw_platform/system.xml -pe microblaze_0  |tee "test_mimtlu.elf.elfcheck"
+	elfcheck test_mimtlu.elf -hw ../../MIMTLU_with_virtualTLU_hw_platform/system.xml -pe microblaze_0  |tee "test_mimtlu.elf.elfcheck"
 	@echo Finished building: $@
 	@echo ' '
 

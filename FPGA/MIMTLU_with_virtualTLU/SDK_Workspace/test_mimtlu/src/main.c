@@ -51,6 +51,13 @@ struct tcp_pcb *Gpcb;
 /* missing declaration in lwIP */
 void lwip_init();
 
+struct packet {
+	char msg[4];
+	int data;
+};
+
+
+
 void
 print_ip(char *msg, struct ip_addr *ip) 
 {
@@ -154,7 +161,14 @@ err_t recv_callback(void *arg, struct tcp_pcb *tpcb,
 	/* in this case, we assume that the payload is < TCP_SND_BUF */
 
 	print("packet received, waiting for interrupt \r \n");
-	//printf("%s \r \n",p->payload);
+
+	struct packet apacket;
+	memcpy(&apacket,p->payload,sizeof(apacket));
+
+	printf("packet data %d %s \r\n",apacket.data,apacket.msg);
+
+	if(apacket.msg=="SETB\0")printf("yeah \r\n");
+
 	msg_recvd=1;
 	pbuf_free(p);
 

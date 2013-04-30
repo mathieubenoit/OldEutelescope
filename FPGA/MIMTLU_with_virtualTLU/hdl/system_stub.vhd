@@ -41,12 +41,12 @@ entity system_stub is
     Ethernet_MAC_COL : in std_logic;
     DIP_Switches_4Bits_TRI_I : in std_logic_vector(3 downto 0);
     CLK_66MHZ : in std_logic;
-    mimtlu_0_TEST_pin : in std_logic;
     mimtlu_0_BUSY_DUT_pin : in std_logic;
     mimtlu_0_TRIGGER_DUT_pin : out std_logic;
     mimtlu_0_TRIGGER_COPY_pin : out std_logic;
     mimtlu_0_BUSY_COPY_pin : out std_logic;
-    mimtlu_0_CLOCK_Y3_pin : in std_logic
+    mimtlu_0_CLOCK_Y3_pin : in std_logic;
+    mimtlu_0_TEST_pin : in std_logic
   );
 end system_stub;
 
@@ -86,12 +86,12 @@ architecture STRUCTURE of system_stub is
       Ethernet_MAC_COL : in std_logic;
       DIP_Switches_4Bits_TRI_I : in std_logic_vector(3 downto 0);
       CLK_66MHZ : in std_logic;
-      mimtlu_0_TEST_pin : in std_logic;
       mimtlu_0_BUSY_DUT_pin : in std_logic;
       mimtlu_0_TRIGGER_DUT_pin : out std_logic;
       mimtlu_0_TRIGGER_COPY_pin : out std_logic;
       mimtlu_0_BUSY_COPY_pin : out std_logic;
-      mimtlu_0_CLOCK_Y3_pin : in std_logic
+      mimtlu_0_CLOCK_Y3_pin : in std_logic;
+      mimtlu_0_TEST_pin : in std_logic
     );
   end component;
 
@@ -137,12 +137,12 @@ begin
       Ethernet_MAC_COL => Ethernet_MAC_COL,
       DIP_Switches_4Bits_TRI_I => DIP_Switches_4Bits_TRI_I,
       CLK_66MHZ => CLK_66MHZ,
-      mimtlu_0_TEST_pin => mimtlu_0_TEST_pin,
       mimtlu_0_BUSY_DUT_pin => mimtlu_0_BUSY_DUT_pin,
       mimtlu_0_TRIGGER_DUT_pin => mimtlu_0_TRIGGER_DUT_pin,
       mimtlu_0_TRIGGER_COPY_pin => mimtlu_0_TRIGGER_COPY_pin,
       mimtlu_0_BUSY_COPY_pin => mimtlu_0_BUSY_COPY_pin,
-      mimtlu_0_CLOCK_Y3_pin => mimtlu_0_CLOCK_Y3_pin
+      mimtlu_0_CLOCK_Y3_pin => mimtlu_0_CLOCK_Y3_pin,
+      mimtlu_0_TEST_pin => mimtlu_0_TEST_pin
     );
 
 end architecture STRUCTURE;

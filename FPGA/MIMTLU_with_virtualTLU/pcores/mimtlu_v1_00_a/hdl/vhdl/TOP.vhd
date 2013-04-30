@@ -52,6 +52,8 @@ entity top is
 			  
 			  DATA_ITR : out std_logic;
 			  
+			  BUSY_CNT : in std_logic_vector(31 downto 0);
+			  
 			  timestamp : out std_logic_vector(31 downto 0));
 end top;
 
@@ -121,6 +123,7 @@ TLU_READ : entity work.MIMTLU_core port map(trigger=>TRIGGER,
 													busy=>BUSY,
 													reset=>RESET,
 													timestamp=>timestamp,
+													BUSY_CNT=>BUSY_CNT,
 													clk=>SLOW_CLK,
 													data_itr=>DATA_ITR,
 													busy_dut=>busy_dut,

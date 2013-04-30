@@ -48,14 +48,7 @@
  PORT mimtlu_0_TRIGGER_COPY_pin = mimtlu_0_TRIGGER_COPY, DIR = O
  PORT mimtlu_0_BUSY_COPY_pin = mimtlu_0_BUSY_COPY, DIR = O
  PORT mimtlu_0_CLOCK_Y3_pin = mimtlu_0_CLOCK_Y3, DIR = I, SIGIS = CLK
- PORT mimtlu_0_TRIGGER_P_pin = mimtlu_0_TRIGGER_P , DIR = I
- PORT mimtlu_0_TRIGGER_N_pin = mimtlu_0_TRIGGER_N, DIR = I
- PORT mimtlu_0_BUSY_P_pin = mimtlu_0_BUSY_P, DIR = O
- PORT mimtlu_0_BUSY_N_pin = mimtlu_0_BUSY_N, DIR = O
- PORT mimtlu_0_TRIGGER_CLOCK_P_pin = mimtlu_0_TRIGGER_CLOCK_P, DIR = O
- PORT mimtlu_0_TRIGGER_CLOCK_N_pin = mimtlu_0_TRIGGER_CLOCK_N, DIR = O
- PORT mimtlu_0_RESET_P_pin = mimtlu_0_RESET_P, DIR = I
- PORT mimtlu_0_RESET_N_pin = mimtlu_0_RESET_N, DIR = I
+ PORT mimtlu_0_TEST_pin = net_mimtlu_0_TEST_pin, DIR = I
 
 
 BEGIN proc_sys_reset
@@ -343,13 +336,6 @@ BEGIN mimtlu
  PORT TRIGGER_COPY = mimtlu_0_TRIGGER_COPY
  PORT BUSY_COPY = mimtlu_0_BUSY_COPY
  PORT DATA_ITR = mimtlu_0_DATA_ITR
- PORT TRIGGER_P = mimtlu_0_TRIGGER_P
-PORT TRIGGER_N = mimtlu_0_TRIGGER_N
-PORT BUSY_P = mimtlu_0_BUSY_P
-PORT BUSY_N = mimtlu_0_BUSY_N
-PORT TRIGGER_CLOCK_P = mimtlu_0_TRIGGER_CLOCK_P
-PORT TRIGGER_CLOCK_N = mimtlu_0_TRIGGER_CLOCK_N
-PORT RESET_P = mimtlu_0_RESET_P
-PORT RESET_N = mimtlu_0_RESET_N
+ PORT TEST = net_mimtlu_0_TEST_pin
 END
 

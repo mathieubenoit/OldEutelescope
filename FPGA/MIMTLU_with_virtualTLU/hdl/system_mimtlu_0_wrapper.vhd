@@ -12,7 +12,6 @@ use mimtlu_v1_00_a.all;
 
 entity system_mimtlu_0_wrapper is
   port (
-    TEST : in std_logic;
     CLOCK_Y3 : in std_logic;
     USER_CLOCK : in std_logic;
     TRIGGER_DUT : out std_logic;
@@ -20,6 +19,7 @@ entity system_mimtlu_0_wrapper is
     BUSY_DUT : in std_logic;
     BUSY_COPY : out std_logic;
     DATA_ITR : out std_logic;
+    TEST : in std_logic;
     S_AXI_ACLK : in std_logic;
     S_AXI_ARESETN : in std_logic;
     S_AXI_AWADDR : in std_logic_vector(31 downto 0);
@@ -60,7 +60,6 @@ architecture STRUCTURE of system_mimtlu_0_wrapper is
       C_SLV_DWIDTH : INTEGER
     );
     port (
-      TEST : in std_logic;
       CLOCK_Y3 : in std_logic;
       USER_CLOCK : in std_logic;
       TRIGGER_DUT : out std_logic;
@@ -68,6 +67,7 @@ architecture STRUCTURE of system_mimtlu_0_wrapper is
       BUSY_DUT : in std_logic;
       BUSY_COPY : out std_logic;
       DATA_ITR : out std_logic;
+      TEST : in std_logic;
       S_AXI_ACLK : in std_logic;
       S_AXI_ARESETN : in std_logic;
       S_AXI_AWADDR : in std_logic_vector((C_S_AXI_ADDR_WIDTH-1) downto 0);
@@ -108,7 +108,6 @@ begin
       C_SLV_DWIDTH => 32
     )
     port map (
-      TEST => TEST,
       CLOCK_Y3 => CLOCK_Y3,
       USER_CLOCK => USER_CLOCK,
       TRIGGER_DUT => TRIGGER_DUT,
@@ -116,6 +115,7 @@ begin
       BUSY_DUT => BUSY_DUT,
       BUSY_COPY => BUSY_COPY,
       DATA_ITR => DATA_ITR,
+      TEST => TEST,
       S_AXI_ACLK => S_AXI_ACLK,
       S_AXI_ARESETN => S_AXI_ARESETN,
       S_AXI_AWADDR => S_AXI_AWADDR,

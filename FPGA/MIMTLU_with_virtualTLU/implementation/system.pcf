@@ -1,10 +1,13 @@
 //! **************************************************************************
-// Written by: Map P.49d on Mon Apr 29 10:19:12 2013
+// Written by: Map P.49d on Mon Apr 29 14:06:51 2013
 //! **************************************************************************
 
 SCHEMATIC START;
 PROHIBIT = SITE "P1" SITE "L3";
 CONFIG VCCAUX = "3.3";
+NET
+        "microblaze_0/microblaze_0/MicroBlaze_Core_I/Area.Data_Flow_I/PC_Module_I/Using_FPGA.pc_write_I"
+        USELOWSKEWLINES;
 COMP "rzq" LOCATE = SITE "N4" LEVEL 1;
 COMP "USB_Uart_sin" LOCATE = SITE "R7" LEVEL 1;
 COMP "mcbx_dram_cke" LOCATE = SITE "H7" LEVEL 1;
@@ -81,9 +84,6 @@ COMP "mcbx_dram_dq<12>" LOCATE = SITE "T2" LEVEL 1;
 COMP "mcbx_dram_dq<13>" LOCATE = SITE "T1" LEVEL 1;
 COMP "mcbx_dram_dq<14>" LOCATE = SITE "U2" LEVEL 1;
 COMP "mcbx_dram_dq<15>" LOCATE = SITE "U1" LEVEL 1;
-NET
-        "microblaze_0/microblaze_0/MicroBlaze_Core_I/Area.Data_Flow_I/PC_Module_I/Using_FPGA.pc_write_I"
-        USELOWSKEWLINES;
 PIN microblaze_0_bram_block/microblaze_0_bram_block/ramb16bwer_0_pins<28> =
         BEL "microblaze_0_bram_block/microblaze_0_bram_block/ramb16bwer_0"
         PINNAME CLKA;
@@ -1422,7 +1422,37 @@ TIMEGRP S_AXI_ACLK_Ethernet_MAC = PIN
         "mimtlu_0/mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rvalid_i"
         BEL
         "mimtlu_0/mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_bvalid_i"
-        BEL
+        BEL "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_0" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_1" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_2" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_3" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_4" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_5" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_6" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_7" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_8" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_9" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_10" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_11" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_12" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_13" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_14" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_15" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_16" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_17" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_18" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_19" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_20" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_21" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_22" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_23" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_24" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_25" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_26" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_27" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_28" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_29" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_30" BEL
         "mimtlu_0/mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i_0"
         BEL
         "mimtlu_0/mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i_1"
@@ -7690,7 +7720,37 @@ TIMEGRP clock_generator_0_clock_generator_0_SIG_PLL0_CLKOUT2 = PIN
         "mimtlu_0/mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rvalid_i"
         BEL
         "mimtlu_0/mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_bvalid_i"
-        BEL
+        BEL "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_0" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_1" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_2" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_3" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_4" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_5" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_6" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_7" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_8" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_9" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_10" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_11" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_12" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_13" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_14" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_15" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_16" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_17" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_18" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_19" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_20" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_21" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_22" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_23" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_24" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_25" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_26" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_27" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_28" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_29" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_30" BEL
         "mimtlu_0/mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i_0"
         BEL
         "mimtlu_0/mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i_1"
@@ -12893,9 +12953,9 @@ TIMEGRP clock_generator_0_clock_generator_0_SIG_PLL0_CLKOUT2 = PIN
         "Ethernet_MAC/Ethernet_MAC/XEMAC_I/EMAC_I/TX/INST_TX_INTRFCE/I_TX_FIFO/LEGACY_COREGEN_DEPTH.V6_S6_AND_LATER.I_ASYNC_FIFO_BRAM/U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.mem/gdm.dm/Mram_RAM_RAMD";
 TIMEGRP mimtlu_0_CLOCK_Y3_pin = BEL "mimtlu_0_CLOCK_Y3_pin_BUFGP/BUFG" BEL
         "mimtlu_0/mimtlu_0/USER_LOGIC_I/MIMTLU_ent/CLK_DIV/temporal" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/MIMTLU_ent/CLK_DIV/counter_2" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/MIMTLU_ent/CLK_DIV/counter_0" BEL
         "mimtlu_0/mimtlu_0/USER_LOGIC_I/MIMTLU_ent/CLK_DIV/counter_1" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/MIMTLU_ent/CLK_DIV/counter_0";
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/MIMTLU_ent/CLK_DIV/counter_2";
 TIMEGRP TXCLK_GRP_Ethernet_MAC = BEL
         "Ethernet_MAC/Ethernet_MAC/XEMAC_I/EMAC_I/TX/phy_tx_en_i" BEL
         "Ethernet_MAC/Ethernet_MAC/XEMAC_I/EMAC_I/TX/fifo_tx_en" BEL
