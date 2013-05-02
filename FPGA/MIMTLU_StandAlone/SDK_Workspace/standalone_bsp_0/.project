@@ -3,7 +3,7 @@
 	<name>standalone_bsp_0</name>
 	<comment></comment>
 	<projects>
-		<project>xps_hw_platform</project>
+		<project>MIMTLU_with_virtualTLU_hw_platform</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
@@ -25,6 +25,10 @@
 				<dictionary>
 					<key>org.eclipse.cdt.make.core.build.command</key>
 					<value>make</value>
+				</dictionary>
+				<dictionary>
+					<key>org.eclipse.cdt.make.core.build.location</key>
+					<value></value>
 				</dictionary>
 				<dictionary>
 					<key>org.eclipse.cdt.make.core.build.target.auto</key>

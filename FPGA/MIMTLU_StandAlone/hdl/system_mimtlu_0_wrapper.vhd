@@ -19,14 +19,7 @@ entity system_mimtlu_0_wrapper is
     BUSY_DUT : in std_logic;
     BUSY_COPY : out std_logic;
     DATA_ITR : out std_logic;
-    TRIGGER_P : in std_logic;
-    TRIGGER_N : in std_logic;
-    BUSY_P : out std_logic;
-    BUSY_N : out std_logic;
-    TRIGGER_CLOCK_P : out std_logic;
-    TRIGGER_CLOCK_N : out std_logic;
-    RESET_P : in std_logic;
-    RESET_N : in std_logic;
+    TEST : in std_logic;
     S_AXI_ACLK : in std_logic;
     S_AXI_ARESETN : in std_logic;
     S_AXI_AWADDR : in std_logic_vector(31 downto 0);
@@ -74,14 +67,7 @@ architecture STRUCTURE of system_mimtlu_0_wrapper is
       BUSY_DUT : in std_logic;
       BUSY_COPY : out std_logic;
       DATA_ITR : out std_logic;
-      TRIGGER_P : in std_logic;
-      TRIGGER_N : in std_logic;
-      BUSY_P : out std_logic;
-      BUSY_N : out std_logic;
-      TRIGGER_CLOCK_P : out std_logic;
-      TRIGGER_CLOCK_N : out std_logic;
-      RESET_P : in std_logic;
-      RESET_N : in std_logic;
+      TEST : in std_logic;
       S_AXI_ACLK : in std_logic;
       S_AXI_ARESETN : in std_logic;
       S_AXI_AWADDR : in std_logic_vector((C_S_AXI_ADDR_WIDTH-1) downto 0);
@@ -129,14 +115,7 @@ begin
       BUSY_DUT => BUSY_DUT,
       BUSY_COPY => BUSY_COPY,
       DATA_ITR => DATA_ITR,
-      TRIGGER_P => TRIGGER_P,
-      TRIGGER_N => TRIGGER_N,
-      BUSY_P => BUSY_P,
-      BUSY_N => BUSY_N,
-      TRIGGER_CLOCK_P => TRIGGER_CLOCK_P,
-      TRIGGER_CLOCK_N => TRIGGER_CLOCK_N,
-      RESET_P => RESET_P,
-      RESET_N => RESET_N,
+      TEST => TEST,
       S_AXI_ACLK => S_AXI_ACLK,
       S_AXI_ARESETN => S_AXI_ARESETN,
       S_AXI_AWADDR => S_AXI_AWADDR,

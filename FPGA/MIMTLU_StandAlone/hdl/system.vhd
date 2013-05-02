@@ -46,14 +46,7 @@ entity system is
     mimtlu_0_TRIGGER_COPY_pin : out std_logic;
     mimtlu_0_BUSY_COPY_pin : out std_logic;
     mimtlu_0_CLOCK_Y3_pin : in std_logic;
-    mimtlu_0_TRIGGER_P_pin : in std_logic;
-    mimtlu_0_TRIGGER_N_pin : in std_logic;
-    mimtlu_0_BUSY_P_pin : out std_logic;
-    mimtlu_0_BUSY_N_pin : out std_logic;
-    mimtlu_0_TRIGGER_CLOCK_P_pin : out std_logic;
-    mimtlu_0_TRIGGER_CLOCK_N_pin : out std_logic;
-    mimtlu_0_RESET_P_pin : in std_logic;
-    mimtlu_0_RESET_N_pin : in std_logic
+    mimtlu_0_TEST_pin : in std_logic
   );
 end system;
 
@@ -2293,14 +2286,7 @@ architecture STRUCTURE of system is
       BUSY_DUT : in std_logic;
       BUSY_COPY : out std_logic;
       DATA_ITR : out std_logic;
-      TRIGGER_P : in std_logic;
-      TRIGGER_N : in std_logic;
-      BUSY_P : out std_logic;
-      BUSY_N : out std_logic;
-      TRIGGER_CLOCK_P : out std_logic;
-      TRIGGER_CLOCK_N : out std_logic;
-      RESET_P : in std_logic;
-      RESET_N : in std_logic;
+      TEST : in std_logic;
       S_AXI_ACLK : in std_logic;
       S_AXI_ARESETN : in std_logic;
       S_AXI_AWADDR : in std_logic_vector(31 downto 0);
@@ -2564,12 +2550,7 @@ architecture STRUCTURE of system is
   signal microblaze_0_interrupt_Interrupt_Address : std_logic_vector(0 to 31);
   signal mimtlu_0_BUSY_COPY : std_logic;
   signal mimtlu_0_BUSY_DUT : std_logic;
-  signal mimtlu_0_BUSY_N : std_logic;
-  signal mimtlu_0_BUSY_P : std_logic;
-  signal mimtlu_0_CLOCK_Y3 : std_logic;
   signal mimtlu_0_DATA_ITR : std_logic;
-  signal mimtlu_0_TRIGGER_CLOCK_N : std_logic;
-  signal mimtlu_0_TRIGGER_CLOCK_P : std_logic;
   signal mimtlu_0_TRIGGER_COPY : std_logic;
   signal mimtlu_0_TRIGGER_DUT : std_logic;
   signal net_gnd0 : std_logic;
@@ -2581,10 +2562,7 @@ architecture STRUCTURE of system is
   signal net_gnd16 : std_logic_vector(0 to 15);
   signal net_gnd32 : std_logic_vector(0 to 31);
   signal net_gnd4096 : std_logic_vector(0 to 4095);
-  signal net_mimtlu_0_RESET_N_pin : std_logic;
-  signal net_mimtlu_0_RESET_P_pin : std_logic;
-  signal net_mimtlu_0_TRIGGER_N_pin : std_logic;
-  signal net_mimtlu_0_TRIGGER_P_pin : std_logic;
+  signal net_mimtlu_0_TEST_pin : std_logic;
   signal net_vcc0 : std_logic;
   signal pgassign1 : std_logic_vector(3 downto 0);
   signal pgassign2 : std_logic_vector(7 downto 0);
@@ -2627,15 +2605,7 @@ begin
   mimtlu_0_TRIGGER_DUT_pin <= mimtlu_0_TRIGGER_DUT;
   mimtlu_0_TRIGGER_COPY_pin <= mimtlu_0_TRIGGER_COPY;
   mimtlu_0_BUSY_COPY_pin <= mimtlu_0_BUSY_COPY;
-  mimtlu_0_CLOCK_Y3 <= mimtlu_0_CLOCK_Y3_pin;
-  net_mimtlu_0_TRIGGER_P_pin <= mimtlu_0_TRIGGER_P_pin;
-  net_mimtlu_0_TRIGGER_N_pin <= mimtlu_0_TRIGGER_N_pin;
-  mimtlu_0_BUSY_P_pin <= mimtlu_0_BUSY_P;
-  mimtlu_0_BUSY_N_pin <= mimtlu_0_BUSY_N;
-  mimtlu_0_TRIGGER_CLOCK_P_pin <= mimtlu_0_TRIGGER_CLOCK_P;
-  mimtlu_0_TRIGGER_CLOCK_N_pin <= mimtlu_0_TRIGGER_CLOCK_N;
-  net_mimtlu_0_RESET_P_pin <= mimtlu_0_RESET_P_pin;
-  net_mimtlu_0_RESET_N_pin <= mimtlu_0_RESET_N_pin;
+  net_mimtlu_0_TEST_pin <= mimtlu_0_TEST_pin;
   axi4lite_0_M_BID(0 downto 0) <= B"0";
   axi4lite_0_M_BID(1 downto 1) <= B"0";
   axi4lite_0_M_BID(2 downto 2) <= B"0";
@@ -4891,21 +4861,14 @@ begin
 
   mimtlu_0 : system_mimtlu_0_wrapper
     port map (
-      CLOCK_Y3 => mimtlu_0_CLOCK_Y3,
+      CLOCK_Y3 => pgassign2(7),
       USER_CLOCK => net_gnd0,
       TRIGGER_DUT => mimtlu_0_TRIGGER_DUT,
       TRIGGER_COPY => mimtlu_0_TRIGGER_COPY,
       BUSY_DUT => mimtlu_0_BUSY_DUT,
       BUSY_COPY => mimtlu_0_BUSY_COPY,
       DATA_ITR => mimtlu_0_DATA_ITR,
-      TRIGGER_P => net_mimtlu_0_TRIGGER_P_pin,
-      TRIGGER_N => net_mimtlu_0_TRIGGER_N_pin,
-      BUSY_P => mimtlu_0_BUSY_P,
-      BUSY_N => mimtlu_0_BUSY_N,
-      TRIGGER_CLOCK_P => mimtlu_0_TRIGGER_CLOCK_P,
-      TRIGGER_CLOCK_N => mimtlu_0_TRIGGER_CLOCK_N,
-      RESET_P => net_mimtlu_0_RESET_P_pin,
-      RESET_N => net_mimtlu_0_RESET_N_pin,
+      TEST => net_mimtlu_0_TEST_pin,
       S_AXI_ACLK => pgassign2(7),
       S_AXI_ARESETN => axi4lite_0_M_ARESETN(7),
       S_AXI_AWADDR => axi4lite_0_M_AWADDR(255 downto 224),

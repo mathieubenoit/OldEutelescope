@@ -48,8 +48,16 @@ int itr_cnt;
 Xboolean msg_recvd,itr_rcvd;
 struct tcp_pcb *Gpcb;
 
+
 /* missing declaration in lwIP */
 void lwip_init();
+
+struct packet {
+	char msg[4];
+	u32 data;
+};
+
+
 
 void
 print_ip(char *msg, struct ip_addr *ip) 
@@ -89,6 +97,17 @@ void MyTimestampInterruptHandler(void)
 }
 
 
+void SetBusyLength(u32 length){
+
+	u32 *reg;
+	reg=XPAR_MIMTLU_0_BASEADDR+0x4;
+	*reg=length;
+
+	//memcpy(XPAR_MIMTLU_0_BASEADDR+0x4,0xF,sizeof(0xF));
+
+}
+
+
 
 int transfer_data() {
 
@@ -116,7 +135,7 @@ int transfer_data() {
 			return -1;
 		}
 		else {
-			printf("just sent that %d \r\n",timestamp);
+			//printf("just sent that %d \r\n",timestamp);
 			msg_recvd=0;
 			itr_rcvd=0;
 		}
@@ -153,9 +172,28 @@ err_t recv_callback(void *arg, struct tcp_pcb *tpcb,
 	/* echo back the payload */
 	/* in this case, we assume that the payload is < TCP_SND_BUF */
 
-	print("packet received, waiting for interrupt \r \n");
-	//printf("%s \r \n",p->payload);
-	msg_recvd=1;
+	//print("packet received, waiting for interrupt \r \n");
+
+	char *msg;
+	char *a;
+	u32 b;
+
+	//printf("%s \r\n",p->payload);
+	sscanf(p->payload,"%s %u",a,&b);
+
+
+	//printf("packet data %u %s \r\n",b,a);
+
+	if(strncmp(a,"SETB",4)==0){
+
+		SetBusyLength(b);
+
+	}
+	else if(strncmp(a,"READ",4)==0){
+		msg_recvd=1;
+	};
+
+	//msg_recvd=1;
 	pbuf_free(p);
 
 

@@ -30,6 +30,7 @@ use IEEE.NUMERIC_STD.ALL;
 --use UNISIM.VComponents.all;
 
 entity TLU_SIMU is
+	generic (Nbits : integer);
     Port ( trigger : out  STD_LOGIC;
            busy : in  STD_LOGIC;
 			  test : in STD_LOGIC;
@@ -41,12 +42,16 @@ end TLU_SIMU;
 architecture Behavioral of TLU_SIMU is
 
 type TLU_state is (idle,triggered,isBusy);
-type small_int is range 0 to 15;
+type small_int is range 0 to 31;
 
 signal state_reg,state_next : TLU_state;
 signal output_dis,test_reg,busy_reg : STD_LOGIC;
 signal trigger_reg : STD_LOGIC;
-signal timestamp: unsigned(15 downto 0):=(others=>'0');
+signal timestamp: unsigned(Nbits downto 0):=(others=>'0');
+signal running_timestamp: unsigned(Nbits downto 0):=(others=>'0');
+
+
+
 signal cnt : small_int;
 
 signal edge1,edge2 : STD_LOGIC :='0';
@@ -62,12 +67,17 @@ case state_reg is
 		trigger_reg<='0';
 		if (test_reg='1' and busy_reg='0') then
 			state_next <= triggered;
+			--timestamp<=running_timestamp;
 		else
 			state_next<= idle;
+			--timestamp<=timestamp;
+
 		end if;
 	
 	when triggered =>
 		trigger_reg<='1';
+		--timestamp<=timestamp;
+
 		if busy='1' then
 			state_next <= isbusy;
 		else
@@ -77,6 +87,8 @@ case state_reg is
 			
 	when isbusy =>
 			trigger_reg<='0';
+			--timestamp<=timestamp;
+
 			if(output_dis='0') then 
 				state_next<=isbusy;
 				trigger_reg<=timestamp(natural(cnt));
@@ -105,24 +117,30 @@ if (reset='1') then
 	
 elsif rising_edge(clk_int) then 
 	state_reg <= state_next;
-	timestamp<=timestamp;
+	running_timestamp<=running_timestamp+1;
 	output_dis<=output_dis;
+	
+	if(test_reg='1') then 
+			timestamp<=running_timestamp;
+	else
+	
+	end if;
 
-	if(state_reg=isbusy and output_dis='0' and cnt=15) then 
+	if(state_reg=isbusy and output_dis='0' and integer(cnt)=Nbits) then 
 		output_dis<='1';
-		timestamp<=timestamp+1;		
+		--timestamp<=timestamp+1;		
 	elsif (state_reg=isbusy and output_dis='0') then 
 		output_dis<='0';
-		timestamp<=timestamp;
+		--timestamp<=timestamp;
 	else
 		output_dis<='0';
-		timestamp<=timestamp;
+		--timestamp<=timestamp;
 	end if;	
 
 else 
 	output_dis<=output_dis;
 	state_reg<=state_reg;
-	timestamp<=timestamp;	
+	running_timestamp<=running_timestamp;	
 
 end if;
 

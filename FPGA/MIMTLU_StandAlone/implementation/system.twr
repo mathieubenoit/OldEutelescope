@@ -35,7 +35,7 @@ Timing constraint: NET "Ethernet_MAC/Ethernet_MAC/phy_tx_clk_i" MAXSKEW = 6 ns;
 
  1 net analyzed, 0 failing nets detected.
  0 timing errors detected.
- Maximum net skew is   2.067ns.
+ Maximum net skew is   1.868ns.
 --------------------------------------------------------------------------------
 
 ================================================================================
@@ -45,7 +45,7 @@ For more information, see Period Analysis in the Timing Closure User Guide (UG61
 
  166 paths analyzed, 111 endpoints analyzed, 0 failing endpoints
  0 timing errors detected. (0 setup errors, 0 hold errors, 0 component switching limit errors)
- Minimum period is  18.240ns.
+ Minimum period is  13.682ns.
 --------------------------------------------------------------------------------
 
 ================================================================================
@@ -53,7 +53,7 @@ Timing constraint: NET "Ethernet_MAC_RX_CLK_IBUF" MAXSKEW = 6 ns;
 
  1 net analyzed, 0 failing nets detected.
  0 timing errors detected.
- Maximum net skew is   1.352ns.
+ Maximum net skew is   1.307ns.
 --------------------------------------------------------------------------------
 
 ================================================================================
@@ -62,7 +62,7 @@ For more information, see Period Analysis in the Timing Closure User Guide (UG61
 
  143 paths analyzed, 132 endpoints analyzed, 0 failing endpoints
  0 timing errors detected. (0 setup errors, 0 hold errors, 0 component switching limit errors)
- Minimum period is   9.282ns.
+ Minimum period is   9.760ns.
 --------------------------------------------------------------------------------
 
 ================================================================================
@@ -174,29 +174,19 @@ Timing constraint: PATH "TS_RX_AXI_FP_Ethernet_MAC_path" TIG;
 --------------------------------------------------------------------------------
 
 ================================================================================
-Timing constraint: TS_sys_clk_pin = PERIOD TIMEGRP "sys_clk_pin" 66.666 MHz 
-HIGH 50%;
+Timing constraint: TS_sys_clk_pin = PERIOD TIMEGRP "sys_clk_pin" 100 MHz HIGH 
+50%;
 For more information, see Period Analysis in the Timing Closure User Guide (UG612).
 
  0 paths analyzed, 0 endpoints analyzed, 0 failing endpoints
  0 timing errors detected. (0 component switching limit errors)
- Minimum period is   5.000ns.
---------------------------------------------------------------------------------
-
-================================================================================
-Timing constraint: TS_CLOCK_Y3 = PERIOD TIMEGRP "mimtlu_0_CLOCK_Y3_pin" 100 MHz 
-HIGH 50%;
-For more information, see Period Analysis in the Timing Closure User Guide (UG612).
-
- 12 paths analyzed, 12 endpoints analyzed, 0 failing endpoints
- 0 timing errors detected. (0 setup errors, 0 hold errors, 0 component switching limit errors)
- Minimum period is   2.666ns.
+ Minimum period is   3.334ns.
 --------------------------------------------------------------------------------
 
 ================================================================================
 Timing constraint: TS_clk_400_0000MHz180PLL0_nobuf = PERIOD TIMEGRP         
-"clk_400_0000MHz180PLL0_nobuf" TS_sys_clk_pin * 6 PHASE 1.2500125 ns         
-HIGH 50%;
+"clk_400_0000MHz180PLL0_nobuf" TS_sys_clk_pin * 4 PHASE 1.25 ns HIGH         
+50%;
 For more information, see Period Analysis in the Timing Closure User Guide (UG612).
 
  0 paths analyzed, 0 endpoints analyzed, 0 failing endpoints
@@ -206,7 +196,7 @@ For more information, see Period Analysis in the Timing Closure User Guide (UG61
 
 ================================================================================
 Timing constraint: TS_clk_400_0000MHzPLL0_nobuf = PERIOD TIMEGRP 
-"clk_400_0000MHzPLL0_nobuf"         TS_sys_clk_pin * 6 HIGH 50%;
+"clk_400_0000MHzPLL0_nobuf"         TS_sys_clk_pin * 4 HIGH 50%;
 For more information, see Period Analysis in the Timing Closure User Guide (UG612).
 
  0 paths analyzed, 0 endpoints analyzed, 0 failing endpoints
@@ -220,9 +210,9 @@ PERIOD TIMEGRP         "clock_generator_0_clock_generator_0_SIG_PLL0_CLKOUT2"
 TS_sys_clk_pin         HIGH 50%;
 For more information, see Period Analysis in the Timing Closure User Guide (UG612).
 
- 320535 paths analyzed, 18250 endpoints analyzed, 0 failing endpoints
+ 326731 paths analyzed, 19165 endpoints analyzed, 0 failing endpoints
  0 timing errors detected. (0 setup errors, 0 hold errors, 0 component switching limit errors)
- Minimum period is  14.315ns.
+ Minimum period is   9.445ns.
 --------------------------------------------------------------------------------
 
 ================================================================================
@@ -231,7 +221,7 @@ For more information, see Offset In Analysis in the Timing Closure User Guide (U
 
  6 paths analyzed, 6 endpoints analyzed, 0 failing endpoints
  0 timing errors detected. (0 setup errors, 0 hold errors)
- Offset is  -0.583ns.
+ Offset is  -0.575ns.
 --------------------------------------------------------------------------------
 
 
@@ -242,11 +232,11 @@ Derived Constraints for TS_sys_clk_pin
 |           Constraint          | Requirement |-------------+-------------|-------------+-------------|-------------+-------------|
 |                               |             |   Direct    | Derivative  |   Direct    | Derivative  |   Direct    | Derivative  |
 +-------------------------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+
-|TS_sys_clk_pin                 |     15.000ns|      5.000ns|     14.315ns|            0|            0|            0|       320535|
+|TS_sys_clk_pin                 |     10.000ns|      3.334ns|      9.445ns|            0|            0|            0|       326731|
 | TS_clk_400_0000MHz180PLL0_nobu|      2.500ns|      1.599ns|          N/A|            0|            0|            0|            0|
 | f                             |             |             |             |             |             |             |             |
 | TS_clk_400_0000MHzPLL0_nobuf  |      2.500ns|      1.599ns|          N/A|            0|            0|            0|            0|
-| TS_clock_generator_0_clock_gen|     15.000ns|     14.315ns|          N/A|            0|            0|       320535|            0|
+| TS_clock_generator_0_clock_gen|     10.000ns|      9.445ns|          N/A|            0|            0|       326731|            0|
 | erator_0_SIG_PLL0_CLKOUT2     |             |             |             |             |             |             |             |
 +-------------------------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+
 
@@ -262,12 +252,12 @@ Setup/Hold to clock Ethernet_MAC_RX_CLK
                    |Max Setup to|  Process   |Max Hold to |  Process   |                        | Clock  |
 Source             | clk (edge) |   Corner   | clk (edge) |   Corner   |Internal Clock(s)       | Phase  |
 -------------------+------------+------------+------------+------------+------------------------+--------+
-Ethernet_MAC_RXD<0>|   -0.844(R)|      FAST  |    2.644(R)|      SLOW  |Ethernet_MAC_RX_CLK_IBUF|   0.000|
-Ethernet_MAC_RXD<1>|   -0.854(R)|      FAST  |    2.792(R)|      SLOW  |Ethernet_MAC_RX_CLK_IBUF|   0.000|
-Ethernet_MAC_RXD<2>|   -0.823(R)|      FAST  |    2.631(R)|      SLOW  |Ethernet_MAC_RX_CLK_IBUF|   0.000|
-Ethernet_MAC_RXD<3>|   -0.626(R)|      FAST  |    2.362(R)|      SLOW  |Ethernet_MAC_RX_CLK_IBUF|   0.000|
-Ethernet_MAC_RX_DV |   -0.595(R)|      FAST  |    2.201(R)|      SLOW  |Ethernet_MAC_RX_CLK_IBUF|   0.000|
-Ethernet_MAC_RX_ER |   -0.583(R)|      FAST  |    2.297(R)|      SLOW  |Ethernet_MAC_RX_CLK_IBUF|   0.000|
+Ethernet_MAC_RXD<0>|   -0.848(R)|      FAST  |    2.648(R)|      SLOW  |Ethernet_MAC_RX_CLK_IBUF|   0.000|
+Ethernet_MAC_RXD<1>|   -1.011(R)|      FAST  |    3.030(R)|      SLOW  |Ethernet_MAC_RX_CLK_IBUF|   0.000|
+Ethernet_MAC_RXD<2>|   -0.980(R)|      FAST  |    2.869(R)|      SLOW  |Ethernet_MAC_RX_CLK_IBUF|   0.000|
+Ethernet_MAC_RXD<3>|   -0.644(R)|      FAST  |    2.380(R)|      SLOW  |Ethernet_MAC_RX_CLK_IBUF|   0.000|
+Ethernet_MAC_RX_DV |   -0.613(R)|      FAST  |    2.219(R)|      SLOW  |Ethernet_MAC_RX_CLK_IBUF|   0.000|
+Ethernet_MAC_RX_ER |   -0.575(R)|      FAST  |    2.289(R)|      SLOW  |Ethernet_MAC_RX_CLK_IBUF|   0.000|
 -------------------+------------+------------+------------+------------+------------------------+--------+
 
 Clock Ethernet_MAC_TX_CLK to Pad
@@ -275,11 +265,11 @@ Clock Ethernet_MAC_TX_CLK to Pad
                    |Max (slowest) clk|  Process   |Min (fastest) clk|  Process   |                                      | Clock  |
 Destination        |  (edge) to PAD  |   Corner   |  (edge) to PAD  |   Corner   |Internal Clock(s)                     | Phase  |
 -------------------+-----------------+------------+-----------------+------------+--------------------------------------+--------+
-Ethernet_MAC_TXD<0>|         8.942(F)|      SLOW  |         4.018(F)|      FAST  |Ethernet_MAC/Ethernet_MAC/phy_tx_clk_i|  14.000|
-Ethernet_MAC_TXD<1>|         8.942(F)|      SLOW  |         4.018(F)|      FAST  |Ethernet_MAC/Ethernet_MAC/phy_tx_clk_i|  14.000|
-Ethernet_MAC_TXD<2>|         8.537(F)|      SLOW  |         3.800(F)|      FAST  |Ethernet_MAC/Ethernet_MAC/phy_tx_clk_i|  14.000|
-Ethernet_MAC_TXD<3>|         8.537(F)|      SLOW  |         3.800(F)|      FAST  |Ethernet_MAC/Ethernet_MAC/phy_tx_clk_i|  14.000|
-Ethernet_MAC_TX_EN |         9.040(F)|      SLOW  |         4.079(F)|      FAST  |Ethernet_MAC/Ethernet_MAC/phy_tx_clk_i|  14.000|
+Ethernet_MAC_TXD<0>|         8.952(F)|      SLOW  |         4.028(F)|      FAST  |Ethernet_MAC/Ethernet_MAC/phy_tx_clk_i|  14.000|
+Ethernet_MAC_TXD<1>|         8.952(F)|      SLOW  |         4.028(F)|      FAST  |Ethernet_MAC/Ethernet_MAC/phy_tx_clk_i|  14.000|
+Ethernet_MAC_TXD<2>|         8.547(F)|      SLOW  |         3.810(F)|      FAST  |Ethernet_MAC/Ethernet_MAC/phy_tx_clk_i|  14.000|
+Ethernet_MAC_TXD<3>|         8.547(F)|      SLOW  |         3.810(F)|      FAST  |Ethernet_MAC/Ethernet_MAC/phy_tx_clk_i|  14.000|
+Ethernet_MAC_TX_EN |         9.045(F)|      SLOW  |         4.084(F)|      FAST  |Ethernet_MAC/Ethernet_MAC/phy_tx_clk_i|  14.000|
 -------------------+-----------------+------------+-----------------+------------+--------------------------------------+--------+
 
 Clock to Setup on destination clock CLK_66MHZ
@@ -287,9 +277,9 @@ Clock to Setup on destination clock CLK_66MHZ
                    | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock       |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 -------------------+---------+---------+---------+---------+
-CLK_66MHZ          |   14.315|         |         |         |
-Ethernet_MAC_RX_CLK|         |    2.795|         |         |
-Ethernet_MAC_TX_CLK|    5.050|         |         |         |
+CLK_66MHZ          |    9.445|         |         |         |
+Ethernet_MAC_RX_CLK|         |    2.697|         |         |
+Ethernet_MAC_TX_CLK|    4.208|         |         |         |
 -------------------+---------+---------+---------+---------+
 
 Clock to Setup on destination clock Ethernet_MAC_RX_CLK
@@ -297,8 +287,8 @@ Clock to Setup on destination clock Ethernet_MAC_RX_CLK
                    | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock       |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 -------------------+---------+---------+---------+---------+
-CLK_66MHZ          |    6.592|         |    6.569|         |
-Ethernet_MAC_RX_CLK|         |         |    3.249|    2.965|
+CLK_66MHZ          |    9.532|         |    8.483|         |
+Ethernet_MAC_RX_CLK|         |         |    3.416|    3.964|
 -------------------+---------+---------+---------+---------+
 
 Clock to Setup on destination clock Ethernet_MAC_TX_CLK
@@ -306,17 +296,9 @@ Clock to Setup on destination clock Ethernet_MAC_TX_CLK
                    | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock       |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 -------------------+---------+---------+---------+---------+
-CLK_66MHZ          |    5.252|         |    8.659|         |
-Ethernet_MAC_TX_CLK|    4.987|         |    6.384|         |
+CLK_66MHZ          |    8.858|         |    8.729|         |
+Ethernet_MAC_TX_CLK|    5.331|         |    4.789|         |
 -------------------+---------+---------+---------+---------+
-
-Clock to Setup on destination clock mimtlu_0_CLOCK_Y3_pin
----------------------+---------+---------+---------+---------+
-                     | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
-Source Clock         |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
----------------------+---------+---------+---------+---------+
-mimtlu_0_CLOCK_Y3_pin|    1.718|         |         |         |
----------------------+---------+---------+---------+---------+
 
 
 Timing summary:
@@ -324,22 +306,22 @@ Timing summary:
 
 Timing errors: 0  Score: 0  (Setup/Max: 0, Hold: 0)
 
-Constraints cover 321093 paths, 2 nets, and 23345 connections
+Constraints cover 327277 paths, 2 nets, and 24391 connections
 
 Design statistics:
-   Minimum period:  18.240ns   (Maximum frequency:  54.825MHz)
+   Minimum period:  13.682ns   (Maximum frequency:  73.089MHz)
    Maximum path delay from/to any node:   4.111ns
-   Maximum net skew:   2.067ns
+   Maximum net skew:   1.868ns
 
 
-Analysis completed Mon Apr 29 13:30:28 2013 
+Analysis completed Thu May 02 10:36:24 2013 
 --------------------------------------------------------------------------------
 
 Trace Settings:
 -------------------------
 Trace Settings 
 
-Peak Memory Usage: 323 MB
+Peak Memory Usage: 331 MB
 
 
 

@@ -30,7 +30,7 @@ library UNISIM;
 use UNISIM.VComponents.all;
 
 entity clk_divider is
-  Port (
+	Port (
         clk_in : in  STD_LOGIC;
         reset  : in  STD_LOGIC;
         clk_out: out STD_LOGIC
@@ -38,6 +38,7 @@ entity clk_divider is
 end clk_divider;
 
 architecture Behavioral of clk_divider is
+
 signal temporal: STD_LOGIC:='0';
 signal unbuf_clk : std_logic:='0';
 signal counter : integer range 0 to 4 := 0;

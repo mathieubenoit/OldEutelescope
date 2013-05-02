@@ -1,9 +1,9 @@
 Release 14.4 - xst P.49d (nt64)
 Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.
---> Parameter TMPDIR set to M:\Git_projects\FPGA\MIMTLU_StandAlone\synthesis\xst_temp_dir\
+--> Parameter TMPDIR set to F:\Git_projects\FPGA\MIMTLU_with_virtualTLU\synthesis\xst_temp_dir\
 
 
-Total REAL time to Xst completion: 1.00 secs
+Total REAL time to Xst completion: 0.00 secs
 Total CPU time to Xst completion: 0.10 secs
  
 --> 
@@ -35,7 +35,7 @@ TABLE OF CONTENTS
 ---- Source Parameters
 Input Format                       : MIXED
 Input File Name                    : "system_mcb3_lpddr_wrapper_xst.prj"
-Verilog Include Directory          : {"M:\Git_projects\FPGA\MIMTLU_StandAlone\pcores\" "C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxBFMinterface\pcores\" "C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\" }
+Verilog Include Directory          : {"F:\Git_projects\FPGA\MIMTLU_with_virtualTLU\pcores\" "C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxBFMinterface\pcores\" "C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\" }
 
 ---- Target Parameters
 Target Device                      : xc6slx9csg324-2
@@ -130,7 +130,7 @@ Analyzing Verilog file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores
 Parsing module <mcb_ui_top_synch>.
 Analyzing Verilog file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/axi_s6_ddrx_v1_06_a/hdl/verilog/mcb_ui_top.v" into library axi_s6_ddrx_v1_06_a
 Parsing module <mcb_ui_top>.
-Analyzing Verilog file "M:\Git_projects\FPGA\MIMTLU_StandAlone\hdl\system_mcb3_lpddr_wrapper.v" into library work
+Analyzing Verilog file "F:\Git_projects\FPGA\MIMTLU_with_virtualTLU\hdl\system_mcb3_lpddr_wrapper.v" into library work
 Parsing module <system_mcb3_lpddr_wrapper>.
 
 =========================================================================
@@ -407,7 +407,7 @@ WARNING:HDLCompiler:1127 - "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pc
 =========================================================================
 
 Synthesizing Unit <system_mcb3_lpddr_wrapper>.
-    Related source file is "M:\Git_projects\FPGA\MIMTLU_StandAlone\hdl\system_mcb3_lpddr_wrapper.v".
+    Related source file is "F:\Git_projects\FPGA\MIMTLU_with_virtualTLU\hdl\system_mcb3_lpddr_wrapper.v".
     Summary:
 	no macro.
 Unit <system_mcb3_lpddr_wrapper> synthesized.
@@ -2673,11 +2673,11 @@ ui_clk         |    6.901|         |         |         |
 
 
 Total REAL time to Xst completion: 19.00 secs
-Total CPU time to Xst completion: 18.40 secs
+Total CPU time to Xst completion: 18.96 secs
  
 --> 
 
-Total memory usage is 276448 kilobytes
+Total memory usage is 281024 kilobytes
 
 Number of errors   :    0 (   0 filtered)
 Number of warnings :  577 (   0 filtered)

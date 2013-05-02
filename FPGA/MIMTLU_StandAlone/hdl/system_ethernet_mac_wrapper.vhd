@@ -142,7 +142,7 @@ begin
     generic map (
       C_FAMILY => "spartan6",
       C_INSTANCE => "Ethernet_MAC",
-      C_S_AXI_ACLK_PERIOD_PS => 15000,
+      C_S_AXI_ACLK_PERIOD_PS => 10000,
       C_S_AXI_ADDR_WIDTH => 13,
       C_S_AXI_DATA_WIDTH => 32,
       C_S_AXI_ID_WIDTH => 1,

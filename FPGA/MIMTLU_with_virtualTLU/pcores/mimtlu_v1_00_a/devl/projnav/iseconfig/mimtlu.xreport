@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <report-views version="2.0" >
  <header>
-  <DateModified>2013-04-19T11:37:07</DateModified>
+  <DateModified>2013-05-02T14:48:07</DateModified>
   <ModuleName>mimtlu</ModuleName>
   <SummaryTimeStamp>Unknown</SummaryTimeStamp>
-  <SavedFilePath>C:/Users/mbenoit/Documents/FPGA_Projects/MIMTLU/pcores/mimtlu_v1_00_a/devl/projnav/iseconfig/mimtlu.xreport</SavedFilePath>
-  <ImplementationReportsDirectory>C:/Users/mbenoit/Documents/FPGA_Projects/MIMTLU/pcores/mimtlu_v1_00_a/devl/projnav\</ImplementationReportsDirectory>
+  <SavedFilePath>M:/Git_projects/FPGA/MIMTLU_with_virtualTLU/pcores/mimtlu_v1_00_a/devl/projnav/iseconfig/mimtlu.xreport</SavedFilePath>
+  <ImplementationReportsDirectory>M:/Git_projects/FPGA/MIMTLU_with_virtualTLU/pcores/mimtlu_v1_00_a/devl/projnav\</ImplementationReportsDirectory>
   <DateInitialized>2013-04-18T11:34:25</DateInitialized>
   <EnableMessageFiltering>false</EnableMessageFiltering>
  </header>

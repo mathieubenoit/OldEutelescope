@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>MIMTLU_Firmware</name>
+	<name>test_mimtlu</name>
 	<comment>standalone_bsp_0 - microblaze_0</comment>
 	<projects>
+		<project>MIMTLU_with_virtualTLU_hw_platform</project>
 		<project>standalone_bsp_0</project>
 	</projects>
 	<buildSpec>

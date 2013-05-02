@@ -25,38 +25,38 @@ endif
 
 # Add inputs and outputs from these tool invocations to the build variables 
 ELFSIZE += \
-MIMTLU_Firmware.elf.size \
+test_mimtlu.elf.size \
 
 ELFCHECK += \
-MIMTLU_Firmware.elf.elfcheck \
+test_mimtlu.elf.elfcheck \
 
 
 # All Target
-all: MIMTLU_Firmware.elf secondary-outputs
+all: test_mimtlu.elf secondary-outputs
 
 # Tool invocations
-MIMTLU_Firmware.elf: $(OBJS) ../src/lscript.ld $(USER_OBJS)
+test_mimtlu.elf: $(OBJS) ../src/lscript.ld $(USER_OBJS)
 	@echo Building target: $@
 	@echo Invoking: MicroBlaze gcc linker
-	mb-gcc -Wl,--no-relax -Wl,-T -Wl,../src/lscript.ld -L../../standalone_bsp_0/microblaze_0/lib -mlittle-endian -mxl-barrel-shift -mxl-pattern-compare -mno-xl-soft-div -mcpu=v8.40.b -mno-xl-soft-mul -o"MIMTLU_Firmware.elf" $(OBJS) $(USER_OBJS) $(LIBS)
+	mb-gcc -Wl,--no-relax -Wl,-T -Wl,../src/lscript.ld -L../../standalone_bsp_0/microblaze_0/lib -mlittle-endian -mxl-barrel-shift -mxl-pattern-compare -mno-xl-soft-div -mcpu=v8.40.b -mno-xl-soft-mul -o"test_mimtlu.elf" $(OBJS) $(USER_OBJS) $(LIBS)
 	@echo Finished building target: $@
 	@echo ' '
 
-MIMTLU_Firmware.elf.size: MIMTLU_Firmware.elf
+test_mimtlu.elf.size: test_mimtlu.elf
 	@echo Invoking: MicroBlaze Print Size
-	mb-size MIMTLU_Firmware.elf  |tee "MIMTLU_Firmware.elf.size"
+	mb-size test_mimtlu.elf  |tee "test_mimtlu.elf.size"
 	@echo Finished building: $@
 	@echo ' '
 
-MIMTLU_Firmware.elf.elfcheck: MIMTLU_Firmware.elf
+test_mimtlu.elf.elfcheck: test_mimtlu.elf
 	@echo Invoking: Xilinx ELF Check
-	elfcheck MIMTLU_Firmware.elf -hw ../../xps_hw_platform/system.xml -pe microblaze_0  |tee "MIMTLU_Firmware.elf.elfcheck"
+	elfcheck test_mimtlu.elf -hw ../../MIMTLU_with_virtualTLU_hw_platform/system.xml -pe microblaze_0  |tee "test_mimtlu.elf.elfcheck"
 	@echo Finished building: $@
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) $(OBJS)$(C_DEPS)$(EXECUTABLES)$(ELFSIZE)$(ELFCHECK)$(S_UPPER_DEPS) MIMTLU_Firmware.elf
+	-$(RM) $(OBJS)$(C_DEPS)$(EXECUTABLES)$(ELFSIZE)$(ELFCHECK)$(S_UPPER_DEPS) test_mimtlu.elf
 	-@echo ' '
 
 secondary-outputs: $(ELFSIZE) $(ELFCHECK)

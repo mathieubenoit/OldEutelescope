@@ -1,10 +1,10 @@
 Release 14.4 - xst P.49d (nt64)
 Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.
---> Parameter TMPDIR set to M:\Git_projects\FPGA\MIMTLU_StandAlone\synthesis\xst_temp_dir\
+--> Parameter TMPDIR set to F:\Git_projects\FPGA\MIMTLU_with_virtualTLU\synthesis\xst_temp_dir\
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.10 secs
+Total CPU time to Xst completion: 0.12 secs
  
 --> 
 TABLE OF CONTENTS
@@ -35,7 +35,7 @@ TABLE OF CONTENTS
 ---- Source Parameters
 Input Format                       : MIXED
 Input File Name                    : "system_ethernet_mac_wrapper_xst.prj"
-Verilog Include Directory          : {"M:\Git_projects\FPGA\MIMTLU_StandAlone\pcores\" "C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxBFMinterface\pcores\" "C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\" }
+Verilog Include Directory          : {"F:\Git_projects\FPGA\MIMTLU_with_virtualTLU\pcores\" "C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxBFMinterface\pcores\" "C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\" }
 
 ---- Target Parameters
 Target Device                      : xc6slx9csg324-2
@@ -312,7 +312,7 @@ Parsing architecture <imp> of entity <xemac>.
 Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/axi_ethernetlite_v1_01_b/hdl/vhdl/axi_ethernetlite.vhd" into library axi_ethernetlite_v1_01_b
 Parsing entity <axi_ethernetlite>.
 Parsing architecture <imp> of entity <axi_ethernetlite>.
-Parsing VHDL file "M:\Git_projects\FPGA\MIMTLU_StandAlone\hdl\system_ethernet_mac_wrapper.vhd" into library work
+Parsing VHDL file "F:\Git_projects\FPGA\MIMTLU_with_virtualTLU\hdl\system_ethernet_mac_wrapper.vhd" into library work
 Parsing entity <system_ethernet_mac_wrapper>.
 Parsing architecture <STRUCTURE> of entity <system_ethernet_mac_wrapper>.
 
@@ -401,7 +401,7 @@ WARNING:HDLCompiler:321 - "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pco
 =========================================================================
 
 Synthesizing Unit <system_ethernet_mac_wrapper>.
-    Related source file is "M:\Git_projects\FPGA\MIMTLU_StandAlone\hdl\system_ethernet_mac_wrapper.vhd".
+    Related source file is "F:\Git_projects\FPGA\MIMTLU_with_virtualTLU\hdl\system_ethernet_mac_wrapper.vhd".
     Summary:
 	no macro.
 Unit <system_ethernet_mac_wrapper> synthesized.
@@ -410,7 +410,7 @@ Synthesizing Unit <axi_ethernetlite>.
     Related source file is "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/axi_ethernetlite_v1_01_b/hdl/vhdl/axi_ethernetlite.vhd".
         C_FAMILY = "spartan6"
         C_INSTANCE = "Ethernet_MAC"
-        C_S_AXI_ACLK_PERIOD_PS = 15000
+        C_S_AXI_ACLK_PERIOD_PS = 10000
         C_S_AXI_ADDR_WIDTH = 13
         C_S_AXI_DATA_WIDTH = 32
         C_S_AXI_ID_WIDTH = 1
@@ -444,7 +444,7 @@ Synthesizing Unit <xemac>.
         C_FAMILY = "spartan6"
         C_S_AXI_ADDR_WIDTH = 13
         C_S_AXI_DATA_WIDTH = 32
-        C_S_AXI_ACLK_PERIOD_PS = 15000
+        C_S_AXI_ACLK_PERIOD_PS = 10000
         C_DUPLEX = 1
         C_RX_PING_PONG = 1
         C_TX_PING_PONG = 1
@@ -1334,8 +1334,7 @@ Optimizing unit <axi_ethernetlite> ...
 Optimizing unit <axi_interface> ...
 
 Optimizing unit <xemac> ...
-WARNING:Xst:1293 - FF/Latch <MDIO_GEN.clk_cnt_4> has a constant value of 0 in block <xemac>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <MDIO_GEN.clk_cnt_5> has a constant value of 0 in block <xemac>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <MDIO_GEN.clk_cnt_5> has a constant value of 0 in block <xemac>. This FF/Latch will be trimmed during the optimization process.
 
 Optimizing unit <emac> ...
 
@@ -1366,7 +1365,8 @@ WARNING:Xst:2677 - Node <Ethernet_MAC/I_AXI_NATIVE_IPIF/bus2ip_addr_i_1> of sequ
 WARNING:Xst:2677 - Node <Ethernet_MAC/I_AXI_NATIVE_IPIF/bus2ip_addr_i_0> of sequential type is unconnected in block <system_ethernet_mac_wrapper>.
 WARNING:Xst:2677 - Node <Ethernet_MAC/XEMAC_I/EMAC_I/RX/emac_rx_rd_data_d1_4> of sequential type is unconnected in block <system_ethernet_mac_wrapper>.
 WARNING:Xst:2677 - Node <Ethernet_MAC/XEMAC_I/EMAC_I/RX/emac_rx_rd_data_d1_5> of sequential type is unconnected in block <system_ethernet_mac_wrapper>.
-WARNING:Xst:1710 - FF/Latch <Ethernet_MAC/XEMAC_I/EMAC_I/RX/INST_RX_STATE/state21a> (without init value) has a constant value of 0 in block <system_ethernet_mac_wrapper>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <Ethernet_MAC/XEMAC_I/MDIO_GEN.clk_cnt_5> has a constant value of 0 in block <system_ethernet_mac_wrapper>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <Ethernet_MAC/XEMAC_I/EMAC_I/RX/INST_RX_STATE/state21a> (without init value) has a constant value of 0 in block <system_ethernet_mac_wrapper>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <Ethernet_MAC/XEMAC_I/EMAC_I/TX/INST_TX_STATE_MACHINE/STATE23A> (without init value) has a constant value of 0 in block <system_ethernet_mac_wrapper>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <Ethernet_MAC/XEMAC_I/EMAC_I/TX/INST_TX_STATE_MACHINE/STATE22A> (without init value) has a constant value of 0 in block <system_ethernet_mac_wrapper>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <Ethernet_MAC/XEMAC_I/EMAC_I/TX/INST_TX_STATE_MACHINE/STATE21A> (without init value) has a constant value of 0 in block <system_ethernet_mac_wrapper>. This FF/Latch will be trimmed during the optimization process.
@@ -1480,8 +1480,8 @@ Final Macro Processing ...
 Final Register Report
 
 Macro Statistics
-# Registers                                            : 505
- Flip-Flops                                            : 505
+# Registers                                            : 506
+ Flip-Flops                                            : 506
 
 =========================================================================
 WARNING:Xst:1710 - FF/Latch <Ethernet_MAC/XEMAC_I/EMAC_I/RX/INST_RX_STATE/state21a> (without init value) has a constant value of 0 in block <system_ethernet_mac_wrapper>. This FF/Latch will be trimmed during the optimization process.
@@ -1518,28 +1518,28 @@ Top Level Output File Name         : system_ethernet_mac_wrapper.ngc
 
 Primitive and Black Box Usage:
 ------------------------------
-# BELS                             : 963
+# BELS                             : 959
 #      GND                         : 7
 #      INV                         : 12
 #      LUT1                        : 20
-#      LUT2                        : 100
-#      LUT3                        : 153
-#      LUT4                        : 108
-#      LUT5                        : 131
+#      LUT2                        : 101
+#      LUT3                        : 152
+#      LUT4                        : 106
+#      LUT5                        : 130
 #      LUT6                        : 247
 #      MULT_AND                    : 28
 #      MUXCY                       : 76
-#      MUXF7                       : 7
+#      MUXF7                       : 6
 #      MUXF8                       : 1
 #      VCC                         : 1
 #      XORCY                       : 72
-# FlipFlops/Latches                : 647
+# FlipFlops/Latches                : 648
 #      FD                          : 16
 #      FDC                         : 70
 #      FDCE                        : 40
 #      FDP                         : 18
 #      FDPE                        : 6
-#      FDR                         : 162
+#      FDR                         : 163
 #      FDRE                        : 281
 #      FDS                         : 5
 #      FDSE                        : 49
@@ -1555,17 +1555,17 @@ Selected Device : 6slx9csg324-2
 
 
 Slice Logic Utilization: 
- Number of Slice Registers:             636  out of  11440     5%  
- Number of Slice LUTs:                  783  out of   5720    13%  
-    Number used as Logic:               771  out of   5720    13%  
+ Number of Slice Registers:             637  out of  11440     5%  
+ Number of Slice LUTs:                  780  out of   5720    13%  
+    Number used as Logic:               768  out of   5720    13%  
     Number used as Memory:               12  out of   1440     0%  
        Number used as RAM:               12
 
 Slice Logic Distribution: 
- Number of LUT Flip Flop pairs used:    971
-   Number with an unused Flip Flop:     335  out of    971    34%  
-   Number with an unused LUT:           188  out of    971    19%  
-   Number of fully used LUT-FF pairs:   448  out of    971    46%  
+ Number of LUT Flip Flop pairs used:    968
+   Number with an unused Flip Flop:     331  out of    968    34%  
+   Number with an unused LUT:           188  out of    968    19%  
+   Number of fully used LUT-FF pairs:   449  out of    968    46%  
    Number of unique control sets:        64
 
 IO Utilization: 
@@ -1600,7 +1600,7 @@ Clock Signal                       | Clock buffer(FF name)                      
 -----------------------------------+-------------------------------------------------------+-------+
 PHY_rx_clk                         | NONE(Ethernet_MAC/IOFFS_GEN2.RER_FF)                  | 40    |
 PHY_tx_clk                         | NONE(Ethernet_MAC/IOFFS_GEN2.TEN_FF)                  | 45    |
-S_AXI_ACLK                         | NONE(Ethernet_MAC/I_AXI_NATIVE_IPIF/read_burst_cntr_7)| 572   |
+S_AXI_ACLK                         | NONE(Ethernet_MAC/I_AXI_NATIVE_IPIF/read_burst_cntr_7)| 573   |
 -----------------------------------+-------------------------------------------------------+-------+
 INFO:Xst:2169 - HDL ADVISOR - Some clock signals were not automatically buffered by XST with BUFG/BUFR resources. Please use the buffer_type constraint in order to insert these buffers to the clock signals to help prevent skew problems.
 
@@ -1612,8 +1612,8 @@ Timing Summary:
 ---------------
 Speed Grade: -2
 
-   Minimum period: 6.786ns (Maximum Frequency: 147.362MHz)
-   Minimum input arrival time before clock: 4.878ns
+   Minimum period: 6.813ns (Maximum Frequency: 146.778MHz)
+   Minimum input arrival time before clock: 4.982ns
    Maximum output required time after clock: 1.952ns
    Maximum combinational path delay: 0.000ns
 
@@ -1645,29 +1645,28 @@ Delay:               1.833ns (Levels of Logic = 1)
 
 =========================================================================
 Timing constraint: Default period analysis for Clock 'S_AXI_ACLK'
-  Clock period: 6.786ns (frequency: 147.362MHz)
-  Total number of paths / destination ports: 13808 / 1125
+  Clock period: 6.813ns (frequency: 146.778MHz)
+  Total number of paths / destination ports: 13803 / 1126
 -------------------------------------------------------------------------
-Delay:               6.786ns (Levels of Logic = 5)
-  Source:            Ethernet_MAC/XEMAC_I/EMAC_I/TX/INST_TX_STATE_MACHINE/Mac_addr_ram_we (FF)
-  Destination:       Ethernet_MAC/XEMAC_I/EMAC_I/RX/INST_RX_STATE/Mac_addr_ram_addr_rd_0 (FF)
+Delay:               6.813ns (Levels of Logic = 4)
+  Source:            Ethernet_MAC/I_AXI_NATIVE_IPIF/bus2ip_addr_i_6 (FF)
+  Destination:       Ethernet_MAC/XEMAC_I/reg_data_out_31 (FF)
   Source Clock:      S_AXI_ACLK rising
   Destination Clock: S_AXI_ACLK rising
 
-  Data Path: Ethernet_MAC/XEMAC_I/EMAC_I/TX/INST_TX_STATE_MACHINE/Mac_addr_ram_we to Ethernet_MAC/XEMAC_I/EMAC_I/RX/INST_RX_STATE/Mac_addr_ram_addr_rd_0
+  Data Path: Ethernet_MAC/I_AXI_NATIVE_IPIF/bus2ip_addr_i_6 to Ethernet_MAC/XEMAC_I/reg_data_out_31
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FDR:C->Q              8   0.525   0.944  Ethernet_MAC/XEMAC_I/EMAC_I/TX/INST_TX_STATE_MACHINE/Mac_addr_ram_we (Ethernet_MAC/XEMAC_I/EMAC_I/TX/INST_TX_STATE_MACHINE/Mac_addr_ram_we)
-     LUT3:I2->O            8   0.254   0.943  Ethernet_MAC/XEMAC_I/EMAC_I/Mmux_mac_addr_ram_addr11 (Ethernet_MAC/XEMAC_I/EMAC_I/mac_addr_ram_addr<0>)
-     RAM16X1S:A3->O        1   0.235   0.790  Ethernet_MAC/XEMAC_I/EMAC_I/NODEMACADDRRAMI/ram16x4i/ram16x1_3 (Ethernet_MAC/XEMAC_I/EMAC_I/mac_addr_ram_data<0>)
-     LUT4:I2->O            8   0.250   0.944  Ethernet_MAC/XEMAC_I/EMAC_I/RX/INST_RX_STATE/Mac_addr_ram_data[0]_Emac_rx_rd_data_d1[0]_equal_40_o4_SW0 (N66)
-     LUT5:I4->O            4   0.254   1.234  Ethernet_MAC/XEMAC_I/EMAC_I/RX/INST_RX_STATE/rdDestAddrNib_D_t_q_FSM_FFd2-In_SW1 (N165)
-     LUT6:I1->O            1   0.254   0.000  Ethernet_MAC/XEMAC_I/EMAC_I/RX/INST_RX_STATE/rdDestAddrNib_D_t_q_rdDestAddrNib_D_t[0]_GND_14_o_wide_mux_34_OUT<2>1 (Ethernet_MAC/XEMAC_I/EMAC_I/RX/INST_RX_STATE/rdDestAddrNib_D_t[0]_GND_14_o_wide_mux_34_OUT<2>)
-     FDR:D                     0.074          Ethernet_MAC/XEMAC_I/EMAC_I/RX/INST_RX_STATE/Mac_addr_ram_addr_rd_1
+     FDRE:C->Q            10   0.525   1.438  Ethernet_MAC/I_AXI_NATIVE_IPIF/bus2ip_addr_i_6 (Ethernet_MAC/I_AXI_NATIVE_IPIF/bus2ip_addr_i_6)
+     LUT6:I1->O            1   0.254   0.682  Ethernet_MAC/XEMAC_I/reg_access_i<10>1_1 (Ethernet_MAC/XEMAC_I/reg_access_i<10>1)
+     LUT3:I2->O            6   0.254   0.876  Ethernet_MAC/XEMAC_I/tx_ping_reg_en1 (Ethernet_MAC/XEMAC_I/tx_ping_reg_en)
+     LUT5:I4->O            3   0.254   0.766  Ethernet_MAC/XEMAC_I/Bus2IP_RdCE_gie_reg_en_AND_610_o1 (Ethernet_MAC/XEMAC_I/Bus2IP_RdCE_gie_reg_en_AND_610_o)
+     LUT6:I5->O           17   0.254   1.208  Ethernet_MAC/XEMAC_I/_n0863_inv1 (Ethernet_MAC/XEMAC_I/_n0863_inv)
+     FDRE:CE                   0.302          Ethernet_MAC/XEMAC_I/reg_data_out_0
     ----------------------------------------
-    Total                      6.786ns (1.931ns logic, 4.855ns route)
-                                       (28.5% logic, 71.5% route)
+    Total                      6.813ns (1.843ns logic, 4.970ns route)
+                                       (27.1% logic, 72.9% route)
 
 =========================================================================
 Timing constraint: Default period analysis for Clock 'PHY_rx_clk'
@@ -1704,7 +1703,7 @@ Offset:              3.154ns (Levels of Logic = 1)
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     INV:I->O            342   0.255   2.440  Ethernet_MAC/bus_rst1_INV_0 (Ethernet_MAC/I_AXI_NATIVE_IPIF/S_AXI_ARESETN_inv)
+     INV:I->O            343   0.255   2.440  Ethernet_MAC/bus_rst1_INV_0 (Ethernet_MAC/I_AXI_NATIVE_IPIF/S_AXI_ARESETN_inv)
      FDRE:R                    0.459          Ethernet_MAC/IOFFS_GEN[3].RX_FF_I
     ----------------------------------------
     Total                      3.154ns (0.714ns logic, 2.440ns route)
@@ -1723,7 +1722,7 @@ Offset:              3.154ns (Levels of Logic = 1)
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     INV:I->O            342   0.255   2.440  Ethernet_MAC/bus_rst1_INV_0 (Ethernet_MAC/I_AXI_NATIVE_IPIF/S_AXI_ARESETN_inv)
+     INV:I->O            343   0.255   2.440  Ethernet_MAC/bus_rst1_INV_0 (Ethernet_MAC/I_AXI_NATIVE_IPIF/S_AXI_ARESETN_inv)
      FDRE:R                    0.459          Ethernet_MAC/IOFFS_GEN[3].TX_FF_I
     ----------------------------------------
     Total                      3.154ns (0.714ns logic, 2.440ns route)
@@ -1731,9 +1730,9 @@ Offset:              3.154ns (Levels of Logic = 1)
 
 =========================================================================
 Timing constraint: Default OFFSET IN BEFORE for Clock 'S_AXI_ACLK'
-  Total number of paths / destination ports: 1366 / 968
+  Total number of paths / destination ports: 1366 / 969
 -------------------------------------------------------------------------
-Offset:              4.878ns (Levels of Logic = 5)
+Offset:              4.982ns (Levels of Logic = 5)
   Source:            S_AXI_RREADY (PAD)
   Destination:       Ethernet_MAC/XEMAC_I/reg_data_out_3 (FF)
   Destination Clock: S_AXI_ACLK rising
@@ -1743,14 +1742,14 @@ Offset:              4.878ns (Levels of Logic = 5)
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
      LUT3:I0->O            1   0.235   1.112  Ethernet_MAC/I_AXI_NATIVE_IPIF/bus2ip_rdce_i1_1 (Ethernet_MAC/I_AXI_NATIVE_IPIF/bus2ip_rdce_i1)
-     LUT6:I1->O            2   0.254   0.726  Ethernet_MAC/XEMAC_I/Mmux_reg_data_out[31]_ping_soft_status_mux_15_OUT1311 (Ethernet_MAC/XEMAC_I/Mmux_reg_data_out[31]_ping_soft_status_mux_15_OUT131)
-     LUT6:I5->O            4   0.254   0.804  Ethernet_MAC/XEMAC_I/Mmux_reg_data_out[31]_ping_soft_status_mux_15_OUT1101 (Ethernet_MAC/XEMAC_I/Mmux_reg_data_out[31]_ping_soft_status_mux_15_OUT110)
+     LUT6:I1->O            2   0.254   0.834  Ethernet_MAC/XEMAC_I/Mmux_reg_data_out[31]_ping_soft_status_mux_15_OUT1311 (Ethernet_MAC/XEMAC_I/Mmux_reg_data_out[31]_ping_soft_status_mux_15_OUT131)
+     LUT6:I4->O            4   0.250   0.804  Ethernet_MAC/XEMAC_I/Mmux_reg_data_out[31]_ping_soft_status_mux_15_OUT1101 (Ethernet_MAC/XEMAC_I/Mmux_reg_data_out[31]_ping_soft_status_mux_15_OUT110)
      LUT6:I5->O            1   0.254   0.682  Ethernet_MAC/XEMAC_I/Mmux_reg_data_out[31]_ping_soft_status_mux_15_OUT161 (Ethernet_MAC/XEMAC_I/Mmux_reg_data_out[31]_ping_soft_status_mux_15_OUT16)
      LUT6:I5->O            1   0.254   0.000  Ethernet_MAC/XEMAC_I/Mmux_reg_data_out[31]_ping_soft_status_mux_15_OUT163 (Ethernet_MAC/XEMAC_I/reg_data_out[31]_ping_soft_status_mux_15_OUT<3>)
      FDRE:D                    0.074          Ethernet_MAC/XEMAC_I/reg_data_out_3
     ----------------------------------------
-    Total                      4.878ns (1.554ns logic, 3.324ns route)
-                                       (31.9% logic, 68.1% route)
+    Total                      4.982ns (1.550ns logic, 3.432ns route)
+                                       (31.1% logic, 68.9% route)
 
 =========================================================================
 Timing constraint: Default OFFSET OUT AFTER for Clock 'S_AXI_ACLK'
@@ -1834,18 +1833,18 @@ Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ---------------+---------+---------+---------+---------+
 PHY_rx_clk     |         |    2.245|         |         |
 PHY_tx_clk     |         |    3.826|         |         |
-S_AXI_ACLK     |    6.786|         |         |         |
+S_AXI_ACLK     |    6.813|         |         |         |
 ---------------+---------+---------+---------+---------+
 
 =========================================================================
 
 
-Total REAL time to Xst completion: 160.00 secs
-Total CPU time to Xst completion: 160.45 secs
+Total REAL time to Xst completion: 193.00 secs
+Total CPU time to Xst completion: 192.77 secs
  
 --> 
 
-Total memory usage is 291260 kilobytes
+Total memory usage is 297372 kilobytes
 
 Number of errors   :    0 (   0 filtered)
 Number of warnings :  170 (   0 filtered)

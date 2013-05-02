@@ -28,6 +28,7 @@ use IEEE.NUMERIC_STD.ALL;
 -- any Xilinx primitives in this code.
 
 entity MIMTLU_core is
+	 Generic ( Nbits : integer );
     Port ( Trigger : in  STD_LOGIC;
            busy : out  STD_LOGIC;
 			  
@@ -39,6 +40,7 @@ entity MIMTLU_core is
 			  
 			  reset : in STD_LOGIC;
 			  timestamp : out STD_LOGIC_VECTOR(31 downto 0);
+			  busy_cnt : in STD_LOGIC_VECTOR(31 downto 0);
            clk : in  STD_LOGIC;
 			  data_itr : out  STD_LOGIC;
 			  clk_out_en : out STD_LOGIC);
@@ -47,14 +49,13 @@ end MIMTLU_core;
 architecture Behavioral of MIMTLU_core is
 
 type TLU_state is (idle,triggered,reading,isBusy);
-type small_int is range 0 to 255;
-type ts is range 0 to 15;
+type ts is range 0 to 31;
 
-constant ts_length : ts:=15;
+constant ts_length : ts:=ts(Nbits);
 signal ts_cnt : ts;
 signal state_reg,state_next : TLU_state;
 
-signal timestamp_reg : std_logic_vector(15 downto 0);
+signal timestamp_reg : std_logic_vector(Nbits downto 0);
 
 signal busy_reg : std_logic:='0';
 signal clk_en_reg : std_logic:='0';
@@ -68,9 +69,11 @@ signal ts_reg : std_logic:='0';
 signal data_itr_reg : std_logic:='0';
 
 
-signal count : small_int;
+signal count : natural ;
 
-constant wait_time : small_int :=255;
+signal wait_time : natural := 255;
+
+
 begin
 
 REG:process(clk,reset,busy_reg)
@@ -164,23 +167,13 @@ trigger_dut <= trigger when clk_en_reg='0' else
 busy_copy<=busy_reg or busy_dut_reg;
 trigger_copy<=trigger;
 
-timestamp(31 downto 16)<=(others=>'0');
-timestamp(15 downto 0)<=timestamp_reg;
+timestamp(31 downto Nbits+1)<=(others=>'0');
+timestamp(Nbits downto 0)<=timestamp_reg;
 
 data_itr<=data_itr_reg;
 
+wait_time<=to_integer(unsigned(busy_cnt(31 downto 0)));
 
---process
---begin 
---	if (read_en='1') then
---		for i in 0 to 14 loop 
---			wait until clk='1';
---			timestamp_reg(i)<=trigger;
---		end loop;
---		read_en<='0';
---	end if;
---			
---end process;
 
 clk_out_en<=clk_en_reg;
 

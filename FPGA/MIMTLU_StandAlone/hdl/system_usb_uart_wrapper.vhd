@@ -86,7 +86,7 @@ begin
     generic map (
       C_FAMILY => "spartan6",
       C_INSTANCE => "USB_Uart",
-      C_S_AXI_ACLK_FREQ_HZ => 66666666,
+      C_S_AXI_ACLK_FREQ_HZ => 100000000,
       C_S_AXI_DATA_WIDTH => 32,
       C_BAUDRATE => 9600,
       C_DATA_BITS => 8,

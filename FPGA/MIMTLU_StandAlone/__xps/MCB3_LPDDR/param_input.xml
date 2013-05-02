@@ -73,7 +73,7 @@
       </spirit:modelParameter>
       <spirit:modelParameter>
         <spirit:name>C_INTERCONNECT_S0_AXI_ACLK_RATIO</spirit:name>
-        <spirit:value spirit:format="integer" spirit:resolve="UPDATE" spirit:id="MCB3_LPDDR.C_INTERCONNECT_S0_AXI_ACLK_RATIO"> "66666666" </spirit:value>
+        <spirit:value spirit:format="integer" spirit:resolve="UPDATE" spirit:id="MCB3_LPDDR.C_INTERCONNECT_S0_AXI_ACLK_RATIO"> "100000000" </spirit:value>
       </spirit:modelParameter>
       <spirit:modelParameter>
         <spirit:name>C_INTERCONNECT_S0_AXI_AR_REGISTER</spirit:name>

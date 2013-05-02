@@ -56,7 +56,6 @@ use ieee.std_logic_unsigned.all;
 
 library proc_common_v3_00_a;
 use proc_common_v3_00_a.proc_common_pkg.all;
-
 library mimtlu_v1_00_a;
 use mimtlu_v1_00_a.all;
 
@@ -100,20 +99,19 @@ entity user_logic is
   port
   (
     -- ADD USER PORTS BELOW THIS LINE ------------------
-
+    test : in  STD_LOGIC;
 	 CLOCK_Y3 : in STD_LOGIC;
-	 
-	 TRIGGER_P : in std_logic;
-	 TRIGGER_N : in std_logic;
-	 
-	 TRIGGER_CLOCK_P : out std_logic;
-	 TRIGGER_CLOCK_N : out std_logic;	
-	 
-	 BUSY_P : out STD_LOGIC ;		
-	 BUSY_N : out STD_LOGIC ;					  
-	 
-	 RESET_P : in STD_LOGIC ;		
-	 RESET_N : in STD_LOGIC ;		
+--	 TRIGGER_P : in std_logic;
+--	 TRIGGER_N : in std_logic;
+--	 
+--	 TRIGGER_CLOCK_P : out std_logic;
+--	 TRIGGER_CLOCK_N : out std_logic;	
+--	 
+--	 BUSY_P : out STD_LOGIC ;		
+--	 BUSY_N : out STD_LOGIC ;					  
+--	 
+--	 RESET_P : in STD_LOGIC ;		
+--	 RESET_N : in STD_LOGIC ;		
 	  
 	 TRIGGER_DUT : out std_logic;
 	 BUSY_DUT : in std_logic;
@@ -172,21 +170,18 @@ begin
   --USER logic implementation added here
   
   
-  MIMTLU_ent : entity mimtlu_v1_00_a.TOP port map(
+  MIMTLU_ent : entity mimtlu_v1_00_a.top port map(
   
+			  test => test,
 			  CLOCK_Y3 => CLOCK_Y3,
-
-			  TRIGGER_P => TRIGGER_P,
-			  TRIGGER_N =>TRIGGER_N ,
-	
-			  TRIGGER_CLOCK_P => TRIGGER_CLOCK_P,
-			  TRIGGER_CLOCK_N => TRIGGER_CLOCK_N,
-			  
-			  BUSY_P => BUSY_P ,		
-			  BUSY_N => BUSY_N,				  
-			  
-			  RESET_P => RESET_P,
-			  RESET_N => RESET_N,		
+--			  TRIGGER_P => TRIGGER_P,
+--			  TRIGGER_N =>TRIGGER_N ,
+--			  TRIGGER_CLOCK_P => TRIGGER_CLOCK_P,
+--			  TRIGGER_CLOCK_N => TRIGGER_CLOCK_N,
+--			  BUSY_P => BUSY_P ,		
+--			  BUSY_N => BUSY_N,				  
+--			  RESET_P => RESET_P,
+--			  RESET_N => RESET_N,		
 			  
 			  TRIGGER_DUT => TRIGGER_DUT,
 			  BUSY_DUT => BUSY_DUT,
@@ -194,6 +189,8 @@ begin
 			  BUSY_COPY => BUSY_COPY,
 			  
 			  DATA_ITR => DATA_ITR,
+			  
+			  BUSY_CNT => slv_reg1,
 			  
 			  timestamp => slv_reg0 );
   
@@ -222,47 +219,47 @@ begin
   slv_read_ack      <= Bus2IP_RdCE(0) or Bus2IP_RdCE(1) or Bus2IP_RdCE(2) or Bus2IP_RdCE(3);
 
   -- implement slave model software accessible register(s)
---  SLAVE_REG_WRITE_PROC : process( Bus2IP_Clk ) is
---  begin
---
---    if Bus2IP_Clk'event and Bus2IP_Clk = '1' then
---      if Bus2IP_Resetn = '0' then
---        slv_reg0 <= (others => '0');
---        slv_reg1 <= (others => '0');
---        slv_reg2 <= (others => '0');
---        slv_reg3 <= (others => '0');
---      else
---        case slv_reg_write_sel is
---          when "1000" =>
+  SLAVE_REG_WRITE_PROC : process( Bus2IP_Clk ) is
+  begin
+
+    if Bus2IP_Clk'event and Bus2IP_Clk = '1' then
+      if Bus2IP_Resetn = '0' then
+        --slv_reg0 <= (others => '0');
+        slv_reg1 <= (others => '0');
+        slv_reg2 <= (others => '0');
+        slv_reg3 <= (others => '0');
+      else
+        case slv_reg_write_sel is
+          when "1000" =>
 --            for byte_index in 0 to (C_SLV_DWIDTH/8)-1 loop
 --              if ( Bus2IP_BE(byte_index) = '1' ) then
 --                slv_reg0(byte_index*8+7 downto byte_index*8) <= Bus2IP_Data(byte_index*8+7 downto byte_index*8);
 --              end if;
 --            end loop;
---          when "0100" =>
---            for byte_index in 0 to (C_SLV_DWIDTH/8)-1 loop
---              if ( Bus2IP_BE(byte_index) = '1' ) then
---                slv_reg1(byte_index*8+7 downto byte_index*8) <= Bus2IP_Data(byte_index*8+7 downto byte_index*8);
---              end if;
---            end loop;
---          when "0010" =>
---            for byte_index in 0 to (C_SLV_DWIDTH/8)-1 loop
---              if ( Bus2IP_BE(byte_index) = '1' ) then
---                slv_reg2(byte_index*8+7 downto byte_index*8) <= Bus2IP_Data(byte_index*8+7 downto byte_index*8);
---              end if;
---            end loop;
---          when "0001" =>
---            for byte_index in 0 to (C_SLV_DWIDTH/8)-1 loop
---              if ( Bus2IP_BE(byte_index) = '1' ) then
---                slv_reg3(byte_index*8+7 downto byte_index*8) <= Bus2IP_Data(byte_index*8+7 downto byte_index*8);
---              end if;
---            end loop;
---          when others => null;
---        end case;
---      end if;
---    end if;
---
---  end process SLAVE_REG_WRITE_PROC;
+          when "0100" =>
+            for byte_index in 0 to (C_SLV_DWIDTH/8)-1 loop
+              if ( Bus2IP_BE(byte_index) = '1' ) then
+                slv_reg1(byte_index*8+7 downto byte_index*8) <= Bus2IP_Data(byte_index*8+7 downto byte_index*8);
+              end if;
+            end loop;
+          when "0010" =>
+            for byte_index in 0 to (C_SLV_DWIDTH/8)-1 loop
+              if ( Bus2IP_BE(byte_index) = '1' ) then
+                slv_reg2(byte_index*8+7 downto byte_index*8) <= Bus2IP_Data(byte_index*8+7 downto byte_index*8);
+              end if;
+            end loop;
+          when "0001" =>
+            for byte_index in 0 to (C_SLV_DWIDTH/8)-1 loop
+              if ( Bus2IP_BE(byte_index) = '1' ) then
+                slv_reg3(byte_index*8+7 downto byte_index*8) <= Bus2IP_Data(byte_index*8+7 downto byte_index*8);
+              end if;
+            end loop;
+          when others => null;
+        end case;
+      end if;
+    end if;
+
+  end process SLAVE_REG_WRITE_PROC;
 
   -- implement slave model software accessible register(s) read mux
   SLAVE_REG_READ_PROC : process( slv_reg_read_sel, slv_reg0, slv_reg1, slv_reg2, slv_reg3 ) is
@@ -270,9 +267,9 @@ begin
 
     case slv_reg_read_sel is
       when "1000" => slv_ip2bus_data <= slv_reg0;
-      when "0100" => slv_ip2bus_data <= slv_reg1;
-      when "0010" => slv_ip2bus_data <= slv_reg2;
-      when "0001" => slv_ip2bus_data <= slv_reg3;
+--      when "0100" => slv_ip2bus_data <= slv_reg1;
+--      when "0010" => slv_ip2bus_data <= slv_reg2;
+--      when "0001" => slv_ip2bus_data <= slv_reg3;
       when others => slv_ip2bus_data <= (others => '0');
     end case;
 

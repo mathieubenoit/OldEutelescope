@@ -30,8 +30,9 @@ USE ieee.std_logic_1164.ALL;
  
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
---USE ieee.numeric_std.ALL;
- 
+USE ieee.numeric_std.ALL;
+use ieee.std_logic_arith.all;
+
 ENTITY tb IS
 END tb;
  
@@ -48,6 +49,8 @@ ARCHITECTURE behavior OF tb IS
          TRIGGER_COPY : OUT  std_logic;
          BUSY_COPY : OUT  std_logic;
          DATA_ITR : OUT  std_logic;
+			BUSY_CNT : in std_logic_vector(31 downto 0);
+
          timestamp : OUT  std_logic_vector(31 downto 0)
         );
     END COMPONENT;
@@ -64,6 +67,8 @@ ARCHITECTURE behavior OF tb IS
    signal BUSY_COPY : std_logic;
    signal DATA_ITR : std_logic;
    signal timestamp : std_logic_vector(31 downto 0);
+	signal BUSY_CNT :  std_logic_vector(31 downto 0):=conv_std_logic_vector(400,32);
+
 
    -- Clock period definitions
    constant CLOCK_Y3_period : time := 10 ns;
@@ -72,7 +77,8 @@ ARCHITECTURE behavior OF tb IS
 BEGIN
  
 	-- Instantiate the Unit Under Test (UUT)
-   uut: top PORT MAP (
+   uut: top 
+	PORT MAP (
           test => test,
           CLOCK_Y3 => CLOCK_Y3,
           TRIGGER_DUT => TRIGGER_DUT,
@@ -80,7 +86,8 @@ BEGIN
           TRIGGER_COPY => TRIGGER_COPY,
           BUSY_COPY => BUSY_COPY,
           DATA_ITR => DATA_ITR,
-          timestamp => timestamp
+          timestamp => timestamp,
+			 BUSY_CNT=>BUSY_CNT
         );
 
    -- Clock process definitions
