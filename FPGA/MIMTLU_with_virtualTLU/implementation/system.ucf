@@ -1,7 +1,7 @@
 #
 # pin constraints
 #
-NET CLK_66MHZ LOC = "K15"  |  IOSTANDARD = "LVCMOS33";
+NET CLK_66MHZ LOC = "C10"  |  IOSTANDARD = "LVCMOS33";
 NET DIP_Switches_4Bits_TRI_I[0] LOC = "B3"  |  IOSTANDARD = "LVCMOS33"  |  PULLDOWN;
 NET DIP_Switches_4Bits_TRI_I[1] LOC = "A3"  |  IOSTANDARD = "LVCMOS33"  |  PULLDOWN;
 NET DIP_Switches_4Bits_TRI_I[2] LOC = "B4"  |  IOSTANDARD = "LVCMOS33"  |  PULLDOWN;
@@ -36,7 +36,7 @@ NET USB_Uart_sout LOC = "T7"  |  IOSTANDARD = "LVCMOS33";
 #
 
 NET "CLK_66MHZ" TNM_NET = sys_clk_pin;
-TIMESPEC TS_sys_clk_pin = PERIOD sys_clk_pin 66666 kHz;
+TIMESPEC TS_sys_clk_pin = PERIOD sys_clk_pin 100000 kHz;
 
 ### Set Vccaux for S6LX9 MicroBoard to 3.3V ###
 CONFIG VCCAUX = "3.3" ;

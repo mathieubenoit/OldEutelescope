@@ -1,7 +1,7 @@
 Release 14.4 - par P.49d (nt64)
 Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.
 
-Thu May 02 10:08:10 2013
+Thu May 02 10:36:05 2013
 
 
 INFO: The IO information is provided in three file formats as part of the Place and Route (PAR) process.  These formats are:
@@ -65,7 +65,7 @@ Pinout by Pin Number:
 |C7        |                           |IOBM     |IO_L10P_0                    |UNUSED   |               |0             |          |         |           |         |         |          |           |                |
 |C8        |                           |IOBS     |IO_L11N_0                    |UNUSED   |               |0             |          |         |           |         |         |          |           |                |
 |C9        |                           |IOBS     |IO_L34N_GCLK18_0             |UNUSED   |               |0             |          |         |           |         |         |          |           |                |
-|C10       |                           |IOBM     |IO_L37P_GCLK13_0             |UNUSED   |               |0             |          |         |           |         |         |          |           |                |
+|C10       |CLK_66MHZ                  |IOB      |IO_L37P_GCLK13_0             |INPUT    |LVCMOS33       |0             |          |         |           |NONE     |         |LOCATED   |NO         |NONE            |
 |C11       |                           |IOBS     |IO_L36N_GCLK14_0             |UNUSED   |               |0             |          |         |           |         |         |          |           |                |
 |C12       |                           |         |NC                           |         |               |              |          |         |           |         |         |          |           |                |
 |C13       |                           |         |NC                           |         |               |              |          |         |           |         |         |          |           |                |
@@ -196,7 +196,7 @@ Pinout by Pin Number:
 |K12       |                           |IOBM     |IO_L34P_A13_M1WE_1           |UNUSED   |               |1             |          |         |           |         |         |          |           |                |
 |K13       |                           |IOBS     |IO_L34N_A12_M1BA2_1          |UNUSED   |               |1             |          |         |           |         |         |          |           |                |
 |K14       |                           |IOBS     |IO_L39N_M1ODT_1              |UNUSED   |               |1             |          |         |           |         |         |          |           |                |
-|K15       |CLK_66MHZ                  |IOB      |IO_L41P_GCLK9_IRDY1_M1RASN_1 |INPUT    |LVCMOS33       |1             |          |         |           |NONE     |         |LOCATED   |NO         |NONE            |
+|K15       |                           |IOBM     |IO_L41P_GCLK9_IRDY1_M1RASN_1 |UNUSED   |               |1             |          |         |           |         |         |          |           |                |
 |K16       |                           |IOBS     |IO_L41N_GCLK8_M1CASN_1       |UNUSED   |               |1             |          |         |           |         |         |          |           |                |
 |K17       |Ethernet_MAC_TXD<1>        |IOB      |IO_L45P_A1_M1LDQS_1          |OUTPUT   |LVCMOS33       |1             |12        |SLOW     |           |         |         |LOCATED   |YES        |NONE            |
 |K18       |Ethernet_MAC_TXD<0>        |IOB      |IO_L45N_A0_M1LDQSN_1         |OUTPUT   |LVCMOS33       |1             |12        |SLOW     |           |         |         |LOCATED   |YES        |NONE            |

@@ -1,5 +1,5 @@
 //! **************************************************************************
-// Written by: Map P.49d on Thu May 02 10:07:13 2013
+// Written by: Map P.49d on Thu May 02 10:35:05 2013
 //! **************************************************************************
 
 SCHEMATIC START;
@@ -42,7 +42,7 @@ COMP "mcbx_dram_dq<9>" LOCATE = SITE "M1" LEVEL 1;
 COMP "mcbx_dram_cas_n" LOCATE = SITE "K5" LEVEL 1;
 COMP "mcbx_dram_clk_n" LOCATE = SITE "G1" LEVEL 1;
 COMP "mcbx_dram_ras_n" LOCATE = SITE "L5" LEVEL 1;
-COMP "CLK_66MHZ" LOCATE = SITE "K15" LEVEL 1;
+COMP "CLK_66MHZ" LOCATE = SITE "C10" LEVEL 1;
 COMP "mimtlu_0_TRIGGER_COPY_pin" LOCATE = SITE "F15" LEVEL 1;
 COMP "DIP_Switches_4Bits_TRI_I<0>" LOCATE = SITE "B3" LEVEL 1;
 COMP "DIP_Switches_4Bits_TRI_I<1>" LOCATE = SITE "A3" LEVEL 1;
@@ -435,9 +435,9 @@ TIMEGRP S_AXI_ACLK_Ethernet_MAC = PIN
         BEL "Ethernet_MAC/Ethernet_MAC/XEMAC_I/pong_rx_status" BEL
         "Ethernet_MAC/Ethernet_MAC/XEMAC_I/ping_rx_status" BEL
         "Ethernet_MAC/Ethernet_MAC/XEMAC_I/tx_pong_ping_l" BEL
-        "Ethernet_MAC/Ethernet_MAC/XEMAC_I/MDIO_GEN.clk_cnt_3" BEL
-        "Ethernet_MAC/Ethernet_MAC/XEMAC_I/MDIO_GEN.clk_cnt_1" BEL
+        "Ethernet_MAC/Ethernet_MAC/XEMAC_I/MDIO_GEN.clk_cnt_0" BEL
         "Ethernet_MAC/Ethernet_MAC/XEMAC_I/MDIO_GEN.clk_cnt_2" BEL
+        "Ethernet_MAC/Ethernet_MAC/XEMAC_I/MDIO_GEN.clk_cnt_4" BEL
         "Ethernet_MAC/Ethernet_MAC/I_AXI_NATIVE_IPIF/read_req" BEL
         "Ethernet_MAC/Ethernet_MAC/I_AXI_NATIVE_IPIF/write_req" BEL
         "Ethernet_MAC/Ethernet_MAC/I_AXI_NATIVE_IPIF/bvalid" BEL
@@ -987,7 +987,8 @@ TIMEGRP S_AXI_ACLK_Ethernet_MAC = PIN
         "Ethernet_MAC/Ethernet_MAC/XEMAC_I/TX_DONE_D1_I" BEL
         "Ethernet_MAC/Ethernet_MAC/XEMAC_I/TX_DONE_D2_I" BEL
         "Ethernet_MAC/Ethernet_MAC/XEMAC_I/RX_DONE_D1_I" BEL
-        "Ethernet_MAC/Ethernet_MAC/XEMAC_I/MDIO_GEN.clk_cnt_0" BEL
+        "Ethernet_MAC/Ethernet_MAC/XEMAC_I/MDIO_GEN.clk_cnt_3" BEL
+        "Ethernet_MAC/Ethernet_MAC/XEMAC_I/MDIO_GEN.clk_cnt_1" BEL
         "Ethernet_MAC/Ethernet_MAC/I_AXI_NATIVE_IPIF/S_AXI_RDATA_0" BEL
         "Ethernet_MAC/Ethernet_MAC/I_AXI_NATIVE_IPIF/S_AXI_RDATA_1" BEL
         "Ethernet_MAC/Ethernet_MAC/I_AXI_NATIVE_IPIF/S_AXI_RDATA_2" BEL
@@ -1263,11 +1264,13 @@ TIMEGRP S_AXI_ACLK_Ethernet_MAC = PIN
         "USB_Uart/USB_Uart/UARTLITE_CORE_I/UARTLITE_TX_I/MID_START_BIT_SRL16_I/INFERRED_GEN.data_15"
         BEL
         "USB_Uart/USB_Uart/UARTLITE_CORE_I/UARTLITE_TX_I/MID_START_BIT_SRL16_I/Mshreg_INFERRED_GEN.data_15"
-        BEL "USB_Uart/USB_Uart/UARTLITE_CORE_I/BAUD_RATE_I/count_2" BEL
-        "USB_Uart/USB_Uart/UARTLITE_CORE_I/BAUD_RATE_I/count_3" BEL
+        BEL "USB_Uart/USB_Uart/UARTLITE_CORE_I/BAUD_RATE_I/count_4" BEL
+        "USB_Uart/USB_Uart/UARTLITE_CORE_I/BAUD_RATE_I/count_2" BEL
+        "USB_Uart/USB_Uart/UARTLITE_CORE_I/BAUD_RATE_I/count_5" BEL
         "USB_Uart/USB_Uart/UARTLITE_CORE_I/BAUD_RATE_I/count_6" BEL
+        "USB_Uart/USB_Uart/UARTLITE_CORE_I/BAUD_RATE_I/count_8" BEL
         "USB_Uart/USB_Uart/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/Bus_RNW_reg_1"
-        BEL "USB_Uart/USB_Uart/UARTLITE_CORE_I/BAUD_RATE_I/count_1" BEL
+        BEL "USB_Uart/USB_Uart/UARTLITE_CORE_I/BAUD_RATE_I/count_0" BEL
         "USB_Uart/USB_Uart/UARTLITE_CORE_I/UARTLITE_RX_I/stop_Bit_Position"
         BEL "USB_Uart/USB_Uart/UARTLITE_CORE_I/UARTLITE_TX_I/tx_Data_Enable"
         BEL "USB_Uart/USB_Uart/UARTLITE_CORE_I/status_reg_2" BEL
@@ -1287,11 +1290,10 @@ TIMEGRP S_AXI_ACLK_Ethernet_MAC = PIN
         "USB_Uart/USB_Uart/UARTLITE_CORE_I/reset_TX_FIFO" BEL
         "USB_Uart/USB_Uart/UARTLITE_CORE_I/reset_RX_FIFO" BEL
         "USB_Uart/USB_Uart/UARTLITE_CORE_I/status_reg_1" BEL
-        "USB_Uart/USB_Uart/UARTLITE_CORE_I/BAUD_RATE_I/count_0" BEL
-        "USB_Uart/USB_Uart/UARTLITE_CORE_I/BAUD_RATE_I/count_4" BEL
-        "USB_Uart/USB_Uart/UARTLITE_CORE_I/BAUD_RATE_I/count_5" BEL
+        "USB_Uart/USB_Uart/UARTLITE_CORE_I/BAUD_RATE_I/count_1" BEL
+        "USB_Uart/USB_Uart/UARTLITE_CORE_I/BAUD_RATE_I/count_3" BEL
         "USB_Uart/USB_Uart/UARTLITE_CORE_I/BAUD_RATE_I/count_7" BEL
-        "USB_Uart/USB_Uart/UARTLITE_CORE_I/BAUD_RATE_I/count_8" BEL
+        "USB_Uart/USB_Uart/UARTLITE_CORE_I/BAUD_RATE_I/count_9" BEL
         "USB_Uart/USB_Uart/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_bvalid_i"
         BEL
         "USB_Uart/USB_Uart/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rvalid_i"
@@ -6977,9 +6979,9 @@ TIMEGRP clock_generator_0_clock_generator_0_SIG_PLL0_CLKOUT2 = PIN
         BEL "Ethernet_MAC/Ethernet_MAC/XEMAC_I/pong_rx_status" BEL
         "Ethernet_MAC/Ethernet_MAC/XEMAC_I/ping_rx_status" BEL
         "Ethernet_MAC/Ethernet_MAC/XEMAC_I/tx_pong_ping_l" BEL
-        "Ethernet_MAC/Ethernet_MAC/XEMAC_I/MDIO_GEN.clk_cnt_3" BEL
-        "Ethernet_MAC/Ethernet_MAC/XEMAC_I/MDIO_GEN.clk_cnt_1" BEL
+        "Ethernet_MAC/Ethernet_MAC/XEMAC_I/MDIO_GEN.clk_cnt_0" BEL
         "Ethernet_MAC/Ethernet_MAC/XEMAC_I/MDIO_GEN.clk_cnt_2" BEL
+        "Ethernet_MAC/Ethernet_MAC/XEMAC_I/MDIO_GEN.clk_cnt_4" BEL
         "Ethernet_MAC/Ethernet_MAC/I_AXI_NATIVE_IPIF/read_req" BEL
         "Ethernet_MAC/Ethernet_MAC/I_AXI_NATIVE_IPIF/write_req" BEL
         "Ethernet_MAC/Ethernet_MAC/I_AXI_NATIVE_IPIF/bvalid" BEL
@@ -7529,7 +7531,8 @@ TIMEGRP clock_generator_0_clock_generator_0_SIG_PLL0_CLKOUT2 = PIN
         "Ethernet_MAC/Ethernet_MAC/XEMAC_I/TX_DONE_D1_I" BEL
         "Ethernet_MAC/Ethernet_MAC/XEMAC_I/TX_DONE_D2_I" BEL
         "Ethernet_MAC/Ethernet_MAC/XEMAC_I/RX_DONE_D1_I" BEL
-        "Ethernet_MAC/Ethernet_MAC/XEMAC_I/MDIO_GEN.clk_cnt_0" BEL
+        "Ethernet_MAC/Ethernet_MAC/XEMAC_I/MDIO_GEN.clk_cnt_3" BEL
+        "Ethernet_MAC/Ethernet_MAC/XEMAC_I/MDIO_GEN.clk_cnt_1" BEL
         "Ethernet_MAC/Ethernet_MAC/I_AXI_NATIVE_IPIF/S_AXI_RDATA_0" BEL
         "Ethernet_MAC/Ethernet_MAC/I_AXI_NATIVE_IPIF/S_AXI_RDATA_1" BEL
         "Ethernet_MAC/Ethernet_MAC/I_AXI_NATIVE_IPIF/S_AXI_RDATA_2" BEL
@@ -7805,11 +7808,13 @@ TIMEGRP clock_generator_0_clock_generator_0_SIG_PLL0_CLKOUT2 = PIN
         "USB_Uart/USB_Uart/UARTLITE_CORE_I/UARTLITE_TX_I/MID_START_BIT_SRL16_I/INFERRED_GEN.data_15"
         BEL
         "USB_Uart/USB_Uart/UARTLITE_CORE_I/UARTLITE_TX_I/MID_START_BIT_SRL16_I/Mshreg_INFERRED_GEN.data_15"
-        BEL "USB_Uart/USB_Uart/UARTLITE_CORE_I/BAUD_RATE_I/count_2" BEL
-        "USB_Uart/USB_Uart/UARTLITE_CORE_I/BAUD_RATE_I/count_3" BEL
+        BEL "USB_Uart/USB_Uart/UARTLITE_CORE_I/BAUD_RATE_I/count_4" BEL
+        "USB_Uart/USB_Uart/UARTLITE_CORE_I/BAUD_RATE_I/count_2" BEL
+        "USB_Uart/USB_Uart/UARTLITE_CORE_I/BAUD_RATE_I/count_5" BEL
         "USB_Uart/USB_Uart/UARTLITE_CORE_I/BAUD_RATE_I/count_6" BEL
+        "USB_Uart/USB_Uart/UARTLITE_CORE_I/BAUD_RATE_I/count_8" BEL
         "USB_Uart/USB_Uart/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/Bus_RNW_reg_1"
-        BEL "USB_Uart/USB_Uart/UARTLITE_CORE_I/BAUD_RATE_I/count_1" BEL
+        BEL "USB_Uart/USB_Uart/UARTLITE_CORE_I/BAUD_RATE_I/count_0" BEL
         "USB_Uart/USB_Uart/UARTLITE_CORE_I/UARTLITE_RX_I/stop_Bit_Position"
         BEL "USB_Uart/USB_Uart/UARTLITE_CORE_I/UARTLITE_TX_I/tx_Data_Enable"
         BEL "USB_Uart/USB_Uart/UARTLITE_CORE_I/status_reg_2" BEL
@@ -7829,11 +7834,10 @@ TIMEGRP clock_generator_0_clock_generator_0_SIG_PLL0_CLKOUT2 = PIN
         "USB_Uart/USB_Uart/UARTLITE_CORE_I/reset_TX_FIFO" BEL
         "USB_Uart/USB_Uart/UARTLITE_CORE_I/reset_RX_FIFO" BEL
         "USB_Uart/USB_Uart/UARTLITE_CORE_I/status_reg_1" BEL
-        "USB_Uart/USB_Uart/UARTLITE_CORE_I/BAUD_RATE_I/count_0" BEL
-        "USB_Uart/USB_Uart/UARTLITE_CORE_I/BAUD_RATE_I/count_4" BEL
-        "USB_Uart/USB_Uart/UARTLITE_CORE_I/BAUD_RATE_I/count_5" BEL
+        "USB_Uart/USB_Uart/UARTLITE_CORE_I/BAUD_RATE_I/count_1" BEL
+        "USB_Uart/USB_Uart/UARTLITE_CORE_I/BAUD_RATE_I/count_3" BEL
         "USB_Uart/USB_Uart/UARTLITE_CORE_I/BAUD_RATE_I/count_7" BEL
-        "USB_Uart/USB_Uart/UARTLITE_CORE_I/BAUD_RATE_I/count_8" BEL
+        "USB_Uart/USB_Uart/UARTLITE_CORE_I/BAUD_RATE_I/count_9" BEL
         "USB_Uart/USB_Uart/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_bvalid_i"
         BEL
         "USB_Uart/USB_Uart/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rvalid_i"
@@ -13997,12 +14001,12 @@ PATH "TS_AXI_RX_FP_Ethernet_MAC_path" TIG;
 PATH TS_RX_AXI_FP_Ethernet_MAC_path = FROM TIMEGRP "RXCLK_GRP_Ethernet_MAC" TO
         TIMEGRP "S_AXI_ACLK_Ethernet_MAC";
 PATH "TS_RX_AXI_FP_Ethernet_MAC_path" TIG;
-TS_sys_clk_pin = PERIOD TIMEGRP "sys_clk_pin" 66.666 MHz HIGH 50%;
+TS_sys_clk_pin = PERIOD TIMEGRP "sys_clk_pin" 100 MHz HIGH 50%;
 TS_clk_400_0000MHz180PLL0_nobuf = PERIOD TIMEGRP
-        "clk_400_0000MHz180PLL0_nobuf" TS_sys_clk_pin * 6 PHASE 1.2500125 ns
-        HIGH 50%;
+        "clk_400_0000MHz180PLL0_nobuf" TS_sys_clk_pin * 4 PHASE 1.25 ns HIGH
+        50%;
 TS_clk_400_0000MHzPLL0_nobuf = PERIOD TIMEGRP "clk_400_0000MHzPLL0_nobuf"
-        TS_sys_clk_pin * 6 HIGH 50%;
+        TS_sys_clk_pin * 4 HIGH 50%;
 TS_clock_generator_0_clock_generator_0_SIG_PLL0_CLKOUT2 = PERIOD TIMEGRP
         "clock_generator_0_clock_generator_0_SIG_PLL0_CLKOUT2" TS_sys_clk_pin
         HIGH 50%;

@@ -507,7 +507,7 @@ Unit <system_usb_uart_wrapper> synthesized.
 Synthesizing Unit <axi_uartlite>.
     Related source file is "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/axi_uartlite_v1_02_a/hdl/vhdl/axi_uartlite.vhd".
         C_FAMILY = "spartan6"
-        C_S_AXI_ACLK_FREQ_HZ = 66666666
+        C_S_AXI_ACLK_FREQ_HZ = 100000000
         C_S_AXI_ADDR_WIDTH = 4
         C_S_AXI_DATA_WIDTH = 32
         C_BAUDRATE = 9600
@@ -527,7 +527,7 @@ Unit <axi_uartlite> synthesized.
 Synthesizing Unit <uartlite_core>.
     Related source file is "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/axi_uartlite_v1_02_a/hdl/vhdl/uartlite_core.vhd".
         C_FAMILY = "spartan6"
-        C_S_AXI_ACLK_FREQ_HZ = 66666666
+        C_S_AXI_ACLK_FREQ_HZ = 100000000
         C_BAUDRATE = 9600
         C_DATA_BITS = 8
         C_USE_PARITY = 0
@@ -550,13 +550,13 @@ Unit <uartlite_core> synthesized.
 
 Synthesizing Unit <baudrate>.
     Related source file is "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/axi_uartlite_v1_02_a/hdl/vhdl/baudrate.vhd".
-        C_RATIO = 434
+        C_RATIO = 651
     Found 1-bit register for signal <EN_16x_Baud>.
-    Found 9-bit register for signal <count>.
-    Found 9-bit subtractor for signal <GND_11_o_GND_11_o_sub_2_OUT<8:0>> created at line 165.
+    Found 10-bit register for signal <count>.
+    Found 10-bit subtractor for signal <GND_11_o_GND_11_o_sub_2_OUT<9:0>> created at line 165.
     Summary:
 	inferred   1 Adder/Subtractor(s).
-	inferred  10 D-type flip-flop(s).
+	inferred  11 D-type flip-flop(s).
 Unit <baudrate> synthesized.
 
 Synthesizing Unit <uartlite_rx>.
@@ -846,15 +846,15 @@ HDL Synthesis Report
 
 Macro Statistics
 # Adders/Subtractors                                   : 2
+ 10-bit subtractor                                     : 1
  3-bit subtractor                                      : 1
- 9-bit subtractor                                      : 1
 # Registers                                            : 125
  1-bit register                                        : 88
+ 10-bit register                                       : 1
  2-bit register                                        : 2
  3-bit register                                        : 1
  32-bit register                                       : 1
  8-bit register                                        : 32
- 9-bit register                                        : 1
 # Comparators                                          : 2
  5-bit comparator lessequal                            : 2
 # Multiplexers                                         : 18
@@ -898,8 +898,8 @@ Advanced HDL Synthesis Report
 
 Macro Statistics
 # Counters                                             : 2
+ 10-bit down counter                                   : 1
  3-bit down counter                                    : 1
- 9-bit down counter                                    : 1
 # Registers                                            : 134
  Flip-Flops                                            : 134
 # Shift Registers                                      : 16
@@ -977,8 +977,8 @@ Unit <system_usb_uart_wrapper> processed.
 Final Register Report
 
 Macro Statistics
-# Registers                                            : 87
- Flip-Flops                                            : 87
+# Registers                                            : 88
+ Flip-Flops                                            : 88
 # Shift Registers                                      : 2
  15-bit shift register                                 : 1
  16-bit shift register                                 : 1
@@ -1004,24 +1004,24 @@ Top Level Output File Name         : system_usb_uart_wrapper.ngc
 
 Primitive and Black Box Usage:
 ------------------------------
-# BELS                             : 144
+# BELS                             : 148
 #      GND                         : 1
-#      INV                         : 10
+#      INV                         : 11
 #      LUT1                        : 1
-#      LUT2                        : 18
+#      LUT2                        : 20
 #      LUT3                        : 13
-#      LUT4                        : 15
-#      LUT5                        : 26
-#      LUT6                        : 21
-#      MUXCY                       : 8
+#      LUT4                        : 14
+#      LUT5                        : 27
+#      LUT6                        : 20
+#      MUXCY                       : 9
 #      MUXCY_L                     : 10
 #      MUXF7                       : 1
 #      VCC                         : 1
-#      XORCY                       : 19
-# FlipFlops/Latches                : 89
-#      FD                          : 16
+#      XORCY                       : 20
+# FlipFlops/Latches                : 90
+#      FD                          : 18
 #      FDE                         : 3
-#      FDR                         : 24
+#      FDR                         : 23
 #      FDRE                        : 30
 #      FDS                         : 13
 #      FDSE                        : 3
@@ -1035,17 +1035,17 @@ Selected Device : 6slx9csg324-2
 
 
 Slice Logic Utilization: 
- Number of Slice Registers:              89  out of  11440     0%  
- Number of Slice LUTs:                  122  out of   5720     2%  
-    Number used as Logic:               104  out of   5720     1%  
+ Number of Slice Registers:              90  out of  11440     0%  
+ Number of Slice LUTs:                  124  out of   5720     2%  
+    Number used as Logic:               106  out of   5720     1%  
     Number used as Memory:               18  out of   1440     1%  
        Number used as SRL:               18
 
 Slice Logic Distribution: 
- Number of LUT Flip Flop pairs used:    137
-   Number with an unused Flip Flop:      48  out of    137    35%  
-   Number with an unused LUT:            15  out of    137    10%  
-   Number of fully used LUT-FF pairs:    74  out of    137    54%  
+ Number of LUT Flip Flop pairs used:    139
+   Number with an unused Flip Flop:      49  out of    139    35%  
+   Number with an unused LUT:            15  out of    139    10%  
+   Number of fully used LUT-FF pairs:    75  out of    139    53%  
    Number of unique control sets:        12
 
 IO Utilization: 
@@ -1075,7 +1075,7 @@ Clock Information:
 -----------------------------------+-----------------------------------------------------------------+-------+
 Clock Signal                       | Clock buffer(FF name)                                           | Load  |
 -----------------------------------+-----------------------------------------------------------------+-------+
-S_AXI_ACLK                         | NONE(USB_Uart/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/state_FSM_FFd1)| 107   |
+S_AXI_ACLK                         | NONE(USB_Uart/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/state_FSM_FFd1)| 108   |
 -----------------------------------+-----------------------------------------------------------------+-------+
 INFO:Xst:2169 - HDL ADVISOR - Some clock signals were not automatically buffered by XST with BUFG/BUFR resources. Please use the buffer_type constraint in order to insert these buffers to the clock signals to help prevent skew problems.
 
@@ -1088,7 +1088,7 @@ Timing Summary:
 Speed Grade: -2
 
    Minimum period: 4.288ns (Maximum Frequency: 233.195MHz)
-   Minimum input arrival time before clock: 2.233ns
+   Minimum input arrival time before clock: 2.216ns
    Maximum output required time after clock: 2.159ns
    Maximum combinational path delay: No path found
 
@@ -1099,7 +1099,7 @@ All values displayed in nanoseconds (ns)
 =========================================================================
 Timing constraint: Default period analysis for Clock 'S_AXI_ACLK'
   Clock period: 4.288ns (frequency: 233.195MHz)
-  Total number of paths / destination ports: 989 / 252
+  Total number of paths / destination ports: 1019 / 253
 -------------------------------------------------------------------------
 Delay:               4.288ns (Levels of Logic = 4)
   Source:            USB_Uart/UARTLITE_CORE_I/UARTLITE_RX_I/valid_rx (FF)
@@ -1125,7 +1125,7 @@ Delay:               4.288ns (Levels of Logic = 4)
 Timing constraint: Default OFFSET IN BEFORE for Clock 'S_AXI_ACLK'
   Total number of paths / destination ports: 150 / 102
 -------------------------------------------------------------------------
-Offset:              2.233ns (Levels of Logic = 1)
+Offset:              2.216ns (Levels of Logic = 1)
   Source:            S_AXI_ARESETN (PAD)
   Destination:       USB_Uart/UARTLITE_CORE_I/BAUD_RATE_I/EN_16x_Baud (FF)
   Destination Clock: S_AXI_ACLK rising
@@ -1134,11 +1134,11 @@ Offset:              2.233ns (Levels of Logic = 1)
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     INV:I->O             32   0.255   1.519  USB_Uart/bus2ip_reset1_INV_0 (USB_Uart/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/rst_rstpot)
+     INV:I->O             31   0.255   1.502  USB_Uart/bus2ip_reset1_INV_0 (USB_Uart/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/rst_rstpot)
      FDR:R                     0.459          USB_Uart/UARTLITE_CORE_I/clr_Status
     ----------------------------------------
-    Total                      2.233ns (0.714ns logic, 1.519ns route)
-                                       (32.0% logic, 68.0% route)
+    Total                      2.216ns (0.714ns logic, 1.502ns route)
+                                       (32.2% logic, 67.8% route)
 
 =========================================================================
 Timing constraint: Default OFFSET OUT AFTER for Clock 'S_AXI_ACLK'
@@ -1176,7 +1176,7 @@ S_AXI_ACLK     |    4.288|         |         |         |
 
 
 Total REAL time to Xst completion: 9.00 secs
-Total CPU time to Xst completion: 8.64 secs
+Total CPU time to Xst completion: 9.28 secs
  
 --> 
 

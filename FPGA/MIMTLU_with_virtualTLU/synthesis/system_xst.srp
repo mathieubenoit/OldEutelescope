@@ -1214,24 +1214,24 @@ Primitive and Black Box Usage:
 ------------------------------
 # BELS                             : 6284
 #      GND                         : 26
-#      INV                         : 111
+#      INV                         : 112
 #      LUT1                        : 105
-#      LUT2                        : 493
-#      LUT3                        : 841
-#      LUT4                        : 910
+#      LUT2                        : 496
+#      LUT3                        : 840
+#      LUT4                        : 907
 #      LUT5                        : 819
-#      LUT6                        : 1508
+#      LUT6                        : 1507
 #      LUT6_2                      : 116
 #      MULT_AND                    : 37
-#      MUXCY                       : 331
+#      MUXCY                       : 332
 #      MUXCY_L                     : 317
 #      MUXF5                       : 65
-#      MUXF7                       : 83
+#      MUXF7                       : 82
 #      MUXF8                       : 47
 #      VCC                         : 15
-#      XORCY                       : 460
-# FlipFlops/Latches                : 4594
-#      FD                          : 642
+#      XORCY                       : 461
+# FlipFlops/Latches                : 4596
+#      FD                          : 644
 #      FDC                         : 135
 #      FDC_1                       : 5
 #      FDCE                        : 76
@@ -1282,18 +1282,18 @@ Selected Device : 6slx9csg324-2
 
 
 Slice Logic Utilization: 
- Number of Slice Registers:            4583  out of  11440    40%  
- Number of Slice LUTs:                 5271  out of   5720    92%  
-    Number used as Logic:              4903  out of   5720    85%  
+ Number of Slice Registers:            4585  out of  11440    40%  
+ Number of Slice LUTs:                 5270  out of   5720    92%  
+    Number used as Logic:              4902  out of   5720    85%  
     Number used as Memory:              368  out of   1440    25%  
        Number used as RAM:              140
        Number used as SRL:              228
 
 Slice Logic Distribution: 
- Number of LUT Flip Flop pairs used:   7595
-   Number with an unused Flip Flop:    3012  out of   7595    39%  
-   Number with an unused LUT:          2324  out of   7595    30%  
-   Number of fully used LUT-FF pairs:  2259  out of   7595    29%  
+ Number of LUT Flip Flop pairs used:   7594
+   Number with an unused Flip Flop:    3009  out of   7594    39%  
+   Number with an unused LUT:          2324  out of   7594    30%  
+   Number of fully used LUT-FF pairs:  2261  out of   7594    29%  
    Number of unique control sets:       347
 
 IO Utilization: 
@@ -1331,7 +1331,7 @@ Clock Signal                       | Clock buffer(FF name)                      
 -----------------------------------+------------------------------------------------------------------------------------------------------------------+-------+
 Ethernet_MAC_RX_CLK                | IBUF                                                                                                             | 40    |
 Ethernet_MAC_TX_CLK                | IBUF                                                                                                             | 45    |
-CLK_66MHZ                          | PLL_ADV:CLKOUT2+BUFGMUX                                                                                          | 4582  |
+CLK_66MHZ                          | PLL_ADV:CLKOUT2+BUFGMUX                                                                                          | 4584  |
 USB_Uart/Interrupt                 | NONE(microblaze_0_intc/microblaze_0_intc/INTC_CORE_I/intr_sync_2)                                                | 1     |
 Ethernet_MAC/IP2INTC_Irpt          | NONE(microblaze_0_intc/microblaze_0_intc/INTC_CORE_I/intr_sync_1)                                                | 1     |
 debug_module/debug_module/drck_i   | BUFG                                                                                                             | 209   |
@@ -1381,7 +1381,7 @@ Delay:               1.833ns (Levels of Logic = 1)
 =========================================================================
 Timing constraint: Default period analysis for Clock 'CLK_66MHZ'
   Clock period: 10.569ns (frequency: 94.618MHz)
-  Total number of paths / destination ports: 387778 / 12169
+  Total number of paths / destination ports: 387799 / 12171
 -------------------------------------------------------------------------
 Delay:               10.569ns (Levels of Logic = 11)
   Source:            axi_timer_0/axi_timer_0/AXI4_LITE_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_1 (FF)
@@ -1786,12 +1786,12 @@ debug_module/debug_module/drck_i|    2.860|    4.093|    3.740|         |
 =========================================================================
 
 
-Total REAL time to Xst completion: 26.00 secs
-Total CPU time to Xst completion: 25.49 secs
+Total REAL time to Xst completion: 25.00 secs
+Total CPU time to Xst completion: 25.19 secs
  
 --> 
 
-Total memory usage is 337088 kilobytes
+Total memory usage is 336064 kilobytes
 
 Number of errors   :    0 (   0 filtered)
 Number of warnings :   12 (   0 filtered)
