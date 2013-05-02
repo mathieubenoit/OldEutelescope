@@ -13,13 +13,19 @@ use mimtlu_v1_00_a.all;
 entity system_mimtlu_0_wrapper is
   port (
     CLOCK_Y3 : in std_logic;
-    USER_CLOCK : in std_logic;
     TRIGGER_DUT : out std_logic;
     TRIGGER_COPY : out std_logic;
     BUSY_DUT : in std_logic;
     BUSY_COPY : out std_logic;
     DATA_ITR : out std_logic;
-    TEST : in std_logic;
+    TRIGGER_P : in std_logic;
+    TRIGGER_N : in std_logic;
+    BUSY_P : out std_logic;
+    BUSY_N : out std_logic;
+    TRIGGER_CLOCK_P : out std_logic;
+    TRIGGER_CLOCK_N : out std_logic;
+    RESET_P : in std_logic;
+    RESET_N : in std_logic;
     S_AXI_ACLK : in std_logic;
     S_AXI_ARESETN : in std_logic;
     S_AXI_AWADDR : in std_logic_vector(31 downto 0);
@@ -61,13 +67,19 @@ architecture STRUCTURE of system_mimtlu_0_wrapper is
     );
     port (
       CLOCK_Y3 : in std_logic;
-      USER_CLOCK : in std_logic;
       TRIGGER_DUT : out std_logic;
       TRIGGER_COPY : out std_logic;
       BUSY_DUT : in std_logic;
       BUSY_COPY : out std_logic;
       DATA_ITR : out std_logic;
-      TEST : in std_logic;
+      TRIGGER_P : in std_logic;
+      TRIGGER_N : in std_logic;
+      BUSY_P : out std_logic;
+      BUSY_N : out std_logic;
+      TRIGGER_CLOCK_P : out std_logic;
+      TRIGGER_CLOCK_N : out std_logic;
+      RESET_P : in std_logic;
+      RESET_N : in std_logic;
       S_AXI_ACLK : in std_logic;
       S_AXI_ARESETN : in std_logic;
       S_AXI_AWADDR : in std_logic_vector((C_S_AXI_ADDR_WIDTH-1) downto 0);
@@ -109,13 +121,19 @@ begin
     )
     port map (
       CLOCK_Y3 => CLOCK_Y3,
-      USER_CLOCK => USER_CLOCK,
       TRIGGER_DUT => TRIGGER_DUT,
       TRIGGER_COPY => TRIGGER_COPY,
       BUSY_DUT => BUSY_DUT,
       BUSY_COPY => BUSY_COPY,
       DATA_ITR => DATA_ITR,
-      TEST => TEST,
+      TRIGGER_P => TRIGGER_P,
+      TRIGGER_N => TRIGGER_N,
+      BUSY_P => BUSY_P,
+      BUSY_N => BUSY_N,
+      TRIGGER_CLOCK_P => TRIGGER_CLOCK_P,
+      TRIGGER_CLOCK_N => TRIGGER_CLOCK_N,
+      RESET_P => RESET_P,
+      RESET_N => RESET_N,
       S_AXI_ACLK => S_AXI_ACLK,
       S_AXI_ARESETN => S_AXI_ARESETN,
       S_AXI_AWADDR => S_AXI_AWADDR,

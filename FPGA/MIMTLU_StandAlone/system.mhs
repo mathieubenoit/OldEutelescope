@@ -49,12 +49,12 @@
  PORT mimtlu_0_BUSY_COPY_pin = mimtlu_0_BUSY_COPY, DIR = O
  PORT mimtlu_0_TRIGGER_P_pin = net_mimtlu_0_TRIGGER_P_pin, DIR = I
  PORT mimtlu_0_TRIGGER_N_pin = net_mimtlu_0_TRIGGER_N_pin, DIR = I
+ PORT mimtlu_0_RESET_P_pin = net_mimtlu_0_RESET_P_pin, DIR = I
  PORT mimtlu_0_RESET_N_pin = net_mimtlu_0_RESET_N_pin, DIR = I
  PORT mimtlu_0_BUSY_P_pin = mimtlu_0_BUSY_P, DIR = O
  PORT mimtlu_0_BUSY_N_pin = mimtlu_0_BUSY_N, DIR = O
  PORT mimtlu_0_TRIGGER_CLOCK_P_pin = mimtlu_0_TRIGGER_CLOCK_P, DIR = O
  PORT mimtlu_0_TRIGGER_CLOCK_N_pin = mimtlu_0_TRIGGER_CLOCK_N, DIR = O
- PORT mimtlu_0_RESET_P_pin = net_mimtlu_0_RESET_P_pin, DIR = I
 
 
 BEGIN proc_sys_reset

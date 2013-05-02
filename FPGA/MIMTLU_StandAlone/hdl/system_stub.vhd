@@ -45,8 +45,14 @@ entity system_stub is
     mimtlu_0_TRIGGER_DUT_pin : out std_logic;
     mimtlu_0_TRIGGER_COPY_pin : out std_logic;
     mimtlu_0_BUSY_COPY_pin : out std_logic;
-    mimtlu_0_CLOCK_Y3_pin : in std_logic;
-    mimtlu_0_TEST_pin : in std_logic
+    mimtlu_0_TRIGGER_P_pin : in std_logic;
+    mimtlu_0_TRIGGER_N_pin : in std_logic;
+    mimtlu_0_RESET_P_pin : in std_logic;
+    mimtlu_0_RESET_N_pin : in std_logic;
+    mimtlu_0_BUSY_P_pin : out std_logic;
+    mimtlu_0_BUSY_N_pin : out std_logic;
+    mimtlu_0_TRIGGER_CLOCK_P_pin : out std_logic;
+    mimtlu_0_TRIGGER_CLOCK_N_pin : out std_logic
   );
 end system_stub;
 
@@ -90,8 +96,14 @@ architecture STRUCTURE of system_stub is
       mimtlu_0_TRIGGER_DUT_pin : out std_logic;
       mimtlu_0_TRIGGER_COPY_pin : out std_logic;
       mimtlu_0_BUSY_COPY_pin : out std_logic;
-      mimtlu_0_CLOCK_Y3_pin : in std_logic;
-      mimtlu_0_TEST_pin : in std_logic
+      mimtlu_0_TRIGGER_P_pin : in std_logic;
+      mimtlu_0_TRIGGER_N_pin : in std_logic;
+      mimtlu_0_RESET_P_pin : in std_logic;
+      mimtlu_0_RESET_N_pin : in std_logic;
+      mimtlu_0_BUSY_P_pin : out std_logic;
+      mimtlu_0_BUSY_N_pin : out std_logic;
+      mimtlu_0_TRIGGER_CLOCK_P_pin : out std_logic;
+      mimtlu_0_TRIGGER_CLOCK_N_pin : out std_logic
     );
   end component;
 
@@ -141,8 +153,14 @@ begin
       mimtlu_0_TRIGGER_DUT_pin => mimtlu_0_TRIGGER_DUT_pin,
       mimtlu_0_TRIGGER_COPY_pin => mimtlu_0_TRIGGER_COPY_pin,
       mimtlu_0_BUSY_COPY_pin => mimtlu_0_BUSY_COPY_pin,
-      mimtlu_0_CLOCK_Y3_pin => mimtlu_0_CLOCK_Y3_pin,
-      mimtlu_0_TEST_pin => mimtlu_0_TEST_pin
+      mimtlu_0_TRIGGER_P_pin => mimtlu_0_TRIGGER_P_pin,
+      mimtlu_0_TRIGGER_N_pin => mimtlu_0_TRIGGER_N_pin,
+      mimtlu_0_RESET_P_pin => mimtlu_0_RESET_P_pin,
+      mimtlu_0_RESET_N_pin => mimtlu_0_RESET_N_pin,
+      mimtlu_0_BUSY_P_pin => mimtlu_0_BUSY_P_pin,
+      mimtlu_0_BUSY_N_pin => mimtlu_0_BUSY_N_pin,
+      mimtlu_0_TRIGGER_CLOCK_P_pin => mimtlu_0_TRIGGER_CLOCK_P_pin,
+      mimtlu_0_TRIGGER_CLOCK_N_pin => mimtlu_0_TRIGGER_CLOCK_N_pin
     );
 
 end architecture STRUCTURE;

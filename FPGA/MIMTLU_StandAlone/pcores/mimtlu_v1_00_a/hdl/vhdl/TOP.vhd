@@ -96,7 +96,7 @@ IBUFDS_RESET : IBUFDS
 	
 ---- Output buffers for TLU LVDS Signals
 --	
-OBUFDS_BUSY : entity work.dummy_diffpair
+OBUFDS_BUSY : entity mimtlu_v1_00_a.dummy_diffpair
    port map (
       O => BUSY_P,     -- Diff_p output (connect directly to top-level port)
       OB => BUSY_N,   -- Diff_n output (connect directly to top-level port)
@@ -104,7 +104,7 @@ OBUFDS_BUSY : entity work.dummy_diffpair
    );
 
 
-OBUFDS_TRIGGER_CLOCK :  entity work.dummy_diffpair
+OBUFDS_TRIGGER_CLOCK :  entity mimtlu_v1_00_a.dummy_diffpair
    port map (
       O => TRIGGER_CLOCK_P,     -- Diff_p output (connect directly to top-level port)
       OB => TRIGGER_CLOCK_N,   -- Diff_n output (connect directly to top-level port)

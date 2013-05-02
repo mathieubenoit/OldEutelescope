@@ -1,0 +1,1 @@
+xst -intstyle ise -ifn "M:/Git_projects/FPGA/MIMTLU_StandAlone/pcores/mimtlu_v1_00_a/devl/projnav/mimtlu.xst" -ofn "M:/Git_projects/FPGA/MIMTLU_StandAlone/pcores/mimtlu_v1_00_a/devl/projnav/mimtlu.syr" 

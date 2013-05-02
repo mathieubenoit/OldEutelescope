@@ -200,17 +200,20 @@
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
-    <transform xil_pn:end_ts="1367481404" xil_pn:in_ck="6961054751261946605" xil_pn:name="TRANEXT_xstsynthesize_spartan6" xil_pn:prop_ck="-6806981003996629093" xil_pn:start_ts="1367481393">
+    <transform xil_pn:end_ts="1367501879" xil_pn:in_ck="-5915117312453829881" xil_pn:name="TRANEXT_xstsynthesize_spartan6" xil_pn:prop_ck="-6806981003996629093" xil_pn:start_ts="1367501869">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="WarningsGenerated"/>
       <status xil_pn:value="ReadyToRun"/>
-      <status xil_pn:value="OutOfDateForInputs"/>
-      <status xil_pn:value="OutOfDateForOutputs"/>
-      <status xil_pn:value="InputAdded"/>
-      <status xil_pn:value="InputChanged"/>
-      <status xil_pn:value="OutputRemoved"/>
       <outfile xil_pn:name="_xmsgs/xst.xmsgs"/>
       <outfile xil_pn:name="axi_lite_ipif.ngr"/>
+      <outfile xil_pn:name="mimtlu.lso"/>
+      <outfile xil_pn:name="mimtlu.ngc"/>
+      <outfile xil_pn:name="mimtlu.ngr"/>
+      <outfile xil_pn:name="mimtlu.prj"/>
+      <outfile xil_pn:name="mimtlu.stx"/>
+      <outfile xil_pn:name="mimtlu.syr"/>
+      <outfile xil_pn:name="mimtlu.xst"/>
+      <outfile xil_pn:name="mimtlu_xst.xrpt"/>
       <outfile xil_pn:name="webtalk_pn.xml"/>
       <outfile xil_pn:name="xst"/>
     </transform>

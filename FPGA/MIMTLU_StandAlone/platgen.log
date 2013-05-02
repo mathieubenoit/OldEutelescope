@@ -5,7 +5,7 @@ Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.
 Command Line: platgen -p xc6slx9csg324-2 -lang vhdl -intstyle default -msg
 __xps/ise/xmsgprops.lst system.mhs 
 
-Parse F:/Git_projects/FPGA/MIMTLU_with_virtualTLU/system.mhs ...
+Parse M:/Git_projects/FPGA/MIMTLU_StandAlone/system.mhs ...
 
 Read MPD definitions ...
 
@@ -40,10 +40,6 @@ INFO:EDK:4130 - IPNAME: axi_s6_ddrx, INSTANCE:MCB3_LPDDR - tcl is overriding
    data\axi_s6_ddrx_v2_1_0.mpd line 239 
 
 Computing clock values...
-INFO:EDK:1432 - Frequency for Top-Level Input Clock 'mimtlu_0_CLOCK_Y3_pin' is
-   not specified. Clock DRCs will not be performed for IPs connected to that
-   clock port, unless they are connected through the clock generator IP. 
-
 INFO:EDK:740 - Cannot determine the input clock associated with port :
    microblaze_0_i_bram_ctrl:BRAM_Clk_A. Clock DRCs will not be performed on this
    core and cores connected to it. 
@@ -71,7 +67,7 @@ INFO:EDK:4087 - IPNAME: axi_ethernetlite, INSTANCE: Ethernet_MAC - This design
    Please refer to the data sheet for details.  
    The AXI clock frequency must be greater than or equal to 50 MHz for 100 Mbs
    Ethernet operation and greater than or equal to 5.0 MHz for 10 Mbs Ethernet
-   operation. - F:\Git_projects\FPGA\MIMTLU_with_virtualTLU\system.mhs line 286
+   operation. - M:\Git_projects\FPGA\MIMTLU_StandAlone\system.mhs line 292
 INFO:EDK:4130 - IPNAME: lmb_v10, INSTANCE:microblaze_0_ilmb - tool is overriding
    PARAMETER C_LMB_NUM_SLAVES value to 1 -
    C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\lmb_v10_v2_00_b\data
@@ -99,16 +95,13 @@ WARNING:EDK:4180 - PORT: Interrupt_address_in, CONNECTOR:
    driven to GND -
    C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\axi_intc_v1_03_a\dat
    a\axi_intc_v2_1_0.mpd line 130 
-WARNING:EDK:4181 - PORT: mimtlu_0_CLOCK_Y3_pin, CONNECTOR: mimtlu_0_CLOCK_Y3 -
-   floating connection - F:\Git_projects\FPGA\MIMTLU_with_virtualTLU\system.mhs
-   line 50 
 WARNING:EDK:4181 - PORT: Processor_ack_out, CONNECTOR:
    microblaze_0_interrupt_Processor_ack_out - floating connection -
    C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\axi_intc_v1_03_a\dat
    a\axi_intc_v2_1_0.mpd line 131 
 WARNING:EDK:4181 - PORT: CLKOUT3, CONNECTOR: clock_generator_0_CLKOUT3 -
-   floating connection - F:\Git_projects\FPGA\MIMTLU_with_virtualTLU\system.mhs
-   line 182 
+   floating connection - M:\Git_projects\FPGA\MIMTLU_StandAlone\system.mhs line
+   188 
 
 Performing Clock DRCs...
 
@@ -254,50 +247,62 @@ Managing hardware (BBD-specified) netlist files ...
 
 Managing cache ...
 IPNAME:proc_sys_reset INSTANCE:proc_sys_reset_0 -
-F:\Git_projects\FPGA\MIMTLU_with_virtualTLU\system.mhs line 54 - Copying cache
+M:\Git_projects\FPGA\MIMTLU_StandAlone\system.mhs line 60 - Copying cache
 implementation netlist
 IPNAME:axi_intc INSTANCE:microblaze_0_intc -
-F:\Git_projects\FPGA\MIMTLU_with_virtualTLU\system.mhs line 67 - Copying cache
+M:\Git_projects\FPGA\MIMTLU_StandAlone\system.mhs line 73 - Copying cache
 implementation netlist
 IPNAME:lmb_v10 INSTANCE:microblaze_0_ilmb -
-F:\Git_projects\FPGA\MIMTLU_with_virtualTLU\system.mhs line 78 - Copying cache
+M:\Git_projects\FPGA\MIMTLU_StandAlone\system.mhs line 84 - Copying cache
 implementation netlist
 IPNAME:lmb_bram_if_cntlr INSTANCE:microblaze_0_i_bram_ctrl -
-F:\Git_projects\FPGA\MIMTLU_with_virtualTLU\system.mhs line 85 - Copying cache
+M:\Git_projects\FPGA\MIMTLU_StandAlone\system.mhs line 91 - Copying cache
 implementation netlist
 IPNAME:lmb_v10 INSTANCE:microblaze_0_dlmb -
-F:\Git_projects\FPGA\MIMTLU_with_virtualTLU\system.mhs line 94 - Copying cache
+M:\Git_projects\FPGA\MIMTLU_StandAlone\system.mhs line 100 - Copying cache
 implementation netlist
 IPNAME:lmb_bram_if_cntlr INSTANCE:microblaze_0_d_bram_ctrl -
-F:\Git_projects\FPGA\MIMTLU_with_virtualTLU\system.mhs line 101 - Copying cache
+M:\Git_projects\FPGA\MIMTLU_StandAlone\system.mhs line 107 - Copying cache
 implementation netlist
 IPNAME:bram_block INSTANCE:microblaze_0_bram_block -
-F:\Git_projects\FPGA\MIMTLU_with_virtualTLU\system.mhs line 110 - Copying cache
+M:\Git_projects\FPGA\MIMTLU_StandAlone\system.mhs line 116 - Copying cache
+implementation netlist
+IPNAME:microblaze INSTANCE:microblaze_0 -
+M:\Git_projects\FPGA\MIMTLU_StandAlone\system.mhs line 123 - Copying cache
 implementation netlist
 IPNAME:mdm INSTANCE:debug_module -
-F:\Git_projects\FPGA\MIMTLU_with_virtualTLU\system.mhs line 149 - Copying cache
+M:\Git_projects\FPGA\MIMTLU_StandAlone\system.mhs line 155 - Copying cache
 implementation netlist
 IPNAME:axi_timer INSTANCE:axi_timer_0 -
-F:\Git_projects\FPGA\MIMTLU_with_virtualTLU\system.mhs line 185 - Copying cache
+M:\Git_projects\FPGA\MIMTLU_StandAlone\system.mhs line 191 - Copying cache
+implementation netlist
+IPNAME:axi_interconnect INSTANCE:axi4lite_0 -
+M:\Git_projects\FPGA\MIMTLU_StandAlone\system.mhs line 203 - Copying cache
+implementation netlist
+IPNAME:axi_interconnect INSTANCE:axi4_0 -
+M:\Git_projects\FPGA\MIMTLU_StandAlone\system.mhs line 211 - Copying cache
+implementation netlist
+IPNAME:axi_uartlite INSTANCE:usb_uart -
+M:\Git_projects\FPGA\MIMTLU_StandAlone\system.mhs line 218 - Copying cache
 implementation netlist
 IPNAME:axi_s6_ddrx INSTANCE:mcb3_lpddr -
-F:\Git_projects\FPGA\MIMTLU_with_virtualTLU\system.mhs line 228 - Copying cache
+M:\Git_projects\FPGA\MIMTLU_StandAlone\system.mhs line 234 - Copying cache
 implementation netlist
 IPNAME:axi_gpio INSTANCE:leds_4bits -
-F:\Git_projects\FPGA\MIMTLU_with_virtualTLU\system.mhs line 272 - Copying cache
+M:\Git_projects\FPGA\MIMTLU_StandAlone\system.mhs line 278 - Copying cache
+implementation netlist
+IPNAME:axi_ethernetlite INSTANCE:ethernet_mac -
+M:\Git_projects\FPGA\MIMTLU_StandAlone\system.mhs line 292 - Copying cache
 implementation netlist
 IPNAME:axi_gpio INSTANCE:dip_switches_4bits -
-F:\Git_projects\FPGA\MIMTLU_with_virtualTLU\system.mhs line 312 - Copying cache
-implementation netlist
-IPNAME:mimtlu INSTANCE:mimtlu_0 -
-F:\Git_projects\FPGA\MIMTLU_with_virtualTLU\system.mhs line 326 - Copying cache
+M:\Git_projects\FPGA\MIMTLU_StandAlone\system.mhs line 318 - Copying cache
 implementation netlist
 
 Elaborating instances ...
 IPNAME:bram_block INSTANCE:microblaze_0_bram_block -
-F:\Git_projects\FPGA\MIMTLU_with_virtualTLU\system.mhs line 110 - elaborating IP
+M:\Git_projects\FPGA\MIMTLU_StandAlone\system.mhs line 116 - elaborating IP
 IPNAME:clock_generator INSTANCE:clock_generator_0 -
-F:\Git_projects\FPGA\MIMTLU_with_virtualTLU\system.mhs line 162 - elaborating IP
+M:\Git_projects\FPGA\MIMTLU_StandAlone\system.mhs line 168 - elaborating IP
 ClkGen elaborate status: PASSED
 ----------------------------------------
 ----------------------------------------
@@ -308,7 +313,7 @@ Inserting wrapper level ...
 Completion time: 1.00 seconds
 
 Constructing platform-level connectivity ...
-Completion time: 0.00 seconds
+Completion time: 1.00 seconds
 
 Writing (top-level) BMM ...
 
@@ -321,42 +326,18 @@ Running XST synthesis ...
 INFO:EDK:4211 - The following instances are synthesized with XST. The MPD option
    IMP_NETLIST=TRUE indicates that a NGC file is to be produced using XST
    synthesis. IMP_NETLIST=FALSE (default) instances are not synthesized. 
-INSTANCE:microblaze_0 - F:\Git_projects\FPGA\MIMTLU_with_virtualTLU\system.mhs
-line 117 - Running XST synthesis
-INSTANCE:clock_generator_0 -
-F:\Git_projects\FPGA\MIMTLU_with_virtualTLU\system.mhs line 162 - Running XST
-synthesis
-INSTANCE:axi4lite_0 - F:\Git_projects\FPGA\MIMTLU_with_virtualTLU\system.mhs
-line 197 - Running XST synthesis
-INSTANCE:axi4_0 - F:\Git_projects\FPGA\MIMTLU_with_virtualTLU\system.mhs line
-205 - Running XST synthesis
-INSTANCE:usb_uart - F:\Git_projects\FPGA\MIMTLU_with_virtualTLU\system.mhs line
-212 - Running XST synthesis
-INSTANCE:ethernet_mac - F:\Git_projects\FPGA\MIMTLU_with_virtualTLU\system.mhs
-line 286 - Running XST synthesis
-INSTANCE:mimtlu_0 - F:\Git_projects\FPGA\MIMTLU_with_virtualTLU\system.mhs line
-326 - Running XST synthesis
+INSTANCE:clock_generator_0 - M:\Git_projects\FPGA\MIMTLU_StandAlone\system.mhs
+line 168 - Running XST synthesis
+INSTANCE:mimtlu_0 - M:\Git_projects\FPGA\MIMTLU_StandAlone\system.mhs line 332 -
+Running XST synthesis
 
 Running NGCBUILD ...
-IPNAME:system_microblaze_0_wrapper INSTANCE:microblaze_0 -
-F:\Git_projects\FPGA\MIMTLU_with_virtualTLU\system.mhs line 117 - Running
-NGCBUILD
 IPNAME:system_clock_generator_0_wrapper INSTANCE:clock_generator_0 -
-F:\Git_projects\FPGA\MIMTLU_with_virtualTLU\system.mhs line 162 - Running
-NGCBUILD
-IPNAME:system_axi4lite_0_wrapper INSTANCE:axi4lite_0 -
-F:\Git_projects\FPGA\MIMTLU_with_virtualTLU\system.mhs line 197 - Running
-NGCBUILD
-IPNAME:system_axi4_0_wrapper INSTANCE:axi4_0 -
-F:\Git_projects\FPGA\MIMTLU_with_virtualTLU\system.mhs line 205 - Running
-NGCBUILD
-IPNAME:system_ethernet_mac_wrapper INSTANCE:ethernet_mac -
-F:\Git_projects\FPGA\MIMTLU_with_virtualTLU\system.mhs line 286 - Running
-NGCBUILD
+M:\Git_projects\FPGA\MIMTLU_StandAlone\system.mhs line 168 - Running NGCBUILD
 INFO:EDK:3509 - NCF files should not be modified as they will be regenerated.
    If any constraint needs to be overridden, this should be done by modifying
    the data/system.ucf file.
 
 Rebuilding cache ...
 
-Total run time: 356.00 seconds
+Total run time: 30.00 seconds

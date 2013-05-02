@@ -1,4 +1,3 @@
-
 <EDKSYSTEM EDKVERSION="14.4" EDWVERSION="1.2" TIMESTAMP="Thu May 02 15:16:21 2013">
 
   <SYSTEMINFO ARCH="spartan6" DEVICE="xc6slx9" PACKAGE="csg324" PART="xc6slx9csg324-2" SOURCE="M:/Git_projects/FPGA/MIMTLU_StandAlone/system.xmp" SPEEDGRADE="-2"/>
@@ -10129,34 +10128,34 @@
         <CONNECTION INSTANCE="mimtlu_0" PORT="TRIGGER_N"/>
       </CONNECTIONS>
     </PORT>
-    <PORT DIR="I" MHS_INDEX="38" NAME="mimtlu_0_RESET_N_pin" SIGNAME="net_mimtlu_0_RESET_N_pin">
+    <PORT DIR="I" MHS_INDEX="38" NAME="mimtlu_0_RESET_P_pin" SIGNAME="net_mimtlu_0_RESET_P_pin">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="mimtlu_0" PORT="RESET_P"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" MHS_INDEX="39" NAME="mimtlu_0_RESET_N_pin" SIGNAME="net_mimtlu_0_RESET_N_pin">
       <CONNECTIONS>
         <CONNECTION INSTANCE="mimtlu_0" PORT="RESET_N"/>
       </CONNECTIONS>
     </PORT>
-    <PORT DIR="O" MHS_INDEX="39" NAME="mimtlu_0_BUSY_P_pin" SIGNAME="mimtlu_0_BUSY_P">
+    <PORT DIR="O" MHS_INDEX="40" NAME="mimtlu_0_BUSY_P_pin" SIGNAME="mimtlu_0_BUSY_P">
       <CONNECTIONS>
         <CONNECTION INSTANCE="mimtlu_0" PORT="BUSY_P"/>
       </CONNECTIONS>
     </PORT>
-    <PORT DIR="O" MHS_INDEX="40" NAME="mimtlu_0_BUSY_N_pin" SIGNAME="mimtlu_0_BUSY_N">
+    <PORT DIR="O" MHS_INDEX="41" NAME="mimtlu_0_BUSY_N_pin" SIGNAME="mimtlu_0_BUSY_N">
       <CONNECTIONS>
         <CONNECTION INSTANCE="mimtlu_0" PORT="BUSY_N"/>
       </CONNECTIONS>
     </PORT>
-    <PORT DIR="O" MHS_INDEX="41" NAME="mimtlu_0_TRIGGER_CLOCK_P_pin" SIGNAME="mimtlu_0_TRIGGER_CLOCK_P">
+    <PORT DIR="O" MHS_INDEX="42" NAME="mimtlu_0_TRIGGER_CLOCK_P_pin" SIGNAME="mimtlu_0_TRIGGER_CLOCK_P">
       <CONNECTIONS>
         <CONNECTION INSTANCE="mimtlu_0" PORT="TRIGGER_CLOCK_P"/>
       </CONNECTIONS>
     </PORT>
-    <PORT DIR="O" MHS_INDEX="42" NAME="mimtlu_0_TRIGGER_CLOCK_N_pin" SIGNAME="mimtlu_0_TRIGGER_CLOCK_N">
+    <PORT DIR="O" MHS_INDEX="43" NAME="mimtlu_0_TRIGGER_CLOCK_N_pin" SIGNAME="mimtlu_0_TRIGGER_CLOCK_N">
       <CONNECTIONS>
         <CONNECTION INSTANCE="mimtlu_0" PORT="TRIGGER_CLOCK_N"/>
-      </CONNECTIONS>
-    </PORT>
-    <PORT DIR="I" MHS_INDEX="43" NAME="mimtlu_0_RESET_P_pin" SIGNAME="net_mimtlu_0_RESET_P_pin">
-      <CONNECTIONS>
-        <CONNECTION INSTANCE="mimtlu_0" PORT="RESET_P"/>
       </CONNECTIONS>
     </PORT>
   </EXTERNALPORTS>

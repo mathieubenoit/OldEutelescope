@@ -59,7 +59,7 @@ Net Ethernet_MAC_RXD<3> PULLUP;
 #NET mimtlu_0_TEST_pin      LOC = V4  | IOSTANDARD = LVCMOS33 | PULLDOWN;    # "USER_RESET"
 #NET mimtlu_0_TEST_pin      TIG;
 
-NET mimtlu_0_TEST_pin      LOC = F16 | IOSTANDARD = LVTTL;# | PULLDOWN;    # "USER_RESET"
+#NET mimtlu_0_TEST_pin      LOC = F16 | IOSTANDARD = LVTTL;# | PULLDOWN;    # "USER_RESET"
 #NET mimtlu_0_TEST_pin      TIG;
 
 ############################################################################	
@@ -89,7 +89,7 @@ NET mimtlu_0_TEST_pin      LOC = F16 | IOSTANDARD = LVTTL;# | PULLDOWN;    # "US
 ############################################################################	
 # Connector J5
 NET mimtlu_0_TRIGGER_COPY_pin          		LOC = F15 | IOSTANDARD = LVTTL;               # "PMOD1_P1"
-#NET mimtlu_0_BUSY_DUT_pin        			   LOC = F16 | IOSTANDARD = LVTTL;               # "PMOD1_P2"
+NET mimtlu_0_BUSY_DUT_pin        			   LOC = F16 | IOSTANDARD = LVTTL;               # "PMOD1_P2"
 NET mimtlu_0_BUSY_COPY_pin         		      LOC = C17 | IOSTANDARD = LVTTL;               # "PMOD1_P3"
 NET mimtlu_0_TRIGGER_DUT_pin        		   LOC = C18 | IOSTANDARD = LVTTL;               # "PMOD1_P4"
 #NET TEST_1          			LOC = F14 | IOSTANDARD = LVTTL;               # "PMOD1_P7"
@@ -98,12 +98,15 @@ NET mimtlu_0_TRIGGER_DUT_pin        		   LOC = C18 | IOSTANDARD = LVTTL;        
 #NET TEST_4         				LOC = D18 | IOSTANDARD = LVTTL;               # "PMOD1_P10"
 
 # Connector J4
-#NET BUSY_P            			LOC = H12 | IOSTANDARD = LVDS_33;               # "PMOD2_P1"
-#NET BUSY_N            			LOC = G13 | IOSTANDARD = LVDS_33;               # "PMOD2_P2"
-#NET TRIGGER_CLOCK_P          	LOC = E16 | IOSTANDARD = LVDS_33;               # "PMOD2_P3"
-#NET TRIGGER_CLOCK_N          	LOC = E18 | IOSTANDARD = LVDS_33;               # "PMOD2_P4"
-#NET TRIGGER_P          			LOC = K12 | IOSTANDARD = LVDS_33;               # "PMOD2_P7"
-#NET TRIGGER_N          			LOC = K13 | IOSTANDARD = LVDS_33;               # "PMOD2_P8"
-#NET RESET_P         				LOC = F17 | IOSTANDARD = LVDS_33;               # "PMOD2_P9"
-#NET RESET_N         				LOC = F18 | IOSTANDARD = LVDS_33;               # "PMOD2_P10"
+#outputs
+NET mimtlu_0_BUSY_P_pin            			LOC = H12 | IOSTANDARD = LVCMOS33;               # "PMOD2_P1"
+NET mimtlu_0_BUSY_N_pin            			LOC = G13 | IOSTANDARD = LVCMOS33;               # "PMOD2_P2"
+NET mimtlu_0_TRIGGER_CLOCK_P_pin          	LOC = E16 | IOSTANDARD = LVCMOS33;               # "PMOD2_P3"
+NET mimtlu_0_TRIGGER_CLOCK_N_pin          	LOC = E18 | IOSTANDARD = LVCMOS33;               # "PMOD2_P4"
+#inputs
+NET mimtlu_0_TRIGGER_P_pin          			LOC = K12 | IOSTANDARD = LVDS_33;               # "PMOD2_P7"
+NET mimtlu_0_TRIGGER_N_pin          			LOC = K13 | IOSTANDARD = LVDS_33;               # "PMOD2_P8"
+NET mimtlu_0_RESET_P_pin         				LOC = F17 | IOSTANDARD = LVDS_33;               # "PMOD2_P9"
+NET mimtlu_0_RESET_N_pin         				LOC = F18 | IOSTANDARD = LVDS_33;               # "PMOD2_P10"
 
+PIN "mimtlu_0/mimtlu_0/USER_LOGIC_I/MIMTLU_ent/BUFGCE_inst.O" CLOCK_DEDICATED_ROUTE = FALSE;
