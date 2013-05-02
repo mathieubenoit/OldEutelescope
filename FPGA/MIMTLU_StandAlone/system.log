@@ -3,3 +3,37 @@ Xilinx EDK 14.4 Build EDK_P.49d
 Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.
 
 Overriding Xilinx file <TextEditor.cfg> with local file <C:/Xilinx/14.4/ISE_DS/EDK/data/TextEditor.cfg>
+Xilinx Platform Studio (XPS)
+Xilinx EDK 14.4 Build EDK_P.49d
+Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.
+
+Writing filter settings....
+Done writing filter settings to:
+	M:\Git_projects\FPGA\MIMTLU_StandAlone\etc\system.filters
+Done writing Tab View settings to:
+	M:\Git_projects\FPGA\MIMTLU_StandAlone\etc\system.gui
+Overriding Xilinx file <TextEditor.cfg> with local file <C:/Xilinx/14.4/ISE_DS/EDK/data/TextEditor.cfg>
+The project's MHS file has changed on disk.
+ERROR:EDK:4085 - IPNAME: mimtlu, INSTANCE: mimtlu_0 - PORT TRIGGER_P not found in the MPD - M:\Git_projects\FPGA\MIMTLU_StandAlone\system.mhs line 339 
+ERROR:EDK:4085 - IPNAME: mimtlu, INSTANCE: mimtlu_0 - PORT TRIGGER_N not found in the MPD - M:\Git_projects\FPGA\MIMTLU_StandAlone\system.mhs line 340 
+ERROR:EDK:4085 - IPNAME: mimtlu, INSTANCE: mimtlu_0 - PORT BUSY_P not found in the MPD - M:\Git_projects\FPGA\MIMTLU_StandAlone\system.mhs line 341 
+ERROR:EDK:4085 - IPNAME: mimtlu, INSTANCE: mimtlu_0 - PORT BUSY_N not found in the MPD - M:\Git_projects\FPGA\MIMTLU_StandAlone\system.mhs line 342 
+ERROR:EDK:4085 - IPNAME: mimtlu, INSTANCE: mimtlu_0 - PORT TRIGGER_CLOCK_P not found in the MPD - M:\Git_projects\FPGA\MIMTLU_StandAlone\system.mhs line 343 
+ERROR:EDK:4085 - IPNAME: mimtlu, INSTANCE: mimtlu_0 - PORT TRIGGER_CLOCK_N not found in the MPD - M:\Git_projects\FPGA\MIMTLU_StandAlone\system.mhs line 344 
+ERROR:EDK:4085 - IPNAME: mimtlu, INSTANCE: mimtlu_0 - PORT RESET_P not found in the MPD - M:\Git_projects\FPGA\MIMTLU_StandAlone\system.mhs line 345 
+ERROR:EDK:4085 - IPNAME: mimtlu, INSTANCE: mimtlu_0 - PORT RESET_N not found in the MPD - M:\Git_projects\FPGA\MIMTLU_StandAlone\system.mhs line 346 
+WARNING:UtilitiesC:159 - Message file "usenglish/_SSNAME.msg" wasn't found.
+Writing filter settings....
+Done writing filter settings to:
+	M:\Git_projects\FPGA\MIMTLU_StandAlone\etc\system.filters
+Done writing Tab View settings to:
+	M:\Git_projects\FPGA\MIMTLU_StandAlone\etc\system.gui
+The project's MHS file has changed on disk.
+The project's MHS file has changed on disk.
+Writing filter settings....
+Done writing filter settings to:
+	M:\Git_projects\FPGA\MIMTLU_StandAlone\etc\system.filters
+Done writing Tab View settings to:
+	M:\Git_projects\FPGA\MIMTLU_StandAlone\etc\system.gui
+Save project successfully
+This project is already opened.

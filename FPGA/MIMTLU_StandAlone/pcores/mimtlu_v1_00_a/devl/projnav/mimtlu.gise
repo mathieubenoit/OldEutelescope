@@ -88,6 +88,7 @@
       <status xil_pn:value="ReadyToRun"/>
       <status xil_pn:value="OutOfDateForInputs"/>
       <status xil_pn:value="OutOfDateForOutputs"/>
+      <status xil_pn:value="InputAdded"/>
       <status xil_pn:value="InputChanged"/>
       <status xil_pn:value="OutputChanged"/>
       <outfile xil_pn:name="../../hdl/vhdl/MIMTLU_core.vhd"/>
@@ -203,17 +204,13 @@
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="WarningsGenerated"/>
       <status xil_pn:value="ReadyToRun"/>
+      <status xil_pn:value="OutOfDateForInputs"/>
+      <status xil_pn:value="OutOfDateForOutputs"/>
+      <status xil_pn:value="InputAdded"/>
+      <status xil_pn:value="InputChanged"/>
+      <status xil_pn:value="OutputRemoved"/>
       <outfile xil_pn:name="_xmsgs/xst.xmsgs"/>
       <outfile xil_pn:name="axi_lite_ipif.ngr"/>
-      <outfile xil_pn:name="mimtlu.lso"/>
-      <outfile xil_pn:name="mimtlu.ngc"/>
-      <outfile xil_pn:name="mimtlu.ngr"/>
-      <outfile xil_pn:name="mimtlu.prj"/>
-      <outfile xil_pn:name="mimtlu.stx"/>
-      <outfile xil_pn:name="mimtlu.syr"/>
-      <outfile xil_pn:name="mimtlu.xst"/>
-      <outfile xil_pn:name="mimtlu_beh.prj"/>
-      <outfile xil_pn:name="mimtlu_xst.xrpt"/>
       <outfile xil_pn:name="webtalk_pn.xml"/>
       <outfile xil_pn:name="xst"/>
     </transform>
@@ -228,22 +225,21 @@
       <status xil_pn:value="OutOfDateForInputs"/>
       <status xil_pn:value="OutOfDateForProperties"/>
       <status xil_pn:value="OutOfDateForPredecessor"/>
+      <status xil_pn:value="OutOfDateForOutputs"/>
       <status xil_pn:value="InputAdded"/>
       <status xil_pn:value="InputChanged"/>
-      <outfile xil_pn:name="_ngo"/>
-      <outfile xil_pn:name="_xmsgs/ngdbuild.xmsgs"/>
-      <outfile xil_pn:name="axi_lite_ipif.bld"/>
-      <outfile xil_pn:name="axi_lite_ipif.ngd"/>
-      <outfile xil_pn:name="axi_lite_ipif_ngdbuild.xrpt"/>
+      <status xil_pn:value="InputRemoved"/>
+      <status xil_pn:value="OutputRemoved"/>
     </transform>
     <transform xil_pn:end_ts="1366710531" xil_pn:in_ck="-5825718694120531459" xil_pn:name="TRAN_postXlateSimModel" xil_pn:prop_ck="4342598301024680388" xil_pn:start_ts="1366710527">
       <status xil_pn:value="SuccessfullyRun"/>
-      <status xil_pn:value="ReadyToRun"/>
+      <status xil_pn:value="NotReadyToRun"/>
+      <status xil_pn:value="OutOfDateForInputs"/>
       <status xil_pn:value="OutOfDateForProperties"/>
       <status xil_pn:value="OutOfDateForPredecessor"/>
-      <outfile xil_pn:name="netgen"/>
-      <outfile xil_pn:name="netgen/translate/axi_lite_ipif_translate.nlf"/>
-      <outfile xil_pn:name="netgen/translate/axi_lite_ipif_translate.v"/>
+      <status xil_pn:value="OutOfDateForOutputs"/>
+      <status xil_pn:value="InputRemoved"/>
+      <status xil_pn:value="OutputRemoved"/>
     </transform>
     <transform xil_pn:end_ts="1366710531" xil_pn:in_ck="3960473168466591964" xil_pn:name="TRAN_copyPost-TranslateAbstractToPreSimulation" xil_pn:start_ts="1366710531">
       <status xil_pn:value="SuccessfullyRun"/>
@@ -258,7 +254,7 @@
     </transform>
     <transform xil_pn:end_ts="1366710535" xil_pn:in_ck="3960473168466591964" xil_pn:name="TRAN_ISimulatePostTranslateModelRunFuse" xil_pn:prop_ck="-23387870149685278" xil_pn:start_ts="1366710531">
       <status xil_pn:value="SuccessfullyRun"/>
-      <status xil_pn:value="NotReadyToRun"/>
+      <status xil_pn:value="ReadyToRun"/>
       <status xil_pn:value="OutOfDateForInputs"/>
       <status xil_pn:value="OutOfDateForPredecessor"/>
       <status xil_pn:value="OutOfDateForOutputs"/>
@@ -269,7 +265,7 @@
     </transform>
     <transform xil_pn:end_ts="1366710536" xil_pn:in_ck="-6405426651184041308" xil_pn:name="TRAN_ISimulatePostTranslateModel" xil_pn:prop_ck="-7815781207555700489" xil_pn:start_ts="1366710535">
       <status xil_pn:value="SuccessfullyRun"/>
-      <status xil_pn:value="NotReadyToRun"/>
+      <status xil_pn:value="ReadyToRun"/>
       <status xil_pn:value="OutOfDateForInputs"/>
       <status xil_pn:value="OutOfDateForPredecessor"/>
       <status xil_pn:value="OutOfDateForOutputs"/>

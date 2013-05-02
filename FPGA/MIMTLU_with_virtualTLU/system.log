@@ -3,3 +3,8 @@ Xilinx EDK 14.4 Build EDK_P.49d
 Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.
 
 Overriding Xilinx file <TextEditor.cfg> with local file <C:/Xilinx/14.4/ISE_DS/EDK/data/TextEditor.cfg>
+Writing filter settings....
+Done writing filter settings to:
+	M:\Git_projects\FPGA\MIMTLU_with_virtualTLU\etc\system.filters
+Done writing Tab View settings to:
+	M:\Git_projects\FPGA\MIMTLU_with_virtualTLU\etc\system.gui
