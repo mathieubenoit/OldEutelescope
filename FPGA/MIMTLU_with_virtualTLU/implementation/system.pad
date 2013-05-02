@@ -1,7 +1,7 @@
 Release 14.4 - par P.49d (nt64)
 Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.
 
-Tue Apr 30 13:27:33 2013
+Thu May 02 10:08:10 2013
 
 
 # NOTE: This file is designed to be imported into a spreadsheet program
@@ -20,7 +20,7 @@ Pinout by Pin Number:
 -----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|
 Pin Number|Signal Name|Pin Usage|Pin Name|Direction|IO Standard|IO Bank Number|Drive (mA)|Slew Rate|Termination|IOB Delay|Voltage|Constraint|IO Register|Signal Integrity|
 A1|||GND||||||||||||
-A2||IOBS|IO_L2N_0|UNUSED||0|||||||||
+A2|RESET|IOB|IO_L2N_0|INPUT|LVCMOS25*|0||||NONE||UNLOCATED|NO|NONE|
 A3|DIP_Switches_4Bits_TRI_I<1>|IOB|IO_L4N_0|INPUT|LVCMOS33|0|||PULLDOWN|NONE||LOCATED|NO|NONE|
 A4|DIP_Switches_4Bits_TRI_I<3>|IOB|IO_L5N_0|INPUT|LVCMOS33|0|||PULLDOWN|NONE||LOCATED|NO|NONE|
 A5||IOBS|IO_L6N_0|UNUSED||0|||||||||
@@ -38,7 +38,7 @@ A16||IOBS|IO_L66N_SCP0_0|UNUSED||0|||||||||
 A17|||TCK||||||||||||
 A18|||GND||||||||||||
 B1|||VCCAUX||||||||3.3||||
-B2|RESET|IOB|IO_L2P_0|INPUT|LVCMOS25*|0||||NONE||UNLOCATED|NO|NONE|
+B2|mimtlu_0_BUSY_DUT_pin|IOB|IO_L2P_0|INPUT|LVCMOS25*|0||||NONE||UNLOCATED|YES|NONE|
 B3|DIP_Switches_4Bits_TRI_I<0>|IOB|IO_L4P_0|INPUT|LVCMOS33|0|||PULLDOWN|NONE||LOCATED|NO|NONE|
 B4|DIP_Switches_4Bits_TRI_I<2>|IOB|IO_L5P_0|INPUT|LVCMOS33|0|||PULLDOWN|NONE||LOCATED|NO|NONE|
 B5|||VCCO_0|||0|||||any******||||
@@ -64,7 +64,7 @@ C6||IOBS|IO_L3N_0|UNUSED||0|||||||||
 C7||IOBM|IO_L10P_0|UNUSED||0|||||||||
 C8||IOBS|IO_L11N_0|UNUSED||0|||||||||
 C9||IOBS|IO_L34N_GCLK18_0|UNUSED||0|||||||||
-C10|mimtlu_0_CLOCK_Y3_pin|IOB|IO_L37P_GCLK13_0|INPUT|LVCMOS33|0||||NONE||LOCATED|NO|NONE|
+C10||IOBM|IO_L37P_GCLK13_0|UNUSED||0|||||||||
 C11||IOBS|IO_L36N_GCLK14_0|UNUSED||0|||||||||
 C12|||NC||||||||||||
 C13|||NC||||||||||||
@@ -124,7 +124,7 @@ F12|||NC||||||||||||
 F13||IOBM|IO_L63P_SCP7_0|UNUSED||0|||||||||
 F14||IOBM|IO_L30P_A21_M1RESET_1|UNUSED||1|||||||||
 F15|mimtlu_0_TRIGGER_COPY_pin|IOB|IO_L1P_A25_1|OUTPUT|LVTTL|1|12|SLOW||||LOCATED|NO|NONE|
-F16|mimtlu_0_BUSY_DUT_pin|IOB|IO_L1N_A24_VREF_1|INPUT|LVTTL|1||||NONE||LOCATED|YES|NONE|
+F16|mimtlu_0_TEST_pin|IOB|IO_L1N_A24_VREF_1|INPUT|LVTTL|1||||NONE||LOCATED|YES|NONE|
 F17||IOBM|IO_L35P_A11_M1A7_1|UNUSED||1|||||||||
 F18||IOBS|IO_L35N_A10_M1A2_1|UNUSED||1|||||||||
 G1|mcbx_dram_clk_n|IOB|IO_L46N_M3CLKN_3|TRISTATE|DIFF_MOBILE_DDR|3||||||LOCATED|NO|NONE|
@@ -328,7 +328,7 @@ U18||IOBS|IO_L52N_M1DQ15_1|UNUSED||1|||||||||
 V1|||GND||||||||||||
 V2|||PROGRAM_B_2||||||||||||
 V3||IOBS|IO_L65N_CSO_B_2|UNUSED||2|||||||||
-V4|mimtlu_0_TEST_pin|IOB|IO_L63N_2|INPUT|LVCMOS33|2|||PULLDOWN|NONE||LOCATED|YES|NONE|
+V4||IOBS|IO_L63N_2|UNUSED||2|||||||||
 V5||IOBS|IO_L49N_D4_2|UNUSED||2|||||||||
 V6||IOBS|IO_L45N_2|UNUSED||2|||||||||
 V7||IOBS|IO_L43N_2|UNUSED||2|||||||||

@@ -1,10 +1,10 @@
 Release 14.4 - xst P.49d (nt64)
 Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.
---> Parameter TMPDIR set to M:\Git_projects\FPGA\MIMTLU_with_virtualTLU\synthesis\xst_temp_dir\
+--> Parameter TMPDIR set to F:\Git_projects\FPGA\MIMTLU_with_virtualTLU\synthesis\xst_temp_dir\
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.11 secs
+Total CPU time to Xst completion: 0.12 secs
  
 --> 
 TABLE OF CONTENTS
@@ -35,7 +35,7 @@ TABLE OF CONTENTS
 ---- Source Parameters
 Input Format                       : MIXED
 Input File Name                    : "system_microblaze_0_wrapper_xst.prj"
-Verilog Include Directory          : {"M:\Git_projects\FPGA\MIMTLU_with_virtualTLU\pcores\" "C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxBFMinterface\pcores\" "C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\" }
+Verilog Include Directory          : {"F:\Git_projects\FPGA\MIMTLU_with_virtualTLU\pcores\" "C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxBFMinterface\pcores\" "C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\" }
 
 ---- Target Parameters
 Target Device                      : xc6slx9csg324-2
@@ -358,7 +358,7 @@ Parsing architecture <IMP> of entity <microblaze_core>.
 Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/microblaze_v8_40_b/hdl/vhdl/microblaze.vhd" into library microblaze_v8_40_b
 Parsing entity <MicroBlaze>.
 Parsing architecture <IMP> of entity <microblaze>.
-Parsing VHDL file "M:\Git_projects\FPGA\MIMTLU_with_virtualTLU\hdl\system_microblaze_0_wrapper.vhd" into library work
+Parsing VHDL file "F:\Git_projects\FPGA\MIMTLU_with_virtualTLU\hdl\system_microblaze_0_wrapper.vhd" into library work
 Parsing entity <system_microblaze_0_wrapper>.
 Parsing architecture <STRUCTURE> of entity <system_microblaze_0_wrapper>.
 
@@ -526,7 +526,7 @@ WARNING:Xst:2972 - "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/mic
 =========================================================================
 
 Synthesizing Unit <system_microblaze_0_wrapper>.
-    Related source file is "M:\Git_projects\FPGA\MIMTLU_with_virtualTLU\hdl\system_microblaze_0_wrapper.vhd".
+    Related source file is "F:\Git_projects\FPGA\MIMTLU_with_virtualTLU\hdl\system_microblaze_0_wrapper.vhd".
     Summary:
 	no macro.
 Unit <system_microblaze_0_wrapper> synthesized.
@@ -8193,12 +8193,12 @@ DCACHE_FSL_OUT_CLK|   11.094|         |         |         |
 =========================================================================
 
 
-Total REAL time to Xst completion: 48.00 secs
-Total CPU time to Xst completion: 47.86 secs
+Total REAL time to Xst completion: 51.00 secs
+Total CPU time to Xst completion: 51.16 secs
  
 --> 
 
-Total memory usage is 405664 kilobytes
+Total memory usage is 408896 kilobytes
 
 Number of errors   :    0 (   0 filtered)
 Number of warnings : 4321 (   0 filtered)

@@ -142,7 +142,7 @@ TLU_SIM : entity work.TLU_SIMU 	generic map(Nbits =>31)
 													clk=>clk_out);
 
 
---CLK_DIV : entity work.clk_divider generic map(N=>5)
+--CLK_DIV : entity work.clk_divider 
 --											port map(	clk_in  => CLOCK_Y3,
 --															reset   => reset,
 --															clk_out => SLOW_CLK);

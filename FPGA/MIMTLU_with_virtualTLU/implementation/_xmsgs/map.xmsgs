@@ -260,6 +260,9 @@
 <msg type="info" file="LIT" num="243" delta="old" >Logical network <arg fmt="%s" index="1">N40</arg> has no load.
 </msg>
 
+<msg type="info" file="LIT" num="243" delta="new" >Logical network <arg fmt="%s" index="1">mimtlu_0_CLOCK_Y3_pin</arg> has no load.
+</msg>
+
 <msg type="info" file="LIT" num="243" delta="old" >Logical network <arg fmt="%s" index="1">Ethernet_MAC/Ethernet_MAC/XEMAC_I/RX_PONG_GEN.RX_PONG_I/dpram_blkmem/V6_S6_AND_LATER.I_TRUE_DUAL_PORT_BLK_MEM_GEN/douta&lt;3&gt;</arg> has no load.
 </msg>
 
@@ -2223,16 +2226,16 @@
 <msg type="info" file="Map" num="215" delta="old" >The Interim Design Summary has been generated in the MAP Report (.mrp).
 </msg>
 
-<msg type="info" file="Place" num="834" delta="old" >Only a subset of IOs are locked. Out of <arg fmt="%d" index="1">77</arg> IOs, <arg fmt="%d" index="2">76</arg> are locked and <arg fmt="%d" index="3">1</arg> are not locked. <arg fmt="%s" index="4">If you would like to print the names of these IOs, please set the environment variable XIL_PAR_DESIGN_CHECK_VERBOSE to 1.</arg> 
+<msg type="info" file="Place" num="834" delta="new" >Only a subset of IOs are locked. Out of <arg fmt="%d" index="1">76</arg> IOs, <arg fmt="%d" index="2">74</arg> are locked and <arg fmt="%d" index="3">2</arg> are not locked. <arg fmt="%s" index="4">If you would like to print the names of these IOs, please set the environment variable XIL_PAR_DESIGN_CHECK_VERBOSE to 1.</arg> 
 </msg>
 
 <msg type="info" file="Pack" num="1650" delta="old" >Map created a placed design.
 </msg>
 
-<msg type="warning" file="PhysDesignRules" num="367" delta="old" >The signal &lt;<arg fmt="%s" index="1">microblaze_0_d_bram_ctrl_2_microblaze_0_bram_block_BRAM_Addr&lt;31&gt;</arg>&gt; is incomplete. The signal does not drive any load pins in the design.
+<msg type="warning" file="PhysDesignRules" num="367" delta="old" >The signal &lt;<arg fmt="%s" index="1">microblaze_0_d_bram_ctrl_2_microblaze_0_bram_block_BRAM_Addr&lt;30&gt;</arg>&gt; is incomplete. The signal does not drive any load pins in the design.
 </msg>
 
-<msg type="warning" file="PhysDesignRules" num="367" delta="old" >The signal &lt;<arg fmt="%s" index="1">microblaze_0_d_bram_ctrl_2_microblaze_0_bram_block_BRAM_Addr&lt;30&gt;</arg>&gt; is incomplete. The signal does not drive any load pins in the design.
+<msg type="warning" file="PhysDesignRules" num="367" delta="old" >The signal &lt;<arg fmt="%s" index="1">microblaze_0_d_bram_ctrl_2_microblaze_0_bram_block_BRAM_Addr&lt;31&gt;</arg>&gt; is incomplete. The signal does not drive any load pins in the design.
 </msg>
 
 <msg type="warning" file="PhysDesignRules" num="367" delta="old" >The signal &lt;<arg fmt="%s" index="1">Ethernet_MAC/Ethernet_MAC/XEMAC_I/EMAC_I/RX/INST_RX_INTRFCE/I_RX_FIFO/LEGACY_COREGEN_DEPTH.V6_S6_AND_LATER.I_ASYNC_FIFO_BRAM/U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.mem/gdm.dm/Mram_RAM_RAMD_D1_O</arg>&gt; is incomplete. The signal does not drive any load pins in the design.

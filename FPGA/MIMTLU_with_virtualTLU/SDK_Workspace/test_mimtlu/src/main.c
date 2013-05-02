@@ -135,7 +135,7 @@ int transfer_data() {
 			return -1;
 		}
 		else {
-			printf("just sent that %d \r\n",timestamp);
+			//printf("just sent that %d \r\n",timestamp);
 			msg_recvd=0;
 			itr_rcvd=0;
 		}
@@ -172,17 +172,17 @@ err_t recv_callback(void *arg, struct tcp_pcb *tpcb,
 	/* echo back the payload */
 	/* in this case, we assume that the payload is < TCP_SND_BUF */
 
-	print("packet received, waiting for interrupt \r \n");
+	//print("packet received, waiting for interrupt \r \n");
 
 	char *msg;
 	char *a;
 	u32 b;
 
-	printf("%s \r\n",p->payload);
+	//printf("%s \r\n",p->payload);
 	sscanf(p->payload,"%s %u",a,&b);
 
 
-	printf("packet data %u %s \r\n",b,a);
+	//printf("packet data %u %s \r\n",b,a);
 
 	if(strncmp(a,"SETB",4)==0){
 
@@ -193,7 +193,7 @@ err_t recv_callback(void *arg, struct tcp_pcb *tpcb,
 		msg_recvd=1;
 	};
 
-
+	//msg_recvd=1;
 	pbuf_free(p);
 
 

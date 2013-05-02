@@ -1,7 +1,7 @@
 
-<EDKSYSTEM EDKVERSION="14.4" EDWVERSION="1.2" TIMESTAMP="Mon Apr 29 14:01:13 2013">
+<EDKSYSTEM EDKVERSION="14.4" EDWVERSION="1.2" TIMESTAMP="Thu May 02 10:09:44 2013">
 
-  <SYSTEMINFO ARCH="spartan6" DEVICE="xc6slx9" PACKAGE="csg324" PART="xc6slx9csg324-2" SOURCE="M:/Git_projects/FPGA/MIMTLU_with_virtualTLU/system.xmp" SPEEDGRADE="-2"/>
+  <SYSTEMINFO ARCH="spartan6" DEVICE="xc6slx9" PACKAGE="csg324" PART="xc6slx9csg324-2" SOURCE="F:/Git_projects/FPGA/MIMTLU_with_virtualTLU/system.xmp" SPEEDGRADE="-2"/>
 
   <EXTERNALPORTS>
     <PORT DIR="IO" MHS_INDEX="0" NAME="rzq" SIGNAME="rzq">
@@ -185,9 +185,7 @@
       </CONNECTIONS>
     </PORT>
     <PORT DIR="I" MHS_INDEX="36" NAME="mimtlu_0_CLOCK_Y3_pin" SIGIS="CLK" SIGNAME="mimtlu_0_CLOCK_Y3">
-      <CONNECTIONS>
-        <CONNECTION INSTANCE="mimtlu_0" PORT="CLOCK_Y3"/>
-      </CONNECTIONS>
+      <CONNECTIONS/>
     </PORT>
     <PORT DIR="I" MHS_INDEX="37" NAME="mimtlu_0_TEST_pin" SIGNAME="net_mimtlu_0_TEST_pin">
       <CONNECTIONS>
@@ -6174,6 +6172,7 @@
             <CONNECTION BUSINTERFACE="[S_AXI]" INSTANCE="leds_4bits" PORT="S_AXI_ACLK"/>
             <CONNECTION BUSINTERFACE="[S_AXI]" INSTANCE="ethernet_mac" PORT="S_AXI_ACLK"/>
             <CONNECTION BUSINTERFACE="[S_AXI]" INSTANCE="dip_switches_4bits" PORT="S_AXI_ACLK"/>
+            <CONNECTION INSTANCE="mimtlu_0" PORT="CLOCK_Y3"/>
             <CONNECTION BUSINTERFACE="[S_AXI]" INSTANCE="mimtlu_0" PORT="S_AXI_ACLK"/>
           </CONNECTIONS>
         </PORT>
@@ -10304,9 +10303,9 @@
             <CONNECTION INSTANCE="clock_generator_0" PORT="CLKOUT2"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" IS_INSTANTIATED="TRUE" MHS_INDEX="1" MPD_INDEX="0" NAME="CLOCK_Y3" SIGIS="CLK" SIGNAME="mimtlu_0_CLOCK_Y3">
+        <PORT CLKFREQUENCY="66666666" DIR="I" IS_INSTANTIATED="TRUE" MHS_INDEX="1" MPD_INDEX="0" NAME="CLOCK_Y3" SIGIS="CLK" SIGNAME="clk_66_6667MHzPLL0">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="External Ports" PORT="mimtlu_0_CLOCK_Y3_pin"/>
+            <CONNECTION INSTANCE="clock_generator_0" PORT="CLKOUT2"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="I" IS_INSTANTIATED="TRUE" MHS_INDEX="2" MPD_INDEX="4" NAME="BUSY_DUT" SIGNAME="mimtlu_0_BUSY_DUT">

@@ -175,18 +175,6 @@ data_itr<=data_itr_reg;
 wait_time<=to_integer(unsigned(busy_cnt(31 downto 0)));
 
 
---process
---begin 
---	if (read_en='1') then
---		for i in 0 to 14 loop 
---			wait until clk='1';
---			timestamp_reg(i)<=trigger;
---		end loop;
---		read_en<='0';
---	end if;
---			
---end process;
-
 clk_out_en<=clk_en_reg;
 
 end Behavioral;

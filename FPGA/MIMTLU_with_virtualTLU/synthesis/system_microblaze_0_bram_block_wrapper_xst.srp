@@ -1,10 +1,10 @@
 Release 14.4 - xst P.49d (nt64)
 Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.
---> Parameter TMPDIR set to M:\Git_projects\FPGA\MIMTLU_with_virtualTLU\synthesis\xst_temp_dir\
+--> Parameter TMPDIR set to F:\Git_projects\FPGA\MIMTLU_with_virtualTLU\synthesis\xst_temp_dir\
 
 
-Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.10 secs
+Total REAL time to Xst completion: 1.00 secs
+Total CPU time to Xst completion: 0.11 secs
  
 --> 
 TABLE OF CONTENTS
@@ -35,7 +35,7 @@ TABLE OF CONTENTS
 ---- Source Parameters
 Input Format                       : MIXED
 Input File Name                    : "system_microblaze_0_bram_block_wrapper_xst.prj"
-Verilog Include Directory          : {"M:\Git_projects\FPGA\MIMTLU_with_virtualTLU\pcores\" "C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxBFMinterface\pcores\" "C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\" }
+Verilog Include Directory          : {"F:\Git_projects\FPGA\MIMTLU_with_virtualTLU\pcores\" "C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxBFMinterface\pcores\" "C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\" }
 
 ---- Target Parameters
 Target Device                      : xc6slx9csg324-2
@@ -62,10 +62,10 @@ Cores Search Directories           : {../implementation}
 =========================================================================
 *                          HDL Parsing                                  *
 =========================================================================
-Parsing VHDL file "M:/Git_projects/FPGA/MIMTLU_with_virtualTLU/hdl/elaborate/microblaze_0_bram_block_elaborate_v1_00_a/hdl/vhdl/microblaze_0_bram_block_elaborate.vhd" into library microblaze_0_bram_block_elaborate_v1_00_a
+Parsing VHDL file "F:/Git_projects/FPGA/MIMTLU_with_virtualTLU/hdl/elaborate/microblaze_0_bram_block_elaborate_v1_00_a/hdl/vhdl/microblaze_0_bram_block_elaborate.vhd" into library microblaze_0_bram_block_elaborate_v1_00_a
 Parsing entity <microblaze_0_bram_block_elaborate>.
 Parsing architecture <STRUCTURE> of entity <microblaze_0_bram_block_elaborate>.
-Parsing VHDL file "M:\Git_projects\FPGA\MIMTLU_with_virtualTLU\hdl\system_microblaze_0_bram_block_wrapper.vhd" into library work
+Parsing VHDL file "F:\Git_projects\FPGA\MIMTLU_with_virtualTLU\hdl\system_microblaze_0_bram_block_wrapper.vhd" into library work
 Parsing entity <system_microblaze_0_bram_block_wrapper>.
 Parsing architecture <STRUCTURE> of entity <system_microblaze_0_bram_block_wrapper>.
 
@@ -76,21 +76,21 @@ Parsing architecture <STRUCTURE> of entity <system_microblaze_0_bram_block_wrapp
 Elaborating entity <system_microblaze_0_bram_block_wrapper> (architecture <STRUCTURE>) from library <work>.
 
 Elaborating entity <microblaze_0_bram_block_elaborate> (architecture <STRUCTURE>) with generics from library <microblaze_0_bram_block_elaborate_v1_00_a>.
-WARNING:HDLCompiler:89 - "M:/Git_projects/FPGA/MIMTLU_with_virtualTLU/hdl/elaborate/microblaze_0_bram_block_elaborate_v1_00_a/hdl/vhdl/microblaze_0_bram_block_elaborate.vhd" Line 42: <ramb16bwer> remains a black-box since it has no binding entity.
+WARNING:HDLCompiler:89 - "F:/Git_projects/FPGA/MIMTLU_with_virtualTLU/hdl/elaborate/microblaze_0_bram_block_elaborate_v1_00_a/hdl/vhdl/microblaze_0_bram_block_elaborate.vhd" Line 42: <ramb16bwer> remains a black-box since it has no binding entity.
 
 =========================================================================
 *                           HDL Synthesis                               *
 =========================================================================
 
 Synthesizing Unit <system_microblaze_0_bram_block_wrapper>.
-    Related source file is "M:\Git_projects\FPGA\MIMTLU_with_virtualTLU\hdl\system_microblaze_0_bram_block_wrapper.vhd".
+    Related source file is "F:\Git_projects\FPGA\MIMTLU_with_virtualTLU\hdl\system_microblaze_0_bram_block_wrapper.vhd".
     Set property "KEEP_HIERARCHY = YES".
     Summary:
 	no macro.
 Unit <system_microblaze_0_bram_block_wrapper> synthesized.
 
 Synthesizing Unit <microblaze_0_bram_block_elaborate>.
-    Related source file is "M:/Git_projects/FPGA/MIMTLU_with_virtualTLU/hdl/elaborate/microblaze_0_bram_block_elaborate_v1_00_a/hdl/vhdl/microblaze_0_bram_block_elaborate.vhd".
+    Related source file is "F:/Git_projects/FPGA/MIMTLU_with_virtualTLU/hdl/elaborate/microblaze_0_bram_block_elaborate_v1_00_a/hdl/vhdl/microblaze_0_bram_block_elaborate.vhd".
         C_MEMSIZE = 8192
         C_PORT_DWIDTH = 32
         C_PORT_AWIDTH = 32
@@ -105,14 +105,14 @@ WARNING:Xst:647 - Input <BRAM_Addr_A<0:18>> is never used. This port will be pre
 WARNING:Xst:647 - Input <BRAM_Addr_A<30:31>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
 WARNING:Xst:647 - Input <BRAM_Addr_B<0:18>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
 WARNING:Xst:647 - Input <BRAM_Addr_B<30:31>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
-INFO:Xst:3210 - "M:/Git_projects/FPGA/MIMTLU_with_virtualTLU/hdl/elaborate/microblaze_0_bram_block_elaborate_v1_00_a/hdl/vhdl/microblaze_0_bram_block_elaborate.vhd" line 198: Output port <DOPA> of the instance <ramb16bwer_0> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "M:/Git_projects/FPGA/MIMTLU_with_virtualTLU/hdl/elaborate/microblaze_0_bram_block_elaborate_v1_00_a/hdl/vhdl/microblaze_0_bram_block_elaborate.vhd" line 198: Output port <DOPB> of the instance <ramb16bwer_0> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "M:/Git_projects/FPGA/MIMTLU_with_virtualTLU/hdl/elaborate/microblaze_0_bram_block_elaborate_v1_00_a/hdl/vhdl/microblaze_0_bram_block_elaborate.vhd" line 227: Output port <DOPA> of the instance <ramb16bwer_1> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "M:/Git_projects/FPGA/MIMTLU_with_virtualTLU/hdl/elaborate/microblaze_0_bram_block_elaborate_v1_00_a/hdl/vhdl/microblaze_0_bram_block_elaborate.vhd" line 227: Output port <DOPB> of the instance <ramb16bwer_1> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "M:/Git_projects/FPGA/MIMTLU_with_virtualTLU/hdl/elaborate/microblaze_0_bram_block_elaborate_v1_00_a/hdl/vhdl/microblaze_0_bram_block_elaborate.vhd" line 256: Output port <DOPA> of the instance <ramb16bwer_2> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "M:/Git_projects/FPGA/MIMTLU_with_virtualTLU/hdl/elaborate/microblaze_0_bram_block_elaborate_v1_00_a/hdl/vhdl/microblaze_0_bram_block_elaborate.vhd" line 256: Output port <DOPB> of the instance <ramb16bwer_2> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "M:/Git_projects/FPGA/MIMTLU_with_virtualTLU/hdl/elaborate/microblaze_0_bram_block_elaborate_v1_00_a/hdl/vhdl/microblaze_0_bram_block_elaborate.vhd" line 285: Output port <DOPA> of the instance <ramb16bwer_3> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "M:/Git_projects/FPGA/MIMTLU_with_virtualTLU/hdl/elaborate/microblaze_0_bram_block_elaborate_v1_00_a/hdl/vhdl/microblaze_0_bram_block_elaborate.vhd" line 285: Output port <DOPB> of the instance <ramb16bwer_3> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "F:/Git_projects/FPGA/MIMTLU_with_virtualTLU/hdl/elaborate/microblaze_0_bram_block_elaborate_v1_00_a/hdl/vhdl/microblaze_0_bram_block_elaborate.vhd" line 198: Output port <DOPA> of the instance <ramb16bwer_0> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "F:/Git_projects/FPGA/MIMTLU_with_virtualTLU/hdl/elaborate/microblaze_0_bram_block_elaborate_v1_00_a/hdl/vhdl/microblaze_0_bram_block_elaborate.vhd" line 198: Output port <DOPB> of the instance <ramb16bwer_0> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "F:/Git_projects/FPGA/MIMTLU_with_virtualTLU/hdl/elaborate/microblaze_0_bram_block_elaborate_v1_00_a/hdl/vhdl/microblaze_0_bram_block_elaborate.vhd" line 227: Output port <DOPA> of the instance <ramb16bwer_1> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "F:/Git_projects/FPGA/MIMTLU_with_virtualTLU/hdl/elaborate/microblaze_0_bram_block_elaborate_v1_00_a/hdl/vhdl/microblaze_0_bram_block_elaborate.vhd" line 227: Output port <DOPB> of the instance <ramb16bwer_1> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "F:/Git_projects/FPGA/MIMTLU_with_virtualTLU/hdl/elaborate/microblaze_0_bram_block_elaborate_v1_00_a/hdl/vhdl/microblaze_0_bram_block_elaborate.vhd" line 256: Output port <DOPA> of the instance <ramb16bwer_2> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "F:/Git_projects/FPGA/MIMTLU_with_virtualTLU/hdl/elaborate/microblaze_0_bram_block_elaborate_v1_00_a/hdl/vhdl/microblaze_0_bram_block_elaborate.vhd" line 256: Output port <DOPB> of the instance <ramb16bwer_2> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "F:/Git_projects/FPGA/MIMTLU_with_virtualTLU/hdl/elaborate/microblaze_0_bram_block_elaborate_v1_00_a/hdl/vhdl/microblaze_0_bram_block_elaborate.vhd" line 285: Output port <DOPA> of the instance <ramb16bwer_3> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "F:/Git_projects/FPGA/MIMTLU_with_virtualTLU/hdl/elaborate/microblaze_0_bram_block_elaborate_v1_00_a/hdl/vhdl/microblaze_0_bram_block_elaborate.vhd" line 285: Output port <DOPB> of the instance <ramb16bwer_3> is unconnected or connected to loadless signal.
     Summary:
 	no macro.
 Unit <microblaze_0_bram_block_elaborate> synthesized.
@@ -328,12 +328,12 @@ Cross Clock Domains Report:
 =========================================================================
 
 
-Total REAL time to Xst completion: 5.00 secs
-Total CPU time to Xst completion: 5.50 secs
+Total REAL time to Xst completion: 6.00 secs
+Total CPU time to Xst completion: 6.04 secs
  
 --> 
 
-Total memory usage is 262368 kilobytes
+Total memory usage is 266880 kilobytes
 
 Number of errors   :    0 (   0 filtered)
 Number of warnings :    5 (   0 filtered)

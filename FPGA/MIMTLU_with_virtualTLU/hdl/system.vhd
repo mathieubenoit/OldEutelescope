@@ -2550,7 +2550,6 @@ architecture STRUCTURE of system is
   signal microblaze_0_interrupt_Interrupt_Address : std_logic_vector(0 to 31);
   signal mimtlu_0_BUSY_COPY : std_logic;
   signal mimtlu_0_BUSY_DUT : std_logic;
-  signal mimtlu_0_CLOCK_Y3 : std_logic;
   signal mimtlu_0_DATA_ITR : std_logic;
   signal mimtlu_0_TRIGGER_COPY : std_logic;
   signal mimtlu_0_TRIGGER_DUT : std_logic;
@@ -2606,7 +2605,6 @@ begin
   mimtlu_0_TRIGGER_DUT_pin <= mimtlu_0_TRIGGER_DUT;
   mimtlu_0_TRIGGER_COPY_pin <= mimtlu_0_TRIGGER_COPY;
   mimtlu_0_BUSY_COPY_pin <= mimtlu_0_BUSY_COPY;
-  mimtlu_0_CLOCK_Y3 <= mimtlu_0_CLOCK_Y3_pin;
   net_mimtlu_0_TEST_pin <= mimtlu_0_TEST_pin;
   axi4lite_0_M_BID(0 downto 0) <= B"0";
   axi4lite_0_M_BID(1 downto 1) <= B"0";
@@ -4863,7 +4861,7 @@ begin
 
   mimtlu_0 : system_mimtlu_0_wrapper
     port map (
-      CLOCK_Y3 => mimtlu_0_CLOCK_Y3,
+      CLOCK_Y3 => pgassign2(7),
       USER_CLOCK => net_gnd0,
       TRIGGER_DUT => mimtlu_0_TRIGGER_DUT,
       TRIGGER_COPY => mimtlu_0_TRIGGER_COPY,

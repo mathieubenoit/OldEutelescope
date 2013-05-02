@@ -1,10 +1,10 @@
 Release 14.4 - xst P.49d (nt64)
 Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.
---> Parameter TMPDIR set to M:\Git_projects\FPGA\MIMTLU_with_virtualTLU\synthesis\xst_temp_dir\
+--> Parameter TMPDIR set to F:\Git_projects\FPGA\MIMTLU_with_virtualTLU\synthesis\xst_temp_dir\
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.10 secs
+Total CPU time to Xst completion: 0.11 secs
  
 --> 
 TABLE OF CONTENTS
@@ -35,7 +35,7 @@ TABLE OF CONTENTS
 ---- Source Parameters
 Input Format                       : MIXED
 Input File Name                    : "system_microblaze_0_intc_wrapper_xst.prj"
-Verilog Include Directory          : {"M:\Git_projects\FPGA\MIMTLU_with_virtualTLU\pcores\" "C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxBFMinterface\pcores\" "C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\" }
+Verilog Include Directory          : {"F:\Git_projects\FPGA\MIMTLU_with_virtualTLU\pcores\" "C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxBFMinterface\pcores\" "C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\" }
 
 ---- Target Parameters
 Target Device                      : xc6slx9csg324-2
@@ -445,7 +445,7 @@ Parsing architecture <imp> of entity <intc_core>.
 Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/axi_intc_v1_03_a/hdl/vhdl/axi_intc.vhd" into library axi_intc_v1_03_a
 Parsing entity <axi_intc>.
 Parsing architecture <imp> of entity <axi_intc>.
-Parsing VHDL file "M:\Git_projects\FPGA\MIMTLU_with_virtualTLU\hdl\system_microblaze_0_intc_wrapper.vhd" into library work
+Parsing VHDL file "F:\Git_projects\FPGA\MIMTLU_with_virtualTLU\hdl\system_microblaze_0_intc_wrapper.vhd" into library work
 Parsing entity <system_microblaze_0_intc_wrapper>.
 Parsing architecture <STRUCTURE> of entity <system_microblaze_0_intc_wrapper>.
 
@@ -508,7 +508,7 @@ INFO:HDLCompiler:679 - "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores
 =========================================================================
 
 Synthesizing Unit <system_microblaze_0_intc_wrapper>.
-    Related source file is "M:\Git_projects\FPGA\MIMTLU_with_virtualTLU\hdl\system_microblaze_0_intc_wrapper.vhd".
+    Related source file is "F:\Git_projects\FPGA\MIMTLU_with_virtualTLU\hdl\system_microblaze_0_intc_wrapper.vhd".
     Summary:
 	no macro.
 Unit <system_microblaze_0_intc_wrapper> synthesized.
@@ -1243,12 +1243,12 @@ S_AXI_ACLK     |    4.029|         |         |         |
 =========================================================================
 
 
-Total REAL time to Xst completion: 9.00 secs
-Total CPU time to Xst completion: 8.97 secs
+Total REAL time to Xst completion: 10.00 secs
+Total CPU time to Xst completion: 9.71 secs
  
 --> 
 
-Total memory usage is 279840 kilobytes
+Total memory usage is 285312 kilobytes
 
 Number of errors   :    0 (   0 filtered)
 Number of warnings :   28 (   0 filtered)

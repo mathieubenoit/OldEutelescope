@@ -1,10 +1,10 @@
 Release 14.4 - xst P.49d (nt64)
 Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.
---> Parameter TMPDIR set to M:\Git_projects\FPGA\MIMTLU_with_virtualTLU\synthesis\xst_temp_dir\
+--> Parameter TMPDIR set to F:\Git_projects\FPGA\MIMTLU_with_virtualTLU\synthesis\xst_temp_dir\
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.10 secs
+Total CPU time to Xst completion: 0.11 secs
  
 --> 
 TABLE OF CONTENTS
@@ -35,7 +35,7 @@ TABLE OF CONTENTS
 ---- Source Parameters
 Input Format                       : MIXED
 Input File Name                    : "system_axi4_0_wrapper_xst.prj"
-Verilog Include Directory          : {"M:\Git_projects\FPGA\MIMTLU_with_virtualTLU\pcores\" "C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxBFMinterface\pcores\" "C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\" }
+Verilog Include Directory          : {"F:\Git_projects\FPGA\MIMTLU_with_virtualTLU\pcores\" "C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxBFMinterface\pcores\" "C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\" }
 
 ---- Target Parameters
 Target Device                      : xc6slx9csg324-2
@@ -183,7 +183,7 @@ Analyzing Verilog file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores
 Parsing module <ict106_w_upsizer>.
 Analyzing Verilog file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/axi_interconnect_v1_06_a/hdl/verilog/axi_interconnect.v" into library axi_interconnect_v1_06_a
 Parsing module <axi_interconnect>.
-Analyzing Verilog file "M:\Git_projects\FPGA\MIMTLU_with_virtualTLU\hdl\system_axi4_0_wrapper.v" into library work
+Analyzing Verilog file "F:\Git_projects\FPGA\MIMTLU_with_virtualTLU\hdl\system_axi4_0_wrapper.v" into library work
 Parsing module <system_axi4_0_wrapper>.
 
 =========================================================================
@@ -453,7 +453,7 @@ Elaborating module <ict106_mux_enc(C_FAMILY="spartan6",C_RATIO=2,C_SEL_WIDTH=32'
 =========================================================================
 
 Synthesizing Unit <system_axi4_0_wrapper>.
-    Related source file is "M:\Git_projects\FPGA\MIMTLU_with_virtualTLU\hdl\system_axi4_0_wrapper.v".
+    Related source file is "F:\Git_projects\FPGA\MIMTLU_with_virtualTLU\hdl\system_axi4_0_wrapper.v".
     Summary:
 	no macro.
 Unit <system_axi4_0_wrapper> synthesized.
@@ -2837,12 +2837,12 @@ axi4_0/si_converter_bank/gen_conv_slot[1].clock_conv_inst/S_AXI_ACLK|    2.216| 
 =========================================================================
 
 
-Total REAL time to Xst completion: 12.00 secs
-Total CPU time to Xst completion: 12.11 secs
+Total REAL time to Xst completion: 13.00 secs
+Total CPU time to Xst completion: 12.70 secs
  
 --> 
 
-Total memory usage is 286048 kilobytes
+Total memory usage is 272640 kilobytes
 
 Number of errors   :    0 (   0 filtered)
 Number of warnings :  259 (   0 filtered)

@@ -1,5 +1,5 @@
 ISim log file
-Running: M:\Git_projects\FPGA\MIMTLU_with_virtualTLU\pcores\mimtlu_v1_00_a\devl\projnav\tb_isim_beh.exe -intstyle ise -gui -tclbatch isim.cmd -wdb M:/Git_projects/FPGA/MIMTLU_with_virtualTLU/pcores/mimtlu_v1_00_a/devl/projnav/tb_isim_beh.wdb 
+Running: F:\Git_projects\FPGA\MIMTLU_with_virtualTLU\pcores\mimtlu_v1_00_a\devl\projnav\tb_isim_beh.exe -intstyle ise -gui -tclbatch isim.cmd -wdb F:/Git_projects/FPGA/MIMTLU_with_virtualTLU/pcores/mimtlu_v1_00_a/devl/projnav/tb_isim_beh.wdb 
 ISim P.49d (signature 0x7708f090)
 This is a Full version of ISim.
 Time resolution is 1 ps
@@ -10,11 +10,8 @@ Simulator is doing circuit initialization process.
 Finished circuit initialization process.
 # run 1.00ms
 # run 1.00ms
-# run 1.00ms
-# run 1.00ms
-# run 1.00ms
-# run 1.00ms
 # restart
 # run 1.00ms
 Simulator is doing circuit initialization process.
 Finished circuit initialization process.
+# run 1.00ms

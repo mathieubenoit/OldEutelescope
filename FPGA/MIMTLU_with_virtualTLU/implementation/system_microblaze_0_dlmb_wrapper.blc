@@ -6,7 +6,7 @@ xc6slx9csg324-2 -intstyle silent -i -sd .. system_microblaze_0_dlmb_wrapper.ngc
 ../system_microblaze_0_dlmb_wrapper
 
 Reading NGO file
-"M:/Git_projects/FPGA/MIMTLU_with_virtualTLU/implementation/microblaze_0_dlmb_wr
+"F:/Git_projects/FPGA/MIMTLU_with_virtualTLU/implementation/microblaze_0_dlmb_wr
 apper/system_microblaze_0_dlmb_wrapper.ngc" ...
 
 Partition Implementation Status
@@ -20,7 +20,7 @@ NGCBUILD Design Results Summary:
   Number of errors:     0
   Number of warnings:   0
 
-Total memory usage is 153228 kilobytes
+Total memory usage is 156808 kilobytes
 
 Writing NGC file "../system_microblaze_0_dlmb_wrapper.ngc" ...
 Total REAL time to NGCBUILD completion:  3 sec

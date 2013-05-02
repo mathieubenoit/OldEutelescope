@@ -1,10 +1,10 @@
 Release 14.4 - xst P.49d (nt64)
 Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.
---> Parameter TMPDIR set to M:\Git_projects\FPGA\MIMTLU_with_virtualTLU\synthesis\xst_temp_dir\
+--> Parameter TMPDIR set to F:\Git_projects\FPGA\MIMTLU_with_virtualTLU\synthesis\xst_temp_dir\
 
 
-Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.10 secs
+Total REAL time to Xst completion: 1.00 secs
+Total CPU time to Xst completion: 0.11 secs
  
 --> 
 TABLE OF CONTENTS
@@ -35,7 +35,7 @@ TABLE OF CONTENTS
 ---- Source Parameters
 Input Format                       : MIXED
 Input File Name                    : "system_proc_sys_reset_0_wrapper_xst.prj"
-Verilog Include Directory          : {"M:\Git_projects\FPGA\MIMTLU_with_virtualTLU\pcores\" "C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxBFMinterface\pcores\" "C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\" }
+Verilog Include Directory          : {"F:\Git_projects\FPGA\MIMTLU_with_virtualTLU\pcores\" "C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxBFMinterface\pcores\" "C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\" }
 
 ---- Target Parameters
 Target Device                      : xc6slx9csg324-2
@@ -74,7 +74,7 @@ Parsing architecture <imp> of entity <sequence>.
 Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_sys_reset_v3_00_a/hdl/vhdl/proc_sys_reset.vhd" into library proc_sys_reset_v3_00_a
 Parsing entity <proc_sys_reset>.
 Parsing architecture <imp> of entity <proc_sys_reset>.
-Parsing VHDL file "M:\Git_projects\FPGA\MIMTLU_with_virtualTLU\hdl\system_proc_sys_reset_0_wrapper.vhd" into library work
+Parsing VHDL file "F:\Git_projects\FPGA\MIMTLU_with_virtualTLU\hdl\system_proc_sys_reset_0_wrapper.vhd" into library work
 Parsing entity <system_proc_sys_reset_0_wrapper>.
 Parsing architecture <STRUCTURE> of entity <system_proc_sys_reset_0_wrapper>.
 
@@ -100,7 +100,7 @@ Elaborating entity <upcnt_n> (architecture <imp>) with generics from library <pr
 =========================================================================
 
 Synthesizing Unit <system_proc_sys_reset_0_wrapper>.
-    Related source file is "M:\Git_projects\FPGA\MIMTLU_with_virtualTLU\hdl\system_proc_sys_reset_0_wrapper.vhd".
+    Related source file is "F:\Git_projects\FPGA\MIMTLU_with_virtualTLU\hdl\system_proc_sys_reset_0_wrapper.vhd".
     Summary:
 	no macro.
 Unit <system_proc_sys_reset_0_wrapper> synthesized.
@@ -476,12 +476,12 @@ Slowest_sync_clk|    3.120|         |         |         |
 =========================================================================
 
 
-Total REAL time to Xst completion: 6.00 secs
-Total CPU time to Xst completion: 5.88 secs
+Total REAL time to Xst completion: 7.00 secs
+Total CPU time to Xst completion: 6.60 secs
  
 --> 
 
-Total memory usage is 263968 kilobytes
+Total memory usage is 266944 kilobytes
 
 Number of errors   :    0 (   0 filtered)
 Number of warnings :    1 (   0 filtered)

@@ -4,13 +4,13 @@ Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.11 secs
+Total CPU time to Xst completion: 0.13 secs
  
 --> Parameter xsthdpdir set to xst
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.11 secs
+Total CPU time to Xst completion: 0.13 secs
  
 --> Reading design: axi_lite_ipif.prj
 
@@ -105,28 +105,28 @@ Slice Utilization Ratio Delta      : 5
 =========================================================================
 *                          HDL Parsing                                  *
 =========================================================================
-Parsing VHDL file "C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\proc_common_v3_00_a\hdl\vhdl\proc_common_pkg.vhd" into library proc_common_v3_00_a
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/proc_common_pkg.vhd" into library proc_common_v3_00_a
 Parsing package <proc_common_pkg>.
 Parsing package body <proc_common_pkg>.
-Parsing VHDL file "C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\proc_common_v3_00_a\hdl\vhdl\family_support.vhd" into library proc_common_v3_00_a
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/family_support.vhd" into library proc_common_v3_00_a
 Parsing package <family_support>.
 Parsing package body <family_support>.
-Parsing VHDL file "C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\proc_common_v3_00_a\hdl\vhdl\pselect_f.vhd" into library proc_common_v3_00_a
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/pselect_f.vhd" into library proc_common_v3_00_a
 Parsing entity <pselect_f>.
 Parsing architecture <imp> of entity <pselect_f>.
-Parsing VHDL file "C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\proc_common_v3_00_a\hdl\vhdl\ipif_pkg.vhd" into library proc_common_v3_00_a
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/ipif_pkg.vhd" into library proc_common_v3_00_a
 Parsing package <ipif_pkg>.
 Parsing package body <ipif_pkg>.
-Parsing VHDL file "C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\proc_common_v3_00_a\hdl\vhdl\counter_f.vhd" into library proc_common_v3_00_a
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/counter_f.vhd" into library proc_common_v3_00_a
 Parsing entity <counter_f>.
 Parsing architecture <imp> of entity <counter_f>.
-Parsing VHDL file "C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\axi_lite_ipif_v1_01_a\hdl\vhdl\address_decoder.vhd" into library axi_lite_ipif_v1_01_a
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/axi_lite_ipif_v1_01_a/hdl/vhdl/address_decoder.vhd" into library axi_lite_ipif_v1_01_a
 Parsing entity <address_decoder>.
 Parsing architecture <IMP> of entity <address_decoder>.
-Parsing VHDL file "C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\axi_lite_ipif_v1_01_a\hdl\vhdl\slave_attachment.vhd" into library axi_lite_ipif_v1_01_a
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/axi_lite_ipif_v1_01_a/hdl/vhdl/slave_attachment.vhd" into library axi_lite_ipif_v1_01_a
 Parsing entity <slave_attachment>.
 Parsing architecture <imp> of entity <slave_attachment>.
-Parsing VHDL file "C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\axi_lite_ipif_v1_01_a\hdl\vhdl\axi_lite_ipif.vhd" into library axi_lite_ipif_v1_01_a
+Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/axi_lite_ipif_v1_01_a/hdl/vhdl/axi_lite_ipif.vhd" into library axi_lite_ipif_v1_01_a
 Parsing entity <axi_lite_ipif>.
 Parsing architecture <imp> of entity <axi_lite_ipif>.
 
@@ -175,14 +175,14 @@ Elaborating entity <pselect_f> (architecture <imp>) with generics from library <
 Elaborating entity <pselect_f> (architecture <imp>) with generics from library <proc_common_v3_00_a>.
 
 Elaborating entity <pselect_f> (architecture <imp>) with generics from library <proc_common_v3_00_a>.
-INFO:HDLCompiler:679 - "C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\axi_lite_ipif_v1_01_a\hdl\vhdl\slave_attachment.vhd" Line 417. Case statement is complete. others clause is never selected
+INFO:HDLCompiler:679 - "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/axi_lite_ipif_v1_01_a/hdl/vhdl/slave_attachment.vhd" Line 417. Case statement is complete. others clause is never selected
 
 =========================================================================
 *                           HDL Synthesis                               *
 =========================================================================
 
 Synthesizing Unit <axi_lite_ipif>.
-    Related source file is "C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\axi_lite_ipif_v1_01_a\hdl\vhdl\axi_lite_ipif.vhd".
+    Related source file is "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/axi_lite_ipif_v1_01_a/hdl/vhdl/axi_lite_ipif.vhd".
         C_S_AXI_DATA_WIDTH = 32
         C_S_AXI_ADDR_WIDTH = 32
         C_S_AXI_MIN_SIZE = "00000000000000000000000111111111"
@@ -196,7 +196,7 @@ Synthesizing Unit <axi_lite_ipif>.
 Unit <axi_lite_ipif> synthesized.
 
 Synthesizing Unit <slave_attachment>.
-    Related source file is "C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\axi_lite_ipif_v1_01_a\hdl\vhdl\slave_attachment.vhd".
+    Related source file is "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/axi_lite_ipif_v1_01_a/hdl/vhdl/slave_attachment.vhd".
         C_ARD_ADDR_RANGE_ARRAY = ("0000000000000000000000000000000001110000000000000000000000000000","0000000000000000000000000000000001110000000000000000000011111111","0000000000000000000000000000000001110000000000000000000100000000","0000000000000000000000000000000001110000000000000000000111111111")
         C_ARD_NUM_CE_ARRAY = (4,12)
         C_IPIF_ABUS_WIDTH = 32
@@ -208,7 +208,7 @@ Synthesizing Unit <slave_attachment>.
 WARNING:Xst:647 - Input <S_AXI_AWADDR<31:9>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
 WARNING:Xst:647 - Input <S_AXI_WSTRB> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
 WARNING:Xst:647 - Input <S_AXI_ARADDR<31:9>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
-INFO:Xst:3210 - "C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\axi_lite_ipif_v1_01_a\hdl\vhdl\slave_attachment.vhd" line 341: Output port <CS_for_gaps> of the instance <I_DECODER> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/axi_lite_ipif_v1_01_a/hdl/vhdl/slave_attachment.vhd" line 341: Output port <CS_for_gaps> of the instance <I_DECODER> is unconnected or connected to loadless signal.
     Found 2-bit register for signal <state>.
     Found 2-bit register for signal <s_axi_rresp_i>.
     Found 32-bit register for signal <s_axi_rdata_i>.
@@ -240,7 +240,7 @@ INFO:Xst:3210 - "C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\axi_li
 Unit <slave_attachment> synthesized.
 
 Synthesizing Unit <address_decoder>.
-    Related source file is "C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\axi_lite_ipif_v1_01_a\hdl\vhdl\address_decoder.vhd".
+    Related source file is "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/axi_lite_ipif_v1_01_a/hdl/vhdl/address_decoder.vhd".
         C_BUS_AWIDTH = 9
         C_S_AXI_MIN_SIZE = "00000000000000000000000111111111"
         C_ARD_ADDR_RANGE_ARRAY = ("0000000000000000000000000000000001110000000000000000000000000000","0000000000000000000000000000000001110000000000000000000011111111","0000000000000000000000000000000001110000000000000000000100000000","0000000000000000000000000000000001110000000000000000000111111111")
@@ -271,7 +271,7 @@ WARNING:Xst:647 - Input <Bus_RNW> is never used. This port will be preserved and
 Unit <address_decoder> synthesized.
 
 Synthesizing Unit <pselect_f_1>.
-    Related source file is "C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\proc_common_v3_00_a\hdl\vhdl\pselect_f.vhd".
+    Related source file is "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/pselect_f.vhd".
         C_AB = 1
         C_AW = 9
         C_BAR = "000000000"
@@ -282,7 +282,7 @@ WARNING:Xst:647 - Input <A<1:8>> is never used. This port will be preserved and 
 Unit <pselect_f_1> synthesized.
 
 Synthesizing Unit <pselect_f_2>.
-    Related source file is "C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\proc_common_v3_00_a\hdl\vhdl\pselect_f.vhd".
+    Related source file is "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/pselect_f.vhd".
         C_AB = 2
         C_AW = 2
         C_BAR = "00"
@@ -292,7 +292,7 @@ Synthesizing Unit <pselect_f_2>.
 Unit <pselect_f_2> synthesized.
 
 Synthesizing Unit <pselect_f_3>.
-    Related source file is "C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\proc_common_v3_00_a\hdl\vhdl\pselect_f.vhd".
+    Related source file is "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/pselect_f.vhd".
         C_AB = 2
         C_AW = 2
         C_BAR = "01"
@@ -302,7 +302,7 @@ Synthesizing Unit <pselect_f_3>.
 Unit <pselect_f_3> synthesized.
 
 Synthesizing Unit <pselect_f_4>.
-    Related source file is "C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\proc_common_v3_00_a\hdl\vhdl\pselect_f.vhd".
+    Related source file is "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/pselect_f.vhd".
         C_AB = 2
         C_AW = 2
         C_BAR = "10"
@@ -312,7 +312,7 @@ Synthesizing Unit <pselect_f_4>.
 Unit <pselect_f_4> synthesized.
 
 Synthesizing Unit <pselect_f_5>.
-    Related source file is "C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\proc_common_v3_00_a\hdl\vhdl\pselect_f.vhd".
+    Related source file is "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/pselect_f.vhd".
         C_AB = 2
         C_AW = 2
         C_BAR = "11"
@@ -322,7 +322,7 @@ Synthesizing Unit <pselect_f_5>.
 Unit <pselect_f_5> synthesized.
 
 Synthesizing Unit <pselect_f_6>.
-    Related source file is "C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\proc_common_v3_00_a\hdl\vhdl\pselect_f.vhd".
+    Related source file is "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/pselect_f.vhd".
         C_AB = 1
         C_AW = 9
         C_BAR = "100000000"
@@ -333,7 +333,7 @@ WARNING:Xst:647 - Input <A<1:8>> is never used. This port will be preserved and 
 Unit <pselect_f_6> synthesized.
 
 Synthesizing Unit <pselect_f_7>.
-    Related source file is "C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\proc_common_v3_00_a\hdl\vhdl\pselect_f.vhd".
+    Related source file is "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/pselect_f.vhd".
         C_AB = 4
         C_AW = 4
         C_BAR = "0000"
@@ -343,7 +343,7 @@ Synthesizing Unit <pselect_f_7>.
 Unit <pselect_f_7> synthesized.
 
 Synthesizing Unit <pselect_f_8>.
-    Related source file is "C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\proc_common_v3_00_a\hdl\vhdl\pselect_f.vhd".
+    Related source file is "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/pselect_f.vhd".
         C_AB = 4
         C_AW = 4
         C_BAR = "0001"
@@ -353,7 +353,7 @@ Synthesizing Unit <pselect_f_8>.
 Unit <pselect_f_8> synthesized.
 
 Synthesizing Unit <pselect_f_9>.
-    Related source file is "C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\proc_common_v3_00_a\hdl\vhdl\pselect_f.vhd".
+    Related source file is "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/pselect_f.vhd".
         C_AB = 4
         C_AW = 4
         C_BAR = "0010"
@@ -363,7 +363,7 @@ Synthesizing Unit <pselect_f_9>.
 Unit <pselect_f_9> synthesized.
 
 Synthesizing Unit <pselect_f_10>.
-    Related source file is "C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\proc_common_v3_00_a\hdl\vhdl\pselect_f.vhd".
+    Related source file is "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/pselect_f.vhd".
         C_AB = 4
         C_AW = 4
         C_BAR = "0011"
@@ -373,7 +373,7 @@ Synthesizing Unit <pselect_f_10>.
 Unit <pselect_f_10> synthesized.
 
 Synthesizing Unit <pselect_f_11>.
-    Related source file is "C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\proc_common_v3_00_a\hdl\vhdl\pselect_f.vhd".
+    Related source file is "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/pselect_f.vhd".
         C_AB = 4
         C_AW = 4
         C_BAR = "0100"
@@ -383,7 +383,7 @@ Synthesizing Unit <pselect_f_11>.
 Unit <pselect_f_11> synthesized.
 
 Synthesizing Unit <pselect_f_12>.
-    Related source file is "C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\proc_common_v3_00_a\hdl\vhdl\pselect_f.vhd".
+    Related source file is "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/pselect_f.vhd".
         C_AB = 4
         C_AW = 4
         C_BAR = "0101"
@@ -393,7 +393,7 @@ Synthesizing Unit <pselect_f_12>.
 Unit <pselect_f_12> synthesized.
 
 Synthesizing Unit <pselect_f_13>.
-    Related source file is "C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\proc_common_v3_00_a\hdl\vhdl\pselect_f.vhd".
+    Related source file is "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/pselect_f.vhd".
         C_AB = 4
         C_AW = 4
         C_BAR = "0110"
@@ -403,7 +403,7 @@ Synthesizing Unit <pselect_f_13>.
 Unit <pselect_f_13> synthesized.
 
 Synthesizing Unit <pselect_f_14>.
-    Related source file is "C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\proc_common_v3_00_a\hdl\vhdl\pselect_f.vhd".
+    Related source file is "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/pselect_f.vhd".
         C_AB = 4
         C_AW = 4
         C_BAR = "0111"
@@ -413,7 +413,7 @@ Synthesizing Unit <pselect_f_14>.
 Unit <pselect_f_14> synthesized.
 
 Synthesizing Unit <pselect_f_15>.
-    Related source file is "C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\proc_common_v3_00_a\hdl\vhdl\pselect_f.vhd".
+    Related source file is "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/pselect_f.vhd".
         C_AB = 4
         C_AW = 4
         C_BAR = "1000"
@@ -423,7 +423,7 @@ Synthesizing Unit <pselect_f_15>.
 Unit <pselect_f_15> synthesized.
 
 Synthesizing Unit <pselect_f_16>.
-    Related source file is "C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\proc_common_v3_00_a\hdl\vhdl\pselect_f.vhd".
+    Related source file is "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/pselect_f.vhd".
         C_AB = 4
         C_AW = 4
         C_BAR = "1001"
@@ -433,7 +433,7 @@ Synthesizing Unit <pselect_f_16>.
 Unit <pselect_f_16> synthesized.
 
 Synthesizing Unit <pselect_f_17>.
-    Related source file is "C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\proc_common_v3_00_a\hdl\vhdl\pselect_f.vhd".
+    Related source file is "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/pselect_f.vhd".
         C_AB = 4
         C_AW = 4
         C_BAR = "1010"
@@ -443,7 +443,7 @@ Synthesizing Unit <pselect_f_17>.
 Unit <pselect_f_17> synthesized.
 
 Synthesizing Unit <pselect_f_18>.
-    Related source file is "C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\proc_common_v3_00_a\hdl\vhdl\pselect_f.vhd".
+    Related source file is "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/pselect_f.vhd".
         C_AB = 4
         C_AW = 4
         C_BAR = "1011"
@@ -740,12 +740,12 @@ S_AXI_ACLK     |    4.218|         |         |         |
 =========================================================================
 
 
-Total REAL time to Xst completion: 6.00 secs
-Total CPU time to Xst completion: 6.38 secs
+Total REAL time to Xst completion: 8.00 secs
+Total CPU time to Xst completion: 7.94 secs
  
 --> 
 
-Total memory usage is 264216 kilobytes
+Total memory usage is 263616 kilobytes
 
 Number of errors   :    0 (   0 filtered)
 Number of warnings :   11 (   0 filtered)
