@@ -297,6 +297,9 @@ implementation netlist
 IPNAME:axi_gpio INSTANCE:dip_switches_4bits -
 M:\Git_projects\FPGA\MIMTLU_StandAlone\system.mhs line 318 - Copying cache
 implementation netlist
+IPNAME:mimtlu INSTANCE:mimtlu_0 -
+M:\Git_projects\FPGA\MIMTLU_StandAlone\system.mhs line 332 - Copying cache
+implementation netlist
 
 Elaborating instances ...
 IPNAME:bram_block INSTANCE:microblaze_0_bram_block -
@@ -313,7 +316,7 @@ Inserting wrapper level ...
 Completion time: 1.00 seconds
 
 Constructing platform-level connectivity ...
-Completion time: 1.00 seconds
+Completion time: 0.00 seconds
 
 Writing (top-level) BMM ...
 
@@ -340,4 +343,4 @@ INFO:EDK:3509 - NCF files should not be modified as they will be regenerated.
 
 Rebuilding cache ...
 
-Total run time: 30.00 seconds
+Total run time: 38.00 seconds

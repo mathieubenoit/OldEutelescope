@@ -122,6 +122,7 @@ C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl
 C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/axi_lite_ipif_v1_01_a/hdl/vhdl/address_decoder.vhd \
 C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/axi_lite_ipif_v1_01_a/hdl/vhdl/slave_attachment.vhd \
 C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/axi_lite_ipif_v1_01_a/hdl/vhdl/axi_lite_ipif.vhd \
+pcores/mimtlu_v1_00_a/hdl/vhdl/dummy_diffpair.vhd \
 pcores/mimtlu_v1_00_a/hdl/vhdl/clk_divider.vhd \
 pcores/mimtlu_v1_00_a/hdl/vhdl/MIMTLU_core.vhd \
 pcores/mimtlu_v1_00_a/hdl/vhdl/TLU_SIMULATOR.vhd \

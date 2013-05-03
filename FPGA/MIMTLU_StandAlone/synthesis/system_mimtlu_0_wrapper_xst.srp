@@ -4,7 +4,7 @@ Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.11 secs
+Total CPU time to Xst completion: 0.10 secs
  
 --> 
 TABLE OF CONTENTS
@@ -1229,11 +1229,11 @@ mimtlu_0/USER_LOGIC_I/MIMTLU_ent/CLK_DIV/temporal|    5.122|         |         |
 
 
 Total REAL time to Xst completion: 9.00 secs
-Total CPU time to Xst completion: 8.39 secs
+Total CPU time to Xst completion: 8.98 secs
  
 --> 
 
-Total memory usage is 283016 kilobytes
+Total memory usage is 278988 kilobytes
 
 Number of errors   :    0 (   0 filtered)
 Number of warnings :   39 (   0 filtered)
