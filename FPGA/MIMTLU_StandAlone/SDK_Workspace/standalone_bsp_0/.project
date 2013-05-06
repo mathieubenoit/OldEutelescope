@@ -3,7 +3,7 @@
 	<name>standalone_bsp_0</name>
 	<comment></comment>
 	<projects>
-		<project>MIMTLU_with_virtualTLU_hw_platform</project>
+		<project>MIMTLU_StandAlone_hw_platform</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

@@ -8,7 +8,28 @@
 <!-- Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.    -->
 
 <messages>
-<msg type="info" file="ProjectMgmt" num="1061" ><arg fmt="%s" index="1">Parsing VHDL file &quot;M:/Git_projects/FPGA/MIMTLU_StandAlone/pcores/mimtlu_v1_00_a/hdl/vhdl/TOP.vhd&quot; into library mimtlu_v1_00_a</arg>
+<msg type="info" file="ProjectMgmt" num="1061" ><arg fmt="%s" index="1">Parsing VHDL file &quot;F:/Git_projects/FPGA/MIMTLU_StandAlone/pcores/mimtlu_v1_00_a/hdl/vhdl/MIMTLU_core.vhd&quot; into library work</arg>
+</msg>
+
+<msg type="error" file="ProjectMgmt" num="806" >&quot;<arg fmt="%s" index="1">F:/Git_projects/FPGA/MIMTLU_StandAlone/pcores/mimtlu_v1_00_a/hdl/vhdl/MIMTLU_core.vhd</arg>&quot; Line <arg fmt="%d" index="2">103</arg>. <arg fmt="%s" index="3">Syntax error near &quot;process&quot;.</arg>
+</msg>
+
+<msg type="error" file="ProjectMgmt" num="806" >&quot;<arg fmt="%s" index="1">F:/Git_projects/FPGA/MIMTLU_StandAlone/pcores/mimtlu_v1_00_a/hdl/vhdl/MIMTLU_core.vhd</arg>&quot; Line <arg fmt="%d" index="2">108</arg>. <arg fmt="%s" index="3">Syntax error near &quot;begin&quot;.</arg>
+</msg>
+
+<msg type="error" file="ProjectMgmt" num="806" >&quot;<arg fmt="%s" index="1">F:/Git_projects/FPGA/MIMTLU_StandAlone/pcores/mimtlu_v1_00_a/hdl/vhdl/MIMTLU_core.vhd</arg>&quot; Line <arg fmt="%d" index="2">147</arg>. <arg fmt="%s" index="3">Syntax error near &quot;process&quot;.</arg>
+</msg>
+
+<msg type="error" file="ProjectMgmt" num="806" >&quot;<arg fmt="%s" index="1">F:/Git_projects/FPGA/MIMTLU_StandAlone/pcores/mimtlu_v1_00_a/hdl/vhdl/MIMTLU_core.vhd</arg>&quot; Line <arg fmt="%d" index="2">149</arg>. <arg fmt="%s" index="3">Syntax error near &quot;process&quot;.</arg>
+</msg>
+
+<msg type="error" file="ProjectMgmt" num="806" >&quot;<arg fmt="%s" index="1">F:/Git_projects/FPGA/MIMTLU_StandAlone/pcores/mimtlu_v1_00_a/hdl/vhdl/MIMTLU_core.vhd</arg>&quot; Line <arg fmt="%d" index="2">151</arg>. <arg fmt="%s" index="3">Syntax error near &quot;begin&quot;.</arg>
+</msg>
+
+<msg type="error" file="ProjectMgmt" num="806" >&quot;<arg fmt="%s" index="1">F:/Git_projects/FPGA/MIMTLU_StandAlone/pcores/mimtlu_v1_00_a/hdl/vhdl/MIMTLU_core.vhd</arg>&quot; Line <arg fmt="%d" index="2">195</arg>. <arg fmt="%s" index="3">Syntax error near &quot;process&quot;.</arg>
+</msg>
+
+<msg type="error" file="ProjectMgmt" num="806" >&quot;<arg fmt="%s" index="1">F:/Git_projects/FPGA/MIMTLU_StandAlone/pcores/mimtlu_v1_00_a/hdl/vhdl/MIMTLU_core.vhd</arg>&quot; Line <arg fmt="%d" index="2">216</arg>. <arg fmt="%s" index="3">Syntax error near &quot;Behavioral&quot;.</arg>
 </msg>
 
 </messages>

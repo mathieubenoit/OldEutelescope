@@ -16,7 +16,7 @@ WARNING:EDK:4181 - PORT: Processor_ack_out, CONNECTOR:
    C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\axi_intc_v1_03_a\dat
    a\axi_intc_v2_1_0.mpd line 131 
 WARNING:EDK:4181 - PORT: CLKOUT3, CONNECTOR: clock_generator_0_CLKOUT3 -
-   floating connection - M:\Git_projects\FPGA\MIMTLU_StandAlone\system.mhs line
+   floating connection - F:\Git_projects\FPGA\MIMTLU_StandAlone\system.mhs line
    188 
 
 Performing Clock DRCs...

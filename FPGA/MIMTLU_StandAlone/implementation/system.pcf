@@ -1,5 +1,5 @@
 //! **************************************************************************
-// Written by: Map P.49d on Thu May 02 15:52:59 2013
+// Written by: Map P.49d on Fri May 03 17:07:40 2013
 //! **************************************************************************
 
 SCHEMATIC START;
@@ -1500,6 +1500,38 @@ TIMEGRP S_AXI_ACLK_Ethernet_MAC = PIN
         "mimtlu_0/mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i_14"
         BEL
         "mimtlu_0/mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i_15"
+        BEL
+        "mimtlu_0/mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i_16"
+        BEL
+        "mimtlu_0/mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i_17"
+        BEL
+        "mimtlu_0/mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i_18"
+        BEL
+        "mimtlu_0/mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i_19"
+        BEL
+        "mimtlu_0/mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i_20"
+        BEL
+        "mimtlu_0/mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i_21"
+        BEL
+        "mimtlu_0/mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i_22"
+        BEL
+        "mimtlu_0/mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i_23"
+        BEL
+        "mimtlu_0/mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i_24"
+        BEL
+        "mimtlu_0/mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i_25"
+        BEL
+        "mimtlu_0/mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i_26"
+        BEL
+        "mimtlu_0/mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i_27"
+        BEL
+        "mimtlu_0/mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i_28"
+        BEL
+        "mimtlu_0/mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i_29"
+        BEL
+        "mimtlu_0/mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i_30"
+        BEL
+        "mimtlu_0/mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i_31"
         BEL
         "mimtlu_0/mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/state_FSM_FFd2"
         BEL
@@ -7804,6 +7836,38 @@ TIMEGRP clock_generator_0_clock_generator_0_SIG_PLL0_CLKOUT2 = PIN
         "mimtlu_0/mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i_14"
         BEL
         "mimtlu_0/mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i_15"
+        BEL
+        "mimtlu_0/mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i_16"
+        BEL
+        "mimtlu_0/mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i_17"
+        BEL
+        "mimtlu_0/mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i_18"
+        BEL
+        "mimtlu_0/mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i_19"
+        BEL
+        "mimtlu_0/mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i_20"
+        BEL
+        "mimtlu_0/mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i_21"
+        BEL
+        "mimtlu_0/mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i_22"
+        BEL
+        "mimtlu_0/mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i_23"
+        BEL
+        "mimtlu_0/mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i_24"
+        BEL
+        "mimtlu_0/mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i_25"
+        BEL
+        "mimtlu_0/mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i_26"
+        BEL
+        "mimtlu_0/mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i_27"
+        BEL
+        "mimtlu_0/mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i_28"
+        BEL
+        "mimtlu_0/mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i_29"
+        BEL
+        "mimtlu_0/mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i_30"
+        BEL
+        "mimtlu_0/mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i_31"
         BEL
         "mimtlu_0/mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/state_FSM_FFd2"
         BEL

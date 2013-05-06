@@ -5,7 +5,7 @@
      behavior or data corruption.  It is strongly advised that
      users do not edit the contents of this file. -->
 <messages>
-<msg type="warning" file="ConstraintSystem" num="0" >The Offset constraint &lt;OFFSET = IN 6.000 BEFORE  &quot;PHY_rx_clk&quot;;&gt; [M:/Git_projects/FPGA/MIMTLU_StandAlone/implementation/system_ethernet_mac_wrapper.ncf(4)], is specified without a duration.  This will result in a lack of hold time checks in timing reports.  If hold time checks are desired a duration value should be specified following the &apos;VALID&apos; keyword.
+<msg type="warning" file="ConstraintSystem" num="0" >The Offset constraint &lt;OFFSET = IN 6.000 BEFORE  &quot;PHY_rx_clk&quot;;&gt; [F:/Git_projects/FPGA/MIMTLU_StandAlone/implementation/system_ethernet_mac_wrapper.ncf(4)], is specified without a duration.  This will result in a lack of hold time checks in timing reports.  If hold time checks are desired a duration value should be specified following the &apos;VALID&apos; keyword.
 </msg>
 
 <msg type="warning" file="ConstraintSystem" num="135" delta="old" >Constraint <arg fmt="%s" index="1">&lt;INST /system/EXPANDED/system/axi4_0/axi4_0\/si_converter_bank\/gen_conv_slot[0].clock_conv_inst\/interconnect_aresetn_resync&lt;2&gt;_inv1_INV_0 TNM = FFS:axi4_0_reset_resync&gt;</arg>: No instances of type <arg fmt="%s" index="2">FFS</arg> were found under block &quot;<arg fmt="%s" index="3">axi4_0/axi4_0/si_converter_bank/gen_conv_slot[0].clock_conv_inst/interconnect_aresetn_resync&lt;2&gt;_inv1_INV_0</arg>&quot; (type=<arg fmt="%s" index="4">INV</arg>).

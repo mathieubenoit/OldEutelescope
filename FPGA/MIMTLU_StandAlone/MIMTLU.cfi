@@ -1,0 +1,11 @@
+# PROMGEN: Xilinx Prom Generator P.49d
+# Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.
+
+SOFTWARE_VERSION P.49d
+DATE            05/03/2013 - 15:38
+SOURCE          F:\Git_projects\FPGA\MIMTLU_StandAlone\MIMTLU.mcs
+DEVICE          16384K
+DATA_WIDTH      1
+FILL_DATA       0xFF
+SIGNATURE       0xFA5E6A90
+START_ADDRESS   0x00000000 END_ADDRESS 0x0005327B DIRECTION_UP   "F:/Git_projects/FPGA/MIMTLU_StandAlone/SDK_Workspace/MIMTLU_StandAlone_hw_platform/download_cclktemp.bit" 6slx9csg324

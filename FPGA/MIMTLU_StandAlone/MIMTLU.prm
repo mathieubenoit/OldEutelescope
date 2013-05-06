@@ -1,0 +1,17 @@
+PROMGEN: Xilinx Prom Generator P.49d
+Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.
+
+promgen -w -p mcs -c FF -o F:\Git_projects\FPGA\MIMTLU_StandAlone//MIMTLU -s 16384 -u 0000 F:/Git_projects/FPGA/MIMTLU_StandAlone/SDK_Workspace/MIMTLU_StandAlone_hw_platform/download_cclktemp.bit -spi 
+
+PROM F:\Git_projects\FPGA\MIMTLU_StandAlone\MIMTLU.prm map: Fri May 03 15:38:48 2013
+
+Calculating PROM checksum with fill value ff
+
+Format        Mcs86 (32-bit)
+Size          16384K
+PROM start    0000:0000
+PROM end      00ff:ffff
+PROM checksum fa5e6a90
+
+        Addr1        Addr2                     Date File(s)
+    0000:0000    0005:327b     May 03 15:33:47 2013 F:/Git_projects/FPGA/MIMTLU_StandAlone/SDK_Workspace/MIMTLU_StandAlone_hw_platform/download_cclktemp.bit

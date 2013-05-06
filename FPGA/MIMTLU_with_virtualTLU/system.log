@@ -8,3 +8,45 @@ Done writing filter settings to:
 	M:\Git_projects\FPGA\MIMTLU_with_virtualTLU\etc\system.filters
 Done writing Tab View settings to:
 	M:\Git_projects\FPGA\MIMTLU_with_virtualTLU\etc\system.gui
+Writing filter settings....
+Done writing filter settings to:
+	F:\Git_projects\FPGA\MIMTLU_with_virtualTLU\etc\system.filters
+Done writing Tab View settings to:
+	F:\Git_projects\FPGA\MIMTLU_with_virtualTLU\etc\system.gui
+Xilinx Platform Studio (XPS)
+Xilinx EDK 14.4 Build EDK_P.49d
+Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.
+
+
+********************************************************************************
+At Local date and time: Fri May 03 11:43:09 2013
+ make -f system.make exporttosdk started...
+make: Nothing to be done for `exporttosdk'.
+Done!
+
+********************************************************************************
+At Local date and time: Fri May 03 11:43:10 2013
+ xsdk.exe -hwspec F:\Git_projects\FPGA\MIMTLU_with_virtualTLU\SDK\SDK_Export\hw\system.xml started...
+Xilinx Software Development Kit
+Xilinx EDK 14.4 Build EDK_P.49d
+Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.
+Done!
+
+********************************************************************************
+At Local date and time: Fri May 03 11:43:51 2013
+ make -f system.make exporttosdk started...
+make: Nothing to be done for `exporttosdk'.
+Done!
+
+********************************************************************************
+At Local date and time: Fri May 03 11:43:51 2013
+ xsdk.exe -hwspec F:\Git_projects\FPGA\MIMTLU_with_virtualTLU\SDK\SDK_Export\hw\system.xml started...
+Xilinx Software Development Kit
+Xilinx EDK 14.4 Build EDK_P.49d
+Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.
+Done!
+Writing filter settings....
+Done writing filter settings to:
+	F:\Git_projects\FPGA\MIMTLU_with_virtualTLU\etc\system.filters
+Done writing Tab View settings to:
+	F:\Git_projects\FPGA\MIMTLU_with_virtualTLU\etc\system.gui

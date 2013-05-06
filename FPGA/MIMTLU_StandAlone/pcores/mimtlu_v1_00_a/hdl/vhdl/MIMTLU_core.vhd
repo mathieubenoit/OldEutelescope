@@ -41,6 +41,7 @@ entity MIMTLU_core is
 			  reset : in STD_LOGIC;
 			  timestamp : out STD_LOGIC_VECTOR(31 downto 0);
 			  busy_cnt : in STD_LOGIC_VECTOR(31 downto 0);
+			  shutter_cnt : in STD_LOGIC_VECTOR(31 downto 0);
            clk : in  STD_LOGIC;
 			  data_itr : out  STD_LOGIC;
 			  clk_out_en : out STD_LOGIC);
@@ -68,13 +69,40 @@ signal ts_reg : std_logic:='0';
 
 signal data_itr_reg : std_logic:='0';
 
+signal wait_bit : std_logic:='0';
+
 
 signal count : natural ;
-
 signal wait_time : natural := 255;
 
+signal shutter_count : natural ;
+signal shutter_wait_time : natural := 255;
+signal shutter_reg : std_logic:= '0';
 
 begin
+
+
+process (clk,reset)
+begin  
+   if reset = '1' then
+      shutter_count<=0;
+   elsif rising_edge(clk)then
+      if (trigger='1' and shutter_count=0 and shutter_reg='0') then
+			shutter_reg<='1';
+		else if(shutter_count<shutter_wait_time and shutter_reg='1') then
+			shutter_reg<='1'; 
+			shutter_count<=shutter_count+1;
+		else if(shutter_count=shutter_wait_time and shutter_reg='1') then
+			shutter_reg<='0';
+			shutter_count<=0;
+		else
+			shutter_reg<='0';
+			shutter_count<=0;
+			end if;
+   end if;
+end process;
+		
+
 
 REG:process(clk,reset,busy_reg)
 begin 
@@ -83,22 +111,29 @@ if (reset='1') then
 	state_reg <= idle; 
 	count<=0;
 	ts_cnt<=0;
+	wait_bit<='0';
 	
 elsif rising_edge(clk) then 
 	state_reg <= state_next;
 	busy_dut_reg<=busy_dut;
-	if(ts_cnt=ts_length and clk_en_reg='1') then 
+
+	if (ts_cnt=0 and wait_bit='0' and clk_en_reg='1') then 
+		wait_bit<='1';
+
+	elsif(ts_cnt=ts_length and clk_en_reg='1') then 
 		timestamp_reg(natural(ts_cnt))<=ts_reg;
 		ts_cnt<=0;
 		data_itr_reg<='1';
+		wait_bit<='0';
+
 	elsif(clk_en_reg='1') then 
 		timestamp_reg(natural(ts_cnt))<=ts_reg;
 		ts_cnt<=ts_cnt+1;
 		data_itr_reg<='0';
-
-		
+		wait_bit<='0';
 	else
 			data_itr_reg<='0';
+			wait_bit<='0';
 	end if;
 	
 	if(count=wait_time and busy_reg='1') then 
@@ -173,6 +208,7 @@ timestamp(Nbits downto 0)<=timestamp_reg;
 data_itr<=data_itr_reg;
 
 wait_time<=to_integer(unsigned(busy_cnt(31 downto 0)));
+shutter_wait_time<=to_integer(unsigned(shutter_cnt(31 downto 0)));
 
 
 clk_out_en<=clk_en_reg;

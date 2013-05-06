@@ -115,7 +115,7 @@ OBUFDS_TRIGGER_CLOCK :  entity mimtlu_v1_00_a.dummy_diffpair
 
 -- TLU Man-In-The-Middle	
 
-TLU_READ : entity work.MIMTLU_core generic map(Nbits =>15) 
+TLU_READ : entity work.MIMTLU_core generic map(Nbits =>31) 
 											port map(trigger=>TRIGGER,
 													busy=>BUSY,
 													reset=>RESET,
