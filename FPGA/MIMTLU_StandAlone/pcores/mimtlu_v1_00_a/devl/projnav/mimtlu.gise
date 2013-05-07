@@ -83,17 +83,13 @@
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
-    <transform xil_pn:end_ts="1367480688" xil_pn:in_ck="4115138166327490611" xil_pn:name="TRAN_copyAbstractToPostAbstractSimulation" xil_pn:start_ts="1367480688">
+    <transform xil_pn:end_ts="1367853047" xil_pn:in_ck="3359044915769904077" xil_pn:name="TRAN_copyAbstractToPostAbstractSimulation" xil_pn:start_ts="1367853047">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
-      <status xil_pn:value="OutOfDateForInputs"/>
-      <status xil_pn:value="OutOfDateForOutputs"/>
-      <status xil_pn:value="InputAdded"/>
-      <status xil_pn:value="InputChanged"/>
-      <status xil_pn:value="OutputChanged"/>
       <outfile xil_pn:name="../../hdl/vhdl/MIMTLU_core.vhd"/>
       <outfile xil_pn:name="../../hdl/vhdl/TLU_SIMULATOR.vhd"/>
       <outfile xil_pn:name="../../hdl/vhdl/TOP.vhd"/>
+      <outfile xil_pn:name="../../hdl/vhdl/dummy_diffpair.vhd"/>
       <outfile xil_pn:name="../../hdl/vhdl/mimtlu.vhd"/>
       <outfile xil_pn:name="../../hdl/vhdl/user_logic.vhd"/>
       <outfile xil_pn:name="C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/axi_lite_ipif_v1_01_a/hdl/vhdl/address_decoder.vhd"/>
@@ -121,17 +117,13 @@
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
-    <transform xil_pn:end_ts="1367480688" xil_pn:in_ck="4115138166327490611" xil_pn:name="TRAN_copyPostAbstractToPreSimulation" xil_pn:start_ts="1367480688">
+    <transform xil_pn:end_ts="1367853047" xil_pn:in_ck="3359044915769904077" xil_pn:name="TRAN_copyPostAbstractToPreSimulation" xil_pn:start_ts="1367853047">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
-      <status xil_pn:value="OutOfDateForInputs"/>
-      <status xil_pn:value="OutOfDateForPredecessor"/>
-      <status xil_pn:value="OutOfDateForOutputs"/>
-      <status xil_pn:value="InputChanged"/>
-      <status xil_pn:value="OutputChanged"/>
       <outfile xil_pn:name="../../hdl/vhdl/MIMTLU_core.vhd"/>
       <outfile xil_pn:name="../../hdl/vhdl/TLU_SIMULATOR.vhd"/>
       <outfile xil_pn:name="../../hdl/vhdl/TOP.vhd"/>
+      <outfile xil_pn:name="../../hdl/vhdl/dummy_diffpair.vhd"/>
       <outfile xil_pn:name="../../hdl/vhdl/mimtlu.vhd"/>
       <outfile xil_pn:name="../../hdl/vhdl/user_logic.vhd"/>
       <outfile xil_pn:name="C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/axi_lite_ipif_v1_01_a/hdl/vhdl/address_decoder.vhd"/>
@@ -147,27 +139,19 @@
       <outfile xil_pn:name="clk_divider.vhd"/>
       <outfile xil_pn:name="tb.vhd"/>
     </transform>
-    <transform xil_pn:end_ts="1367480710" xil_pn:in_ck="4115138166327490611" xil_pn:name="TRAN_ISimulateBehavioralModelRunFuse" xil_pn:prop_ck="4163379782494730050" xil_pn:start_ts="1367480699">
+    <transform xil_pn:end_ts="1367853053" xil_pn:in_ck="3359044915769904077" xil_pn:name="TRAN_ISimulateBehavioralModelRunFuse" xil_pn:prop_ck="4163379782494730050" xil_pn:start_ts="1367853047">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
-      <status xil_pn:value="OutOfDateForInputs"/>
-      <status xil_pn:value="OutOfDateForPredecessor"/>
-      <status xil_pn:value="OutOfDateForOutputs"/>
-      <status xil_pn:value="InputChanged"/>
-      <status xil_pn:value="OutputChanged"/>
-      <status xil_pn:value="OutputRemoved"/>
       <outfile xil_pn:name="fuse.log"/>
+      <outfile xil_pn:name="isim"/>
       <outfile xil_pn:name="isim.log"/>
       <outfile xil_pn:name="tb_beh.prj"/>
       <outfile xil_pn:name="tb_isim_beh.exe"/>
       <outfile xil_pn:name="xilinxsim.ini"/>
     </transform>
-    <transform xil_pn:end_ts="1367480710" xil_pn:in_ck="-7850106683307685336" xil_pn:name="TRAN_ISimulateBehavioralModel" xil_pn:prop_ck="-6270239681133993019" xil_pn:start_ts="1367480710">
+    <transform xil_pn:end_ts="1367853054" xil_pn:in_ck="-7850106683307685336" xil_pn:name="TRAN_ISimulateBehavioralModel" xil_pn:prop_ck="-6270239681133993019" xil_pn:start_ts="1367853053">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
-      <status xil_pn:value="OutOfDateForPredecessor"/>
-      <status xil_pn:value="OutOfDateForOutputs"/>
-      <status xil_pn:value="OutputChanged"/>
       <outfile xil_pn:name="isim.cmd"/>
       <outfile xil_pn:name="isim.log"/>
       <outfile xil_pn:name="tb_isim_beh.wdb"/>

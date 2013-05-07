@@ -1,35 +1,25 @@
-Running: C:\Xilinx\14.4\ISE_DS\ISE\bin\nt64\unwrapped\fuse.exe -intstyle ise -incremental -lib secureip -o F:/Git_projects/FPGA/MIMTLU_with_virtualTLU/pcores/mimtlu_v1_00_a/devl/projnav/tb_isim_beh.exe -prj F:/Git_projects/FPGA/MIMTLU_with_virtualTLU/pcores/mimtlu_v1_00_a/devl/projnav/tb_beh.prj work.tb 
+Running: C:\Xilinx\14.4\ISE_DS\ISE\bin\nt64\unwrapped\fuse.exe -intstyle ise -incremental -lib secureip -o F:/Git_projects/FPGA/MIMTLU_StandAlone/pcores/mimtlu_v1_00_a/devl/projnav/tb_isim_beh.exe -prj F:/Git_projects/FPGA/MIMTLU_StandAlone/pcores/mimtlu_v1_00_a/devl/projnav/tb_beh.prj work.tb 
 ISim P.49d (signature 0x7708f090)
 Number of CPUs detected in this system: 2
 Turning on mult-threading, number of parallel sub-compilation jobs: 4 
 Determining compilation order of HDL files
-Parsing VHDL file "F:/Git_projects/FPGA/MIMTLU_with_virtualTLU/pcores/mimtlu_v1_00_a/devl/projnav/../../hdl/vhdl/TLU_SIMULATOR.vhd" into library work
-Parsing VHDL file "F:/Git_projects/FPGA/MIMTLU_with_virtualTLU/pcores/mimtlu_v1_00_a/devl/projnav/../../hdl/vhdl/MIMTLU_core.vhd" into library work
-Parsing VHDL file "F:/Git_projects/FPGA/MIMTLU_with_virtualTLU/pcores/mimtlu_v1_00_a/devl/projnav/../../hdl/vhdl/TOP.vhd" into library work
-Parsing VHDL file "F:/Git_projects/FPGA/MIMTLU_with_virtualTLU/pcores/mimtlu_v1_00_a/devl/projnav/tb.vhd" into library work
+Parsing VHDL file "F:/Git_projects/FPGA/MIMTLU_StandAlone/pcores/mimtlu_v1_00_a/devl/projnav/../../hdl/vhdl/MIMTLU_core.vhd" into library work
+Parsing VHDL file "F:/Git_projects/FPGA/MIMTLU_StandAlone/pcores/mimtlu_v1_00_a/devl/projnav/../../hdl/vhdl/dummy_diffpair.vhd" into library mimtlu_v1_00_a
+Parsing VHDL file "F:/Git_projects/FPGA/MIMTLU_StandAlone/pcores/mimtlu_v1_00_a/devl/projnav/clk_divider.vhd" into library work
+Parsing VHDL file "F:/Git_projects/FPGA/MIMTLU_StandAlone/pcores/mimtlu_v1_00_a/devl/projnav/../../hdl/vhdl/TOP.vhd" into library mimtlu_v1_00_a
+Parsing VHDL file "F:/Git_projects/FPGA/MIMTLU_StandAlone/pcores/mimtlu_v1_00_a/devl/projnav/tb.vhd" into library work
 Starting static elaboration
-WARNING:HDLCompiler:746 - "F:/Git_projects/FPGA/MIMTLU_with_virtualTLU/pcores/mimtlu_v1_00_a/devl/projnav/../../hdl/vhdl/MIMTLU_core.vhd" Line 170: Range is empty (null range)
-WARNING:HDLCompiler:220 - "F:/Git_projects/FPGA/MIMTLU_with_virtualTLU/pcores/mimtlu_v1_00_a/devl/projnav/../../hdl/vhdl/MIMTLU_core.vhd" Line 170: Assignment ignored
+WARNING:HDLCompiler:89 - "F:/Git_projects/FPGA/MIMTLU_StandAlone/pcores/mimtlu_v1_00_a/devl/projnav/tb.vhd" Line 80: <top> remains a black-box since it has no binding entity.
 Completed static elaboration
+WARNING:Simulator:648 - "F:/Git_projects/FPGA/MIMTLU_StandAlone/pcores/mimtlu_v1_00_a/devl/projnav/tb.vhd" Line 80. Instance top is unbound
 Compiling package standard
 Compiling package std_logic_1164
 Compiling package numeric_std
 Compiling package std_logic_arith
-Compiling package vcomponents
-Compiling package textio
-Compiling package vital_timing
-Compiling package vital_primitives
-Compiling architecture bufgmux_v of entity BUFGMUX [\BUFGMUX("SYNC")(1,4)\]
-Compiling architecture inv_v of entity INV [inv_default]
-Compiling architecture bufgce_v of entity BUFGCE [bufgce_default]
-Compiling architecture behavioral of entity MIMTLU_core [\MIMTLU_core(31)\]
-WARNING:HDLCompiler:746 - "F:/Git_projects/FPGA/MIMTLU_with_virtualTLU/pcores/mimtlu_v1_00_a/devl/projnav/../../hdl/vhdl/MIMTLU_core.vhd" Line 170: Range is empty (null range)
-Compiling architecture behavioral of entity TLU_SIMU [\TLU_SIMU(31)\]
-Compiling architecture behavioral of entity top [top_default]
 Compiling architecture behavior of entity tb
 Time Resolution for simulation is 1ps.
-Waiting for 11 sub-compilation(s) to finish...
-Compiled 21 VHDL Units
-Built simulation executable F:/Git_projects/FPGA/MIMTLU_with_virtualTLU/pcores/mimtlu_v1_00_a/devl/projnav/tb_isim_beh.exe
-Fuse Memory Usage: 54008 KB
-Fuse CPU Usage: 966 ms
+Waiting for 1 sub-compilation(s) to finish...
+Compiled 5 VHDL Units
+Built simulation executable F:/Git_projects/FPGA/MIMTLU_StandAlone/pcores/mimtlu_v1_00_a/devl/projnav/tb_isim_beh.exe
+Fuse Memory Usage: 46688 KB
+Fuse CPU Usage: 982 ms

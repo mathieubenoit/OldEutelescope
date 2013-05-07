@@ -107,6 +107,16 @@ void SetBusyLength(u32 length){
 
 }
 
+void SetShutterLength(u32 length){
+
+	u32 *reg;
+	reg=XPAR_MIMTLU_0_BASEADDR+0x8;
+	*reg=length;
+
+	//memcpy(XPAR_MIMTLU_0_BASEADDR+0x4,0xF,sizeof(0xF));
+
+}
+
 
 
 int transfer_data() {
@@ -185,9 +195,10 @@ err_t recv_callback(void *arg, struct tcp_pcb *tpcb,
 	//printf("packet data %u %s \r\n",b,a);
 
 	if(strncmp(a,"SETB",4)==0){
-
 		SetBusyLength(b);
-
+	}
+	else if(strncmp(a,"SETS",4)==0){
+		SetShutterLength(b);
 	}
 	else if(strncmp(a,"READ",4)==0){
 		msg_recvd=1;

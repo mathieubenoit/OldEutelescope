@@ -1,6 +1,6 @@
 =========================================================================
-Time: Fri May 03 17:03:25 W. Europe Daylight Time 2013
-Running: run_batch_mode 159586688
+Time: Mon May 06 17:09:53 W. Europe Daylight Time 2013
+Running: run_batch_mode 161487232
 {COLLECTING:  INSTANCE MCB3_LPDDR    }
 {COLLECTING:  C_INTERCONNECT_S0_AXI_MASTERS microblaze_0.M_AXI_DC & microblaze_0.M_AXI_IC OPTIONAL string none microblaze_0.M_AXI_DC & microblaze_0.M_AXI_IC}
 {COLLECTING:  C_INTERCONNECT_S0_AXI_IS_ACLK_ASYNC 0 OPTIONAL_UPDATE integer 0 }
@@ -565,6 +565,6 @@ Running: run_batch_mode 159586688
 {SET: CHECK C_NUM_DQ_PINS = 16 (BATCH:OPTIONAL_UPDATE:CHECK:MPD:MPDVAL)}
 RETURN: 0
 =========================================================================
-Time: Fri May 03 17:03:27 W. Europe Daylight Time 2013
-Running: generate_corelevel_constraints 159586688
+Time: Mon May 06 17:09:55 W. Europe Daylight Time 2013
+Running: generate_corelevel_constraints 161487232
 RETURN: 

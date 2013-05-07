@@ -5,13 +5,10 @@
      behavior or data corruption.  It is strongly advised that
      users do not edit the contents of this file. -->
 <messages>
-<msg type="warning" file="HDLCompiler" num="746" delta="unknown" >"F:/Git_projects/FPGA/MIMTLU_with_virtualTLU/pcores/mimtlu_v1_00_a/devl/projnav/../../hdl/vhdl/MIMTLU_core.vhd" Line 170: Range is empty (null range)
+<msg type="warning" file="HDLCompiler" num="89" delta="unknown" >"F:/Git_projects/FPGA/MIMTLU_StandAlone/pcores/mimtlu_v1_00_a/devl/projnav/tb.vhd" Line 80: &lt;<arg fmt="%s" index="1">top</arg>&gt; remains a black-box since it has no binding entity.
 </msg>
 
-<msg type="warning" file="HDLCompiler" num="220" delta="unknown" >"F:/Git_projects/FPGA/MIMTLU_with_virtualTLU/pcores/mimtlu_v1_00_a/devl/projnav/../../hdl/vhdl/MIMTLU_core.vhd" Line 170: Assignment ignored
-</msg>
-
-<msg type="warning" file="HDLCompiler" num="746" delta="unknown" >"F:/Git_projects/FPGA/MIMTLU_with_virtualTLU/pcores/mimtlu_v1_00_a/devl/projnav/../../hdl/vhdl/MIMTLU_core.vhd" Line 170: Range is empty (null range)
+<msg type="warning" file="Simulator" num="648" delta="unknown" >&quot;<arg fmt="%s" index="1">F:/Git_projects/FPGA/MIMTLU_StandAlone/pcores/mimtlu_v1_00_a/devl/projnav/tb.vhd</arg>&quot; Line <arg fmt="%d" index="2">80</arg>. Instance <arg fmt="%s" index="3">top</arg> is unbound
 </msg>
 
 </messages>

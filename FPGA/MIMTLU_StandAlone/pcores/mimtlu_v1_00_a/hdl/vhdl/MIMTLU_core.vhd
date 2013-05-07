@@ -41,7 +41,6 @@ entity MIMTLU_core is
 			  reset : in STD_LOGIC;
 			  timestamp : out STD_LOGIC_VECTOR(31 downto 0);
 			  busy_cnt : in STD_LOGIC_VECTOR(31 downto 0);
-			  shutter_cnt : in STD_LOGIC_VECTOR(31 downto 0);
            clk : in  STD_LOGIC;
 			  data_itr : out  STD_LOGIC;
 			  clk_out_en : out STD_LOGIC);
@@ -75,33 +74,8 @@ signal wait_bit : std_logic:='0';
 signal count : natural ;
 signal wait_time : natural := 255;
 
-signal shutter_count : natural ;
-signal shutter_wait_time : natural := 255;
-signal shutter_reg : std_logic:= '0';
 
 begin
-
-
-process (clk,reset)
-begin  
-   if reset = '1' then
-      shutter_count<=0;
-   elsif rising_edge(clk)then
-      if (trigger='1' and shutter_count=0 and shutter_reg='0') then
-			shutter_reg<='1';
-		else if(shutter_count<shutter_wait_time and shutter_reg='1') then
-			shutter_reg<='1'; 
-			shutter_count<=shutter_count+1;
-		else if(shutter_count=shutter_wait_time and shutter_reg='1') then
-			shutter_reg<='0';
-			shutter_count<=0;
-		else
-			shutter_reg<='0';
-			shutter_count<=0;
-			end if;
-   end if;
-end process;
-		
 
 
 REG:process(clk,reset,busy_reg)
@@ -160,6 +134,7 @@ case state_reg is
 		busy_reg<='0';
 		clk_en_reg<='0';
 		ts_reg<='0';
+		
 
 	
 	when triggered =>
@@ -198,7 +173,9 @@ busy <= busy_reg or busy_dut_reg;
 
 trigger_dut <= trigger when clk_en_reg='0' else
              '0' ;
+				 
 
+				 
 busy_copy<=busy_reg or busy_dut_reg;
 trigger_copy<=trigger;
 
@@ -208,7 +185,6 @@ timestamp(Nbits downto 0)<=timestamp_reg;
 data_itr<=data_itr_reg;
 
 wait_time<=to_integer(unsigned(busy_cnt(31 downto 0)));
-shutter_wait_time<=to_integer(unsigned(shutter_cnt(31 downto 0)));
 
 
 clk_out_en<=clk_en_reg;
