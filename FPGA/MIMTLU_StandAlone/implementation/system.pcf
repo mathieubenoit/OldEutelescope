@@ -1,5 +1,5 @@
 //! **************************************************************************
-// Written by: Map P.49d on Fri May 31 11:45:52 2013
+// Written by: Map P.49d on Fri May 31 17:21:14 2013
 //! **************************************************************************
 
 SCHEMATIC START;
@@ -1420,44 +1420,31 @@ TIMEGRP S_AXI_ACLK_Ethernet_MAC = PIN
         BEL
         "USB_Uart/USB_Uart/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/state_FSM_FFd1"
         BEL
+        "mimtlu_0/mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/Bus_RNW_reg_1"
+        BEL
+        "mimtlu_0/mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_0_1"
+        BEL
+        "mimtlu_0/mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_1_1"
+        BEL
+        "mimtlu_0/mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_2_1"
+        BEL
+        "mimtlu_0/mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_3_1"
+        BEL
+        "mimtlu_0/mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_1"
+        BEL
+        "mimtlu_0/mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_0"
+        BEL
+        "mimtlu_0/mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_2"
+        BEL
+        "mimtlu_0/mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_3"
+        BEL
         "mimtlu_0/mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/Bus_RNW_reg"
         BEL "mimtlu_0/mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/rst" BEL
         "mimtlu_0/mimtlu_0/USER_LOGIC_I/MIMTLU_ent/CLK_DIV/temporal" BEL
         "mimtlu_0/mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rvalid_i"
         BEL
         "mimtlu_0/mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_bvalid_i"
-        BEL "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_0" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_1" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_2" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_3" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_4" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_5" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_6" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_7" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_8" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_9" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_10" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_11" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_12" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_13" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_14" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_15" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_16" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_17" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_18" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_19" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_20" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_21" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_22" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_23" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_24" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_25" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_26" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_27" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_28" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_29" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_30" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_0" BEL
+        BEL "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_0" BEL
         "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_1" BEL
         "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_2" BEL
         "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_3" BEL
@@ -1491,14 +1478,6 @@ TIMEGRP S_AXI_ACLK_Ethernet_MAC = PIN
         "mimtlu_0/mimtlu_0/USER_LOGIC_I/MIMTLU_ent/CLK_DIV/counter_0" BEL
         "mimtlu_0/mimtlu_0/USER_LOGIC_I/MIMTLU_ent/CLK_DIV/counter_1" BEL
         "mimtlu_0/mimtlu_0/USER_LOGIC_I/MIMTLU_ent/CLK_DIV/counter_2" BEL
-        "mimtlu_0/mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_1"
-        BEL
-        "mimtlu_0/mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_0"
-        BEL
-        "mimtlu_0/mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_2"
-        BEL
-        "mimtlu_0/mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_3"
-        BEL
         "mimtlu_0/mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i_0"
         BEL
         "mimtlu_0/mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i_1"
@@ -7787,44 +7766,31 @@ TIMEGRP clock_generator_0_clock_generator_0_SIG_PLL0_CLKOUT2 = PIN
         BEL
         "USB_Uart/USB_Uart/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/state_FSM_FFd1"
         BEL "clock_generator_0/clock_generator_0/PLL0_CLKOUT2_BUFG_INST" BEL
+        "mimtlu_0/mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/Bus_RNW_reg_1"
+        BEL
+        "mimtlu_0/mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_0_1"
+        BEL
+        "mimtlu_0/mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_1_1"
+        BEL
+        "mimtlu_0/mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_2_1"
+        BEL
+        "mimtlu_0/mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_3_1"
+        BEL
+        "mimtlu_0/mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_1"
+        BEL
+        "mimtlu_0/mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_0"
+        BEL
+        "mimtlu_0/mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_2"
+        BEL
+        "mimtlu_0/mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_3"
+        BEL
         "mimtlu_0/mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/Bus_RNW_reg"
         BEL "mimtlu_0/mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/rst" BEL
         "mimtlu_0/mimtlu_0/USER_LOGIC_I/MIMTLU_ent/CLK_DIV/temporal" BEL
         "mimtlu_0/mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rvalid_i"
         BEL
         "mimtlu_0/mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_bvalid_i"
-        BEL "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_0" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_1" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_2" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_3" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_4" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_5" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_6" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_7" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_8" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_9" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_10" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_11" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_12" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_13" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_14" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_15" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_16" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_17" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_18" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_19" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_20" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_21" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_22" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_23" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_24" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_25" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_26" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_27" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_28" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_29" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_30" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_0" BEL
+        BEL "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_0" BEL
         "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_1" BEL
         "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_2" BEL
         "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_3" BEL
@@ -7858,14 +7824,6 @@ TIMEGRP clock_generator_0_clock_generator_0_SIG_PLL0_CLKOUT2 = PIN
         "mimtlu_0/mimtlu_0/USER_LOGIC_I/MIMTLU_ent/CLK_DIV/counter_0" BEL
         "mimtlu_0/mimtlu_0/USER_LOGIC_I/MIMTLU_ent/CLK_DIV/counter_1" BEL
         "mimtlu_0/mimtlu_0/USER_LOGIC_I/MIMTLU_ent/CLK_DIV/counter_2" BEL
-        "mimtlu_0/mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_1"
-        BEL
-        "mimtlu_0/mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_0"
-        BEL
-        "mimtlu_0/mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_2"
-        BEL
-        "mimtlu_0/mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_3"
-        BEL
         "mimtlu_0/mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i_0"
         BEL
         "mimtlu_0/mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i_1"

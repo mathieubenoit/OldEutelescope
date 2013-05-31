@@ -90,7 +90,7 @@ void MyTimestampInterruptHandler(void)
 	//xil_printf("%d \r \n",itr_cnt);
 
 	XIntc_Disable(intcp, XPAR_MICROBLAZE_0_INTC_MIMTLU_0_DATA_ITR_INTR);
-
+	SetBusyOn();
 	itr_cnt+=1;
 	itr_rcvd=1;
 
@@ -148,7 +148,7 @@ void SetShutterLength(u32 length){
 int transfer_data() {
 
 	if(msg_recvd==1 && itr_rcvd==1){
-		SetBusyOn();
+
 		struct pbuf * pbuf_to_be_sent = pbuf_alloc(PBUF_TRANSPORT, 4, PBUF_POOL);
 		u32 *timestamp=0;
 		if (!pbuf_to_be_sent) {
@@ -223,6 +223,8 @@ err_t recv_callback(void *arg, struct tcp_pcb *tpcb,
 	//printf("packet data %u %s \r\n",b,a);
 
 	if(strncmp(a,"BUSYON",6)==0){
+		msg_recvd=0;
+		itr_rcvd=0;
 		SetBusyOn();
 	}
 	else if(strncmp(a,"BUSYOFF",6)==0){
