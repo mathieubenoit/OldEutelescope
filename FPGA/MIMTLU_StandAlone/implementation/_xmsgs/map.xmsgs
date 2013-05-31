@@ -8,6 +8,9 @@
 <msg type="info" file="Map" num="220" delta="old" >The command line option -timing is automatically supported for this architecture. Therefore, it is not necessary to specify this option.
 </msg>
 
+<msg type="info" file="LIT" num="243" delta="old" >Logical network <arg fmt="%s" index="1">mimtlu_0_BUSY_DUT_pin_IBUF</arg> has no load.
+</msg>
+
 <msg type="info" file="LIT" num="243" delta="old" >Logical network <arg fmt="%s" index="1">axi4lite_0_M_RID&lt;5&gt;</arg> has no load.
 </msg>
 
@@ -2207,6 +2210,9 @@
 <msg type="warning" file="MapLib" num="701" delta="old" >Signal <arg fmt="%s" index="1">Ethernet_MAC_COL</arg> connected to top level port <arg fmt="%s" index="2">Ethernet_MAC_COL</arg> has been removed.
 </msg>
 
+<msg type="warning" file="MapLib" num="701" delta="old" >Signal <arg fmt="%s" index="1">mimtlu_0_BUSY_DUT_pin</arg> connected to top level port <arg fmt="%s" index="2">mimtlu_0_BUSY_DUT_pin</arg> has been removed.
+</msg>
+
 <msg type="info" file="LIT" num="244" delta="old" >All of the single ended outputs in this design are using slew rate limited output drivers. The delay on speed critical single ended outputs can be dramatically reduced by designating them as fast outputs.
 </msg>
 
@@ -2223,7 +2229,7 @@
 <msg type="info" file="Map" num="215" delta="old" >The Interim Design Summary has been generated in the MAP Report (.mrp).
 </msg>
 
-<msg type="info" file="Place" num="834" delta="old" >Only a subset of IOs are locked. Out of <arg fmt="%d" index="1">83</arg> IOs, <arg fmt="%d" index="2">82</arg> are locked and <arg fmt="%d" index="3">1</arg> are not locked. <arg fmt="%s" index="4">If you would like to print the names of these IOs, please set the environment variable XIL_PAR_DESIGN_CHECK_VERBOSE to 1.</arg> 
+<msg type="info" file="Place" num="834" delta="old" >Only a subset of IOs are locked. Out of <arg fmt="%d" index="1">82</arg> IOs, <arg fmt="%d" index="2">81</arg> are locked and <arg fmt="%d" index="3">1</arg> are not locked. <arg fmt="%s" index="4">If you would like to print the names of these IOs, please set the environment variable XIL_PAR_DESIGN_CHECK_VERBOSE to 1.</arg> 
 </msg>
 
 <msg type="warning" file="Place" num="1206" delta="old" >This design contains a global buffer instance, &lt;<arg fmt="%s" index="1">mimtlu_0/mimtlu_0/USER_LOGIC_I/MIMTLU_ent/BUFGCE_inst</arg>&gt;, driving the net, &lt;<arg fmt="%s" index="2">mimtlu_0_TRIGGER_CLOCK_P_pin_OBUF</arg>&gt;, that is driving the following (first <arg fmt="%d" index="3">30</arg>) non-clock load pins off chip.
@@ -2231,7 +2237,7 @@
 </arg>This design practice, in Spartan-6, can lead to an unroutable situation due to limitations in the global routing. If the design does route there may be excessive delay or skew on this net. It is recommended to use a Clock Forwarding technique to create a reliable and repeatable low skew solution: instantiate an ODDR2 component; tie the .D0 pin to Logic1; tie the .D1 pin to Logic0; tie the clock net to be forwarded to .C0; tie the inverted clock to .C1. This is normally an ERROR but the CLOCK_DEDICATED_ROUTE constraint was applied on COMP.PIN &lt;<arg fmt="%s" index="5">mimtlu_0/mimtlu_0/USER_LOGIC_I/MIMTLU_ent/BUFGCE_inst</arg>.<arg fmt="%s" index="6">O</arg>&gt; allowing your design to continue. This constraint disables all clock placer rules related to the specified COMP.PIN.
 </msg>
 
-<msg type="warning" file="Place" num="1137" delta="new" >This design is not guaranteed to be routable! This design contains a global buffer instance, &lt;<arg fmt="%s" index="1">mimtlu_0/mimtlu_0/USER_LOGIC_I/MIMTLU_ent/BUFGCE_inst</arg>&gt;, driving the net, &lt;<arg fmt="%s" index="2">mimtlu_0_TRIGGER_CLOCK_P_pin_OBUF</arg>&gt;, that is driving the following (first <arg fmt="%d" index="3">30</arg>) non-clock load pins.
+<msg type="warning" file="Place" num="1137" delta="old" >This design is not guaranteed to be routable! This design contains a global buffer instance, &lt;<arg fmt="%s" index="1">mimtlu_0/mimtlu_0/USER_LOGIC_I/MIMTLU_ent/BUFGCE_inst</arg>&gt;, driving the net, &lt;<arg fmt="%s" index="2">mimtlu_0_TRIGGER_CLOCK_P_pin_OBUF</arg>&gt;, that is driving the following (first <arg fmt="%d" index="3">30</arg>) non-clock load pins.
 <arg fmt="%s" index="4">&lt; PIN: mimtlu_0_TRIGGER_CLOCK_P_pin.O; &gt;
 &lt; PIN: mimtlu_0/mimtlu_0/USER_LOGIC_I/MIMTLU_ent/OBUFDS_TRIGGER_CLOCK/OB1_INV_0.A6; &gt;
 </arg>This is not a recommended design practice in Spartan-6 due to limitations in the global routing that may cause excessive delay, skew or unroutable situations.  It is recommended to only use a BUFG resource to drive clock loads. Please pay extra attention to the timing and routing of this path to ensure the design goals are met. This is normally an ERROR but the CLOCK_DEDICATED_ROUTE constraint was applied on COMP.PIN &lt;<arg fmt="%s" index="5">mimtlu_0/mimtlu_0/USER_LOGIC_I/MIMTLU_ent/BUFGCE_inst</arg>.<arg fmt="%s" index="6">O</arg>&gt; allowing your design to continue. This constraint disables all clock placer rules related to the specified COMP.PIN.
@@ -2240,13 +2246,13 @@
 <msg type="info" file="Pack" num="1650" delta="old" >Map created a placed design.
 </msg>
 
-<msg type="warning" file="PhysDesignRules" num="367" delta="old" >The signal &lt;<arg fmt="%s" index="1">Ethernet_MAC/Ethernet_MAC/XEMAC_I/EMAC_I/TX/INST_TX_INTRFCE/I_TX_FIFO/LEGACY_COREGEN_DEPTH.V6_S6_AND_LATER.I_ASYNC_FIFO_BRAM/U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.mem/gdm.dm/Mram_RAM_RAMD_D1_O</arg>&gt; is incomplete. The signal does not drive any load pins in the design.
+<msg type="warning" file="PhysDesignRules" num="367" delta="old" >The signal &lt;<arg fmt="%s" index="1">microblaze_0_d_bram_ctrl_2_microblaze_0_bram_block_BRAM_Addr&lt;31&gt;</arg>&gt; is incomplete. The signal does not drive any load pins in the design.
 </msg>
 
 <msg type="warning" file="PhysDesignRules" num="367" delta="old" >The signal &lt;<arg fmt="%s" index="1">microblaze_0_d_bram_ctrl_2_microblaze_0_bram_block_BRAM_Addr&lt;30&gt;</arg>&gt; is incomplete. The signal does not drive any load pins in the design.
 </msg>
 
-<msg type="warning" file="PhysDesignRules" num="367" delta="old" >The signal &lt;<arg fmt="%s" index="1">microblaze_0_d_bram_ctrl_2_microblaze_0_bram_block_BRAM_Addr&lt;31&gt;</arg>&gt; is incomplete. The signal does not drive any load pins in the design.
+<msg type="warning" file="PhysDesignRules" num="367" delta="old" >The signal &lt;<arg fmt="%s" index="1">Ethernet_MAC/Ethernet_MAC/XEMAC_I/EMAC_I/TX/INST_TX_INTRFCE/I_TX_FIFO/LEGACY_COREGEN_DEPTH.V6_S6_AND_LATER.I_ASYNC_FIFO_BRAM/U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.mem/gdm.dm/Mram_RAM_RAMD_D1_O</arg>&gt; is incomplete. The signal does not drive any load pins in the design.
 </msg>
 
 <msg type="warning" file="PhysDesignRules" num="367" delta="old" >The signal &lt;<arg fmt="%s" index="1">Ethernet_MAC/Ethernet_MAC/XEMAC_I/EMAC_I/RX/INST_RX_INTRFCE/I_RX_FIFO/LEGACY_COREGEN_DEPTH.V6_S6_AND_LATER.I_ASYNC_FIFO_BRAM/U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.mem/gdm.dm/Mram_RAM_RAMD_D1_O</arg>&gt; is incomplete. The signal does not drive any load pins in the design.

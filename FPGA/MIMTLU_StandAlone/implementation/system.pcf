@@ -1,5 +1,5 @@
 //! **************************************************************************
-// Written by: Map P.49d on Mon May 06 17:14:18 2013
+// Written by: Map P.49d on Fri May 31 11:45:52 2013
 //! **************************************************************************
 
 SCHEMATIC START;
@@ -45,7 +45,6 @@ COMP "mcbx_dram_dq<6>" LOCATE = SITE "J3" LEVEL 1;
 COMP "mcbx_dram_dq<7>" LOCATE = SITE "J1" LEVEL 1;
 COMP "mcbx_dram_dq<8>" LOCATE = SITE "M3" LEVEL 1;
 COMP "mcbx_dram_dq<9>" LOCATE = SITE "M1" LEVEL 1;
-COMP "mimtlu_0_BUSY_DUT_pin" LOCATE = SITE "F16" LEVEL 1;
 COMP "mcbx_dram_cas_n" LOCATE = SITE "K5" LEVEL 1;
 COMP "mcbx_dram_clk_n" LOCATE = SITE "G1" LEVEL 1;
 COMP "mcbx_dram_ras_n" LOCATE = SITE "L5" LEVEL 1;
@@ -1458,6 +1457,37 @@ TIMEGRP S_AXI_ACLK_Ethernet_MAC = PIN
         "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_28" BEL
         "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_29" BEL
         "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_30" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_0" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_1" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_2" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_3" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_4" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_5" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_6" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_7" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_8" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_9" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_10" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_11" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_12" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_13" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_14" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_15" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_16" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_17" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_18" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_19" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_20" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_21" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_22" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_23" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_24" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_25" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_26" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_27" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_28" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_29" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_30" BEL
         "mimtlu_0/mimtlu_0/USER_LOGIC_I/MIMTLU_ent/CLK_DIV/counter_0" BEL
         "mimtlu_0/mimtlu_0/USER_LOGIC_I/MIMTLU_ent/CLK_DIV/counter_1" BEL
         "mimtlu_0/mimtlu_0/USER_LOGIC_I/MIMTLU_ent/CLK_DIV/counter_2" BEL
@@ -7794,6 +7824,37 @@ TIMEGRP clock_generator_0_clock_generator_0_SIG_PLL0_CLKOUT2 = PIN
         "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_28" BEL
         "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_29" BEL
         "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_30" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_0" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_1" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_2" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_3" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_4" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_5" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_6" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_7" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_8" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_9" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_10" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_11" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_12" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_13" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_14" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_15" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_16" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_17" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_18" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_19" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_20" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_21" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_22" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_23" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_24" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_25" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_26" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_27" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_28" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_29" BEL
+        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_30" BEL
         "mimtlu_0/mimtlu_0/USER_LOGIC_I/MIMTLU_ent/CLK_DIV/counter_0" BEL
         "mimtlu_0/mimtlu_0/USER_LOGIC_I/MIMTLU_ent/CLK_DIV/counter_1" BEL
         "mimtlu_0/mimtlu_0/USER_LOGIC_I/MIMTLU_ent/CLK_DIV/counter_2" BEL

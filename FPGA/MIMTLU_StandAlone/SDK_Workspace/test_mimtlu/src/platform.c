@@ -43,7 +43,7 @@ timer_callback()
 		tcp_slowtmr();
 }
 
-static XIntc intc;
+ XIntc intc;
 
 void platform_setup_interrupts()
 {
@@ -99,8 +99,6 @@ void platform_setup_interrupts()
 #endif
 
 	//XIntc_EnableIntr(XPAR_MICROBLAZE_0_INTC_BASEADDR,XPAR_MIMTLU_0_DATA_ITR_MASK);
-	XIntc_Enable(intcp, XPAR_MICROBLAZE_0_INTC_MIMTLU_0_DATA_ITR_INTR);
-	XIntc_Enable(intcp, XPAR_MICROBLAZE_0_INTC_MIMTLU_0_DATA_ITR_INTR);
 
 
 }

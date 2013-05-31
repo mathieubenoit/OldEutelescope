@@ -49,6 +49,13 @@ Xboolean msg_recvd,itr_rcvd;
 struct tcp_pcb *Gpcb;
 
 
+u32 *reg;
+u32 *reg2;
+
+
+extern XIntc intc;
+XIntc *intcp;
+
 /* missing declaration in lwIP */
 void lwip_init();
 
@@ -81,8 +88,12 @@ void MyTimestampInterruptHandler(void)
 
 	//xil_printf("interrupt \r\n");
 	//xil_printf("%d \r \n",itr_cnt);
+
+	XIntc_Disable(intcp, XPAR_MICROBLAZE_0_INTC_MIMTLU_0_DATA_ITR_INTR);
+
 	itr_cnt+=1;
 	itr_rcvd=1;
+
 //	err_t err;
 //
 //	u32 *timestamp=0;
@@ -99,19 +110,34 @@ void MyTimestampInterruptHandler(void)
 
 void SetBusyLength(u32 length){
 
-	u32 *reg;
-	reg=XPAR_MIMTLU_0_BASEADDR+0x4;
 	*reg=length;
 
 	//memcpy(XPAR_MIMTLU_0_BASEADDR+0x4,0xF,sizeof(0xF));
 
 }
 
+void SetBusyOn(){
+
+	*reg2=111;
+	//msg_recvd=0;
+	//itr_rcvd=0;
+	//xil_printf("busy_on %x\r\n",*reg);
+	//memcpy(XPAR_MIMTLU_0_BASEADDR+0x4,0xF,sizeof(0xF));
+
+}
+
+void SetBusyOff(){
+
+	*reg2=222;
+	//xil_printf("busy_off %x\r\n",*reg);
+	//memcpy(XPAR_MIMTLU_0_BASEADDR+0x4,0xF,sizeof(0xF));
+
+}
+
+
 void SetShutterLength(u32 length){
 
-	u32 *reg;
-	reg=XPAR_MIMTLU_0_BASEADDR+0x8;
-	*reg=length;
+	*reg2=length;
 
 	//memcpy(XPAR_MIMTLU_0_BASEADDR+0x4,0xF,sizeof(0xF));
 
@@ -122,7 +148,7 @@ void SetShutterLength(u32 length){
 int transfer_data() {
 
 	if(msg_recvd==1 && itr_rcvd==1){
-
+		SetBusyOn();
 		struct pbuf * pbuf_to_be_sent = pbuf_alloc(PBUF_TRANSPORT, 4, PBUF_POOL);
 		u32 *timestamp=0;
 		if (!pbuf_to_be_sent) {
@@ -148,6 +174,8 @@ int transfer_data() {
 			//printf("just sent that %d \r\n",timestamp);
 			msg_recvd=0;
 			itr_rcvd=0;
+
+
 		}
 
 		pbuf_free(pbuf_to_be_sent);
@@ -194,14 +222,24 @@ err_t recv_callback(void *arg, struct tcp_pcb *tpcb,
 
 	//printf("packet data %u %s \r\n",b,a);
 
-	if(strncmp(a,"SETB",4)==0){
+	if(strncmp(a,"BUSYON",6)==0){
+		SetBusyOn();
+	}
+	else if(strncmp(a,"BUSYOFF",6)==0){
+		SetBusyOff();
+	}
+	else if(strncmp(a,"SETB",4)==0){
 		SetBusyLength(b);
 	}
 	else if(strncmp(a,"SETS",4)==0){
 		SetShutterLength(b);
 	}
 	else if(strncmp(a,"READ",4)==0){
+		XIntc_Enable(intcp, XPAR_MICROBLAZE_0_INTC_MIMTLU_0_DATA_ITR_INTR);
+		SetBusyOff();
 		msg_recvd=1;
+		itr_rcvd=0;
+
 	};
 
 	//msg_recvd=1;
@@ -281,6 +319,9 @@ int start_application()
 int main()
 {
 
+	intcp = &intc;
+
+
 	struct netif *netif, server_netif;
 	struct ip_addr ipaddr, netmask, gw;
 
@@ -334,7 +375,8 @@ int main()
 
 	//microblaze_enable_interrupts();
 
-
+	reg=XPAR_MIMTLU_0_BASEADDR+0x4;
+	reg2=XPAR_MIMTLU_0_BASEADDR+0x8;
 
 
 	while (1) {
