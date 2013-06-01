@@ -130,7 +130,7 @@ begin
 
 case state_reg is 
 	when idle =>
-		if trigger='1' then
+		if trigger='1' and busy_int='0' then
 			state_next <= triggered;
 		else
 			state_next<= idle;
@@ -191,7 +191,7 @@ busy_copy<=busy_int;
 --             '0';	
 
 				 
-trigger_dut <= trigger when clk_en_reg='0' else 
+trigger_dut <= trigger when clk_en_reg='0' and busy_int='0' else 
 					'0';		
 trigger_copy <= trigger;
 
