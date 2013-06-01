@@ -173,7 +173,7 @@ case state_reg is
 			clk_en_reg<='0';
 			ts_reg<='0';
 			
-			if (count>=wait_time and busy_int='0') then 
+			if (count>=wait_time) then 
 				state_next<=idle;
 			else 
 				state_next<=isbusy;
@@ -183,8 +183,8 @@ end case;
 
 end process SM;
 
-busy_int <= '1' when ((to_integer(unsigned(busy_handle(31 downto 0)))=111) or busy_reg='1') else
-             '0' when to_integer(unsigned(busy_handle(31 downto 0)))=222 and busy_reg='0' else
+busy_int <= '1' when ((to_integer(unsigned(busy_handle(31 downto 0)))=111)) else
+             '0' when to_integer(unsigned(busy_handle(31 downto 0)))=222  else
              '0';
 
 
