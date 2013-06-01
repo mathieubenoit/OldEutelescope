@@ -1120,16 +1120,17 @@ INFO:Xst:2260 - The FF/Latch <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_
 INFO:Xst:2260 - The FF/Latch <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.rd_rst_reg_2> in Unit <Ethernet_MAC/XEMAC_I/EMAC_I/RX/INST_RX_INTRFCE/I_RX_FIFO/LEGACY_COREGEN_DEPTH.V6_S6_AND_LATER.I_ASYNC_FIFO_BRAM> is equivalent to the following 2 FFs/Latches : <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.rd_rst_reg_1> <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.rd_rst_reg_0> 
 INFO:Xst:2260 - The FF/Latch <DIP_Switches_4Bits/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/cs_out_i_0> in Unit <DIP_Switches_4Bits> is equivalent to the following FF/Latch : <DIP_Switches_4Bits/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/cs_out_i_0_1> 
 INFO:Xst:2260 - The FF/Latch <USB_Uart/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/Bus_RNW_reg> in Unit <USB_Uart> is equivalent to the following FF/Latch : <USB_Uart/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/Bus_RNW_reg_1> 
-INFO:Xst:2260 - The FF/Latch <mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/ts_cnt_0> in Unit <mimtlu_0> is equivalent to the following FF/Latch : <mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/ts_cnt_0_1> 
-INFO:Xst:2260 - The FF/Latch <mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_3> in Unit <mimtlu_0> is equivalent to the following FF/Latch : <mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_3_1> 
-INFO:Xst:2260 - The FF/Latch <mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/state_reg_FSM_FFd2> in Unit <mimtlu_0> is equivalent to the following FF/Latch : <mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/state_reg_FSM_FFd2_1> 
 INFO:Xst:2260 - The FF/Latch <mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/ts_cnt_1> in Unit <mimtlu_0> is equivalent to the following 2 FFs/Latches : <mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/ts_cnt_1_2> <mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/ts_cnt_1_3> 
-INFO:Xst:2260 - The FF/Latch <mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_2> in Unit <mimtlu_0> is equivalent to the following FF/Latch : <mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_2_1> 
 INFO:Xst:2260 - The FF/Latch <mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/ts_cnt_2> in Unit <mimtlu_0> is equivalent to the following 2 FFs/Latches : <mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/ts_cnt_2_2> <mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/ts_cnt_2_3> 
-INFO:Xst:2260 - The FF/Latch <mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/state_reg_FSM_FFd1> in Unit <mimtlu_0> is equivalent to the following 3 FFs/Latches : <mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/state_reg_FSM_FFd1_1> <mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/state_reg_FSM_FFd1_2> <mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/state_reg_FSM_FFd1_3> 
-INFO:Xst:2260 - The FF/Latch <mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_1> in Unit <mimtlu_0> is equivalent to the following FF/Latch : <mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_1_1> 
+INFO:Xst:2260 - The FF/Latch <mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_3> in Unit <mimtlu_0> is equivalent to the following FF/Latch : <mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_3_1> 
+INFO:Xst:2260 - The FF/Latch <mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/state_reg_FSM_FFd2> in Unit <mimtlu_0> is equivalent to the following 3 FFs/Latches : <mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/state_reg_FSM_FFd2_1> <mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/state_reg_FSM_FFd2_2> <mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/state_reg_FSM_FFd2_3> 
 INFO:Xst:2260 - The FF/Latch <mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/ts_cnt_3> in Unit <mimtlu_0> is equivalent to the following 2 FFs/Latches : <mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/ts_cnt_3_2> <mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/ts_cnt_3_3> 
-INFO:Xst:2260 - The FF/Latch <mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/ts_cnt_4> in Unit <mimtlu_0> is equivalent to the following FF/Latch : <mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/ts_cnt_4_2> 
+INFO:Xst:2260 - The FF/Latch <mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_2> in Unit <mimtlu_0> is equivalent to the following FF/Latch : <mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_2_1> 
+INFO:Xst:2260 - The FF/Latch <mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/ts_cnt_4> in Unit <mimtlu_0> is equivalent to the following 2 FFs/Latches : <mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/ts_cnt_4_2> <mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/ts_cnt_4_3> 
+INFO:Xst:2260 - The FF/Latch <mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/state_reg_FSM_FFd1> in Unit <mimtlu_0> is equivalent to the following 2 FFs/Latches : <mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/state_reg_FSM_FFd1_1> <mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/state_reg_FSM_FFd1_2> 
+INFO:Xst:2260 - The FF/Latch <mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_1> in Unit <mimtlu_0> is equivalent to the following FF/Latch : <mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_1_1> 
+INFO:Xst:2260 - The FF/Latch <mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/ts_cnt_0> in Unit <mimtlu_0> is equivalent to the following 2 FFs/Latches : <mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/ts_cnt_0_1> <mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/ts_cnt_0_2> 
+INFO:Xst:2260 - The FF/Latch <mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_0> in Unit <mimtlu_0> is equivalent to the following FF/Latch : <mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_0_1> 
 INFO:Xst:2260 - The FF/Latch <mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/Bus_RNW_reg> in Unit <mimtlu_0> is equivalent to the following FF/Latch : <mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/Bus_RNW_reg_1> 
 INFO:Xst:2260 - The FF/Latch <MCB3_LPDDR/mcb_ui_top_0/mcb_raw_wrapper_inst/gen_term_calib.mcb_soft_calibration_top_inst/mcb_soft_calibration_inst/STATE_FSM_FFd2> in Unit <MCB3_LPDDR> is equivalent to the following 2 FFs/Latches : <MCB3_LPDDR/mcb_ui_top_0/mcb_raw_wrapper_inst/gen_term_calib.mcb_soft_calibration_top_inst/mcb_soft_calibration_inst/STATE_FSM_FFd2_1> <MCB3_LPDDR/mcb_ui_top_0/mcb_raw_wrapper_inst/gen_term_calib.mcb_soft_calibration_top_inst/mcb_soft_calibration_inst/STATE_FSM_FFd2_2> 
 INFO:Xst:2260 - The FF/Latch <MCB3_LPDDR/mcb_ui_top_0/mcb_raw_wrapper_inst/gen_term_calib.mcb_soft_calibration_top_inst/mcb_soft_calibration_inst/STATE_FSM_FFd3> in Unit <MCB3_LPDDR> is equivalent to the following 2 FFs/Latches : <MCB3_LPDDR/mcb_ui_top_0/mcb_raw_wrapper_inst/gen_term_calib.mcb_soft_calibration_top_inst/mcb_soft_calibration_inst/STATE_FSM_FFd3_1> <MCB3_LPDDR/mcb_ui_top_0/mcb_raw_wrapper_inst/gen_term_calib.mcb_soft_calibration_top_inst/mcb_soft_calibration_inst/STATE_FSM_FFd3_2> 
@@ -1175,16 +1176,17 @@ INFO:Xst:2260 - The FF/Latch <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_
 INFO:Xst:2260 - The FF/Latch <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.rd_rst_reg_2> in Unit <Ethernet_MAC/XEMAC_I/EMAC_I/RX/INST_RX_INTRFCE/I_RX_FIFO/LEGACY_COREGEN_DEPTH.V6_S6_AND_LATER.I_ASYNC_FIFO_BRAM> is equivalent to the following 2 FFs/Latches : <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.rd_rst_reg_1> <U0/xst_fifo_generator/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.rd_rst_reg_0> 
 INFO:Xst:2260 - The FF/Latch <DIP_Switches_4Bits/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/cs_out_i_0> in Unit <DIP_Switches_4Bits> is equivalent to the following FF/Latch : <DIP_Switches_4Bits/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/cs_out_i_0_1> 
 INFO:Xst:2260 - The FF/Latch <USB_Uart/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/Bus_RNW_reg> in Unit <USB_Uart> is equivalent to the following FF/Latch : <USB_Uart/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/Bus_RNW_reg_1> 
-INFO:Xst:2260 - The FF/Latch <mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/ts_cnt_0> in Unit <mimtlu_0> is equivalent to the following FF/Latch : <mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/ts_cnt_0_1> 
-INFO:Xst:2260 - The FF/Latch <mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_3> in Unit <mimtlu_0> is equivalent to the following FF/Latch : <mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_3_1> 
-INFO:Xst:2260 - The FF/Latch <mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/state_reg_FSM_FFd2> in Unit <mimtlu_0> is equivalent to the following FF/Latch : <mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/state_reg_FSM_FFd2_1> 
 INFO:Xst:2260 - The FF/Latch <mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/ts_cnt_1> in Unit <mimtlu_0> is equivalent to the following 2 FFs/Latches : <mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/ts_cnt_1_2> <mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/ts_cnt_1_3> 
-INFO:Xst:2260 - The FF/Latch <mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_2> in Unit <mimtlu_0> is equivalent to the following FF/Latch : <mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_2_1> 
 INFO:Xst:2260 - The FF/Latch <mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/ts_cnt_2> in Unit <mimtlu_0> is equivalent to the following 2 FFs/Latches : <mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/ts_cnt_2_2> <mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/ts_cnt_2_3> 
-INFO:Xst:2260 - The FF/Latch <mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/state_reg_FSM_FFd1> in Unit <mimtlu_0> is equivalent to the following 3 FFs/Latches : <mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/state_reg_FSM_FFd1_1> <mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/state_reg_FSM_FFd1_2> <mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/state_reg_FSM_FFd1_3> 
-INFO:Xst:2260 - The FF/Latch <mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_1> in Unit <mimtlu_0> is equivalent to the following FF/Latch : <mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_1_1> 
+INFO:Xst:2260 - The FF/Latch <mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_3> in Unit <mimtlu_0> is equivalent to the following FF/Latch : <mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_3_1> 
+INFO:Xst:2260 - The FF/Latch <mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/state_reg_FSM_FFd2> in Unit <mimtlu_0> is equivalent to the following 3 FFs/Latches : <mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/state_reg_FSM_FFd2_1> <mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/state_reg_FSM_FFd2_2> <mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/state_reg_FSM_FFd2_3> 
 INFO:Xst:2260 - The FF/Latch <mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/ts_cnt_3> in Unit <mimtlu_0> is equivalent to the following 2 FFs/Latches : <mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/ts_cnt_3_2> <mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/ts_cnt_3_3> 
-INFO:Xst:2260 - The FF/Latch <mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/ts_cnt_4> in Unit <mimtlu_0> is equivalent to the following FF/Latch : <mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/ts_cnt_4_2> 
+INFO:Xst:2260 - The FF/Latch <mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_2> in Unit <mimtlu_0> is equivalent to the following FF/Latch : <mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_2_1> 
+INFO:Xst:2260 - The FF/Latch <mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/ts_cnt_4> in Unit <mimtlu_0> is equivalent to the following 2 FFs/Latches : <mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/ts_cnt_4_2> <mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/ts_cnt_4_3> 
+INFO:Xst:2260 - The FF/Latch <mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/state_reg_FSM_FFd1> in Unit <mimtlu_0> is equivalent to the following 2 FFs/Latches : <mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/state_reg_FSM_FFd1_1> <mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/state_reg_FSM_FFd1_2> 
+INFO:Xst:2260 - The FF/Latch <mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_1> in Unit <mimtlu_0> is equivalent to the following FF/Latch : <mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_1_1> 
+INFO:Xst:2260 - The FF/Latch <mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/ts_cnt_0> in Unit <mimtlu_0> is equivalent to the following 2 FFs/Latches : <mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/ts_cnt_0_1> <mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/ts_cnt_0_2> 
+INFO:Xst:2260 - The FF/Latch <mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_0> in Unit <mimtlu_0> is equivalent to the following FF/Latch : <mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_0_1> 
 INFO:Xst:2260 - The FF/Latch <mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/Bus_RNW_reg> in Unit <mimtlu_0> is equivalent to the following FF/Latch : <mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/Bus_RNW_reg_1> 
 INFO:Xst:2260 - The FF/Latch <MCB3_LPDDR/mcb_ui_top_0/mcb_raw_wrapper_inst/gen_term_calib.mcb_soft_calibration_top_inst/mcb_soft_calibration_inst/STATE_FSM_FFd2> in Unit <MCB3_LPDDR> is equivalent to the following 2 FFs/Latches : <MCB3_LPDDR/mcb_ui_top_0/mcb_raw_wrapper_inst/gen_term_calib.mcb_soft_calibration_top_inst/mcb_soft_calibration_inst/STATE_FSM_FFd2_1> <MCB3_LPDDR/mcb_ui_top_0/mcb_raw_wrapper_inst/gen_term_calib.mcb_soft_calibration_top_inst/mcb_soft_calibration_inst/STATE_FSM_FFd2_2> 
 INFO:Xst:2260 - The FF/Latch <MCB3_LPDDR/mcb_ui_top_0/mcb_raw_wrapper_inst/gen_term_calib.mcb_soft_calibration_top_inst/mcb_soft_calibration_inst/STATE_FSM_FFd3> in Unit <MCB3_LPDDR> is equivalent to the following 2 FFs/Latches : <MCB3_LPDDR/mcb_ui_top_0/mcb_raw_wrapper_inst/gen_term_calib.mcb_soft_calibration_top_inst/mcb_soft_calibration_inst/STATE_FSM_FFd3_1> <MCB3_LPDDR/mcb_ui_top_0/mcb_raw_wrapper_inst/gen_term_calib.mcb_soft_calibration_top_inst/mcb_soft_calibration_inst/STATE_FSM_FFd3_2> 
@@ -1233,29 +1235,29 @@ Top Level Output File Name         : system.ngc
 
 Primitive and Black Box Usage:
 ------------------------------
-# BELS                             : 6318
+# BELS                             : 6343
 #      GND                         : 26
 #      INV                         : 113
 #      LUT1                        : 75
 #      LUT2                        : 498
-#      LUT3                        : 842
-#      LUT4                        : 947
+#      LUT3                        : 844
+#      LUT4                        : 944
 #      LUT5                        : 795
-#      LUT6                        : 1605
+#      LUT6                        : 1621
 #      LUT6_2                      : 116
 #      MULT_AND                    : 37
-#      MUXCY                       : 307
+#      MUXCY                       : 319
 #      MUXCY_L                     : 317
 #      MUXF5                       : 65
-#      MUXF7                       : 84
+#      MUXF7                       : 82
 #      MUXF8                       : 47
 #      VCC                         : 15
 #      XORCY                       : 429
-# FlipFlops/Latches                : 4579
+# FlipFlops/Latches                : 4581
 #      FD                          : 586
 #      FDC                         : 178
 #      FDC_1                       : 5
-#      FDCE                        : 93
+#      FDCE                        : 95
 #      FDE                         : 1078
 #      FDE_1                       : 8
 #      FDP                         : 24
@@ -1304,18 +1306,18 @@ Selected Device : 6slx9csg324-2
 
 
 Slice Logic Utilization: 
- Number of Slice Registers:            4568  out of  11440    39%  
- Number of Slice LUTs:                 5359  out of   5720    93%  
-    Number used as Logic:              4991  out of   5720    87%  
+ Number of Slice Registers:            4570  out of  11440    39%  
+ Number of Slice LUTs:                 5374  out of   5720    93%  
+    Number used as Logic:              5006  out of   5720    87%  
     Number used as Memory:              368  out of   1440    25%  
        Number used as RAM:              140
        Number used as SRL:              228
 
 Slice Logic Distribution: 
- Number of LUT Flip Flop pairs used:   7628
-   Number with an unused Flip Flop:    3060  out of   7628    40%  
-   Number with an unused LUT:          2269  out of   7628    29%  
-   Number of fully used LUT-FF pairs:  2299  out of   7628    30%  
+ Number of LUT Flip Flop pairs used:   7647
+   Number with an unused Flip Flop:    3077  out of   7647    40%  
+   Number with an unused LUT:          2273  out of   7647    29%  
+   Number of fully used LUT-FF pairs:  2297  out of   7647    30%  
    Number of unique control sets:       346
 
 IO Utilization: 
@@ -1354,7 +1356,7 @@ Clock Signal                                              | Clock buffer(FF name
 Ethernet_MAC_RX_CLK                                       | IBUF                                                                                                             | 40    |
 Ethernet_MAC_TX_CLK                                       | IBUF                                                                                                             | 45    |
 CLK_66MHZ                                                 | PLL_ADV:CLKOUT2                                                                                                  | 4478  |
-mimtlu_0/mimtlu_0/USER_LOGIC_I/MIMTLU_ent/CLK_DIV/temporal| BUFG                                                                                                             | 89    |
+mimtlu_0/mimtlu_0/USER_LOGIC_I/MIMTLU_ent/CLK_DIV/temporal| BUFG                                                                                                             | 91    |
 USB_Uart/Interrupt                                        | NONE(microblaze_0_intc/microblaze_0_intc/INTC_CORE_I/intr_sync_2)                                                | 1     |
 Ethernet_MAC/IP2INTC_Irpt                                 | NONE(microblaze_0_intc/microblaze_0_intc/INTC_CORE_I/intr_sync_1)                                                | 1     |
 debug_module/debug_module/drck_i                          | BUFG                                                                                                             | 209   |
@@ -1373,7 +1375,7 @@ Speed Grade: -2
    Minimum period: 11.574ns (Maximum Frequency: 86.401MHz)
    Minimum input arrival time before clock: 8.502ns
    Maximum output required time after clock: 11.582ns
-   Maximum combinational path delay: 5.115ns
+   Maximum combinational path delay: 6.294ns
 
 Timing Details:
 ---------------
@@ -1404,7 +1406,7 @@ Delay:               1.833ns (Levels of Logic = 1)
 =========================================================================
 Timing constraint: Default period analysis for Clock 'CLK_66MHZ'
   Clock period: 10.569ns (frequency: 94.618MHz)
-  Total number of paths / destination ports: 382778 / 12032
+  Total number of paths / destination ports: 382780 / 12032
 -------------------------------------------------------------------------
 Delay:               10.569ns (Levels of Logic = 11)
   Source:            axi_timer_0/axi_timer_0/AXI4_LITE_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_1 (FF)
@@ -1458,27 +1460,42 @@ Delay:               1.600ns (Levels of Logic = 1)
 
 =========================================================================
 Timing constraint: Default period analysis for Clock 'mimtlu_0/mimtlu_0/USER_LOGIC_I/MIMTLU_ent/CLK_DIV/temporal'
-  Clock period: 4.258ns (frequency: 234.852MHz)
-  Total number of paths / destination ports: 3676 / 139
+  Clock period: 4.257ns (frequency: 234.903MHz)
+  Total number of paths / destination ports: 3553 / 143
 -------------------------------------------------------------------------
-Delay:               4.258ns (Levels of Logic = 3)
-  Source:            mimtlu_0/mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/ts_cnt_3_2 (FF)
-  Destination:       mimtlu_0/mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/timestamp_reg_10 (FF)
+Delay:               4.257ns (Levels of Logic = 18)
+  Source:            mimtlu_0/mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/count_1 (FF)
+  Destination:       mimtlu_0/mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/count_29 (FF)
   Source Clock:      mimtlu_0/mimtlu_0/USER_LOGIC_I/MIMTLU_ent/CLK_DIV/temporal rising
   Destination Clock: mimtlu_0/mimtlu_0/USER_LOGIC_I/MIMTLU_ent/CLK_DIV/temporal rising
 
-  Data Path: mimtlu_0/mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/ts_cnt_3_2 to mimtlu_0/mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/timestamp_reg_10
+  Data Path: mimtlu_0/mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/count_1 to mimtlu_0/mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/count_29
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FDCE:C->Q            13   0.525   1.206  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/ts_cnt_3_2 (mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/ts_cnt_3_2)
-     LUT3:I1->O            4   0.250   1.032  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mmux_timestamp_reg[10]_ts_reg_MUX_118_o121 (mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mmux_timestamp_reg[10]_ts_reg_MUX_118_o12)
-     LUT6:I3->O            1   0.235   0.682  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mmux_timestamp_reg[8]_ts_reg_MUX_120_o11 (mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/timestamp_reg[8]_ts_reg_MUX_120_o)
-     LUT6:I5->O            1   0.254   0.000  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/timestamp_reg_8_dpot (mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/timestamp_reg_8_dpot)
-     FDE:D                     0.074          mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/timestamp_reg_8
+     FDC:C->Q              5   0.525   1.117  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/count_1 (mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/count<1>)
+     LUT4:I0->O            0   0.254   0.000  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcompar_wait_time[30]_count[30]_LessThan_12_o_lutdi (mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcompar_wait_time[30]_count[30]_LessThan_12_o_lutdi)
+     MUXCY:DI->O           1   0.181   0.000  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcompar_wait_time[30]_count[30]_LessThan_12_o_cy<0> (mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcompar_wait_time[30]_count[30]_LessThan_12_o_cy<0>)
+     MUXCY:CI->O           1   0.023   0.000  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcompar_wait_time[30]_count[30]_LessThan_12_o_cy<1> (mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcompar_wait_time[30]_count[30]_LessThan_12_o_cy<1>)
+     MUXCY:CI->O           1   0.023   0.000  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcompar_wait_time[30]_count[30]_LessThan_12_o_cy<2> (mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcompar_wait_time[30]_count[30]_LessThan_12_o_cy<2>)
+     MUXCY:CI->O           1   0.023   0.000  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcompar_wait_time[30]_count[30]_LessThan_12_o_cy<3> (mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcompar_wait_time[30]_count[30]_LessThan_12_o_cy<3>)
+     MUXCY:CI->O           1   0.023   0.000  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcompar_wait_time[30]_count[30]_LessThan_12_o_cy<4> (mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcompar_wait_time[30]_count[30]_LessThan_12_o_cy<4>)
+     MUXCY:CI->O           1   0.023   0.000  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcompar_wait_time[30]_count[30]_LessThan_12_o_cy<5> (mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcompar_wait_time[30]_count[30]_LessThan_12_o_cy<5>)
+     MUXCY:CI->O           1   0.023   0.000  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcompar_wait_time[30]_count[30]_LessThan_12_o_cy<6> (mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcompar_wait_time[30]_count[30]_LessThan_12_o_cy<6>)
+     MUXCY:CI->O           1   0.023   0.000  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcompar_wait_time[30]_count[30]_LessThan_12_o_cy<7> (mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcompar_wait_time[30]_count[30]_LessThan_12_o_cy<7>)
+     MUXCY:CI->O           1   0.023   0.000  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcompar_wait_time[30]_count[30]_LessThan_12_o_cy<8> (mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcompar_wait_time[30]_count[30]_LessThan_12_o_cy<8>)
+     MUXCY:CI->O           1   0.023   0.000  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcompar_wait_time[30]_count[30]_LessThan_12_o_cy<9> (mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcompar_wait_time[30]_count[30]_LessThan_12_o_cy<9>)
+     MUXCY:CI->O           1   0.023   0.000  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcompar_wait_time[30]_count[30]_LessThan_12_o_cy<10> (mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcompar_wait_time[30]_count[30]_LessThan_12_o_cy<10>)
+     MUXCY:CI->O           1   0.023   0.000  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcompar_wait_time[30]_count[30]_LessThan_12_o_cy<11> (mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcompar_wait_time[30]_count[30]_LessThan_12_o_cy<11>)
+     MUXCY:CI->O           1   0.023   0.000  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcompar_wait_time[30]_count[30]_LessThan_12_o_cy<12> (mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcompar_wait_time[30]_count[30]_LessThan_12_o_cy<12>)
+     MUXCY:CI->O           1   0.023   0.000  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcompar_wait_time[30]_count[30]_LessThan_12_o_cy<13> (mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcompar_wait_time[30]_count[30]_LessThan_12_o_cy<13>)
+     MUXCY:CI->O           1   0.023   0.000  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcompar_wait_time[30]_count[30]_LessThan_12_o_cy<14> (mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcompar_wait_time[30]_count[30]_LessThan_12_o_cy<14>)
+     MUXCY:CI->O          31   0.023   1.503  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcompar_wait_time[30]_count[30]_LessThan_12_o_cy<15> (mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/wait_time[30]_count[30]_LessThan_12_o)
+     LUT6:I5->O            1   0.254   0.000  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/count_29_rstpot (mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/count_29_rstpot)
+     FDC:D                     0.074          mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/count_29
     ----------------------------------------
-    Total                      4.258ns (1.338ns logic, 2.920ns route)
-                                       (31.4% logic, 68.6% route)
+    Total                      4.257ns (1.637ns logic, 2.620ns route)
+                                       (38.4% logic, 61.6% route)
 
 =========================================================================
 Timing constraint: Default period analysis for Clock 'debug_module/debug_module/drck_i'
@@ -1582,24 +1599,26 @@ Offset:              4.665ns (Levels of Logic = 2)
 
 =========================================================================
 Timing constraint: Default OFFSET IN BEFORE for Clock 'mimtlu_0/mimtlu_0/USER_LOGIC_I/MIMTLU_ent/CLK_DIV/temporal'
-  Total number of paths / destination ports: 244 / 90
+  Total number of paths / destination ports: 254 / 95
 -------------------------------------------------------------------------
-Offset:              5.150ns (Levels of Logic = 3)
-  Source:            mimtlu_0_RESET_P_pin (PAD)
-  Destination:       mimtlu_0/mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/data_itr_reg (FF)
+Offset:              5.234ns (Levels of Logic = 5)
+  Source:            mimtlu_0_TRIGGER_P_pin (PAD)
+  Destination:       mimtlu_0/mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/timestamp_reg_3 (FF)
   Destination Clock: mimtlu_0/mimtlu_0/USER_LOGIC_I/MIMTLU_ent/CLK_DIV/temporal rising
 
-  Data Path: mimtlu_0_RESET_P_pin to mimtlu_0/mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/data_itr_reg
+  Data Path: mimtlu_0_TRIGGER_P_pin to mimtlu_0/mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/timestamp_reg_3
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     begin scope: 'mimtlu_0:RESET_P'
-     IBUFDS:I->O          93   1.328   2.585  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/IBUFDS_RESET (mimtlu_0/USER_LOGIC_I/MIMTLU_ent/reset)
-     LUT5:I0->O            1   0.254   0.681  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/_n0138_inv1 (mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/_n0138_inv)
-     FDE:CE                    0.302          mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/data_itr_reg
+     begin scope: 'mimtlu_0:TRIGGER_P'
+     IBUFDS:I->O           7   1.328   1.340  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/IBUFDS_TRIGGER (TRIGGER_COPY)
+     LUT5:I0->O            8   0.254   1.052  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mmux_timestamp_reg[13]_ts_reg_MUX_114_o111 (mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mmux_timestamp_reg[13]_ts_reg_MUX_114_o11)
+     LUT6:I4->O            1   0.250   0.682  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mmux_timestamp_reg[1]_ts_reg_MUX_126_o12 (mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/timestamp_reg[1]_ts_reg_MUX_126_o)
+     LUT6:I5->O            1   0.254   0.000  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/timestamp_reg_1_dpot (mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/timestamp_reg_1_dpot)
+     FDE:D                     0.074          mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/timestamp_reg_1
     ----------------------------------------
-    Total                      5.150ns (1.884ns logic, 3.266ns route)
-                                       (36.6% logic, 63.4% route)
+    Total                      5.234ns (2.160ns logic, 3.074ns route)
+                                       (41.3% logic, 58.7% route)
 
 =========================================================================
 Timing constraint: Default OFFSET IN BEFORE for Clock 'debug_module/debug_module/drck_i'
@@ -1661,7 +1680,7 @@ Offset:              8.502ns (Levels of Logic = 6)
 Timing constraint: Default OFFSET OUT AFTER for Clock 'CLK_66MHZ'
   Total number of paths / destination ports: 535 / 142
 -------------------------------------------------------------------------
-Offset:              8.795ns (Levels of Logic = 5)
+Offset:              8.008ns (Levels of Logic = 5)
   Source:            mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_1 (FF)
   Destination:       mimtlu_0_BUSY_COPY_pin (PAD)
   Source Clock:      CLK_66MHZ rising
@@ -1670,15 +1689,15 @@ Offset:              8.795ns (Levels of Logic = 5)
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FDRE:C->Q             2   0.525   1.181  mimtlu_0/USER_LOGIC_I/slv_reg2_1 (mimtlu_0/USER_LOGIC_I/slv_reg2<1>)
+     FDRE:C->Q             3   0.525   1.221  mimtlu_0/USER_LOGIC_I/slv_reg2_1 (mimtlu_0/USER_LOGIC_I/slv_reg2<1>)
      LUT6:I0->O            1   0.254   1.137  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/busy_int1 (mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/busy_int)
-     LUT6:I0->O           34   0.254   1.553  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/busy_int6 (mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/busy_int5)
+     LUT6:I0->O            2   0.254   0.726  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/busy_int6 (mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/busy_int5)
      LUT3:I2->O            2   0.254   0.725  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/busy_int7 (BUSY_P)
      end scope: 'mimtlu_0:BUSY_COPY'
      OBUF:I->O                 2.912          mimtlu_0_BUSY_COPY_pin_OBUF (mimtlu_0_BUSY_COPY_pin)
     ----------------------------------------
-    Total                      8.795ns (4.199ns logic, 4.596ns route)
-                                       (47.7% logic, 52.3% route)
+    Total                      8.008ns (4.199ns logic, 3.809ns route)
+                                       (52.4% logic, 47.6% route)
 
 =========================================================================
 Timing constraint: Default OFFSET OUT AFTER for Clock 'Ethernet_MAC_TX_CLK'
@@ -1702,9 +1721,9 @@ Offset:              4.118ns (Levels of Logic = 2)
 
 =========================================================================
 Timing constraint: Default OFFSET OUT AFTER for Clock 'mimtlu_0/mimtlu_0/USER_LOGIC_I/MIMTLU_ent/CLK_DIV/temporal'
-  Total number of paths / destination ports: 9 / 5
+  Total number of paths / destination ports: 10 / 5
 -------------------------------------------------------------------------
-Offset:              6.679ns (Levels of Logic = 3)
+Offset:              6.687ns (Levels of Logic = 3)
   Source:            mimtlu_0/mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/state_reg_FSM_FFd1 (FF)
   Destination:       mimtlu_0_BUSY_COPY_pin (PAD)
   Source Clock:      mimtlu_0/mimtlu_0/USER_LOGIC_I/MIMTLU_ent/CLK_DIV/temporal rising
@@ -1713,13 +1732,13 @@ Offset:              6.679ns (Levels of Logic = 3)
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FDC:C->Q             80   0.525   2.282  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/state_reg_FSM_FFd1 (mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/state_reg_FSM_FFd1)
+     FDC:C->Q             81   0.525   2.290  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/state_reg_FSM_FFd1 (mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/state_reg_FSM_FFd1)
      LUT3:I0->O            2   0.235   0.725  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/busy_int7 (BUSY_P)
      end scope: 'mimtlu_0:BUSY_COPY'
      OBUF:I->O                 2.912          mimtlu_0_BUSY_COPY_pin_OBUF (mimtlu_0_BUSY_COPY_pin)
     ----------------------------------------
-    Total                      6.679ns (3.672ns logic, 3.007ns route)
-                                       (55.0% logic, 45.0% route)
+    Total                      6.687ns (3.672ns logic, 3.015ns route)
+                                       (54.9% logic, 45.1% route)
 
 =========================================================================
 Timing constraint: Default OFFSET OUT AFTER for Clock 'debug_module/Ext_JTAG_UPDATE'
@@ -1781,23 +1800,24 @@ Offset:              11.582ns (Levels of Logic = 9)
 
 =========================================================================
 Timing constraint: Default path analysis
-  Total number of paths / destination ports: 707 / 666
+  Total number of paths / destination ports: 709 / 667
 -------------------------------------------------------------------------
-Delay:               5.115ns (Levels of Logic = 3)
+Delay:               6.294ns (Levels of Logic = 4)
   Source:            mimtlu_0_TRIGGER_P_pin (PAD)
-  Destination:       mimtlu_0_TRIGGER_COPY_pin (PAD)
+  Destination:       mimtlu_0_TRIGGER_DUT_pin (PAD)
 
-  Data Path: mimtlu_0_TRIGGER_P_pin to mimtlu_0_TRIGGER_COPY_pin
+  Data Path: mimtlu_0_TRIGGER_P_pin to mimtlu_0_TRIGGER_DUT_pin
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
      begin scope: 'mimtlu_0:TRIGGER_P'
-     IBUFDS:I->O           6   1.328   0.875  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/IBUFDS_TRIGGER (TRIGGER_COPY)
-     end scope: 'mimtlu_0:TRIGGER_COPY'
-     OBUF:I->O                 2.912          mimtlu_0_TRIGGER_COPY_pin_OBUF (mimtlu_0_TRIGGER_COPY_pin)
+     IBUFDS:I->O           7   1.328   1.138  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/IBUFDS_TRIGGER (TRIGGER_COPY)
+     LUT3:I0->O            1   0.235   0.681  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mmux_trigger_dut11 (TRIGGER_DUT)
+     end scope: 'mimtlu_0:TRIGGER_DUT'
+     OBUF:I->O                 2.912          mimtlu_0_TRIGGER_DUT_pin_OBUF (mimtlu_0_TRIGGER_DUT_pin)
     ----------------------------------------
-    Total                      5.115ns (4.240ns logic, 0.875ns route)
-                                       (82.9% logic, 17.1% route)
+    Total                      6.294ns (4.475ns logic, 1.819ns route)
+                                       (71.1% logic, 28.9% route)
 
 =========================================================================
 
@@ -1816,7 +1836,7 @@ Ethernet_MAC_TX_CLK                                       |         |    3.826| 
 USB_Uart/Interrupt                                        |    1.280|         |         |         |
 debug_module/Ext_JTAG_UPDATE                              |    4.371|    3.446|         |         |
 debug_module/debug_module/drck_i                          |    5.322|         |         |         |
-mimtlu_0/mimtlu_0/USER_LOGIC_I/MIMTLU_ent/CLK_DIV/temporal|    2.112|         |         |         |
+mimtlu_0/mimtlu_0/USER_LOGIC_I/MIMTLU_ent/CLK_DIV/temporal|    2.074|         |         |         |
 ----------------------------------------------------------+---------+---------+---------+---------+
 
 Clock to Setup on destination clock Ethernet_MAC/IP2INTC_Irpt
@@ -1878,15 +1898,15 @@ Clock to Setup on destination clock mimtlu_0/mimtlu_0/USER_LOGIC_I/MIMTLU_ent/CL
                                                           | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock                                              |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ----------------------------------------------------------+---------+---------+---------+---------+
-CLK_66MHZ                                                 |    5.687|         |         |         |
-mimtlu_0/mimtlu_0/USER_LOGIC_I/MIMTLU_ent/CLK_DIV/temporal|    4.258|         |         |         |
+CLK_66MHZ                                                 |    8.966|         |         |         |
+mimtlu_0/mimtlu_0/USER_LOGIC_I/MIMTLU_ent/CLK_DIV/temporal|    4.257|         |         |         |
 ----------------------------------------------------------+---------+---------+---------+---------+
 
 =========================================================================
 
 
 Total REAL time to Xst completion: 25.00 secs
-Total CPU time to Xst completion: 25.11 secs
+Total CPU time to Xst completion: 25.10 secs
  
 --> 
 
@@ -1894,5 +1914,5 @@ Total memory usage is 336576 kilobytes
 
 Number of errors   :    0 (   0 filtered)
 Number of warnings :   11 (   0 filtered)
-Number of infos    : 1027 (   0 filtered)
+Number of infos    : 1029 (   0 filtered)
 
