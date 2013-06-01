@@ -183,7 +183,7 @@ end case;
 
 end process SM;
 
-busy_int <= '1' when ((to_integer(unsigned(busy_handle(31 downto 0)))=111)) else
+busy_int <= '1' when ((to_integer(unsigned(busy_handle(31 downto 0)))=111)) or busy_reg='1' else
              '0' when to_integer(unsigned(busy_handle(31 downto 0)))=222  else
              '0';
 
@@ -201,7 +201,7 @@ busy_copy<=busy_int;
 
 				 
 trigger_dut <= trigger_reg;		 				 
-trigger_copy <= trigger_reg;
+trigger_copy <= trigger;
 
 timestamp(31 downto Nbits+1)<=(others=>'0');
 timestamp(Nbits downto 0)<=timestamp_reg;
