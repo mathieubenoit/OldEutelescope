@@ -180,11 +180,11 @@ end process SM;
 --             '0' ;			 
 
 
-busy_int <= '1' when busy_reg='1' else
+busy <= '1' when busy_reg='1' else
              '0' ;	
-
-busy<=busy_int;
-busy_copy<=busy_int;
+				 
+busy_copy<= '1' when busy_reg='1' else
+             '0' ;
 
 --busy <= '1' when (busy_dut_reg='1' or busy_reg='1') else
 --             '0';
