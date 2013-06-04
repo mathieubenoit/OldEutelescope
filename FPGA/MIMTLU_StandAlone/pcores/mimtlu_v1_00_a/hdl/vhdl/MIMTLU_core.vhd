@@ -77,6 +77,7 @@ signal wait_time : natural := 300000;
 
 signal busy_int: std_logic:='0';
 
+signal trigger_reg: std_logic:='0';
 
 
 begin
@@ -94,6 +95,7 @@ if (reset='1') then
 elsif rising_edge(clk) then 
 	state_reg <= state_next;
 	busy_dut_reg<=busy_dut;
+	trigger_reg<=trigger;
 	
 	if (ts_cnt=0 and wait_bit='0' and clk_en_reg='1') then 
 		wait_bit<='1';
@@ -114,7 +116,7 @@ elsif rising_edge(clk) then
 			wait_bit<='0';
 	end if;
 	
-	if(count>=wait_time and busy_int='0') then 
+	if(count=wait_time and busy_reg='1') then 
 		count<=0;
 	elsif(busy_reg='1') then 
 		count<=count+1;
@@ -130,7 +132,7 @@ begin
 
 case state_reg is 
 	when idle =>
-		if trigger='1' and busy_int='0' then
+		if trigger_reg='1' then
 			state_next <= triggered;
 		else
 			state_next<= idle;
@@ -174,12 +176,13 @@ end case;
 
 end process SM;
 
-busy_int <= '1' when ((to_integer(unsigned(busy_handle(31 downto 0)))=111)) or busy_reg='1' else
-             '0' when to_integer(unsigned(busy_handle(31 downto 0)))=222 and busy_reg='0' else
-             '0';
+--busy_int <= '1' when ((to_integer(unsigned(busy_handle(31 downto 0)))=111)) or busy_reg='1' else
+--             '0' ;			 
 
 
-				 
+busy_int <= '1' when busy_reg='1' else
+             '0' ;	
+
 busy<=busy_int;
 busy_copy<=busy_int;
 
@@ -191,7 +194,7 @@ busy_copy<=busy_int;
 --             '0';	
 
 				 
-trigger_dut <= trigger when clk_en_reg='0' and busy_int='0' else 
+trigger_dut <= trigger_reg when clk_en_reg='0' else 
 					'0';		
 trigger_copy <= trigger;
 
