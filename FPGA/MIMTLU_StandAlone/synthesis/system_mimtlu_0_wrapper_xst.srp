@@ -4,7 +4,7 @@ Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.35 secs
+Total CPU time to Xst completion: 0.10 secs
  
 --> 
 TABLE OF CONTENTS
@@ -482,12 +482,12 @@ Elaborating entity <top> (architecture <Behavioral>) from library <mimtlu_v1_00_
 Elaborating entity <dummy_diffpair> (architecture <Behavioral>) from library <mimtlu_v1_00_a>.
 
 Elaborating entity <MIMTLU_core> (architecture <Behavioral>) with generics from library <mimtlu_v1_00_a>.
-WARNING:HDLCompiler:1127 - "F:/Git_projects/FPGA/MIMTLU_StandAlone/pcores/mimtlu_v1_00_a/hdl/vhdl/MIMTLU_core.vhd" Line 85: Assignment to busy_dut_reg ignored, since the identifier is never used
-WARNING:HDLCompiler:92 - "F:/Git_projects/FPGA/MIMTLU_StandAlone/pcores/mimtlu_v1_00_a/hdl/vhdl/MIMTLU_core.vhd" Line 133: trigger should be on the sensitivity list of the process
-WARNING:HDLCompiler:92 - "F:/Git_projects/FPGA/MIMTLU_StandAlone/pcores/mimtlu_v1_00_a/hdl/vhdl/MIMTLU_core.vhd" Line 155: trigger should be on the sensitivity list of the process
-WARNING:HDLCompiler:92 - "F:/Git_projects/FPGA/MIMTLU_StandAlone/pcores/mimtlu_v1_00_a/hdl/vhdl/MIMTLU_core.vhd" Line 167: wait_time should be on the sensitivity list of the process
-WARNING:HDLCompiler:746 - "F:/Git_projects/FPGA/MIMTLU_StandAlone/pcores/mimtlu_v1_00_a/hdl/vhdl/MIMTLU_core.vhd" Line 198: Range is empty (null range)
-WARNING:HDLCompiler:220 - "F:/Git_projects/FPGA/MIMTLU_StandAlone/pcores/mimtlu_v1_00_a/hdl/vhdl/MIMTLU_core.vhd" Line 198: Assignment ignored
+WARNING:HDLCompiler:1127 - "F:/Git_projects/FPGA/MIMTLU_StandAlone/pcores/mimtlu_v1_00_a/hdl/vhdl/MIMTLU_core.vhd" Line 86: Assignment to busy_dut_reg ignored, since the identifier is never used
+WARNING:HDLCompiler:92 - "F:/Git_projects/FPGA/MIMTLU_StandAlone/pcores/mimtlu_v1_00_a/hdl/vhdl/MIMTLU_core.vhd" Line 135: trigger_reg should be on the sensitivity list of the process
+WARNING:HDLCompiler:92 - "F:/Git_projects/FPGA/MIMTLU_StandAlone/pcores/mimtlu_v1_00_a/hdl/vhdl/MIMTLU_core.vhd" Line 157: trigger should be on the sensitivity list of the process
+WARNING:HDLCompiler:92 - "F:/Git_projects/FPGA/MIMTLU_StandAlone/pcores/mimtlu_v1_00_a/hdl/vhdl/MIMTLU_core.vhd" Line 169: wait_time should be on the sensitivity list of the process
+WARNING:HDLCompiler:746 - "F:/Git_projects/FPGA/MIMTLU_StandAlone/pcores/mimtlu_v1_00_a/hdl/vhdl/MIMTLU_core.vhd" Line 201: Range is empty (null range)
+WARNING:HDLCompiler:220 - "F:/Git_projects/FPGA/MIMTLU_StandAlone/pcores/mimtlu_v1_00_a/hdl/vhdl/MIMTLU_core.vhd" Line 201: Assignment ignored
 
 Elaborating entity <clk_divider> (architecture <Behavioral>) from library <mimtlu_v1_00_a>.
 WARNING:HDLCompiler:1127 - "F:/Git_projects/FPGA/MIMTLU_StandAlone/pcores/mimtlu_v1_00_a/hdl/vhdl/user_logic.vhd" Line 221: Assignment to slv_reg3 ignored, since the identifier is never used
@@ -677,19 +677,20 @@ Synthesizing Unit <MIMTLU_core>.
     Related source file is "F:/Git_projects/FPGA/MIMTLU_StandAlone/pcores/mimtlu_v1_00_a/hdl/vhdl/MIMTLU_core.vhd".
         Nbits = 31
 WARNING:Xst:647 - Input <busy_cnt<31:31>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
-WARNING:Xst:647 - Input <busy_handle<31:31>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <busy_handle> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
 WARNING:Xst:647 - Input <busy_dut> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
     Found 31-bit register for signal <count>.
     Found 5-bit register for signal <ts_cnt>.
     Found 2-bit register for signal <state_reg>.
     Found 1-bit register for signal <wait_bit>.
+    Found 1-bit register for signal <trigger_reg>.
     Found 32-bit register for signal <timestamp_reg>.
     Found 1-bit register for signal <data_itr_reg>.
     Found finite state machine <FSM_1> for signal <state_reg>.
     -----------------------------------------------------------------------
     | States             | 4                                              |
-    | Transitions        | 8                                              |
-    | Inputs             | 4                                              |
+    | Transitions        | 7                                              |
+    | Inputs             | 3                                              |
     | Outputs            | 4                                              |
     | Clock              | clk (rising_edge)                              |
     | Reset              | reset (positive)                               |
@@ -699,14 +700,13 @@ WARNING:Xst:647 - Input <busy_dut> is never used. This port will be preserved an
     | Encoding           | auto                                           |
     | Implementation     | LUT                                            |
     -----------------------------------------------------------------------
-    Found 5-bit adder for signal <ts_cnt[4]_GND_23_o_add_4_OUT> created at line 109.
-    Found 31-bit adder for signal <count[30]_GND_23_o_add_12_OUT> created at line 120.
-    Found 31-bit comparator lessequal for signal <n0047> created at line 117
-    Found 31-bit comparator equal for signal <wait_time[30]_count[30]_equal_24_o> created at line 167
+    Found 5-bit adder for signal <ts_cnt[4]_GND_23_o_add_4_OUT> created at line 111.
+    Found 31-bit adder for signal <count[30]_GND_23_o_add_12_OUT> created at line 122.
+    Found 31-bit comparator equal for signal <wait_time[30]_count[30]_equal_12_o> created at line 119
     Summary:
 	inferred   2 Adder/Subtractor(s).
-	inferred  70 D-type flip-flop(s).
-	inferred   2 Comparator(s).
+	inferred  71 D-type flip-flop(s).
+	inferred   1 Comparator(s).
 	inferred  36 Multiplexer(s).
 	inferred   1 Finite State Machine(s).
 Unit <MIMTLU_core> synthesized.
@@ -731,17 +731,16 @@ Macro Statistics
  31-bit adder                                          : 1
  4-bit adder                                           : 1
  5-bit adder                                           : 1
-# Registers                                            : 22
- 1-bit register                                        : 12
+# Registers                                            : 23
+ 1-bit register                                        : 13
  2-bit register                                        : 2
  3-bit register                                        : 1
  31-bit register                                       : 1
  32-bit register                                       : 4
  4-bit register                                        : 1
  5-bit register                                        : 1
-# Comparators                                          : 2
+# Comparators                                          : 1
  31-bit comparator equal                               : 1
- 31-bit comparator lessequal                           : 1
 # Multiplexers                                         : 109
  1-bit 2-to-1 multiplexer                              : 103
  3-bit 2-to-1 multiplexer                              : 1
@@ -779,11 +778,10 @@ Macro Statistics
  31-bit up counter                                     : 1
  4-bit up counter                                      : 1
  5-bit up counter                                      : 1
-# Registers                                            : 144
- Flip-Flops                                            : 144
-# Comparators                                          : 2
+# Registers                                            : 145
+ Flip-Flops                                            : 145
+# Comparators                                          : 1
  31-bit comparator equal                               : 1
- 31-bit comparator lessequal                           : 1
 # Multiplexers                                         : 102
  1-bit 2-to-1 multiplexer                              : 99
  32-bit 2-to-1 multiplexer                             : 3
@@ -831,22 +829,48 @@ WARNING:Xst:1293 - FF/Latch <mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_b
 WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rresp_i_1> has a constant value of 0 in block <system_mimtlu_0_wrapper>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:2677 - Node <mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/cs_out_i_0> of sequential type is unconnected in block <system_mimtlu_0_wrapper>.
 WARNING:Xst:2677 - Node <mimtlu_0/USER_LOGIC_I/slv_reg2_31> of sequential type is unconnected in block <system_mimtlu_0_wrapper>.
+WARNING:Xst:2677 - Node <mimtlu_0/USER_LOGIC_I/slv_reg2_30> of sequential type is unconnected in block <system_mimtlu_0_wrapper>.
+WARNING:Xst:2677 - Node <mimtlu_0/USER_LOGIC_I/slv_reg2_29> of sequential type is unconnected in block <system_mimtlu_0_wrapper>.
+WARNING:Xst:2677 - Node <mimtlu_0/USER_LOGIC_I/slv_reg2_28> of sequential type is unconnected in block <system_mimtlu_0_wrapper>.
+WARNING:Xst:2677 - Node <mimtlu_0/USER_LOGIC_I/slv_reg2_27> of sequential type is unconnected in block <system_mimtlu_0_wrapper>.
+WARNING:Xst:2677 - Node <mimtlu_0/USER_LOGIC_I/slv_reg2_26> of sequential type is unconnected in block <system_mimtlu_0_wrapper>.
+WARNING:Xst:2677 - Node <mimtlu_0/USER_LOGIC_I/slv_reg2_25> of sequential type is unconnected in block <system_mimtlu_0_wrapper>.
+WARNING:Xst:2677 - Node <mimtlu_0/USER_LOGIC_I/slv_reg2_24> of sequential type is unconnected in block <system_mimtlu_0_wrapper>.
+WARNING:Xst:2677 - Node <mimtlu_0/USER_LOGIC_I/slv_reg2_23> of sequential type is unconnected in block <system_mimtlu_0_wrapper>.
+WARNING:Xst:2677 - Node <mimtlu_0/USER_LOGIC_I/slv_reg2_22> of sequential type is unconnected in block <system_mimtlu_0_wrapper>.
+WARNING:Xst:2677 - Node <mimtlu_0/USER_LOGIC_I/slv_reg2_21> of sequential type is unconnected in block <system_mimtlu_0_wrapper>.
+WARNING:Xst:2677 - Node <mimtlu_0/USER_LOGIC_I/slv_reg2_20> of sequential type is unconnected in block <system_mimtlu_0_wrapper>.
+WARNING:Xst:2677 - Node <mimtlu_0/USER_LOGIC_I/slv_reg2_19> of sequential type is unconnected in block <system_mimtlu_0_wrapper>.
+WARNING:Xst:2677 - Node <mimtlu_0/USER_LOGIC_I/slv_reg2_18> of sequential type is unconnected in block <system_mimtlu_0_wrapper>.
+WARNING:Xst:2677 - Node <mimtlu_0/USER_LOGIC_I/slv_reg2_17> of sequential type is unconnected in block <system_mimtlu_0_wrapper>.
+WARNING:Xst:2677 - Node <mimtlu_0/USER_LOGIC_I/slv_reg2_16> of sequential type is unconnected in block <system_mimtlu_0_wrapper>.
+WARNING:Xst:2677 - Node <mimtlu_0/USER_LOGIC_I/slv_reg2_15> of sequential type is unconnected in block <system_mimtlu_0_wrapper>.
+WARNING:Xst:2677 - Node <mimtlu_0/USER_LOGIC_I/slv_reg2_14> of sequential type is unconnected in block <system_mimtlu_0_wrapper>.
+WARNING:Xst:2677 - Node <mimtlu_0/USER_LOGIC_I/slv_reg2_13> of sequential type is unconnected in block <system_mimtlu_0_wrapper>.
+WARNING:Xst:2677 - Node <mimtlu_0/USER_LOGIC_I/slv_reg2_12> of sequential type is unconnected in block <system_mimtlu_0_wrapper>.
+WARNING:Xst:2677 - Node <mimtlu_0/USER_LOGIC_I/slv_reg2_11> of sequential type is unconnected in block <system_mimtlu_0_wrapper>.
+WARNING:Xst:2677 - Node <mimtlu_0/USER_LOGIC_I/slv_reg2_10> of sequential type is unconnected in block <system_mimtlu_0_wrapper>.
+WARNING:Xst:2677 - Node <mimtlu_0/USER_LOGIC_I/slv_reg2_9> of sequential type is unconnected in block <system_mimtlu_0_wrapper>.
+WARNING:Xst:2677 - Node <mimtlu_0/USER_LOGIC_I/slv_reg2_8> of sequential type is unconnected in block <system_mimtlu_0_wrapper>.
+WARNING:Xst:2677 - Node <mimtlu_0/USER_LOGIC_I/slv_reg2_7> of sequential type is unconnected in block <system_mimtlu_0_wrapper>.
+WARNING:Xst:2677 - Node <mimtlu_0/USER_LOGIC_I/slv_reg2_6> of sequential type is unconnected in block <system_mimtlu_0_wrapper>.
+WARNING:Xst:2677 - Node <mimtlu_0/USER_LOGIC_I/slv_reg2_5> of sequential type is unconnected in block <system_mimtlu_0_wrapper>.
+WARNING:Xst:2677 - Node <mimtlu_0/USER_LOGIC_I/slv_reg2_4> of sequential type is unconnected in block <system_mimtlu_0_wrapper>.
+WARNING:Xst:2677 - Node <mimtlu_0/USER_LOGIC_I/slv_reg2_3> of sequential type is unconnected in block <system_mimtlu_0_wrapper>.
+WARNING:Xst:2677 - Node <mimtlu_0/USER_LOGIC_I/slv_reg2_2> of sequential type is unconnected in block <system_mimtlu_0_wrapper>.
+WARNING:Xst:2677 - Node <mimtlu_0/USER_LOGIC_I/slv_reg2_1> of sequential type is unconnected in block <system_mimtlu_0_wrapper>.
+WARNING:Xst:2677 - Node <mimtlu_0/USER_LOGIC_I/slv_reg2_0> of sequential type is unconnected in block <system_mimtlu_0_wrapper>.
 WARNING:Xst:2677 - Node <mimtlu_0/USER_LOGIC_I/slv_reg1_31> of sequential type is unconnected in block <system_mimtlu_0_wrapper>.
 
 Mapping all equations...
 Building and optimizing final netlist ...
-Found area constraint ratio of 100 (+ 0) on block system_mimtlu_0_wrapper, actual ratio is 6.
-FlipFlop mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_0 has been replicated 1 time(s)
-FlipFlop mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_1 has been replicated 1 time(s)
-FlipFlop mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_2 has been replicated 1 time(s)
-FlipFlop mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_3 has been replicated 1 time(s)
+Found area constraint ratio of 100 (+ 0) on block system_mimtlu_0_wrapper, actual ratio is 4.
 FlipFlop mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/state_reg_FSM_FFd1 has been replicated 2 time(s)
-FlipFlop mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/state_reg_FSM_FFd2 has been replicated 2 time(s)
-FlipFlop mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/ts_cnt_0 has been replicated 2 time(s)
-FlipFlop mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/ts_cnt_1 has been replicated 3 time(s)
-FlipFlop mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/ts_cnt_2 has been replicated 3 time(s)
-FlipFlop mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/ts_cnt_3 has been replicated 3 time(s)
-FlipFlop mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/ts_cnt_4 has been replicated 3 time(s)
+FlipFlop mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/state_reg_FSM_FFd2 has been replicated 1 time(s)
+FlipFlop mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/ts_cnt_1 has been replicated 2 time(s)
+FlipFlop mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/ts_cnt_2 has been replicated 2 time(s)
+FlipFlop mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/ts_cnt_3 has been replicated 2 time(s)
+FlipFlop mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/ts_cnt_4 has been replicated 1 time(s)
 
 Final Macro Processing ...
 
@@ -854,8 +878,8 @@ Final Macro Processing ...
 Final Register Report
 
 Macro Statistics
-# Registers                                            : 206
- Flip-Flops                                            : 206
+# Registers                                            : 164
+ Flip-Flops                                            : 164
 
 =========================================================================
 
@@ -878,26 +902,24 @@ Top Level Output File Name         : system_mimtlu_0_wrapper.ngc
 
 Primitive and Black Box Usage:
 ------------------------------
-# BELS                             : 455
+# BELS                             : 291
 #      GND                         : 1
-#      INV                         : 7
-#      LUT1                        : 31
-#      LUT2                        : 14
+#      INV                         : 3
+#      LUT2                        : 15
 #      LUT3                        : 21
-#      LUT4                        : 47
-#      LUT5                        : 20
-#      LUT6                        : 218
-#      MUXCY                       : 60
-#      MUXF7                       : 4
+#      LUT4                        : 39
+#      LUT5                        : 19
+#      LUT6                        : 119
+#      MUXCY                       : 42
 #      VCC                         : 1
 #      XORCY                       : 31
-# FlipFlops/Latches                : 206
-#      FD                          : 10
-#      FDC                         : 42
-#      FDCE                        : 19
-#      FDE                         : 33
+# FlipFlops/Latches                : 164
+#      FD                          : 4
+#      FDC                         : 10
+#      FDCE                        : 43
+#      FDE                         : 32
 #      FDR                         : 8
-#      FDRE                        : 94
+#      FDRE                        : 67
 # Clock Buffers                    : 2
 #      BUFG                        : 1
 #      BUFGMUX                     : 1
@@ -911,16 +933,16 @@ Selected Device : 6slx9csg324-2
 
 
 Slice Logic Utilization: 
- Number of Slice Registers:             206  out of  11440     1%  
- Number of Slice LUTs:                  358  out of   5720     6%  
-    Number used as Logic:               358  out of   5720     6%  
+ Number of Slice Registers:             164  out of  11440     1%  
+ Number of Slice LUTs:                  216  out of   5720     3%  
+    Number used as Logic:               216  out of   5720     3%  
 
 Slice Logic Distribution: 
- Number of LUT Flip Flop pairs used:    371
-   Number with an unused Flip Flop:     165  out of    371    44%  
-   Number with an unused LUT:            13  out of    371     3%  
-   Number of fully used LUT-FF pairs:   193  out of    371    52%  
-   Number of unique control sets:        11
+ Number of LUT Flip Flop pairs used:    249
+   Number with an unused Flip Flop:      85  out of    249    34%  
+   Number with an unused LUT:            33  out of    249    13%  
+   Number of fully used LUT-FF pairs:   131  out of    249    52%  
+   Number of unique control sets:        12
 
 IO Utilization: 
  Number of IOs:                         162
@@ -950,9 +972,9 @@ Clock Information:
 -------------------------------------------------+-----------------------------------------------------------------+-------+
 Clock Signal                                     | Clock buffer(FF name)                                           | Load  |
 -------------------------------------------------+-----------------------------------------------------------------+-------+
-S_AXI_ACLK                                       | NONE(mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/state_FSM_FFd1)| 112   |
+S_AXI_ACLK                                       | NONE(mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/state_FSM_FFd1)| 77    |
 CLOCK_Y3                                         | NONE(mimtlu_0/USER_LOGIC_I/MIMTLU_ent/CLK_DIV/counter_2)        | 4     |
-mimtlu_0/USER_LOGIC_I/MIMTLU_ent/CLK_DIV/temporal| BUFG                                                            | 90    |
+mimtlu_0/USER_LOGIC_I/MIMTLU_ent/CLK_DIV/temporal| BUFG                                                            | 83    |
 -------------------------------------------------+-----------------------------------------------------------------+-------+
 INFO:Xst:2169 - HDL ADVISOR - Some clock signals were not automatically buffered by XST with BUFG/BUFR resources. Please use the buffer_type constraint in order to insert these buffers to the clock signals to help prevent skew problems.
 
@@ -964,10 +986,10 @@ Timing Summary:
 ---------------
 Speed Grade: -2
 
-   Minimum period: 4.291ns (Maximum Frequency: 233.046MHz)
-   Minimum input arrival time before clock: 5.305ns
-   Maximum output required time after clock: 5.279ns
-   Maximum combinational path delay: 2.458ns
+   Minimum period: 5.122ns (Maximum Frequency: 195.255MHz)
+   Minimum input arrival time before clock: 5.061ns
+   Maximum output required time after clock: 3.649ns
+   Maximum combinational path delay: 1.328ns
 
 Timing Details:
 ---------------
@@ -975,27 +997,25 @@ All values displayed in nanoseconds (ns)
 
 =========================================================================
 Timing constraint: Default period analysis for Clock 'S_AXI_ACLK'
-  Clock period: 4.067ns (frequency: 245.881MHz)
-  Total number of paths / destination ports: 774 / 245
+  Clock period: 4.600ns (frequency: 217.380MHz)
+  Total number of paths / destination ports: 513 / 156
 -------------------------------------------------------------------------
-Delay:               4.067ns (Levels of Logic = 3)
-  Source:            mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/state_FSM_FFd2 (FF)
-  Destination:       mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_3 (FF)
+Delay:               4.600ns (Levels of Logic = 1)
+  Source:            mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/Bus_RNW_reg (FF)
+  Destination:       mimtlu_0/USER_LOGIC_I/slv_reg1_30 (FF)
   Source Clock:      S_AXI_ACLK rising
   Destination Clock: S_AXI_ACLK rising
 
-  Data Path: mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/state_FSM_FFd2 to mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_3
+  Data Path: mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/Bus_RNW_reg to mimtlu_0/USER_LOGIC_I/slv_reg1_30
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FDR:C->Q              9   0.525   1.084  mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/state_FSM_FFd2 (mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/state_FSM_FFd2)
-     LUT5:I3->O            8   0.250   0.944  mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/Mmux_start11 (mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/start)
-     LUT6:I5->O            1   0.254   0.682  mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/MEM_DECODE_GEN[0].PER_CE_GEN[2].MULTIPLE_CES_THIS_CS_GEN.CE_I/Mmux_CS11 (mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_expnd_i<2>)
-     LUT4:I3->O            2   0.254   0.000  mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_2_rstpot (mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_2_rstpot)
-     FD:D                      0.074          mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_2
+     FD:C->Q              36   0.525   2.017  mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/Bus_RNW_reg (mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/Bus_RNW_reg)
+     LUT5:I0->O           31   0.254   1.502  mimtlu_0/USER_LOGIC_I/_n0112<3>1 (mimtlu_0/USER_LOGIC_I/_n0112)
+     FDRE:CE                   0.302          mimtlu_0/USER_LOGIC_I/slv_reg1_0
     ----------------------------------------
-    Total                      4.067ns (1.357ns logic, 2.710ns route)
-                                       (33.4% logic, 66.6% route)
+    Total                      4.600ns (1.081ns logic, 3.519ns route)
+                                       (23.5% logic, 76.5% route)
 
 =========================================================================
 Timing constraint: Default period analysis for Clock 'CLOCK_Y3'
@@ -1021,54 +1041,95 @@ Delay:               1.866ns (Levels of Logic = 1)
 
 =========================================================================
 Timing constraint: Default period analysis for Clock 'mimtlu_0/USER_LOGIC_I/MIMTLU_ent/CLK_DIV/temporal'
-  Clock period: 4.291ns (frequency: 233.046MHz)
-  Total number of paths / destination ports: 3550 / 142
+  Clock period: 5.122ns (frequency: 195.255MHz)
+  Total number of paths / destination ports: 18903 / 158
 -------------------------------------------------------------------------
-Delay:               4.291ns (Levels of Logic = 3)
-  Source:            mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/ts_cnt_2_2 (FF)
-  Destination:       mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/timestamp_reg_19 (FF)
+Delay:               5.122ns (Levels of Logic = 44)
+  Source:            mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/count_2 (FF)
+  Destination:       mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/count_30 (FF)
   Source Clock:      mimtlu_0/USER_LOGIC_I/MIMTLU_ent/CLK_DIV/temporal rising
   Destination Clock: mimtlu_0/USER_LOGIC_I/MIMTLU_ent/CLK_DIV/temporal rising
 
-  Data Path: mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/ts_cnt_2_2 to mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/timestamp_reg_19
+  Data Path: mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/count_2 to mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/count_30
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FDCE:C->Q            18   0.525   1.235  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/ts_cnt_2_2 (mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/ts_cnt_2_2)
-     LUT2:I1->O            4   0.254   1.032  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mmux_timestamp_reg[11]_ts_reg_MUX_116_o1211 (mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mmux_timestamp_reg[11]_ts_reg_MUX_116_o121)
-     LUT6:I3->O            1   0.235   0.682  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mmux_timestamp_reg[17]_ts_reg_MUX_110_o11 (mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/timestamp_reg[17]_ts_reg_MUX_110_o)
-     LUT6:I5->O            1   0.254   0.000  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/timestamp_reg_17_dpot (mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/timestamp_reg_17_dpot)
-     FDE:D                     0.074          mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/timestamp_reg_17
+     FDCE:C->Q             2   0.525   0.954  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/count_2 (mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/count_2)
+     LUT6:I3->O            1   0.235   0.000  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcompar_wait_time[30]_count[30]_equal_12_o_lut<0> (mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcompar_wait_time[30]_count[30]_equal_12_o_lut<0>)
+     MUXCY:S->O            1   0.215   0.000  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcompar_wait_time[30]_count[30]_equal_12_o_cy<0> (mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcompar_wait_time[30]_count[30]_equal_12_o_cy<0>)
+     MUXCY:CI->O           1   0.023   0.000  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcompar_wait_time[30]_count[30]_equal_12_o_cy<1> (mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcompar_wait_time[30]_count[30]_equal_12_o_cy<1>)
+     MUXCY:CI->O           1   0.023   0.000  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcompar_wait_time[30]_count[30]_equal_12_o_cy<2> (mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcompar_wait_time[30]_count[30]_equal_12_o_cy<2>)
+     MUXCY:CI->O           1   0.023   0.000  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcompar_wait_time[30]_count[30]_equal_12_o_cy<3> (mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcompar_wait_time[30]_count[30]_equal_12_o_cy<3>)
+     MUXCY:CI->O           1   0.023   0.000  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcompar_wait_time[30]_count[30]_equal_12_o_cy<4> (mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcompar_wait_time[30]_count[30]_equal_12_o_cy<4>)
+     MUXCY:CI->O           1   0.023   0.000  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcompar_wait_time[30]_count[30]_equal_12_o_cy<5> (mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcompar_wait_time[30]_count[30]_equal_12_o_cy<5>)
+     MUXCY:CI->O           1   0.023   0.000  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcompar_wait_time[30]_count[30]_equal_12_o_cy<6> (mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcompar_wait_time[30]_count[30]_equal_12_o_cy<6>)
+     MUXCY:CI->O           1   0.023   0.000  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcompar_wait_time[30]_count[30]_equal_12_o_cy<7> (mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcompar_wait_time[30]_count[30]_equal_12_o_cy<7>)
+     MUXCY:CI->O           1   0.023   0.000  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcompar_wait_time[30]_count[30]_equal_12_o_cy<8> (mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcompar_wait_time[30]_count[30]_equal_12_o_cy<8>)
+     MUXCY:CI->O           1   0.023   0.000  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcompar_wait_time[30]_count[30]_equal_12_o_cy<9> (mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcompar_wait_time[30]_count[30]_equal_12_o_cy<9>)
+     MUXCY:CI->O          33   0.023   1.537  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcompar_wait_time[30]_count[30]_equal_12_o_cy<10> (mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/wait_time[30]_count[30]_equal_12_o)
+     LUT4:I3->O            1   0.254   0.000  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcount_count_lut<0> (mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcount_count_lut<0>)
+     MUXCY:S->O            1   0.215   0.000  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcount_count_cy<0> (mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcount_count_cy<0>)
+     MUXCY:CI->O           1   0.023   0.000  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcount_count_cy<1> (mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcount_count_cy<1>)
+     MUXCY:CI->O           1   0.023   0.000  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcount_count_cy<2> (mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcount_count_cy<2>)
+     MUXCY:CI->O           1   0.023   0.000  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcount_count_cy<3> (mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcount_count_cy<3>)
+     MUXCY:CI->O           1   0.023   0.000  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcount_count_cy<4> (mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcount_count_cy<4>)
+     MUXCY:CI->O           1   0.023   0.000  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcount_count_cy<5> (mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcount_count_cy<5>)
+     MUXCY:CI->O           1   0.023   0.000  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcount_count_cy<6> (mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcount_count_cy<6>)
+     MUXCY:CI->O           1   0.023   0.000  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcount_count_cy<7> (mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcount_count_cy<7>)
+     MUXCY:CI->O           1   0.023   0.000  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcount_count_cy<8> (mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcount_count_cy<8>)
+     MUXCY:CI->O           1   0.023   0.000  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcount_count_cy<9> (mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcount_count_cy<9>)
+     MUXCY:CI->O           1   0.023   0.000  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcount_count_cy<10> (mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcount_count_cy<10>)
+     MUXCY:CI->O           1   0.023   0.000  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcount_count_cy<11> (mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcount_count_cy<11>)
+     MUXCY:CI->O           1   0.023   0.000  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcount_count_cy<12> (mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcount_count_cy<12>)
+     MUXCY:CI->O           1   0.023   0.000  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcount_count_cy<13> (mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcount_count_cy<13>)
+     MUXCY:CI->O           1   0.023   0.000  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcount_count_cy<14> (mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcount_count_cy<14>)
+     MUXCY:CI->O           1   0.023   0.000  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcount_count_cy<15> (mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcount_count_cy<15>)
+     MUXCY:CI->O           1   0.023   0.000  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcount_count_cy<16> (mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcount_count_cy<16>)
+     MUXCY:CI->O           1   0.023   0.000  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcount_count_cy<17> (mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcount_count_cy<17>)
+     MUXCY:CI->O           1   0.023   0.000  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcount_count_cy<18> (mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcount_count_cy<18>)
+     MUXCY:CI->O           1   0.023   0.000  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcount_count_cy<19> (mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcount_count_cy<19>)
+     MUXCY:CI->O           1   0.023   0.000  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcount_count_cy<20> (mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcount_count_cy<20>)
+     MUXCY:CI->O           1   0.023   0.000  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcount_count_cy<21> (mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcount_count_cy<21>)
+     MUXCY:CI->O           1   0.023   0.000  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcount_count_cy<22> (mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcount_count_cy<22>)
+     MUXCY:CI->O           1   0.023   0.000  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcount_count_cy<23> (mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcount_count_cy<23>)
+     MUXCY:CI->O           1   0.023   0.000  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcount_count_cy<24> (mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcount_count_cy<24>)
+     MUXCY:CI->O           1   0.023   0.000  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcount_count_cy<25> (mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcount_count_cy<25>)
+     MUXCY:CI->O           1   0.023   0.000  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcount_count_cy<26> (mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcount_count_cy<26>)
+     MUXCY:CI->O           1   0.023   0.000  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcount_count_cy<27> (mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcount_count_cy<27>)
+     MUXCY:CI->O           1   0.023   0.000  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcount_count_cy<28> (mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcount_count_cy<28>)
+     MUXCY:CI->O           0   0.023   0.000  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcount_count_cy<29> (mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcount_count_cy<29>)
+     XORCY:CI->O           1   0.206   0.000  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcount_count_xor<30> (mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mcount_count30)
+     FDCE:D                    0.074          mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/count_30
     ----------------------------------------
-    Total                      4.291ns (1.342ns logic, 2.949ns route)
-                                       (31.3% logic, 68.7% route)
+    Total                      5.122ns (2.631ns logic, 2.491ns route)
+                                       (51.4% logic, 48.6% route)
 
 =========================================================================
 Timing constraint: Default OFFSET IN BEFORE for Clock 'S_AXI_ACLK'
-  Total number of paths / destination ports: 234 / 138
+  Total number of paths / destination ports: 124 / 80
 -------------------------------------------------------------------------
-Offset:              2.893ns (Levels of Logic = 3)
-  Source:            S_AXI_ARVALID (PAD)
-  Destination:       mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_3 (FF)
+Offset:              2.631ns (Levels of Logic = 3)
+  Source:            S_AXI_BREADY (PAD)
+  Destination:       mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/state_FSM_FFd1 (FF)
   Destination Clock: S_AXI_ACLK rising
 
-  Data Path: S_AXI_ARVALID to mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_3
+  Data Path: S_AXI_BREADY to mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/state_FSM_FFd1
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     LUT5:I0->O            8   0.254   0.944  mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/Mmux_start11 (mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/start)
-     LUT6:I5->O            1   0.254   0.682  mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/MEM_DECODE_GEN[0].PER_CE_GEN[2].MULTIPLE_CES_THIS_CS_GEN.CE_I/Mmux_CS11 (mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_expnd_i<2>)
-     LUT4:I3->O            2   0.254   0.000  mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_2_rstpot (mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_2_rstpot)
-     FD:D                      0.074          mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_2
+     LUT5:I0->O            1   0.254   0.682  mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/state_FSM_FFd1-In1 (mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/state_FSM_FFd1-In1)
+     LUT6:I5->O            1   0.254   0.682  mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/state_FSM_FFd1-In2 (mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/state_FSM_FFd1-In2)
+     LUT4:I3->O            1   0.254   0.000  mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/state_FSM_FFd1-In3 (mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/state_FSM_FFd1-In)
+     FDR:D                     0.074          mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/state_FSM_FFd1
     ----------------------------------------
-    Total                      2.893ns (1.267ns logic, 1.626ns route)
-                                       (43.8% logic, 56.2% route)
+    Total                      2.631ns (1.267ns logic, 1.364ns route)
+                                       (48.2% logic, 51.8% route)
 
 =========================================================================
 Timing constraint: Default OFFSET IN BEFORE for Clock 'CLOCK_Y3'
   Total number of paths / destination ports: 8 / 4
 -------------------------------------------------------------------------
-Offset:              3.948ns (Levels of Logic = 1)
+Offset:              3.894ns (Levels of Logic = 1)
   Source:            RESET_P (PAD)
   Destination:       mimtlu_0/USER_LOGIC_I/MIMTLU_ent/CLK_DIV/counter_2 (FF)
   Destination Clock: CLOCK_Y3 rising
@@ -1077,92 +1138,89 @@ Offset:              3.948ns (Levels of Logic = 1)
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     IBUFDS:I->O          94   1.328   2.161  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/IBUFDS_RESET (mimtlu_0/USER_LOGIC_I/MIMTLU_ent/reset)
+     IBUFDS:I->O          87   1.328   2.107  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/IBUFDS_RESET (mimtlu_0/USER_LOGIC_I/MIMTLU_ent/reset)
      FDC:CLR                   0.459          mimtlu_0/USER_LOGIC_I/MIMTLU_ent/CLK_DIV/counter_0
     ----------------------------------------
-    Total                      3.948ns (1.787ns logic, 2.161ns route)
-                                       (45.3% logic, 54.7% route)
+    Total                      3.894ns (1.787ns logic, 2.107ns route)
+                                       (45.9% logic, 54.1% route)
 
 =========================================================================
 Timing constraint: Default OFFSET IN BEFORE for Clock 'mimtlu_0/USER_LOGIC_I/MIMTLU_ent/CLK_DIV/temporal'
-  Total number of paths / destination ports: 250 / 93
+  Total number of paths / destination ports: 232 / 83
 -------------------------------------------------------------------------
-Offset:              5.305ns (Levels of Logic = 4)
+Offset:              5.061ns (Levels of Logic = 4)
   Source:            TRIGGER_P (PAD)
-  Destination:       mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/timestamp_reg_11 (FF)
+  Destination:       mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/timestamp_reg_31 (FF)
   Destination Clock: mimtlu_0/USER_LOGIC_I/MIMTLU_ent/CLK_DIV/temporal rising
 
-  Data Path: TRIGGER_P to mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/timestamp_reg_11
+  Data Path: TRIGGER_P to mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/timestamp_reg_31
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     IBUFDS:I->O           6   1.328   1.306  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/IBUFDS_TRIGGER (TRIGGER_COPY)
-     LUT5:I0->O            8   0.254   1.172  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mmux_timestamp_reg[13]_ts_reg_MUX_114_o111 (mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mmux_timestamp_reg[13]_ts_reg_MUX_114_o11)
-     LUT6:I3->O            1   0.235   0.682  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mmux_timestamp_reg[9]_ts_reg_MUX_118_o11 (mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/timestamp_reg[9]_ts_reg_MUX_118_o)
-     LUT6:I5->O            1   0.254   0.000  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/timestamp_reg_9_dpot (mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/timestamp_reg_9_dpot)
-     FDE:D                     0.074          mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/timestamp_reg_9
+     IBUFDS:I->O           5   1.328   1.271  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/IBUFDS_TRIGGER (TRIGGER_COPY)
+     LUT5:I0->O            8   0.254   0.944  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mmux_timestamp_reg[0]_ts_reg_MUX_127_o121 (mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mmux_timestamp_reg[0]_ts_reg_MUX_127_o12)
+     LUT6:I5->O            1   0.254   0.682  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mmux_timestamp_reg[20]_ts_reg_MUX_107_o12 (mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/timestamp_reg[20]_ts_reg_MUX_107_o)
+     LUT6:I5->O            1   0.254   0.000  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/timestamp_reg_20_dpot (mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/timestamp_reg_20_dpot)
+     FDE:D                     0.074          mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/timestamp_reg_20
     ----------------------------------------
-    Total                      5.305ns (2.145ns logic, 3.160ns route)
-                                       (40.4% logic, 59.6% route)
+    Total                      5.061ns (2.164ns logic, 2.897ns route)
+                                       (42.8% logic, 57.2% route)
 
 =========================================================================
 Timing constraint: Default OFFSET OUT AFTER for Clock 'S_AXI_ACLK'
-  Total number of paths / destination ports: 176 / 41
+  Total number of paths / destination ports: 52 / 37
 -------------------------------------------------------------------------
-Offset:              5.279ns (Levels of Logic = 3)
-  Source:            mimtlu_0/USER_LOGIC_I/slv_reg2_1 (FF)
-  Destination:       TRIGGER_DUT (PAD)
+Offset:              2.821ns (Levels of Logic = 1)
+  Source:            mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/Bus_RNW_reg (FF)
+  Destination:       S_AXI_ARREADY (PAD)
   Source Clock:      S_AXI_ACLK rising
 
-  Data Path: mimtlu_0/USER_LOGIC_I/slv_reg2_1 to TRIGGER_DUT
+  Data Path: mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/Bus_RNW_reg to S_AXI_ARREADY
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FDRE:C->Q             2   0.525   1.181  mimtlu_0/USER_LOGIC_I/slv_reg2_1 (mimtlu_0/USER_LOGIC_I/slv_reg2_1)
-     LUT6:I0->O            1   0.254   1.137  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/busy_int1 (mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/busy_int)
-     LUT6:I0->O           35   0.254   1.678  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/busy_int6 (mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/busy_int5)
-     LUT4:I2->O            0   0.250   0.000  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mmux_trigger_dut11 (TRIGGER_DUT)
+     FD:C->Q              36   0.525   2.042  mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/Bus_RNW_reg (mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/Bus_RNW_reg)
+     LUT6:I0->O            2   0.254   0.000  mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/rd_done1 (S_AXI_ARREADY)
     ----------------------------------------
-    Total                      5.279ns (1.283ns logic, 3.996ns route)
-                                       (24.3% logic, 75.7% route)
+    Total                      2.821ns (0.779ns logic, 2.042ns route)
+                                       (27.6% logic, 72.4% route)
 
 =========================================================================
 Timing constraint: Default OFFSET OUT AFTER for Clock 'mimtlu_0/USER_LOGIC_I/MIMTLU_ent/CLK_DIV/temporal'
-  Total number of paths / destination ports: 11 / 6
+  Total number of paths / destination ports: 12 / 6
 -------------------------------------------------------------------------
-Offset:              3.522ns (Levels of Logic = 1)
-  Source:            mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/state_reg_FSM_FFd1 (FF)
+Offset:              3.649ns (Levels of Logic = 1)
+  Source:            mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/state_reg_FSM_FFd2 (FF)
   Destination:       mimtlu_0/USER_LOGIC_I/MIMTLU_ent/BUFGCE_inst:S (PAD)
   Source Clock:      mimtlu_0/USER_LOGIC_I/MIMTLU_ent/CLK_DIV/temporal rising
 
-  Data Path: mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/state_reg_FSM_FFd1 to mimtlu_0/USER_LOGIC_I/MIMTLU_ent/BUFGCE_inst:S
+  Data Path: mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/state_reg_FSM_FFd2 to mimtlu_0/USER_LOGIC_I/MIMTLU_ent/BUFGCE_inst:S
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FDC:C->Q             81   0.525   2.062  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/state_reg_FSM_FFd1 (mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/state_reg_FSM_FFd1)
-     LUT2:I1->O            1   0.254   0.681  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/clk_en_INV1 (mimtlu_0/USER_LOGIC_I/N2)
+     FDC:C->Q             84   0.525   2.193  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/state_reg_FSM_FFd2 (mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/state_reg_FSM_FFd2)
+     LUT2:I0->O            1   0.250   0.681  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/clk_en_INV1 (mimtlu_0/USER_LOGIC_I/N2)
     BUFGMUX:S                  0.000          mimtlu_0/USER_LOGIC_I/MIMTLU_ent/BUFGCE_inst
     ----------------------------------------
-    Total                      3.522ns (0.779ns logic, 2.743ns route)
-                                       (22.1% logic, 77.9% route)
+    Total                      3.649ns (0.775ns logic, 2.874ns route)
+                                       (21.2% logic, 78.8% route)
 
 =========================================================================
 Timing constraint: Default path analysis
-  Total number of paths / destination ports: 6 / 4
+  Total number of paths / destination ports: 4 / 3
 -------------------------------------------------------------------------
-Delay:               2.458ns (Levels of Logic = 2)
+Delay:               1.328ns (Levels of Logic = 1)
   Source:            TRIGGER_P (PAD)
-  Destination:       TRIGGER_DUT (PAD)
+  Destination:       TRIGGER_COPY (PAD)
 
-  Data Path: TRIGGER_P to TRIGGER_DUT
+  Data Path: TRIGGER_P to TRIGGER_COPY
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     IBUFDS:I->O           6   1.328   0.876  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/IBUFDS_TRIGGER (TRIGGER_COPY)
-     LUT4:I3->O            0   0.254   0.000  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mmux_trigger_dut11 (TRIGGER_DUT)
+     IBUFDS:I->O           5   1.328   0.000  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/IBUFDS_TRIGGER (TRIGGER_COPY)
     ----------------------------------------
-    Total                      2.458ns (1.582ns logic, 0.876ns route)
-                                       (64.4% logic, 35.6% route)
+    Total                      1.328ns (1.328ns logic, 0.000ns route)
+                                       (100.0% logic, 0.0% route)
 
 =========================================================================
 
@@ -1182,8 +1240,8 @@ Clock to Setup on destination clock S_AXI_ACLK
                                                  | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock                                     |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 -------------------------------------------------+---------+---------+---------+---------+
-S_AXI_ACLK                                       |    4.067|         |         |         |
-mimtlu_0/USER_LOGIC_I/MIMTLU_ent/CLK_DIV/temporal|    2.112|         |         |         |
+S_AXI_ACLK                                       |    4.600|         |         |         |
+mimtlu_0/USER_LOGIC_I/MIMTLU_ent/CLK_DIV/temporal|    2.074|         |         |         |
 -------------------------------------------------+---------+---------+---------+---------+
 
 Clock to Setup on destination clock mimtlu_0/USER_LOGIC_I/MIMTLU_ent/CLK_DIV/temporal
@@ -1191,21 +1249,21 @@ Clock to Setup on destination clock mimtlu_0/USER_LOGIC_I/MIMTLU_ent/CLK_DIV/tem
                                                  | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock                                     |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 -------------------------------------------------+---------+---------+---------+---------+
-S_AXI_ACLK                                       |    5.704|         |         |         |
-mimtlu_0/USER_LOGIC_I/MIMTLU_ent/CLK_DIV/temporal|    4.291|         |         |         |
+S_AXI_ACLK                                       |    5.324|         |         |         |
+mimtlu_0/USER_LOGIC_I/MIMTLU_ent/CLK_DIV/temporal|    5.122|         |         |         |
 -------------------------------------------------+---------+---------+---------+---------+
 
 =========================================================================
 
 
-Total REAL time to Xst completion: 10.00 secs
-Total CPU time to Xst completion: 10.32 secs
+Total REAL time to Xst completion: 9.00 secs
+Total CPU time to Xst completion: 9.02 secs
  
 --> 
 
 Total memory usage is 284224 kilobytes
 
 Number of errors   :    0 (   0 filtered)
-Number of warnings :   30 (   0 filtered)
+Number of warnings :   61 (   0 filtered)
 Number of infos    :    6 (   0 filtered)
 

@@ -109,7 +109,7 @@ Performing Reset DRCs...
 
 Overriding system level properties...
 INFO:EDK:4130 - IPNAME: axi_intc, INSTANCE:microblaze_0_intc - tcl is overriding
-   PARAMETER C_KIND_OF_INTR value to 0b11111111111111111111111111110110 -
+   PARAMETER C_KIND_OF_INTR value to 0b11111111111111111111111111111110 -
    C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\axi_intc_v1_03_a\dat
    a\axi_intc_v2_1_0.mpd line 86 
 INFO:EDK:4130 - IPNAME: axi_intc, INSTANCE:microblaze_0_intc - tcl is overriding
@@ -297,9 +297,6 @@ implementation netlist
 IPNAME:axi_gpio INSTANCE:dip_switches_4bits -
 F:\Git_projects\FPGA\MIMTLU_StandAlone\system.mhs line 318 - Copying cache
 implementation netlist
-IPNAME:mimtlu INSTANCE:mimtlu_0 -
-F:\Git_projects\FPGA\MIMTLU_StandAlone\system.mhs line 332 - Copying cache
-implementation netlist
 
 Elaborating instances ...
 IPNAME:bram_block INSTANCE:microblaze_0_bram_block -
@@ -316,7 +313,7 @@ Inserting wrapper level ...
 Completion time: 1.00 seconds
 
 Constructing platform-level connectivity ...
-Completion time: 1.00 seconds
+Completion time: 0.00 seconds
 
 Writing (top-level) BMM ...
 
@@ -343,4 +340,4 @@ INFO:EDK:3509 - NCF files should not be modified as they will be regenerated.
 
 Rebuilding cache ...
 
-Total run time: 37.00 seconds
+Total run time: 33.00 seconds

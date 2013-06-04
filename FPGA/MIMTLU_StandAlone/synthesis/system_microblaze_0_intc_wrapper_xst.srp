@@ -1,10 +1,10 @@
 Release 14.4 - xst P.49d (nt64)
 Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.
---> Parameter TMPDIR set to F:\Git_projects\FPGA\MIMTLU_with_virtualTLU\synthesis\xst_temp_dir\
+--> Parameter TMPDIR set to F:\Git_projects\FPGA\MIMTLU_StandAlone\synthesis\xst_temp_dir\
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.11 secs
+Total CPU time to Xst completion: 0.10 secs
  
 --> 
 TABLE OF CONTENTS
@@ -35,7 +35,7 @@ TABLE OF CONTENTS
 ---- Source Parameters
 Input Format                       : MIXED
 Input File Name                    : "system_microblaze_0_intc_wrapper_xst.prj"
-Verilog Include Directory          : {"F:\Git_projects\FPGA\MIMTLU_with_virtualTLU\pcores\" "C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxBFMinterface\pcores\" "C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\" }
+Verilog Include Directory          : {"F:\Git_projects\FPGA\MIMTLU_StandAlone\pcores\" "C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxBFMinterface\pcores\" "C:\Xilinx\14.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\" }
 
 ---- Target Parameters
 Target Device                      : xc6slx9csg324-2
@@ -445,7 +445,7 @@ Parsing architecture <imp> of entity <intc_core>.
 Parsing VHDL file "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/axi_intc_v1_03_a/hdl/vhdl/axi_intc.vhd" into library axi_intc_v1_03_a
 Parsing entity <axi_intc>.
 Parsing architecture <imp> of entity <axi_intc>.
-Parsing VHDL file "F:\Git_projects\FPGA\MIMTLU_with_virtualTLU\hdl\system_microblaze_0_intc_wrapper.vhd" into library work
+Parsing VHDL file "F:\Git_projects\FPGA\MIMTLU_StandAlone\hdl\system_microblaze_0_intc_wrapper.vhd" into library work
 Parsing entity <system_microblaze_0_intc_wrapper>.
 Parsing architecture <STRUCTURE> of entity <system_microblaze_0_intc_wrapper>.
 
@@ -508,7 +508,7 @@ INFO:HDLCompiler:679 - "C:/Xilinx/14.4/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores
 =========================================================================
 
 Synthesizing Unit <system_microblaze_0_intc_wrapper>.
-    Related source file is "F:\Git_projects\FPGA\MIMTLU_with_virtualTLU\hdl\system_microblaze_0_intc_wrapper.vhd".
+    Related source file is "F:\Git_projects\FPGA\MIMTLU_StandAlone\hdl\system_microblaze_0_intc_wrapper.vhd".
     Summary:
 	no macro.
 Unit <system_microblaze_0_intc_wrapper> synthesized.
@@ -522,7 +522,7 @@ WARNING:Xst:37 - Detected unknown constraint/property "sigis". This constraint/p
         C_S_AXI_ADDR_WIDTH = 9
         C_S_AXI_DATA_WIDTH = 32
         C_NUM_INTR_INPUTS = 4
-        C_KIND_OF_INTR = "11111111111111111111111111110110"
+        C_KIND_OF_INTR = "11111111111111111111111111111110"
         C_KIND_OF_EDGE = "11111111111111111111111111111111"
         C_KIND_OF_LVL = "11111111111111111111111111111111"
         C_IVAR_RESET_VALUE = "00000000000000000000000000010000"
@@ -563,7 +563,7 @@ Synthesizing Unit <intc_core>.
         C_FAMILY = "spartan6"
         C_DWIDTH = 32
         C_NUM_INTR_INPUTS = 4
-        C_KIND_OF_INTR = "11111111111111111111111111110110"
+        C_KIND_OF_INTR = "11111111111111111111111111111110"
         C_KIND_OF_EDGE = "11111111111111111111111111111111"
         C_KIND_OF_LVL = "11111111111111111111111111111111"
         C_HAS_IPR = 1
@@ -621,15 +621,19 @@ WARNING:Xst:647 - Input <processor_rst> is never used. This port will be preserv
     Found 1-bit register for signal <INTR_DETECT_GEN[2].EDGE_DETECT_GEN.intr_p2<2>>.
     Found 1-bit register for signal <INTR_DETECT_GEN[2].EDGE_DETECT_GEN.intr_d1<2>>.
     Found 1-bit register for signal <hw_intr<2>>.
+    Found 1-bit register for signal <intr_p1<3>>.
+    Found 1-bit register for signal <INTR_DETECT_GEN[3].EDGE_DETECT_GEN.intr_p2<3>>.
+    Found 1-bit register for signal <INTR_DETECT_GEN[3].EDGE_DETECT_GEN.intr_d1<3>>.
     Found 1-bit register for signal <hw_intr<3>>.
     Found 1-bit register for signal <irq_gen>.
     Found 1-bit register for signal <Irq>.
     Found 1-bit register for signal <mer_0_sync>.
     Found 1-bit register for signal <intr_sync_1>.
     Found 1-bit register for signal <intr_sync_2>.
-    Found 32-bit 7-to-1 multiplexer for signal <_n0235> created at line 2664.
+    Found 1-bit register for signal <intr_sync_3>.
+    Found 32-bit 7-to-1 multiplexer for signal <_n0244> created at line 2664.
     Summary:
-	inferred  71 D-type flip-flop(s).
+	inferred  75 D-type flip-flop(s).
 	inferred  10 Multiplexer(s).
 Unit <intc_core> synthesized.
 
@@ -908,8 +912,8 @@ HDL Synthesis Report
 Macro Statistics
 # Adders/Subtractors                                   : 1
  4-bit adder                                           : 1
-# Registers                                            : 68
- 1-bit register                                        : 61
+# Registers                                            : 72
+ 1-bit register                                        : 65
  2-bit register                                        : 3
  3-bit register                                        : 1
  32-bit register                                       : 2
@@ -941,8 +945,8 @@ Advanced HDL Synthesis Report
 Macro Statistics
 # Counters                                             : 1
  4-bit up counter                                      : 1
-# Registers                                            : 106
- Flip-Flops                                            : 106
+# Registers                                            : 110
+ Flip-Flops                                            : 110
 # Multiplexers                                         : 13
  1-bit 2-to-1 multiplexer                              : 5
  3-bit 2-to-1 multiplexer                              : 3
@@ -997,8 +1001,8 @@ Final Macro Processing ...
 Final Register Report
 
 Macro Statistics
-# Registers                                            : 82
- Flip-Flops                                            : 82
+# Registers                                            : 86
+ Flip-Flops                                            : 86
 
 =========================================================================
 
@@ -1024,19 +1028,19 @@ Primitive and Black Box Usage:
 # BELS                             : 141
 #      GND                         : 1
 #      INV                         : 2
-#      LUT2                        : 15
-#      LUT3                        : 15
+#      LUT2                        : 14
+#      LUT3                        : 16
 #      LUT4                        : 14
 #      LUT5                        : 40
 #      LUT6                        : 45
 #      MUXF7                       : 8
 #      VCC                         : 1
-# FlipFlops/Latches                : 82
+# FlipFlops/Latches                : 86
 #      FD                          : 27
-#      FDC                         : 2
-#      FDR                         : 25
+#      FDC                         : 3
+#      FDR                         : 27
 #      FDRE                        : 23
-#      FDS                         : 5
+#      FDS                         : 6
 
 Device utilization summary:
 ---------------------------
@@ -1045,16 +1049,16 @@ Selected Device : 6slx9csg324-2
 
 
 Slice Logic Utilization: 
- Number of Slice Registers:              82  out of  11440     0%  
+ Number of Slice Registers:              86  out of  11440     0%  
  Number of Slice LUTs:                  131  out of   5720     2%  
     Number used as Logic:               131  out of   5720     2%  
 
 Slice Logic Distribution: 
- Number of LUT Flip Flop pairs used:    138
-   Number with an unused Flip Flop:      56  out of    138    40%  
-   Number with an unused LUT:             7  out of    138     5%  
-   Number of fully used LUT-FF pairs:    75  out of    138    54%  
-   Number of unique control sets:        12
+ Number of LUT Flip Flop pairs used:    141
+   Number with an unused Flip Flop:      55  out of    141    39%  
+   Number with an unused LUT:            10  out of    141     7%  
+   Number of fully used LUT-FF pairs:    76  out of    141    53%  
+   Number of unique control sets:        13
 
 IO Utilization: 
  Number of IOs:                         177
@@ -1083,7 +1087,8 @@ Clock Information:
 -----------------------------------+------------------------------------------------+-------+
 Clock Signal                       | Clock buffer(FF name)                          | Load  |
 -----------------------------------+------------------------------------------------+-------+
-S_AXI_ACLK                         | NONE(microblaze_0_intc/ip2bus_rdack_int_d1)    | 80    |
+S_AXI_ACLK                         | NONE(microblaze_0_intc/ip2bus_rdack_int_d1)    | 83    |
+Intr<3>                            | NONE(microblaze_0_intc/INTC_CORE_I/intr_sync_3)| 1     |
 Intr<2>                            | NONE(microblaze_0_intc/INTC_CORE_I/intr_sync_2)| 1     |
 Intr<1>                            | NONE(microblaze_0_intc/INTC_CORE_I/intr_sync_1)| 1     |
 -----------------------------------+------------------------------------------------+-------+
@@ -1109,7 +1114,7 @@ All values displayed in nanoseconds (ns)
 =========================================================================
 Timing constraint: Default period analysis for Clock 'S_AXI_ACLK'
   Clock period: 4.029ns (frequency: 248.201MHz)
-  Total number of paths / destination ports: 491 / 139
+  Total number of paths / destination ports: 495 / 141
 -------------------------------------------------------------------------
 Delay:               4.029ns (Levels of Logic = 3)
   Source:            microblaze_0_intc/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_15 (FF)
@@ -1132,7 +1137,7 @@ Delay:               4.029ns (Levels of Logic = 3)
 
 =========================================================================
 Timing constraint: Default OFFSET IN BEFORE for Clock 'S_AXI_ACLK'
-  Total number of paths / destination ports: 833 / 118
+  Total number of paths / destination ports: 835 / 120
 -------------------------------------------------------------------------
 Offset:              4.275ns (Levels of Logic = 4)
   Source:            S_AXI_ARVALID (PAD)
@@ -1151,6 +1156,25 @@ Offset:              4.275ns (Levels of Logic = 4)
     ----------------------------------------
     Total                      4.275ns (1.221ns logic, 3.054ns route)
                                        (28.6% logic, 71.4% route)
+
+=========================================================================
+Timing constraint: Default OFFSET IN BEFORE for Clock 'Intr<3>'
+  Total number of paths / destination ports: 1 / 1
+-------------------------------------------------------------------------
+Offset:              1.583ns (Levels of Logic = 1)
+  Source:            S_AXI_ARESETN (PAD)
+  Destination:       microblaze_0_intc/INTC_CORE_I/intr_sync_3 (FF)
+  Destination Clock: Intr<3> rising
+
+  Data Path: S_AXI_ARESETN to microblaze_0_intc/INTC_CORE_I/intr_sync_3
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     LUT2:I0->O            3   0.250   0.765  microblaze_0_intc/INTC_CORE_I/Rst_n_iar[3]_OR_59_o1 (microblaze_0_intc/INTC_CORE_I/Rst_n_iar[3]_OR_59_o)
+     FDC:CLR                   0.459          microblaze_0_intc/INTC_CORE_I/intr_sync_3
+    ----------------------------------------
+    Total                      1.583ns (0.818ns logic, 0.765ns route)
+                                       (51.7% logic, 48.3% route)
 
 =========================================================================
 Timing constraint: Default OFFSET IN BEFORE for Clock 'Intr<2>'
@@ -1230,6 +1254,14 @@ Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 S_AXI_ACLK     |    2.729|         |         |         |
 ---------------+---------+---------+---------+---------+
 
+Clock to Setup on destination clock Intr<3>
+---------------+---------+---------+---------+---------+
+               | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
+Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
+---------------+---------+---------+---------+---------+
+S_AXI_ACLK     |    2.729|         |         |         |
+---------------+---------+---------+---------+---------+
+
 Clock to Setup on destination clock S_AXI_ACLK
 ---------------+---------+---------+---------+---------+
                | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
@@ -1237,18 +1269,19 @@ Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ---------------+---------+---------+---------+---------+
 Intr<1>        |    1.280|         |         |         |
 Intr<2>        |    1.280|         |         |         |
+Intr<3>        |    1.280|         |         |         |
 S_AXI_ACLK     |    4.029|         |         |         |
 ---------------+---------+---------+---------+---------+
 
 =========================================================================
 
 
-Total REAL time to Xst completion: 10.00 secs
-Total CPU time to Xst completion: 9.71 secs
+Total REAL time to Xst completion: 9.00 secs
+Total CPU time to Xst completion: 9.20 secs
  
 --> 
 
-Total memory usage is 285312 kilobytes
+Total memory usage is 285248 kilobytes
 
 Number of errors   :    0 (   0 filtered)
 Number of warnings :   28 (   0 filtered)

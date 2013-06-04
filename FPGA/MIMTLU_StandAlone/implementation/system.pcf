@@ -1,5 +1,5 @@
 //! **************************************************************************
-// Written by: Map P.49d on Sat Jun 01 23:29:19 2013
+// Written by: Map P.49d on Tue Jun 04 11:19:33 2013
 //! **************************************************************************
 
 SCHEMATIC START;
@@ -1420,22 +1420,6 @@ TIMEGRP S_AXI_ACLK_Ethernet_MAC = PIN
         BEL
         "USB_Uart/USB_Uart/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/state_FSM_FFd1"
         BEL
-        "mimtlu_0/mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_0_1"
-        BEL
-        "mimtlu_0/mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_1_1"
-        BEL
-        "mimtlu_0/mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_2_1"
-        BEL
-        "mimtlu_0/mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_3_1"
-        BEL
-        "mimtlu_0/mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_1"
-        BEL
-        "mimtlu_0/mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_0"
-        BEL
-        "mimtlu_0/mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_2"
-        BEL
-        "mimtlu_0/mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_3"
-        BEL
         "mimtlu_0/mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/Bus_RNW_reg"
         BEL "mimtlu_0/mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/rst" BEL
         "mimtlu_0/mimtlu_0/USER_LOGIC_I/MIMTLU_ent/CLK_DIV/temporal" BEL
@@ -1473,40 +1457,17 @@ TIMEGRP S_AXI_ACLK_Ethernet_MAC = PIN
         "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_28" BEL
         "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_29" BEL
         "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_30" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_0" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_1" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_2" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_3" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_4" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_5" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_6" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_7" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_8" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_9" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_10" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_11" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_12" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_13" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_14" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_15" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_16" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_17" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_18" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_19" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_20" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_21" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_22" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_23" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_24" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_25" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_26" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_27" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_28" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_29" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_30" BEL
         "mimtlu_0/mimtlu_0/USER_LOGIC_I/MIMTLU_ent/CLK_DIV/counter_0" BEL
         "mimtlu_0/mimtlu_0/USER_LOGIC_I/MIMTLU_ent/CLK_DIV/counter_1" BEL
         "mimtlu_0/mimtlu_0/USER_LOGIC_I/MIMTLU_ent/CLK_DIV/counter_2" BEL
+        "mimtlu_0/mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_1"
+        BEL
+        "mimtlu_0/mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_0"
+        BEL
+        "mimtlu_0/mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_2"
+        BEL
+        "mimtlu_0/mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_3"
+        BEL
         "mimtlu_0/mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i_0"
         BEL
         "mimtlu_0/mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i_1"
@@ -2557,12 +2518,12 @@ TIMEGRP S_AXI_ACLK_Ethernet_MAC = PIN
         "microblaze_0_intc/microblaze_0_intc/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/Bus_RNW_reg_2"
         BEL
         "microblaze_0_intc/microblaze_0_intc/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/Bus_RNW_reg_1"
-        BEL "microblaze_0_intc/microblaze_0_intc/INTC_CORE_I/sie_2" BEL
+        BEL "microblaze_0_intc/microblaze_0_intc/INTC_CORE_I/sie_1" BEL
         "microblaze_0_intc/microblaze_0_intc/INTC_CORE_I/sie_0" BEL
-        "microblaze_0_intc/microblaze_0_intc/INTC_CORE_I/sie_1" BEL
-        "microblaze_0_intc/microblaze_0_intc/INTC_CORE_I/cie_1" BEL
-        "microblaze_0_intc/microblaze_0_intc/INTC_CORE_I/sie_3" BEL
         "microblaze_0_intc/microblaze_0_intc/INTC_CORE_I/cie_0" BEL
+        "microblaze_0_intc/microblaze_0_intc/INTC_CORE_I/sie_2" BEL
+        "microblaze_0_intc/microblaze_0_intc/INTC_CORE_I/sie_3" BEL
+        "microblaze_0_intc/microblaze_0_intc/INTC_CORE_I/cie_1" BEL
         "microblaze_0_intc/microblaze_0_intc/INTC_CORE_I/cie_2" BEL
         "microblaze_0_intc/microblaze_0_intc/INTC_CORE_I/cie_3" BEL
         "microblaze_0_intc/microblaze_0_intc/INTC_CORE_I/Irq" BEL
@@ -2570,10 +2531,10 @@ TIMEGRP S_AXI_ACLK_Ethernet_MAC = PIN
         "microblaze_0_intc/microblaze_0_intc/INTC_CORE_I/ier_0" BEL
         "microblaze_0_intc/microblaze_0_intc/INTC_CORE_I/ier_2" BEL
         "microblaze_0_intc/microblaze_0_intc/INTC_CORE_I/ier_3" BEL
-        "microblaze_0_intc/microblaze_0_intc/INTC_CORE_I/iar_1" BEL
         "microblaze_0_intc/microblaze_0_intc/INTC_CORE_I/iar_0" BEL
-        "microblaze_0_intc/microblaze_0_intc/INTC_CORE_I/iar_2" BEL
         "microblaze_0_intc/microblaze_0_intc/INTC_CORE_I/iar_3" BEL
+        "microblaze_0_intc/microblaze_0_intc/INTC_CORE_I/iar_1" BEL
+        "microblaze_0_intc/microblaze_0_intc/INTC_CORE_I/iar_2" BEL
         "microblaze_0_intc/microblaze_0_intc/INTC_CORE_I/ipr_0" BEL
         "microblaze_0_intc/microblaze_0_intc/INTC_CORE_I/ipr_1" BEL
         "microblaze_0_intc/microblaze_0_intc/INTC_CORE_I/ipr_2" BEL
@@ -2589,24 +2550,29 @@ TIMEGRP S_AXI_ACLK_Ethernet_MAC = PIN
         "microblaze_0_intc/microblaze_0_intc/INTC_CORE_I/isr_3" BEL
         "microblaze_0_intc/microblaze_0_intc/INTC_CORE_I/isr_1" BEL
         "microblaze_0_intc/microblaze_0_intc/INTC_CORE_I/isr_2" BEL
-        "microblaze_0_intc/microblaze_0_intc/INTC_CORE_I/hw_intr_0" BEL
-        "microblaze_0_intc/microblaze_0_intc/INTC_CORE_I/hw_intr_3" BEL
         "microblaze_0_intc/microblaze_0_intc/INTC_CORE_I/hw_intr_1" BEL
+        "microblaze_0_intc/microblaze_0_intc/INTC_CORE_I/hw_intr_0" BEL
         "microblaze_0_intc/microblaze_0_intc/INTC_CORE_I/hw_intr_2" BEL
+        "microblaze_0_intc/microblaze_0_intc/INTC_CORE_I/hw_intr_3" BEL
         "microblaze_0_intc/microblaze_0_intc/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_bvalid_i"
         BEL
         "microblaze_0_intc/microblaze_0_intc/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rvalid_i"
-        BEL "microblaze_0_intc/microblaze_0_intc/INTC_CORE_I/intr_p1_2" BEL
-        "microblaze_0_intc/microblaze_0_intc/INTC_CORE_I/intr_p1_1" BEL
+        BEL "microblaze_0_intc/microblaze_0_intc/INTC_CORE_I/intr_p1_1" BEL
+        "microblaze_0_intc/microblaze_0_intc/INTC_CORE_I/intr_p1_2" BEL
+        "microblaze_0_intc/microblaze_0_intc/INTC_CORE_I/intr_p1_3" BEL
         "microblaze_0_intc/microblaze_0_intc/INTC_CORE_I/INTR_DETECT_GEN<1>.EDGE_DETECT_GEN.intr_p2_1"
         BEL
         "microblaze_0_intc/microblaze_0_intc/INTC_CORE_I/INTR_DETECT_GEN<2>.EDGE_DETECT_GEN.intr_p2_2"
+        BEL
+        "microblaze_0_intc/microblaze_0_intc/INTC_CORE_I/INTR_DETECT_GEN<3>.EDGE_DETECT_GEN.intr_p2_3"
+        BEL
+        "microblaze_0_intc/microblaze_0_intc/INTC_CORE_I/INTR_DETECT_GEN<2>.EDGE_DETECT_GEN.intr_d1_2"
         BEL "microblaze_0_intc/microblaze_0_intc/INTC_CORE_I/ivr_0" BEL
         "microblaze_0_intc/microblaze_0_intc/INTC_CORE_I/ivr_1" BEL
         "microblaze_0_intc/microblaze_0_intc/INTC_CORE_I/ivr_2" BEL
         "microblaze_0_intc/microblaze_0_intc/INTC_CORE_I/INTR_DETECT_GEN<1>.EDGE_DETECT_GEN.intr_d1_1"
         BEL
-        "microblaze_0_intc/microblaze_0_intc/INTC_CORE_I/INTR_DETECT_GEN<2>.EDGE_DETECT_GEN.intr_d1_2"
+        "microblaze_0_intc/microblaze_0_intc/INTC_CORE_I/INTR_DETECT_GEN<3>.EDGE_DETECT_GEN.intr_d1_3"
         BEL
         "microblaze_0_intc/microblaze_0_intc/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_16"
         BEL
@@ -7795,22 +7761,6 @@ TIMEGRP clock_generator_0_clock_generator_0_SIG_PLL0_CLKOUT2 = PIN
         BEL
         "USB_Uart/USB_Uart/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/state_FSM_FFd1"
         BEL "clock_generator_0/clock_generator_0/PLL0_CLKOUT2_BUFG_INST" BEL
-        "mimtlu_0/mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_0_1"
-        BEL
-        "mimtlu_0/mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_1_1"
-        BEL
-        "mimtlu_0/mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_2_1"
-        BEL
-        "mimtlu_0/mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_3_1"
-        BEL
-        "mimtlu_0/mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_1"
-        BEL
-        "mimtlu_0/mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_0"
-        BEL
-        "mimtlu_0/mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_2"
-        BEL
-        "mimtlu_0/mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_3"
-        BEL
         "mimtlu_0/mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/Bus_RNW_reg"
         BEL "mimtlu_0/mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/rst" BEL
         "mimtlu_0/mimtlu_0/USER_LOGIC_I/MIMTLU_ent/CLK_DIV/temporal" BEL
@@ -7848,40 +7798,17 @@ TIMEGRP clock_generator_0_clock_generator_0_SIG_PLL0_CLKOUT2 = PIN
         "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_28" BEL
         "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_29" BEL
         "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg1_30" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_0" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_1" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_2" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_3" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_4" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_5" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_6" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_7" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_8" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_9" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_10" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_11" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_12" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_13" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_14" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_15" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_16" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_17" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_18" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_19" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_20" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_21" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_22" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_23" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_24" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_25" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_26" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_27" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_28" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_29" BEL
-        "mimtlu_0/mimtlu_0/USER_LOGIC_I/slv_reg2_30" BEL
         "mimtlu_0/mimtlu_0/USER_LOGIC_I/MIMTLU_ent/CLK_DIV/counter_0" BEL
         "mimtlu_0/mimtlu_0/USER_LOGIC_I/MIMTLU_ent/CLK_DIV/counter_1" BEL
         "mimtlu_0/mimtlu_0/USER_LOGIC_I/MIMTLU_ent/CLK_DIV/counter_2" BEL
+        "mimtlu_0/mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_1"
+        BEL
+        "mimtlu_0/mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_0"
+        BEL
+        "mimtlu_0/mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_2"
+        BEL
+        "mimtlu_0/mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_3"
+        BEL
         "mimtlu_0/mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i_0"
         BEL
         "mimtlu_0/mimtlu_0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i_1"
@@ -8932,12 +8859,12 @@ TIMEGRP clock_generator_0_clock_generator_0_SIG_PLL0_CLKOUT2 = PIN
         "microblaze_0_intc/microblaze_0_intc/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/Bus_RNW_reg_2"
         BEL
         "microblaze_0_intc/microblaze_0_intc/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/Bus_RNW_reg_1"
-        BEL "microblaze_0_intc/microblaze_0_intc/INTC_CORE_I/sie_2" BEL
+        BEL "microblaze_0_intc/microblaze_0_intc/INTC_CORE_I/sie_1" BEL
         "microblaze_0_intc/microblaze_0_intc/INTC_CORE_I/sie_0" BEL
-        "microblaze_0_intc/microblaze_0_intc/INTC_CORE_I/sie_1" BEL
-        "microblaze_0_intc/microblaze_0_intc/INTC_CORE_I/cie_1" BEL
-        "microblaze_0_intc/microblaze_0_intc/INTC_CORE_I/sie_3" BEL
         "microblaze_0_intc/microblaze_0_intc/INTC_CORE_I/cie_0" BEL
+        "microblaze_0_intc/microblaze_0_intc/INTC_CORE_I/sie_2" BEL
+        "microblaze_0_intc/microblaze_0_intc/INTC_CORE_I/sie_3" BEL
+        "microblaze_0_intc/microblaze_0_intc/INTC_CORE_I/cie_1" BEL
         "microblaze_0_intc/microblaze_0_intc/INTC_CORE_I/cie_2" BEL
         "microblaze_0_intc/microblaze_0_intc/INTC_CORE_I/cie_3" BEL
         "microblaze_0_intc/microblaze_0_intc/INTC_CORE_I/Irq" BEL
@@ -8945,10 +8872,10 @@ TIMEGRP clock_generator_0_clock_generator_0_SIG_PLL0_CLKOUT2 = PIN
         "microblaze_0_intc/microblaze_0_intc/INTC_CORE_I/ier_0" BEL
         "microblaze_0_intc/microblaze_0_intc/INTC_CORE_I/ier_2" BEL
         "microblaze_0_intc/microblaze_0_intc/INTC_CORE_I/ier_3" BEL
-        "microblaze_0_intc/microblaze_0_intc/INTC_CORE_I/iar_1" BEL
         "microblaze_0_intc/microblaze_0_intc/INTC_CORE_I/iar_0" BEL
-        "microblaze_0_intc/microblaze_0_intc/INTC_CORE_I/iar_2" BEL
         "microblaze_0_intc/microblaze_0_intc/INTC_CORE_I/iar_3" BEL
+        "microblaze_0_intc/microblaze_0_intc/INTC_CORE_I/iar_1" BEL
+        "microblaze_0_intc/microblaze_0_intc/INTC_CORE_I/iar_2" BEL
         "microblaze_0_intc/microblaze_0_intc/INTC_CORE_I/ipr_0" BEL
         "microblaze_0_intc/microblaze_0_intc/INTC_CORE_I/ipr_1" BEL
         "microblaze_0_intc/microblaze_0_intc/INTC_CORE_I/ipr_2" BEL
@@ -8964,24 +8891,29 @@ TIMEGRP clock_generator_0_clock_generator_0_SIG_PLL0_CLKOUT2 = PIN
         "microblaze_0_intc/microblaze_0_intc/INTC_CORE_I/isr_3" BEL
         "microblaze_0_intc/microblaze_0_intc/INTC_CORE_I/isr_1" BEL
         "microblaze_0_intc/microblaze_0_intc/INTC_CORE_I/isr_2" BEL
-        "microblaze_0_intc/microblaze_0_intc/INTC_CORE_I/hw_intr_0" BEL
-        "microblaze_0_intc/microblaze_0_intc/INTC_CORE_I/hw_intr_3" BEL
         "microblaze_0_intc/microblaze_0_intc/INTC_CORE_I/hw_intr_1" BEL
+        "microblaze_0_intc/microblaze_0_intc/INTC_CORE_I/hw_intr_0" BEL
         "microblaze_0_intc/microblaze_0_intc/INTC_CORE_I/hw_intr_2" BEL
+        "microblaze_0_intc/microblaze_0_intc/INTC_CORE_I/hw_intr_3" BEL
         "microblaze_0_intc/microblaze_0_intc/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_bvalid_i"
         BEL
         "microblaze_0_intc/microblaze_0_intc/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rvalid_i"
-        BEL "microblaze_0_intc/microblaze_0_intc/INTC_CORE_I/intr_p1_2" BEL
-        "microblaze_0_intc/microblaze_0_intc/INTC_CORE_I/intr_p1_1" BEL
+        BEL "microblaze_0_intc/microblaze_0_intc/INTC_CORE_I/intr_p1_1" BEL
+        "microblaze_0_intc/microblaze_0_intc/INTC_CORE_I/intr_p1_2" BEL
+        "microblaze_0_intc/microblaze_0_intc/INTC_CORE_I/intr_p1_3" BEL
         "microblaze_0_intc/microblaze_0_intc/INTC_CORE_I/INTR_DETECT_GEN<1>.EDGE_DETECT_GEN.intr_p2_1"
         BEL
         "microblaze_0_intc/microblaze_0_intc/INTC_CORE_I/INTR_DETECT_GEN<2>.EDGE_DETECT_GEN.intr_p2_2"
+        BEL
+        "microblaze_0_intc/microblaze_0_intc/INTC_CORE_I/INTR_DETECT_GEN<3>.EDGE_DETECT_GEN.intr_p2_3"
+        BEL
+        "microblaze_0_intc/microblaze_0_intc/INTC_CORE_I/INTR_DETECT_GEN<2>.EDGE_DETECT_GEN.intr_d1_2"
         BEL "microblaze_0_intc/microblaze_0_intc/INTC_CORE_I/ivr_0" BEL
         "microblaze_0_intc/microblaze_0_intc/INTC_CORE_I/ivr_1" BEL
         "microblaze_0_intc/microblaze_0_intc/INTC_CORE_I/ivr_2" BEL
         "microblaze_0_intc/microblaze_0_intc/INTC_CORE_I/INTR_DETECT_GEN<1>.EDGE_DETECT_GEN.intr_d1_1"
         BEL
-        "microblaze_0_intc/microblaze_0_intc/INTC_CORE_I/INTR_DETECT_GEN<2>.EDGE_DETECT_GEN.intr_d1_2"
+        "microblaze_0_intc/microblaze_0_intc/INTC_CORE_I/INTR_DETECT_GEN<3>.EDGE_DETECT_GEN.intr_d1_3"
         BEL
         "microblaze_0_intc/microblaze_0_intc/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_16"
         BEL
@@ -13617,10 +13549,12 @@ TIMEGRP sys_clk_pin = PIN "SP6_BUFIO2_INSERT_PLL1_ML_BUFIO2_0_pins<0>" PIN
 TIMEGRP axi4lite_0_reset_source = FFS(*) PADS(*);
 TIMEGRP GRP_INTC_intr_sync_microblaze_0_intc = BEL
         "microblaze_0_intc/microblaze_0_intc/INTC_CORE_I/intr_sync_1" BEL
-        "microblaze_0_intc/microblaze_0_intc/INTC_CORE_I/intr_sync_2";
+        "microblaze_0_intc/microblaze_0_intc/INTC_CORE_I/intr_sync_2" BEL
+        "microblaze_0_intc/microblaze_0_intc/INTC_CORE_I/intr_sync_3";
 TIMEGRP GRP_INTC_intr_p1_microblaze_0_intc = BEL
+        "microblaze_0_intc/microblaze_0_intc/INTC_CORE_I/intr_p1_1" BEL
         "microblaze_0_intc/microblaze_0_intc/INTC_CORE_I/intr_p1_2" BEL
-        "microblaze_0_intc/microblaze_0_intc/INTC_CORE_I/intr_p1_1";
+        "microblaze_0_intc/microblaze_0_intc/INTC_CORE_I/intr_p1_3";
 TIMEGRP axi4_0_reset_source = FFS(*) PADS(*);
 NET "Ethernet_MAC/Ethernet_MAC/phy_tx_clk_i" MAXSKEW = 6 ns;
 NET "Ethernet_MAC/Ethernet_MAC/phy_tx_clk_i" PERIOD = 40 ns HIGH 14 ns;
