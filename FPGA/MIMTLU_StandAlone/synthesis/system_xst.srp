@@ -1221,12 +1221,12 @@ Top Level Output File Name         : system.ngc
 
 Primitive and Black Box Usage:
 ------------------------------
-# BELS                             : 6182
+# BELS                             : 6181
 #      GND                         : 26
 #      INV                         : 109
 #      LUT1                        : 44
 #      LUT2                        : 498
-#      LUT3                        : 845
+#      LUT3                        : 844
 #      LUT4                        : 941
 #      LUT5                        : 794
 #      LUT6                        : 1516
@@ -1239,19 +1239,19 @@ Primitive and Black Box Usage:
 #      MUXF8                       : 47
 #      VCC                         : 15
 #      XORCY                       : 429
-# FlipFlops/Latches                : 4537
+# FlipFlops/Latches                : 4541
 #      FD                          : 579
-#      FDC                         : 145
+#      FDC                         : 146
 #      FDC_1                       : 5
 #      FDCE                        : 119
 #      FDE                         : 1077
 #      FDE_1                       : 8
 #      FDP                         : 24
 #      FDPE                        : 6
-#      FDR                         : 1186
+#      FDR                         : 1188
 #      FDRE                        : 1210
 #      FDRE_1                      : 1
-#      FDS                         : 49
+#      FDS                         : 50
 #      FDSE                        : 128
 # RAMS                             : 96
 #      RAM16X1S                    : 4
@@ -1292,19 +1292,19 @@ Selected Device : 6slx9csg324-2
 
 
 Slice Logic Utilization: 
- Number of Slice Registers:            4526  out of  11440    39%  
- Number of Slice LUTs:                 5231  out of   5720    91%  
-    Number used as Logic:              4863  out of   5720    85%  
+ Number of Slice Registers:            4530  out of  11440    39%  
+ Number of Slice LUTs:                 5230  out of   5720    91%  
+    Number used as Logic:              4862  out of   5720    85%  
     Number used as Memory:              368  out of   1440    25%  
        Number used as RAM:              140
        Number used as SRL:              228
 
 Slice Logic Distribution: 
- Number of LUT Flip Flop pairs used:   7521
-   Number with an unused Flip Flop:    2995  out of   7521    39%  
-   Number with an unused LUT:          2290  out of   7521    30%  
-   Number of fully used LUT-FF pairs:  2236  out of   7521    29%  
-   Number of unique control sets:       347
+ Number of LUT Flip Flop pairs used:   7524
+   Number with an unused Flip Flop:    2994  out of   7524    39%  
+   Number with an unused LUT:          2294  out of   7524    30%  
+   Number of fully used LUT-FF pairs:  2236  out of   7524    29%  
+   Number of unique control sets:       348
 
 IO Utilization: 
  Number of IOs:                          84
@@ -1341,8 +1341,9 @@ Clock Signal                                              | Clock buffer(FF name
 ----------------------------------------------------------+------------------------------------------------------------------------------------------------------------------+-------+
 Ethernet_MAC_RX_CLK                                       | IBUF                                                                                                             | 40    |
 Ethernet_MAC_TX_CLK                                       | IBUF                                                                                                             | 45    |
-CLK_66MHZ                                                 | PLL_ADV:CLKOUT2                                                                                                  | 4442  |
+CLK_66MHZ                                                 | PLL_ADV:CLKOUT2                                                                                                  | 4445  |
 mimtlu_0/mimtlu_0/USER_LOGIC_I/MIMTLU_ent/CLK_DIV/temporal| BUFG                                                                                                             | 83    |
+mimtlu_0/DATA_ITR                                         | NONE(microblaze_0_intc/microblaze_0_intc/INTC_CORE_I/intr_sync_3)                                                | 1     |
 USB_Uart/Interrupt                                        | NONE(microblaze_0_intc/microblaze_0_intc/INTC_CORE_I/intr_sync_2)                                                | 1     |
 Ethernet_MAC/IP2INTC_Irpt                                 | NONE(microblaze_0_intc/microblaze_0_intc/INTC_CORE_I/intr_sync_1)                                                | 1     |
 debug_module/debug_module/drck_i                          | BUFG                                                                                                             | 209   |
@@ -1361,7 +1362,7 @@ Speed Grade: -2
    Minimum period: 11.574ns (Maximum Frequency: 86.401MHz)
    Minimum input arrival time before clock: 8.502ns
    Maximum output required time after clock: 11.582ns
-   Maximum combinational path delay: 6.294ns
+   Maximum combinational path delay: 5.115ns
 
 Timing Details:
 ---------------
@@ -1392,7 +1393,7 @@ Delay:               1.833ns (Levels of Logic = 1)
 =========================================================================
 Timing constraint: Default period analysis for Clock 'CLK_66MHZ'
   Clock period: 10.569ns (frequency: 94.618MHz)
-  Total number of paths / destination ports: 382150 / 11942
+  Total number of paths / destination ports: 382157 / 11947
 -------------------------------------------------------------------------
 Delay:               10.569ns (Levels of Logic = 11)
   Source:            axi_timer_0/axi_timer_0/AXI4_LITE_I/I_SLAVE_ATTACHMENT/I_DECODER/ce_out_i_1 (FF)
@@ -1447,7 +1448,7 @@ Delay:               1.600ns (Levels of Logic = 1)
 =========================================================================
 Timing constraint: Default period analysis for Clock 'mimtlu_0/mimtlu_0/USER_LOGIC_I/MIMTLU_ent/CLK_DIV/temporal'
   Clock period: 5.122ns (frequency: 195.255MHz)
-  Total number of paths / destination ports: 18901 / 158
+  Total number of paths / destination ports: 18903 / 158
 -------------------------------------------------------------------------
 Delay:               5.122ns (Levels of Logic = 44)
   Source:            mimtlu_0/mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/count_2 (FF)
@@ -1611,9 +1612,9 @@ Offset:              4.665ns (Levels of Logic = 2)
 
 =========================================================================
 Timing constraint: Default OFFSET IN BEFORE for Clock 'mimtlu_0/mimtlu_0/USER_LOGIC_I/MIMTLU_ent/CLK_DIV/temporal'
-  Total number of paths / destination ports: 235 / 85
+  Total number of paths / destination ports: 232 / 83
 -------------------------------------------------------------------------
-Offset:              5.130ns (Levels of Logic = 5)
+Offset:              5.096ns (Levels of Logic = 5)
   Source:            mimtlu_0_TRIGGER_P_pin (PAD)
   Destination:       mimtlu_0/mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/timestamp_reg_31 (FF)
   Destination Clock: mimtlu_0/mimtlu_0/USER_LOGIC_I/MIMTLU_ent/CLK_DIV/temporal rising
@@ -1623,14 +1624,14 @@ Offset:              5.130ns (Levels of Logic = 5)
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
      begin scope: 'mimtlu_0:TRIGGER_P'
-     IBUFDS:I->O           7   1.328   1.340  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/IBUFDS_TRIGGER (TRIGGER_COPY)
+     IBUFDS:I->O           6   1.328   1.306  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/IBUFDS_TRIGGER (TRIGGER_COPY)
      LUT5:I0->O            8   0.254   0.944  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mmux_timestamp_reg[0]_ts_reg_MUX_127_o121 (mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mmux_timestamp_reg[0]_ts_reg_MUX_127_o12)
      LUT6:I5->O            1   0.254   0.682  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mmux_timestamp_reg[20]_ts_reg_MUX_107_o12 (mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/timestamp_reg[20]_ts_reg_MUX_107_o)
      LUT6:I5->O            1   0.254   0.000  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/timestamp_reg_20_dpot (mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/timestamp_reg_20_dpot)
      FDE:D                     0.074          mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/timestamp_reg_20
     ----------------------------------------
-    Total                      5.130ns (2.164ns logic, 2.966ns route)
-                                       (42.2% logic, 57.8% route)
+    Total                      5.096ns (2.164ns logic, 2.932ns route)
+                                       (42.5% logic, 57.5% route)
 
 =========================================================================
 Timing constraint: Default OFFSET IN BEFORE for Clock 'debug_module/debug_module/drck_i'
@@ -1731,24 +1732,24 @@ Offset:              4.118ns (Levels of Logic = 2)
 
 =========================================================================
 Timing constraint: Default OFFSET OUT AFTER for Clock 'mimtlu_0/mimtlu_0/USER_LOGIC_I/MIMTLU_ent/CLK_DIV/temporal'
-  Total number of paths / destination ports: 13 / 5
+  Total number of paths / destination ports: 11 / 5
 -------------------------------------------------------------------------
-Offset:              6.582ns (Levels of Logic = 3)
-  Source:            mimtlu_0/mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/state_reg_FSM_FFd1 (FF)
+Offset:              7.312ns (Levels of Logic = 3)
+  Source:            mimtlu_0/mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/state_reg_FSM_FFd2 (FF)
   Destination:       mimtlu_0_BUSY_COPY_pin (PAD)
   Source Clock:      mimtlu_0/mimtlu_0/USER_LOGIC_I/MIMTLU_ent/CLK_DIV/temporal rising
 
-  Data Path: mimtlu_0/mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/state_reg_FSM_FFd1 to mimtlu_0_BUSY_COPY_pin
+  Data Path: mimtlu_0/mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/state_reg_FSM_FFd2 to mimtlu_0_BUSY_COPY_pin
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FDC:C->Q             81   0.525   2.170  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/state_reg_FSM_FFd1 (mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/state_reg_FSM_FFd1)
-     LUT3:I1->O            2   0.250   0.725  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/busy1 (BUSY_P)
+     FDC:C->Q             84   0.525   2.085  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/state_reg_FSM_FFd2 (mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/state_reg_FSM_FFd2)
+     LUT2:I1->O           33   0.254   1.536  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/_n0177_inv1 (BUSY_P)
      end scope: 'mimtlu_0:BUSY_COPY'
      OBUF:I->O                 2.912          mimtlu_0_BUSY_COPY_pin_OBUF (mimtlu_0_BUSY_COPY_pin)
     ----------------------------------------
-    Total                      6.582ns (3.687ns logic, 2.895ns route)
-                                       (56.0% logic, 44.0% route)
+    Total                      7.312ns (3.691ns logic, 3.621ns route)
+                                       (50.5% logic, 49.5% route)
 
 =========================================================================
 Timing constraint: Default OFFSET OUT AFTER for Clock 'debug_module/Ext_JTAG_UPDATE'
@@ -1810,24 +1811,23 @@ Offset:              11.582ns (Levels of Logic = 9)
 
 =========================================================================
 Timing constraint: Default path analysis
-  Total number of paths / destination ports: 709 / 667
+  Total number of paths / destination ports: 707 / 666
 -------------------------------------------------------------------------
-Delay:               6.294ns (Levels of Logic = 4)
+Delay:               5.115ns (Levels of Logic = 3)
   Source:            mimtlu_0_TRIGGER_P_pin (PAD)
-  Destination:       mimtlu_0_TRIGGER_DUT_pin (PAD)
+  Destination:       mimtlu_0_TRIGGER_COPY_pin (PAD)
 
-  Data Path: mimtlu_0_TRIGGER_P_pin to mimtlu_0_TRIGGER_DUT_pin
+  Data Path: mimtlu_0_TRIGGER_P_pin to mimtlu_0_TRIGGER_COPY_pin
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
      begin scope: 'mimtlu_0:TRIGGER_P'
-     IBUFDS:I->O           7   1.328   1.138  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/IBUFDS_TRIGGER (TRIGGER_COPY)
-     LUT3:I0->O            1   0.235   0.681  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/TLU_READ/Mmux_trigger_dut11 (TRIGGER_DUT)
-     end scope: 'mimtlu_0:TRIGGER_DUT'
-     OBUF:I->O                 2.912          mimtlu_0_TRIGGER_DUT_pin_OBUF (mimtlu_0_TRIGGER_DUT_pin)
+     IBUFDS:I->O           6   1.328   0.875  mimtlu_0/USER_LOGIC_I/MIMTLU_ent/IBUFDS_TRIGGER (TRIGGER_COPY)
+     end scope: 'mimtlu_0:TRIGGER_COPY'
+     OBUF:I->O                 2.912          mimtlu_0_TRIGGER_COPY_pin_OBUF (mimtlu_0_TRIGGER_COPY_pin)
     ----------------------------------------
-    Total                      6.294ns (4.475ns logic, 1.819ns route)
-                                       (71.1% logic, 28.9% route)
+    Total                      5.115ns (4.240ns logic, 0.875ns route)
+                                       (82.9% logic, 17.1% route)
 
 =========================================================================
 
@@ -1846,6 +1846,7 @@ Ethernet_MAC_TX_CLK                                       |         |    3.826| 
 USB_Uart/Interrupt                                        |    1.280|         |         |         |
 debug_module/Ext_JTAG_UPDATE                              |    4.371|    3.446|         |         |
 debug_module/debug_module/drck_i                          |    5.322|         |         |         |
+mimtlu_0/DATA_ITR                                         |    1.280|         |         |         |
 mimtlu_0/mimtlu_0/USER_LOGIC_I/MIMTLU_ent/CLK_DIV/temporal|    2.074|         |         |         |
 ----------------------------------------------------------+---------+---------+---------+---------+
 
@@ -1903,6 +1904,14 @@ debug_module/Ext_JTAG_UPDATE    |         |    5.808|    3.344|         |
 debug_module/debug_module/drck_i|    2.860|    4.093|    3.740|         |
 --------------------------------+---------+---------+---------+---------+
 
+Clock to Setup on destination clock mimtlu_0/DATA_ITR
+---------------+---------+---------+---------+---------+
+               | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
+Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
+---------------+---------+---------+---------+---------+
+CLK_66MHZ      |    3.627|         |         |         |
+---------------+---------+---------+---------+---------+
+
 Clock to Setup on destination clock mimtlu_0/mimtlu_0/USER_LOGIC_I/MIMTLU_ent/CLK_DIV/temporal
 ----------------------------------------------------------+---------+---------+---------+---------+
                                                           | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
@@ -1915,12 +1924,12 @@ mimtlu_0/mimtlu_0/USER_LOGIC_I/MIMTLU_ent/CLK_DIV/temporal|    5.122|         | 
 =========================================================================
 
 
-Total REAL time to Xst completion: 29.00 secs
-Total CPU time to Xst completion: 28.79 secs
+Total REAL time to Xst completion: 25.00 secs
+Total CPU time to Xst completion: 24.91 secs
  
 --> 
 
-Total memory usage is 336576 kilobytes
+Total memory usage is 336256 kilobytes
 
 Number of errors   :    0 (   0 filtered)
 Number of warnings :   11 (   0 filtered)

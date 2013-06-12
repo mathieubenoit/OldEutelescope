@@ -41,6 +41,7 @@ entity MIMTLU_core is
 			  reset : in STD_LOGIC;
 			  timestamp : out STD_LOGIC_VECTOR(31 downto 0);
 			  busy_cnt : in STD_LOGIC_VECTOR(31 downto 0);
+			  busy_handle : in STD_LOGIC_VECTOR(31 downto 0);
            clk : in  STD_LOGIC;
 			  data_itr : out  STD_LOGIC;
 			  clk_out_en : out STD_LOGIC);
@@ -72,7 +73,11 @@ signal wait_bit : std_logic:='0';
 
 
 signal count : natural ;
-signal wait_time : natural := 255;
+signal wait_time : natural := 300000;
+
+signal busy_int: std_logic:='0';
+
+signal trigger_reg: std_logic:='0';
 
 
 begin
@@ -90,7 +95,8 @@ if (reset='1') then
 elsif rising_edge(clk) then 
 	state_reg <= state_next;
 	busy_dut_reg<=busy_dut;
-
+	trigger_reg<=trigger;
+	
 	if (ts_cnt=0 and wait_bit='0' and clk_en_reg='1') then 
 		wait_bit<='1';
 
@@ -120,13 +126,13 @@ end if;
 
 end process REG;
 
-SM:process(trigger,state_reg,read_en,clk_en_reg,count,ts_cnt,timestamp_reg)
+SM:process(state_reg,read_en,clk_en_reg,count,ts_cnt,timestamp_reg)
 
 begin 
 
 case state_reg is 
 	when idle =>
-		if trigger='1' then
+		if trigger_reg='1' then
 			state_next <= triggered;
 		else
 			state_next<= idle;
@@ -140,7 +146,7 @@ case state_reg is
 	when triggered =>
 			busy_reg<='1';
 			clk_en_reg<='0';
-	   	state_next<=reading;
+			state_next<=reading;
 			ts_reg<='0';
 
 			
@@ -159,25 +165,38 @@ case state_reg is
 			busy_reg<='1';
 			clk_en_reg<='0';
 			ts_reg<='0';
+			
 			if (count=wait_time) then 
 				state_next<=idle;
 			else 
 				state_next<=isbusy;
 			end if;
-				
+			
 end case;
 
 end process SM;
 
-busy <= busy_reg or busy_dut_reg;
+--busy_int <= '1' when ((to_integer(unsigned(busy_handle(31 downto 0)))=111)) or busy_reg='1' else
+--             '0' ;			 
 
-trigger_dut <= trigger when clk_en_reg='0' else
+
+busy <= '1' when busy_reg='1' else
+             '0' ;	
+				 
+busy_copy<= '1' when busy_reg='1' else
              '0' ;
-				 
+
+--busy <= '1' when (busy_dut_reg='1' or busy_reg='1') else
+--             '0';
+--
+--
+--busy_copy <= '1' when (busy_dut_reg='1' or busy_reg='1') else
+--             '0';	
 
 				 
-busy_copy<=busy_reg or busy_dut_reg;
-trigger_copy<=trigger;
+trigger_dut <= trigger_reg when clk_en_reg='0' else 
+					'0';		
+trigger_copy <= trigger;
 
 timestamp(31 downto Nbits+1)<=(others=>'0');
 timestamp(Nbits downto 0)<=timestamp_reg;

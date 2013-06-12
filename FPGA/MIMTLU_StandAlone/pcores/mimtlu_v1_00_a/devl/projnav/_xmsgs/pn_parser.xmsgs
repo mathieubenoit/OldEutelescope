@@ -8,7 +8,7 @@
 <!-- Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.    -->
 
 <messages>
-<msg type="info" file="ProjectMgmt" num="1061" ><arg fmt="%s" index="1">Parsing VHDL file &quot;F:/Git_projects/FPGA/MIMTLU_StandAlone/pcores/mimtlu_v1_00_a/hdl/vhdl/TOP.vhd&quot; into library mimtlu_v1_00_a</arg>
+<msg type="info" file="ProjectMgmt" num="1061" ><arg fmt="%s" index="1">Parsing VHDL file &quot;F:/Git_projects/FPGA/MIMTLU_StandAlone/pcores/mimtlu_v1_00_a/hdl/vhdl/MIMTLU_core.vhd&quot; into library work</arg>
 </msg>
 
 </messages>

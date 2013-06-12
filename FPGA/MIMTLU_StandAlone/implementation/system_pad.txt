@@ -1,7 +1,7 @@
 Release 14.4 - par P.49d (nt64)
 Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.
 
-Mon May 06 17:15:20 2013
+Tue Jun 04 11:20:28 2013
 
 
 INFO: The IO information is provided in three file formats as part of the Place and Route (PAR) process.  These formats are:
@@ -125,7 +125,7 @@ Pinout by Pin Number:
 |F13       |                            |IOBM     |IO_L63P_SCP7_0               |UNUSED   |               |0             |          |         |           |         |         |          |           |                |
 |F14       |                            |IOBM     |IO_L30P_A21_M1RESET_1        |UNUSED   |               |1             |          |         |           |         |         |          |           |                |
 |F15       |mimtlu_0_TRIGGER_COPY_pin   |IOB      |IO_L1P_A25_1                 |OUTPUT   |LVTTL          |1             |12        |SLOW     |           |         |         |LOCATED   |NO         |NONE            |
-|F16       |mimtlu_0_BUSY_DUT_pin       |IOB      |IO_L1N_A24_VREF_1            |INPUT    |LVTTL          |1             |          |         |           |NONE     |         |LOCATED   |NO         |NONE            |
+|F16       |                            |IOBS     |IO_L1N_A24_VREF_1            |UNUSED   |               |1             |          |         |           |         |         |          |           |                |
 |F17       |mimtlu_0_RESET_P_pin        |IOB      |IO_L35P_A11_M1A7_1           |INPUT    |LVDS_33        |1             |          |         |           |NONE     |         |LOCATED   |NO         |DIFF_TERM       |
 |F18       |mimtlu_0_RESET_N_pin        |IOB      |IO_L35N_A10_M1A2_1           |         |LVDS_33        |1             |          |         |           |         |         |LOCATED   |NO         |DIFF_TERM       |
 |G1        |mcbx_dram_clk_n             |IOB      |IO_L46N_M3CLKN_3             |TRISTATE |DIFF_MOBILE_DDR|3             |          |         |           |         |         |LOCATED   |NO         |NONE            |

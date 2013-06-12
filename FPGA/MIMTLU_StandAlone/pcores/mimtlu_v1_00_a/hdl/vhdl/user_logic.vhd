@@ -189,6 +189,7 @@ begin
 			  DATA_ITR => DATA_ITR,
 			  
 			  BUSY_CNT => slv_reg1,
+			  BUSY_HANDLE => slv_reg2,
 			  
 			  timestamp => slv_reg0 );
   
