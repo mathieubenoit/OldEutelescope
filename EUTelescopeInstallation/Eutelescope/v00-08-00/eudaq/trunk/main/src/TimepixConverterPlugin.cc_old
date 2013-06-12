@@ -71,22 +71,18 @@ namespace eudaq {
     // or be left undefined as there is already a default version.
     virtual unsigned GetTriggerID(const Event & ev) const {
 
-      const RawDataEvent * rev = dynamic_cast<const RawDataEvent *> (&ev);
-      vector<unsigned char> data = rev->GetBlock(1);
-      
-      cout << "[Number of blocks] " << rev->NumBlocks() << endl;
-      cout << "vector has size : " << data.size() << endl;
-
-      size_t offset = 0;
-      unsigned int TLUevt=0;
-      
-      for(unsigned int j=0;j<data.size();j++){
-	  	//printf("%x",dataTOT[offset2+j]);
-		TLUevt =TLUevt | (data[offset+j] << j*8);
-		}
-      
-      return TLUevt;
-	
+//       const RawDataEvent * rev = dynamic_cast<const RawDataEvent *> (&ev);
+//       vector<unsigned char> data = rev->GetBlock(1);
+//       
+//       cout << "[Number of blocks] " << rev->NumBlocks() << endl;
+//       cout << "vector has size : " << data.size() << endl;
+// 
+//       size_t offset = 0;
+//       unsigned int TLUevt=0;
+//       unpack(data,offset,TLUevt);
+//       
+//       return TLUevt;
+	return 0;
 
     }
 
@@ -107,15 +103,43 @@ namespace eudaq {
       const RawDataEvent * rev = dynamic_cast<const RawDataEvent *> (&ev);
       cout << "[Number of blocks] " << rev->NumBlocks() << endl;
       vector<unsigned char> data = rev->GetBlock(0);
-      cout << "vector has size : " << data.size() << endl;
+      vector<unsigned char> dataTOT = rev->GetBlock(2);
+
+      cout << "pixel vector has size : " << data.size() << endl;
+      cout << "tot vector has size : " << dataTOT.size() << endl;
 
       vector<unsigned int> ZSDataX;
       vector<unsigned int> ZSDataY;
       vector<unsigned int> ZSDataTOT;
       size_t offset = 0;
-      unsigned int aWord =0;
+      size_t offset2 = 0;
 
-      for(int i=0;i<(data.size())/12;i++){
+      unsigned int aWord =0;
+      
+      unsigned int TLUevt = GetTriggerID(ev);
+
+      
+     for(unsigned int i=0;i<(dataTOT.size())/4;i++){
+      
+	  unsigned int tmp =0;
+	  for(unsigned int j=0;j<4;j++){
+	  	//printf("%x",dataTOT[offset2+j]);
+		tmp =tmp | (dataTOT[offset2+j] << j*8);
+		}
+	  //cout << endl;			
+	  //cout << " decoded:" << tmp << endl;
+	 // printf("assembled %x \n",tmp);
+
+	  offset2+=sizeof(tmp);
+
+	  //printf("tot in hexa : %08x \n",aWord2);
+	  //std::cout << "[DATA] " << aWord2 << endl;
+	  
+	  ZSDataTOT.push_back(tmp);
+
+}
+
+      for(unsigned int i=0;i<(data.size())/8;i++){
 
     	  unpack(data,offset,aWord);
     	  offset+=sizeof(aWord);
@@ -124,31 +148,23 @@ namespace eudaq {
     	  unpack(data,offset,aWord);
     	  offset+=sizeof(aWord);
     	  ZSDataY.push_back(aWord);
-	  	  
-	  aWord = 0;
-	  for(unsigned int j=0;j<4;j++){
-	  	//printf("%x",dataTOT[offset2+j]);
-		aWord =aWord | (data[offset+j] << j*8);
-		}
 
-    	  offset+=sizeof(aWord);
-    	  ZSDataTOT.push_back(aWord);
-	  std::cout << "[DATA] "  << " " << ZSDataX[i] << " " << ZSDataY[i] << " " << ZSDataTOT[i] << std::endl;
+
+	  
+	  std::cout << "[DATA] TLUevt:" << TLUevt  << " X: " << ZSDataX[i] << " Y: " << ZSDataY[i] << " TOT/TOA: " << ZSDataTOT[i] << std::endl;
 
 
       }
      
-      unsigned int TLUevt = GetTriggerID(ev);
       
-//      cout << "break here" << endl;
 
-      plane.SetSizeZS(width,height,MATRIX_SIZE,1,1);
+      plane.SetSizeZS(width,height,MATRIX_SIZE);
       // plane.SetSizeRaw(width, height);
       // Set the trigger ID
       plane.SetTLUEvent(TLUevt);
       // Add the plane to the StandardEvent
 
-      for(int i = 0 ; i<ZSDataX.size();i++){
+      for(unsigned int i = 0 ; i<ZSDataX.size();i++){
 
     	  plane.PushPixel(ZSDataX[i],ZSDataY[i],ZSDataTOT[i]);
 
@@ -158,6 +174,7 @@ namespace eudaq {
 	
       sev.AddPlane(plane);
       // Indicate that data was successfully converted
+
       
       return true;
     }
