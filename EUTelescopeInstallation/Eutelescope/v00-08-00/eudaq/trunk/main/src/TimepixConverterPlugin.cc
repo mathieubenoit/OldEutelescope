@@ -247,17 +247,22 @@ namespace eudaq {
 	      size_t offset = 0;
 	      unsigned int aWord =0;
 	      for(int i=0;i<data.size()/12;i++){
-	    	  unpack(data,offset,aWord);
-	    	  offset+=sizeof(aWord);
-	    	  ZSDataX.push_back(aWord);
+    	 		 unpack(data,offset,aWord);
+    	 		 offset+=sizeof(aWord);
+    	 		 ZSDataX.push_back(aWord);
 
-	    	  unpack(data,offset,aWord);
-	    	  offset+=sizeof(aWord);
-	    	  ZSDataY.push_back(aWord);
+    	 		 unpack(data,offset,aWord);
+    	  		 offset+=sizeof(aWord);
+    	 		 ZSDataY.push_back(aWord);
+	  	  
+	 		 aWord = 0;
+	 	 for(unsigned int j=0;j<4;j++){
+	  	        //printf("%x",dataTOT[offset2+j]);
+			aWord =aWord | (data[offset+j] << j*8);
+			}
 
-	    	  unpack(data,offset,aWord);
-	    	  offset+=sizeof(aWord);
-	    	  ZSDataTOT.push_back(aWord);
+    	  offset+=sizeof(aWord);
+    	  ZSDataTOT.push_back(aWord);
 
 	    	  //cout << "[DATA] " << ZSDataX[i] << " " << ZSDataY[i] << " " << ZSDataTOT[i] << endl;
 	      }
