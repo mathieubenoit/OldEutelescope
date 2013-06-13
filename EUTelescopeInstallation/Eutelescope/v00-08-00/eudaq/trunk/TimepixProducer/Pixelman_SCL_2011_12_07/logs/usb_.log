@@ -1,0 +1,10 @@
+======================================================================================
+=> BEGIN of log file: 23:29:25.574
+======================================================================================
+
+MESSAGE     (23:29:26.677): [Message]: Connected devices (Number of all FTDI devices = 2): 
+MESSAGE     (23:29:26.682): [Message]: 0: "MPX2 USB2 v2.3 sn: 0201 A" - Not Medipix 
+MESSAGE     (23:29:26.682): [Message]: 1: "MPX2 USB2 v2.3 sn: 0201 B" - Not Medipix 
+MESSAGE     (23:29:26.683): [Message]: Connected devices (Number of all FTDI devices = 2): 
+MESSAGE     (23:29:26.687): [Message]: 0: "MPX2 USB2 v2.3 sn: 0201 A" - Not Medipix 
+MESSAGE     (23:29:26.687): [Message]: 1: "MPX2 USB2 v2.3 sn: 0201 B" - Not Medipix 

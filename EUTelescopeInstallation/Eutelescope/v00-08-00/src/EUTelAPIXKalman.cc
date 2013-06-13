@@ -138,7 +138,7 @@ EUTelAPIXKalman::EUTelAPIXKalman () : Processor("EUTelAPIXKalman") {
   registerOptionalParameter("InTimeCheck","DUT sensor id's to be checked with residual cuts after the final track fit.",_inTimeCheck,std::vector<int>());
 
   //Track fitter options
-  registerOptionalParameter("AddToLCIO","Add track collection to LCIO event.",_addToLCIO, static_cast <bool> (true));
+  registerOptionalParameter("AddToLCIO","Add track collection to LCIO event.",_addToLCIO, static_cast <bool> (false));
   registerOutputCollection(LCIO::TRACK,"TrackCollectionName", "Collection name for fitted tracks", _trackCollectionName, string ("fittracks"));
 
 }
@@ -239,7 +239,7 @@ int EUTelAPIXKalman::getPlaneIndex(double zPos){
   int index(0);
   bool foundIt(false);
   for(;it != _zSort.end(); index++, it++){
-    if( fabs((*it).first - zPos) < 45){
+    if( fabs((*it).first - zPos) < 2.5){ 
       foundIt = true; break;
     }
   }
@@ -312,24 +312,20 @@ void EUTelAPIXKalman::processEvent (LCEvent * event) {
   // Run the fit
   TrackEstimate* estim = new TrackEstimate();
   estim->makeSeed();
-
   fitPermutations(0, NULL, estim, 0);
   delete estim;
   //Plot number of found tracks
   tryFill( _numberTracksLocalname, _nTracks);
   if(_addToLCIO){ event->addCollection(_fittrackvec,_trackCollectionName); }
-  if(event->getEventNumber() % 1000 == 0){
+  if(event->getEventNumber() % 100 == 0){
     streamlog_out ( MESSAGE5 ) << "Accepted " << _nMilleTracks <<" tracks at event " << event->getEventNumber() << endl;
   }
 }
 void EUTelAPIXKalman::fitPermutations(int plane, FitPlane* prev, TrackEstimate* est, int nSkipped){
   //Got track?
   if(_nTracks > 15) { return; }
-
   if(plane == (int)_planeHits.size()){
     finalizeTrack();
-    //streamlog_out(MESSAGE4) << "I get there ! " << std::endl;
-
     return;
   }
   FitPlane* cur = _fitter->getPlane(plane);
@@ -344,7 +340,6 @@ void EUTelAPIXKalman::fitPermutations(int plane, FitPlane* prev, TrackEstimate* 
     fitPermutations(plane + 1, cur, est, nSkipped);
     return;
   }
-
 
   //Does the estimate est appear to be a seed?
   bool isSeed = (gsl_vector_get(est->param, 0) == 0.0) and (gsl_vector_get(est->param, 1) == 0.0);
@@ -484,10 +479,8 @@ void EUTelAPIXKalman::finalizeTrack(){
   int intimeplanes(0);
   FitPlane* ppl = _fitter->getPlane(0);
   //Check angles
-  //streamlog_out(MESSAGE4) << "slope cut to passed" << std::endl;
   if( (ppl->fitdxdz > _maxDxDz) or (ppl->fitdxdz < _minDxDz) ) { return; }
   if( (ppl->fitdydz > _maxDyDz) or (ppl->fitdydz < _minDyDz) ) { return; }
-  //streamlog_out(MESSAGE4) << "slope cut passed" << std::endl;
 
   map<int, FitPlane*>::reverse_iterator rit = _fitter->indexToPlane.rbegin();
   for(; rit != _fitter->indexToPlane.rend(); rit++){
@@ -496,27 +489,18 @@ void EUTelAPIXKalman::finalizeTrack(){
       if( _checkInTime and inTimeGood(pl)) { intimeplanes++; }
       continue; 
     }
-    //streamlog_out(MESSAGE8) << "1intime cut passed" << std::endl;
-
     // Calculate track chi2 increment
     chi2 += (pl->resX * pl->resX) / (pl->errX * pl->errX);
     chi2 += (pl->resY * pl->resY) / (pl->errY * pl->errY);
     //Kill track if chi2 is to large
     if(chi2 > _maxChi2) { return; }
     //Add measurements to ndof
-    //streamlog_out(MESSAGE8) << "2chi passed" << std::endl;
-
     ndof += 2;
     // Check residuals
     if( _useResidualCuts and (not goodResiduals(pl))){ return; }
-    //streamlog_out(MESSAGE8) << "3residual passed" << std::endl;
-
-
   }
   //Kill track if we want an intime check and no matching DUT hits are found
   if( (_inTimeCheck.size() > 0) and intimeplanes == 0) { return; }
-  //streamlog_out(MESSAGE8) << "4intime check + dut passed" << std::endl;
-
   _nTracks++;
   _nMilleTracks++;
   if( _runPede ) { addToMille(); }
@@ -953,12 +937,6 @@ void EUTelAPIXKalman::end() {
   streamlog_out ( MESSAGE5 ) << "Number of data points used: " << _nMilleDataPoints << endl;
   streamlog_out ( MESSAGE5 ) << "Number of tracks used: " << _nMilleTracks << endl;
   streamlog_out ( MESSAGE5 ) << endl;
-  streamlog_out ( MESSAGE5 ) << endl;
-  streamlog_out ( MESSAGE5 ) << "Number of tracks fitted: " << _nTracks << endl;
-  streamlog_out ( MESSAGE5 ) << endl;
   streamlog_out ( MESSAGE5 ) << "Successfully finished" << endl << flush << flush;
-
-
-
 }
 #endif // USE_GEAR

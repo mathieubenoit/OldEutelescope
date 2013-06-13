@@ -156,7 +156,7 @@ EUTelMille::EUTelMille () : Processor("EUTelMille") {
   FloatVec SensorBeta;
 
   //maybe one has to chose a larger value than 6?
-  for(int i =0; i<7;i++)
+  for(int i =0; i<6;i++)
     {
       MinimalResidualsX.push_back(0.0);
       MinimalResidualsY.push_back(0.0);
@@ -197,7 +197,7 @@ EUTelMille::EUTelMille () : Processor("EUTelMille") {
                             _allowedMissingHits, static_cast <int> (0));
 
   registerOptionalParameter("MimosaClusterChargeMin","Remove Mimosa26 clusters with a charge (i.e. number of fired pixels in cluster) below or equal to this value",
-                            _mimosa26ClusterChargeMin,  static_cast <int> (0) );
+                            _mimosa26ClusterChargeMin,  static_cast <int> (1) );
 
 
   // input collections
@@ -215,7 +215,7 @@ EUTelMille::EUTelMille () : Processor("EUTelMille") {
   // parameters
 
   registerOptionalParameter("DistanceMax","Maximal allowed distance between hits entering the fit per 10 cm space between the planes.",
-                            _distanceMax, static_cast <float> (20000.0));
+                            _distanceMax, static_cast <float> (2000.0));
 
   registerOptionalParameter("DistanceMaxVec","Maximal allowed distance between hits entering the fit per 10 cm space between the planes. One value for each neighbor planes. DistanceMax will be used for each pair if this vector is empty.",
                             _distanceMaxVec, FloatVec ());
@@ -269,7 +269,7 @@ EUTelMille::EUTelMille () : Processor("EUTelMille") {
 
   registerOptionalParameter("ResolutionZ","Z resolution parameter for each plane. Note: these numbers are ordered according to the z position of the sensors and NOT according to the sensor id.",_resolutionZ,FloatVec (static_cast <int> (6), 10.));
 
-  registerOptionalParameter("ReferenceCollection","reference hit collection name ", _referenceHitCollectionName, static_cast <string> ("hit") );
+  registerOptionalParameter("ReferenceCollection","reference hit collection name ", _referenceHitCollectionName, static_cast <string> ("reference") );
  
   registerOptionalParameter("ApplyToReferenceCollection","Do you want the reference hit collection to be corrected by the shifts and tilts from the alignment collection?",  _applyToReferenceHitCollection, static_cast< bool   > ( false ));
  
@@ -1164,7 +1164,7 @@ void EUTelMille::processEvent (LCEvent * event) {
     }
   }
   
-  if (_iEvt % 10 == 0 && _iEvt % 1000 != 0)
+  if (_iEvt % 100 == 0 && _iEvt % 1000 != 0) 
   {
     streamlog_out( MESSAGE3 ) << "Processing event "
                               << setw(6) << setiosflags(ios::right) << event->getEventNumber() << " in run "
@@ -1241,7 +1241,7 @@ void EUTelMille::processEvent (LCEvent * event) {
         try {
           collection = event->getCollection(_hitCollectionName[i]);
         } catch (DataNotAvailableException& e) {
-          streamlog_out ( DEBUG5 ) << "No input collection " << _hitCollectionName[i] << " found for event " << event->getEventNumber()
+          streamlog_out ( WARNING2 ) << "No input collection " << _hitCollectionName[i] << " found for event " << event->getEventNumber()
                                      << " in run " << event->getRunNumber() << endl;
           throw SkipEventException(this);
         }
@@ -1456,7 +1456,7 @@ void EUTelMille::processEvent (LCEvent * event) {
     try {
       collection = event->getCollection(_trackCollectionName);
     } catch (DataNotAvailableException& e) {
-      streamlog_out ( DEBUG5 ) << "No input track collection " << _trackCollectionName  << " found for event " << event->getEventNumber()
+      streamlog_out ( WARNING2 ) << "No input track collection " << _trackCollectionName  << " found for event " << event->getEventNumber()
                                  << " in run " << event->getRunNumber() << endl;
       throw SkipEventException(this);
     }
@@ -1527,7 +1527,7 @@ void EUTelMille::processEvent (LCEvent * event) {
     try {
       collection = event->getCollection(_trackCollectionName);
     } catch (DataNotAvailableException& e) {
-      streamlog_out ( DEBUG5 ) << "No input track collection " << _trackCollectionName  << " found for event " << event->getEventNumber()
+      streamlog_out ( WARNING2 ) << "No input track collection " << _trackCollectionName  << " found for event " << event->getEventNumber()
                                  << " in run " << event->getRunNumber() << endl;
       throw SkipEventException(this);
     }
@@ -1558,7 +1558,7 @@ void EUTelMille::processEvent (LCEvent * event) {
               try {
                 collection = event->getCollection(_hitCollectionName[i]);
               } catch (DataNotAvailableException& e) {
-                streamlog_out ( DEBUG5 ) << "No input collection " << _hitCollectionName[i] << " found for event " << event->getEventNumber()
+                streamlog_out ( WARNING2 ) << "No input collection " << _hitCollectionName[i] << " found for event " << event->getEventNumber()
                                            << " in run " << event->getRunNumber() << endl;
                 throw SkipEventException(this);
               }
@@ -1808,14 +1808,10 @@ void EUTelMille::processEvent (LCEvent * event) {
 
             if ( xresid < _residualsXMin[help] || xresid > _residualsXMax[help]) 
               {
-
-            	//streamlog_out ( MESSAGE6 )  << " I Fail HERE1  !!" << endl;
-            	continue;
+                continue;
               }
             if ( yresid < _residualsYMin[help] || yresid > _residualsYMax[help]) 
               {
-
-            	//streamlog_out ( MESSAGE6 )  << " I Fail HERE2  !!" << endl;
                 continue;
               }
  
@@ -1853,13 +1849,12 @@ void EUTelMille::processEvent (LCEvent * event) {
           mean_x = mean_x / (double)(mean_n);
           mean_y = mean_y / (double)(mean_n);
 	  
-          int diff_mean = _nPlanes -_nExcludePlanes- mean_n;
+          int diff_mean = _nPlanes - mean_n;
 
-//          if( diff_mean > getAllowedMissingHits() )
-//          {
-//          	streamlog_out ( MESSAGE6 )  << " I Fail HERE3  !! mean_n = " << mean_n << " " << diff_mean<< endl;
-//        	  continue;
-//          }
+          if( diff_mean > getAllowedMissingHits() ) 
+          {
+             continue;
+          }
 
           static bool firstminuitcall = true;
           
@@ -1940,9 +1935,7 @@ void EUTelMille::processEvent (LCEvent * event) {
             
           if(ierflg != 0)
           {
-        	  ok = false;
-          	  //streamlog_out ( MESSAGE6 )  << " I Fail HERE4 ok= " << ok << endl;
-
+            ok = false;            
           }
                     
           //   get results from migrad

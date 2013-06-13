@@ -1,0 +1,12 @@
+(23:29:25.573): LOG STARTED
+(23:29:25.745): MSG [Message]: Connected devices (Number of all FTDI devices = 2): 
+(23:29:25.750): MSG [Message]: USB2 MPX2 Device 0: "MPX2 USB2 v2.3 sn: 0201 A". 
+(23:29:25.751): MSG [Message]: [MPX2 USB2 v2.3 sn: 0201 A] FITPix HW Library Version: USB2 1.4 (date: 20.5.2011) 
+(23:29:25.941): MSG [Message]: [MPX2 USB2 v2.3 sn: 0201 A] Device was opened succesfully 
+(23:29:26.492): MSG [Message]: [MPX2 USB2 v2.3 sn: 0201 A] Device information acquired succesfully 
+(23:29:26.492): MSG [Message]: [MPX2 USB2 v2.3 sn: 0201 A] Testing device response... 
+(23:29:26.594): MSG [Message]: [MPX2 USB2 v2.3 sn: 0201 A] Firmware version: Firmware 3 (date: 23. 8. 2011) 
+(23:29:26.607): MSG [Message]: [MPX2 USB2 v2.3 sn: 0201 A] Device ChipID is: I10-W0015 
+(23:29:26.672): MSG [Message]: Connected devices (Number of all FTDI devices = 2): 
+(23:29:26.677): MSG [Message]: 0: "MPX2 USB2 v2.3 sn: 0201 A" - Not USB2 MPX3 Device 
+(23:29:26.677): MSG [Message]: 1: "MPX2 USB2 v2.3 sn: 0201 B" - Not USB2 MPX3 Device 

@@ -28,7 +28,8 @@ Version: $Id: align-tmp.xml,v 1.3 2009-05-19 18:01:01 bulgheroni Exp $
 
   <global>
     <!--parameter name="LCIOInputFiles"> /VertexScratch/TB_Data/DESY_TB_DATA_11-15-02-2013_results/results/run006442-hit.slcio  /VertexScratch/TB_Data/DESY_TB_DATA_11-15-02-2013_results/results/run006443-hit.slcio /VertexScratch/TB_Data/DESY_TB_DATA_11-15-02-2013_results/results/run006447-hit.slcio /VertexScratch/TB_Data/DESY_TB_DATA_11-15-02-2013_results/results/run006448-hit.slcio </parameter-->
-    <parameter name="LCIOInputFiles"> @InputFile@ </parameter>
+    <!--parameter name="LCIOInputFiles"> @InputFile@ </parameter-->
+    <parameter name="LCIOInputFiles"> /VertexScratch/TB_Data/DESY_TB_DATA_11-15-02-2013_results/results/run006424-hit.slcio  /VertexScratch/TB_Data/DESY_TB_DATA_11-15-02-2013_results/results/run006425-hit.slcio  /VertexScratch/TB_Data/DESY_TB_DATA_11-15-02-2013_results/results/run006430-hit.slcio /VertexScratch/TB_Data/DESY_TB_DATA_11-15-02-2013_results/results/run006432-hit.slcio </parameter>
     <parameter name="GearXMLFile" value="@GearPath@/@GearFile@"/>
     <parameter name="MaxRecordNumber" value="@MaxRecordNumber@"/>
     <parameter name="SkipNEvents" value="@SkipNEvents@"/>

@@ -1,0 +1,11 @@
+08.05.13 09:48:03:882 Native library JavaWrapper was not found !
+ Application will be terminated.
+08.05.13 09:48:03:883 java.lang.UnsatisfiedLinkError: /afs/cern.ch/user/m/mbenoit/workspace/EUDAQ_TP/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/libJavaWrapper.so: /afs/cern.ch/user/m/mbenoit/workspace/EUDAQ_TP/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/libJavaWrapper.so: wrong ELF class: ELFCLASS32 (Possible cause: architecture word width mismatch)
+	at java.lang.ClassLoader$NativeLibrary.load(Native Method)
+	at java.lang.ClassLoader.loadLibrary0(ClassLoader.java:1803)
+	at java.lang.ClassLoader.loadLibrary(ClassLoader.java:1699)
+	at java.lang.Runtime.load0(Runtime.java:770)
+	at java.lang.System.load(System.java:1003)
+	at cz.ieap.pixelman.jmpxloader.Main.initialize(Main.java:167)
+	at cz.ieap.pixelman.jmpxloader.Main.main(Main.java:411)
+

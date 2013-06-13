@@ -1,0 +1,285 @@
+===============================================
+Abnormal exit of EUDAQ Example Producer(1.0) at 2013-05-27 10:52:40.836
+Uncaught exception:
+SocketClient Error (2): No such file or directory
+  From src/TransportTCP.cc:400
+  In virtual void eudaq::TCPClient::ProcessEvents(int)
+-----------------------------------------------
+===============================================
+Abnormal exit of EUDAQ Example Producer(1.0) at 2013-05-27 13:10:58.111
+Uncaught exception:
+Error sending data: Connection reset by peer
+  From src/TransportTCP.cc:66
+  In void eudaq::<unnamed>::do_send_data(SOCKET, const unsigned char*, size_t)
+-----------------------------------------------
+===============================================
+Abnormal exit of EUDAQ Example Producer(1.0) at 2013-05-27 13:21:56.167
+Uncaught exception:
+Error sending data: Broken pipe
+  From src/TransportTCP.cc:66
+  In void eudaq::<unnamed>::do_send_data(SOCKET, const unsigned char*, size_t)
+-----------------------------------------------
+===============================================
+Abnormal exit of EUDAQ Example Producer(1.0) at 2013-05-27 13:30:32.598
+Uncaught exception:
+Error sending data: Connection reset by peer
+  From src/TransportTCP.cc:66
+  In void eudaq::<unnamed>::do_send_data(SOCKET, const unsigned char*, size_t)
+-----------------------------------------------
+===============================================
+Abnormal exit of EUDAQ Example Producer(1.0) at 2013-05-28 11:29:18.744
+Uncaught exception:
+Error sending data: Connection reset by peer
+  From src/TransportTCP.cc:66
+  In void eudaq::<unnamed>::do_send_data(SOCKET, const unsigned char*, size_t)
+-----------------------------------------------
+===============================================
+Abnormal exit of EUDAQ Example Producer(1.0) at 2013-05-28 11:30:34.005
+Uncaught exception:
+Error sending data: Connection reset by peer
+  From src/TransportTCP.cc:66
+  In void eudaq::<unnamed>::do_send_data(SOCKET, const unsigned char*, size_t)
+-----------------------------------------------
+===============================================
+Abnormal exit of EUDAQ Example Producer(1.0) at 2013-05-28 11:31:57.092
+Uncaught exception:
+Error sending data: Connection reset by peer
+  From src/TransportTCP.cc:66
+  In void eudaq::<unnamed>::do_send_data(SOCKET, const unsigned char*, size_t)
+-----------------------------------------------
+===============================================
+Abnormal exit of EUDAQ Example Producer(1.0) at 2013-05-28 13:24:55.117
+Uncaught exception:
+Error sending data: Connection reset by peer
+  From src/TransportTCP.cc:66
+  In void eudaq::<unnamed>::do_send_data(SOCKET, const unsigned char*, size_t)
+-----------------------------------------------
+===============================================
+Abnormal exit of EUDAQ Example Producer(1.0) at 2013-05-28 13:57:33.878
+Uncaught exception:
+Error looking up address 'pclcdpixel': Connection timed out
+  From src/TransportTCP.cc:349
+  In void eudaq::TCPClient::OpenConnection()
+-----------------------------------------------
+===============================================
+Abnormal exit of EUDAQ Example Producer(1.0) at 2013-05-28 13:58:11.471
+Uncaught exception:
+Error looking up address 'pclcdpixel.cern.ch': Connection timed out
+  From src/TransportTCP.cc:349
+  In void eudaq::TCPClient::OpenConnection()
+-----------------------------------------------
+===============================================
+Abnormal exit of EUDAQ Example Producer(1.0) at 2013-05-28 13:59:57.030
+Uncaught exception:
+Are you sure the server is running? - Error 113 connecting to 192.168.1.11:44000: No route to host
+  From src/TransportTCP.cc:357
+  In void eudaq::TCPClient::OpenConnection()
+-----------------------------------------------
+===============================================
+Abnormal exit of EUDAQ Example Producer(1.0) at 2013-05-28 14:00:18.338
+Uncaught exception:
+Are you sure the server is running? - Error 113 connecting to 192.168.1.11:44000: No route to host
+  From src/TransportTCP.cc:357
+  In void eudaq::TCPClient::OpenConnection()
+-----------------------------------------------
+===============================================
+Abnormal exit of EUDAQ Example Producer(1.0) at 2013-05-28 14:00:43.942
+Uncaught exception:
+Are you sure the server is running? - Error 113 connecting to 192.168.1.11:44000: No route to host
+  From src/TransportTCP.cc:357
+  In void eudaq::TCPClient::OpenConnection()
+-----------------------------------------------
+===============================================
+Abnormal exit of EUDAQ Example Producer(1.0) at 2013-05-28 14:01:03.966
+Uncaught exception:
+Are you sure the server is running? - Error 113 connecting to 137.138.63.151:44000: No route to host
+  From src/TransportTCP.cc:357
+  In void eudaq::TCPClient::OpenConnection()
+-----------------------------------------------
+===============================================
+Abnormal exit of EUDAQ Example Producer(1.0) at 2013-05-28 14:01:32.067
+Uncaught exception:
+Error looking up address 'pclcdpixel': Connection timed out
+  From src/TransportTCP.cc:349
+  In void eudaq::TCPClient::OpenConnection()
+-----------------------------------------------
+===============================================
+Abnormal exit of EUDAQ Example Producer(1.0) at 2013-05-28 14:02:00.022
+Uncaught exception:
+Are you sure the server is running? - Error 113 connecting to 192.168.1.11:44000: No route to host
+  From src/TransportTCP.cc:357
+  In void eudaq::TCPClient::OpenConnection()
+-----------------------------------------------
+===============================================
+Abnormal exit of EUDAQ Example Producer(1.0) at 2013-05-28 14:02:39.806
+Uncaught exception:
+Invalid argument: 192.168.1.11
+-----------------------------------------------
+===============================================
+Abnormal exit of EUDAQ Example Producer(1.0) at 2013-05-28 14:02:53.434
+Uncaught exception:
+Are you sure the server is running? - Error 113 connecting to 192.168.1.11:44000: No route to host
+  From src/TransportTCP.cc:357
+  In void eudaq::TCPClient::OpenConnection()
+-----------------------------------------------
+===============================================
+Abnormal exit of EUDAQ Example Producer(1.0) at 2013-05-28 14:13:06.657
+Uncaught exception:
+Are you sure the server is running? - Error 111 connecting to localhost:44000: Connection refused
+  From src/TransportTCP.cc:357
+  In void eudaq::TCPClient::OpenConnection()
+-----------------------------------------------
+===============================================
+Abnormal exit of EUDAQ Example Producer(1.0) at 2013-06-05 15:39:19.590
+Uncaught exception:
+SocketClient Error (0): Success
+  From src/TransportTCP.cc:400
+  In virtual void eudaq::TCPClient::ProcessEvents(int)
+-----------------------------------------------
+===============================================
+Abnormal exit of EUDAQ Example Producer(1.0) at 2013-06-05 15:44:32.749
+Uncaught exception:
+SocketClient Error (0): Success
+  From src/TransportTCP.cc:400
+  In virtual void eudaq::TCPClient::ProcessEvents(int)
+-----------------------------------------------
+===============================================
+Abnormal exit of EUDAQ Example Producer(1.0) at 2013-06-05 15:45:10.407
+Uncaught exception:
+SocketClient Error (0): Success
+  From src/TransportTCP.cc:400
+  In virtual void eudaq::TCPClient::ProcessEvents(int)
+-----------------------------------------------
+===============================================
+Abnormal exit of EUDAQ Example Producer(1.0) at 2013-06-05 15:55:24.245
+Uncaught exception:
+SocketClient Error (0): Success
+  From src/TransportTCP.cc:400
+  In virtual void eudaq::TCPClient::ProcessEvents(int)
+-----------------------------------------------
+===============================================
+Abnormal exit of EUDAQ Example Producer(1.0) at 2013-06-05 16:02:23.006
+Uncaught exception:
+SocketClient Error (0): Success
+  From src/TransportTCP.cc:400
+  In virtual void eudaq::TCPClient::ProcessEvents(int)
+-----------------------------------------------
+===============================================
+Abnormal exit of EUDAQ Example Producer(1.0) at 2013-06-05 16:15:42.193
+Uncaught exception:
+SocketClient Error (0): Success
+  From src/TransportTCP.cc:400
+  In virtual void eudaq::TCPClient::ProcessEvents(int)
+-----------------------------------------------
+===============================================
+Abnormal exit of EUDAQ Example Producer(1.0) at 2013-06-05 16:19:08.783
+Uncaught exception:
+SocketClient Error (0): Success
+  From src/TransportTCP.cc:400
+  In virtual void eudaq::TCPClient::ProcessEvents(int)
+-----------------------------------------------
+===============================================
+Abnormal exit of EUDAQ Example Producer(1.0) at 2013-06-05 16:23:30.074
+Uncaught exception:
+SocketClient Error (0): Success
+  From src/TransportTCP.cc:400
+  In virtual void eudaq::TCPClient::ProcessEvents(int)
+-----------------------------------------------
+===============================================
+Abnormal exit of EUDAQ Example Producer(1.0) at 2013-06-05 16:49:16.926
+Uncaught exception:
+SocketClient Error (0): Success
+  From src/TransportTCP.cc:400
+  In virtual void eudaq::TCPClient::ProcessEvents(int)
+-----------------------------------------------
+===============================================
+Abnormal exit of EUDAQ Example Producer(1.0) at 2013-06-05 16:52:53.433
+Uncaught exception:
+SocketClient Error (0): Success
+  From src/TransportTCP.cc:400
+  In virtual void eudaq::TCPClient::ProcessEvents(int)
+-----------------------------------------------
+===============================================
+Abnormal exit of EUDAQ Example Producer(1.0) at 2013-06-05 16:57:42.505
+Uncaught exception:
+SocketClient Error (0): Success
+  From src/TransportTCP.cc:400
+  In virtual void eudaq::TCPClient::ProcessEvents(int)
+-----------------------------------------------
+===============================================
+Abnormal exit of EUDAQ Example Producer(1.0) at 2013-06-05 17:30:16.110
+Uncaught exception:
+SocketClient Error (0): Success
+  From src/TransportTCP.cc:400
+  In virtual void eudaq::TCPClient::ProcessEvents(int)
+-----------------------------------------------
+===============================================
+Abnormal exit of EUDAQ Example Producer(1.0) at 2013-06-05 18:06:25.589
+Uncaught exception:
+SocketClient Error (0): Success
+  From src/TransportTCP.cc:400
+  In virtual void eudaq::TCPClient::ProcessEvents(int)
+-----------------------------------------------
+===============================================
+Abnormal exit of EUDAQ Example Producer(1.0) at 2013-06-05 18:16:34.103
+Uncaught exception:
+SocketClient Error (0): Success
+  From src/TransportTCP.cc:400
+  In virtual void eudaq::TCPClient::ProcessEvents(int)
+-----------------------------------------------
+===============================================
+Abnormal exit of EUDAQ Example Producer(1.0) at 2013-06-05 18:47:07.849
+Uncaught exception:
+SocketClient Error (0): Success
+  From src/TransportTCP.cc:400
+  In virtual void eudaq::TCPClient::ProcessEvents(int)
+-----------------------------------------------
+===============================================
+Abnormal exit of EUDAQ Example Producer(1.0) at 2013-06-06 11:47:54.381
+Uncaught exception:
+SocketClient Error (0): Success
+  From src/TransportTCP.cc:400
+  In virtual void eudaq::TCPClient::ProcessEvents(int)
+-----------------------------------------------
+===============================================
+Abnormal exit of EUDAQ Example Producer(1.0) at 2013-06-06 11:49:28.841
+Uncaught exception:
+SocketClient Error (0): Success
+  From src/TransportTCP.cc:400
+  In virtual void eudaq::TCPClient::ProcessEvents(int)
+-----------------------------------------------
+===============================================
+Abnormal exit of EUDAQ Example Producer(1.0) at 2013-06-06 13:23:52.390
+Uncaught exception:
+SocketClient Error (0): Success
+  From src/TransportTCP.cc:400
+  In virtual void eudaq::TCPClient::ProcessEvents(int)
+-----------------------------------------------
+===============================================
+Abnormal exit of EUDAQ Example Producer(1.0) at 2013-06-06 13:26:00.860
+Uncaught exception:
+SocketClient Error (0): Success
+  From src/TransportTCP.cc:400
+  In virtual void eudaq::TCPClient::ProcessEvents(int)
+-----------------------------------------------
+===============================================
+Abnormal exit of EUDAQ Example Producer(1.0) at 2013-06-06 13:26:38.158
+Uncaught exception:
+SocketClient Error (0): Success
+  From src/TransportTCP.cc:400
+  In virtual void eudaq::TCPClient::ProcessEvents(int)
+-----------------------------------------------
+===============================================
+Abnormal exit of EUDAQ Example Producer(1.0) at 2013-06-06 16:06:40.501
+Uncaught exception:
+SocketClient Error (0): Success
+  From src/TransportTCP.cc:400
+  In virtual void eudaq::TCPClient::ProcessEvents(int)
+-----------------------------------------------
+===============================================
+Abnormal exit of EUDAQ Example Producer(1.0) at 2013-06-06 23:26:59.552
+Uncaught exception:
+Error sending data: Broken pipe
+  From src/TransportTCP.cc:66
+  In void eudaq::{anonymous}::do_send_data(SOCKET, const unsigned char*, size_t)
+-----------------------------------------------
