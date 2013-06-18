@@ -5,6 +5,8 @@
 #include <stdio.h>
 #include <string.h>
 #include <vector>
+#include "TFile.h"
+#include "TTree.h"
 // All LCIO-specific parts are put in conditional compilation blocks
 // so that the other parts may still be used if LCIO is not available.
 #if USE_LCIO
@@ -52,6 +54,20 @@ namespace eudaq {
 
   // Declare a new class that inherits from DataConverterPlugin
   class TimepixConverterPlugin : public DataConverterPlugin {
+  
+  private: 
+  	TFile *f ;
+	TTree *t;
+	double A[256][256];
+  	double B[256][256];   
+  	double C[256][256];
+  	double D[256][256];  
+
+        double Aerr[256][256];
+   	double Berr[256][256];   
+  	double Cerr[256][256];
+  	double Derr[256][256];  
+        double Chi2ndf[256][256];
 
   public:
     // This is called once at the beginning of each run.
@@ -62,6 +78,60 @@ namespace eudaq {
       m_exampleparam = bore.GetTag("Timepix", 0);
       //eudaq::PluginManager::Initialize(bore);
       (void)cnf; // just to suppress a warning about unused parameter cnf
+      
+        f = TFile::Open("FitParameters_2stepFit_v7-I10_W015.root","open");
+      	t =(TTree*)f->Get("fitPara");
+
+        Float_t At;
+	Float_t Bt;
+	Float_t Ct;
+	Float_t Dt;
+	
+	Int_t Xt;
+	Int_t Yt;
+	
+	Float_t At_err;
+	Float_t Bt_err;
+	Float_t Ct_err;
+	Float_t Dt_err;
+	Float_t Chi;	
+	
+		
+	t->SetBranchAddress("pixx",&Xt);
+	t->SetBranchAddress("pixy",&Yt);
+	t->SetBranchAddress("a",&At);
+	t->SetBranchAddress("b",&Bt);
+	t->SetBranchAddress("c",&Ct);	
+	t->SetBranchAddress("d",&Dt);
+	
+	t->SetBranchAddress("a_err",&At_err);
+	t->SetBranchAddress("b_err",&Bt_err);
+	t->SetBranchAddress("c_err",&Ct_err);	
+	t->SetBranchAddress("d_err",&Dt_err);
+
+	t->SetBranchAddress("chi2ndf",&Chi);		
+			
+	int nevents = t->GetEntries();
+	
+	for (int i =0 ; i<nevents; i++){
+	
+		t->GetEntry(i);
+		A[Xt][Yt]=At;
+		B[Xt][Yt]=Bt;		
+		C[Xt][Yt]=Ct;
+		D[Xt][Yt]=Dt;
+		
+		Aerr[Xt][Yt]=At_err;
+		Berr[Xt][Yt]=Bt_err;		
+		Cerr[Xt][Yt]=Ct_err;
+		Derr[Xt][Yt]=Dt_err;
+		
+		Chi2ndf[Xt][Yt]=Chi;			
+						
+		}
+	
+	f->Close();
+
     }
 
 
@@ -115,7 +185,7 @@ namespace eudaq {
       size_t offset = 0;
       unsigned int aWord =0;
 
-      for(int i=0;i<(data.size())/12;i++){
+      for(unsigned int i=0;i<(data.size())/12;i++){
 
     	  unpack(data,offset,aWord);
     	  offset+=sizeof(aWord);
@@ -148,7 +218,7 @@ namespace eudaq {
       plane.SetTLUEvent(TLUevt);
       // Add the plane to the StandardEvent
 
-      for(int i = 0 ; i<ZSDataX.size();i++){
+      for(unsigned int i = 0 ; i<ZSDataX.size();i++){
 
     	  plane.PushPixel(ZSDataX[i],ZSDataY[i],ZSDataTOT[i]);
 
@@ -191,7 +261,7 @@ namespace eudaq {
 
 
     bool ConvertLCIO(lcio::LCEvent & result, const Event & source) const {
-        TrackerRawDataImpl *rawMatrix;
+        //TrackerRawDataImpl *rawMatrix;
         TrackerDataImpl *zsFrame;
 
         if (source.IsBORE()) {
@@ -243,17 +313,19 @@ namespace eudaq {
 
 	      vector<unsigned int> ZSDataX;
 	      vector<unsigned int> ZSDataY;
-	      vector<unsigned int> ZSDataTOT;
+	      vector<double> ZSDataTOT;
 	      size_t offset = 0;
 	      unsigned int aWord =0;
-	      for(int i=0;i<data.size()/12;i++){
+	      int pixx,pixy;
+	      for(unsigned int i=0;i<data.size()/12;i++){
     	 		 unpack(data,offset,aWord);
     	 		 offset+=sizeof(aWord);
     	 		 ZSDataX.push_back(aWord);
-
+			 pixx=aWord;
     	 		 unpack(data,offset,aWord);
     	  		 offset+=sizeof(aWord);
     	 		 ZSDataY.push_back(aWord);
+			 pixy=aWord;
 	  	  
 	 		 aWord = 0;
 	 	 for(unsigned int j=0;j<4;j++){
@@ -262,7 +334,9 @@ namespace eudaq {
 			}
 
     	  offset+=sizeof(aWord);
-    	  ZSDataTOT.push_back(aWord);
+	  double Energy = (D[pixx][pixy]*A[pixx][pixy] + aWord - B[pixx][pixy] + sqrt((B[pixx][pixy]+D[pixx][pixy]*A[pixx][pixy]-aWord)*(B[pixx][pixy]+D[pixx][pixy]*A[pixx][pixy]-aWord)+4*A[pixx][pixy]*C[pixx][pixy]))/(2*A[pixx][pixy]);
+
+    	  ZSDataTOT.push_back(Energy);
 
 	    	  //cout << "[DATA] " << ZSDataX[i] << " " << ZSDataY[i] << " " << ZSDataTOT[i] << endl;
 	      }
@@ -273,7 +347,7 @@ namespace eudaq {
 	      plane.SetTLUEvent(GetTriggerID(source));
 
 	      // Add the plane to the StandardEvent
-	      for(int i = 0 ; i<ZSDataX.size();i++){
+	      for(unsigned int i = 0 ; i<ZSDataX.size();i++){
 
 	    	  plane.PushPixel(255-ZSDataX[i],255-ZSDataY[i],ZSDataTOT[i]);
 
