@@ -68,6 +68,7 @@ namespace eudaq {
   	double Cerr[256][256];
   	double Derr[256][256];  
         double Chi2ndf[256][256];
+	double meanA,meanB,meanC,meanD;
 
   public:
     // This is called once at the beginning of each run.
@@ -79,7 +80,11 @@ namespace eudaq {
       //eudaq::PluginManager::Initialize(bore);
       (void)cnf; // just to suppress a warning about unused parameter cnf
       
-        f = TFile::Open("FitParameters_2stepFit_v7-I10_W015.root","open");
+        
+	char* path= getenv("EUDAQ");
+	TString str= TString::Format("%s/TimepixProducer/FitParameters_2stepFit_v7-I10_W015.root",path);
+	cout << "Reading calibration file at " << str << endl;
+	f = TFile::Open(str,"open");
       	t =(TTree*)f->Get("fitPara");
 
         Float_t At;
@@ -109,8 +114,25 @@ namespace eudaq {
 	t->SetBranchAddress("c_err",&Ct_err);	
 	t->SetBranchAddress("d_err",&Dt_err);
 
-	t->SetBranchAddress("chi2ndf",&Chi);		
-			
+	t->SetBranchAddress("chi2ndf",&Chi);	
+	
+	meanA=0;
+	meanB=0;
+	meanC=0;
+	meanD=0;	
+	
+	
+	for(unsigned int i=0;i<256;i++){
+		for(unsigned int j=0;j<256;j++){
+		
+		A[i][j]=0;
+		B[i][j]=0;
+		C[i][j]=0;
+		D[i][j]=0;
+	
+	}};
+	
+				
 	int nevents = t->GetEntries();
 	
 	for (int i =0 ; i<nevents; i++){
@@ -126,9 +148,19 @@ namespace eudaq {
 		Cerr[Xt][Yt]=Ct_err;
 		Derr[Xt][Yt]=Dt_err;
 		
-		Chi2ndf[Xt][Yt]=Chi;			
+		Chi2ndf[Xt][Yt]=Chi;
+		
+		meanA+=At;
+		meanB+=Bt;
+		meanC+=Ct;
+		meanD+=Dt;			
 						
 		}
+
+	meanA/=nevents;
+	meanB/=nevents;
+	meanC/=nevents;
+	meanD/=nevents;
 	
 	f->Close();
 
@@ -334,8 +366,15 @@ namespace eudaq {
 			}
 
     	  offset+=sizeof(aWord);
-	  double Energy = (D[pixx][pixy]*A[pixx][pixy] + aWord - B[pixx][pixy] + sqrt((B[pixx][pixy]+D[pixx][pixy]*A[pixx][pixy]-aWord)*(B[pixx][pixy]+D[pixx][pixy]*A[pixx][pixy]-aWord)+4*A[pixx][pixy]*C[pixx][pixy]))/(2*A[pixx][pixy]);
+	  
+	  double Energy;
+	  if(A[pixx][pixy]!=0 and B[pixx][pixy] and C[pixx][pixy] and D[pixx][pixy]){
+	  	 Energy = (D[pixx][pixy]*A[pixx][pixy] + aWord - B[pixx][pixy] + sqrt((B[pixx][pixy]+D[pixx][pixy]*A[pixx][pixy]-aWord)*(B[pixx][pixy]+D[pixx][pixy]*A[pixx][pixy]-aWord)+4*A[pixx][pixy]*C[pixx][pixy]))/(2*A[pixx][pixy]);
+		}
+	  else {
+	  	 Energy = (meanD*meanA + aWord - meanB + sqrt((meanB+meanD*meanA-aWord)*(meanB+meanD*meanA-aWord)+4*meanA*meanC))/(2*meanA);
 
+	  }
     	  ZSDataTOT.push_back(Energy);
 
 	    	  //cout << "[DATA] " << ZSDataX[i] << " " << ZSDataY[i] << " " << ZSDataTOT[i] << endl;
