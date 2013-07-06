@@ -7,21 +7,21 @@ from ToolBox import *
 
 
 aDataSet = EudetData("/VertexScratch/TB_Data/DESY_TB_DATA_02_07-06-2013_results/histo/tbtrackrun000131.root",500.0)
-#aDataSet_calib = EudetData("/VertexScratch/TB_Data/DESY_TB_DATA_02_07-06-2013_results/histo/tbtrackrun000131_calibrated.root",500.0)
+#aDataSet = EudetData("/VertexScratch/TB_Data/DESY_TB_DATA_02_07-06-2013_results/histo/tbtrackrun000131_uncalibrated.root",500.0)
 
 
-histo_hot,histo_freq = aDataSet.FilterHotPixel(0.005,25000)
+histo_hot,histo_freq = aDataSet.FilterHotPixel(0.05,5000)
 
-canhot = TCanvas()
-histo_hot.Draw("colz")
+#canhot = TCanvas()
+#histo_hot.Draw("colz")
 
-canfreq = TCanvas()
-canfreq.SetLogx()
-canfreq.SetLogy()
-histo_freq.Draw("")
+#canfreq = TCanvas()
+#canfreq.SetLogx()
+#canfreq.SetLogy()
+#histo_freq.Draw("")
 
-for i in range(aDataSet.p_nEntries) : 
-#for i in range(40000) : 
+#for i in range(aDataSet.p_nEntries) : 
+for i in range(10000) : 
 
 
     aDataSet.ClusterEvent(i)
@@ -47,14 +47,19 @@ for i in range(aDataSet.p_nEntries) :
 #    aDataSet_calib.ComputeResiduals(i)
 #===============================================================================
     
+res = PerformAlignement(aDataSet,[[0,360],[0,360],[0,360],[-1.5,1.5],[-1.5,1.5]])
+#ApplyAlignment(aDataSet,[res.x[3],res.x[4],0],[res.x[0],res.x[1],res.x[2]])
+#for i in range(4000) : 
+#        aDataSet.ComputeResiduals(i)
+        
 hx,hy = TrackClusterCorrelation(aDataSet)
 #hxc,hyc = TrackClusterCorrelation(aDataSet_calib)
  
-cancorx = TCanvas()
-hx.Draw("colz")
+#cancorx = TCanvas()
+#hx.Draw("colz")
 
-cancory = TCanvas()
-hy.Draw("colz")
+#cancory = TCanvas()
+#hy.Draw("colz")
 
 #cancorxc = TCanvas()
 #hxc.Draw("colz")
@@ -78,9 +83,9 @@ resY = TH1D("resY","Unbiased residual Y",500,-0.50,0.50)
 for clusters in aDataSet.AllClusters : 
     for cluster in clusters : 
         allTOT.Fill(cluster.totalTOT) 
-        if(fabs(cluster.resX)<14.25) : 
+        if(fabs(cluster.resX)<0.5) : 
             resX.Fill(cluster.resX)
-        if(fabs(cluster.resY)<14.25) : 
+        if(fabs(cluster.resY)<0.5) : 
             resY.Fill(cluster.resY)
         if(cluster.size==1) : 
             TOT1.Fill(cluster.totalTOT) 
@@ -102,10 +107,10 @@ can1 = TCanvas()
 allTOT.Draw()
 
 
-can2=TCanvas()
-TOT1.DrawNormalized()
-TOT2.DrawNormalized("same")
-TOT3.DrawNormalized("same")
+#can2=TCanvas()
+#TOT1.DrawNormalized()
+#TOT2.DrawNormalized("same")
+#TOT3.DrawNormalized("same")
 #TOT4.DrawNormalized("same")
 
 
@@ -118,5 +123,5 @@ resY.DrawNormalized("")
 #resY_calib.DrawNormalized("same")
 
 
-aDataSet.DumpClusterTree("run131_uncalibrated_cluster.root")
+#aDataSet.DumpClusterTree("run131_uncalibrated_cluster.root")
 #aDataSet_calib.DumpClusterTree("run131_calibrated_cluster.root")
