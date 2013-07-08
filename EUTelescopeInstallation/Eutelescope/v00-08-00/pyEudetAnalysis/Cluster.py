@@ -10,9 +10,15 @@ class Cluster:
     size  = 0 
     totalTOT =0
     aspectRatio = 0
-    relX = 0
-    relY = 0
     
+    relX = 0.
+    relY = 0.
+    relZ = 0.
+    
+    absX =0.
+    absY =0.
+    absZ =0.
+       
     resX = 0
     resY = 0
     id = 0
@@ -53,7 +59,12 @@ class Cluster:
             self.relY+=(self.row[index]*pitchY+pitchY/2)*tot_tmp    
         self.relX/=self.totalTOT
         self.relY/=self.totalTOT
+        
+        self.absX=self.relX
+        self.absY=self.relY
+        self.absZ=0
+        
 
     def GetResiduals(self,x,y) :
-        self.resX = self.relX-x
-        self.resY = self.relY-y
+        self.resX = self.absX-x+npix_X*pitchX/2
+        self.resY = self.absY-y+npix_Y*pitchY/2
