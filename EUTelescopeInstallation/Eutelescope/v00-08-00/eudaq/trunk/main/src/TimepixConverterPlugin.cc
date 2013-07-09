@@ -173,7 +173,7 @@ namespace eudaq {
     // or be left undefined as there is already a default version.
     virtual unsigned GetTriggerID(const Event & ev) const {
 
-      const RawDataEvent * rev = dynamic_cast<const RawDataEvent *> (&ev);
+/*       const RawDataEvent * rev = dynamic_cast<const RawDataEvent *> (&ev);
       vector<unsigned char> data = rev->GetBlock(1);
       
       cout << "[Number of blocks] " << rev->NumBlocks() << endl;
@@ -185,9 +185,9 @@ namespace eudaq {
       for(unsigned int j=0;j<data.size();j++){
 	  	//printf("%x",dataTOT[offset2+j]);
 		TLUevt =TLUevt | (data[offset+j] << j*8);
-		}
+		} */
       
-      return TLUevt;
+      return 0;
 	
 
     }
