@@ -1,3 +1,7 @@
+'''
+author: Anne-Laure pequegnot 
+'''
+
 from math import fsum
 from Constant import *
 class Cluster:
@@ -10,11 +14,13 @@ class Cluster:
     size  = 0 
     totalTOT =0
     aspectRatio = 0
-    
+
+# local coordinates    
     relX = 0.
     relY = 0.
     relZ = 0.
     
+# telescope coordinates    
     absX =0.
     absY =0.
     absZ =0.
@@ -66,5 +72,5 @@ class Cluster:
         
 
     def GetResiduals(self,x,y) :
-        self.resX = self.absX-x+npix_X*pitchX/2
-        self.resY = self.absY-y+npix_Y*pitchY/2
+        self.resX = self.absX-(x-npix_X*pitchX/2)
+        self.resY = self.absY-(y-npix_Y*pitchY/2)
