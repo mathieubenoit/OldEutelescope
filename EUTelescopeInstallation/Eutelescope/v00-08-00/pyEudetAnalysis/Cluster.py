@@ -48,16 +48,14 @@ class Cluster:
         print "Cluster Total size = %d , in X = %d Y = %d , Aspect Ratio = %.3f , Total Energy (keV) = %.1f"%(self.size,self.sizeX,self.sizeY,self.aspectRatio,self.totalTOT)
         print "Position in sensor X = %.3f Y = %.3f"%(self.relX,self.relY)
    
-    def Statistics(self) : 
-    
+    def Statistics(self) :     
         self.totalTOT=fsum(self.tot)
         self.size=len(self.col)
         self.sizeX=max(self.col)-min(self.col)+1
         self.sizeY=max(self.row)-min(self.row)+1    
         self.aspectRatio=float(self.sizeY)/self.sizeX
 
-    def GetQWeightedCentroid(self) : 
-        
+    def GetQWeightedCentroid(self) :         
         self.relX=0.
         self.relY=0.
         for index,tot_tmp in enumerate(self.tot) :
@@ -69,6 +67,45 @@ class Cluster:
         self.absX=self.relX
         self.absY=self.relY
         self.absZ=0
+        
+    def GetDigitalCentroid(self) :         
+        self.relX=0.
+        self.relY=0.
+        for index,col_tmp in enumerate(self.col) :
+            self.relX+=(self.col[index]*pitchX+pitchX/2)    
+            self.relY+=(self.row[index]*pitchY+pitchY/2)    
+        self.relX/=len(self.col)
+        self.relY/=len(self.row)
+        
+        self.absX=self.relX
+        self.absY=self.relY
+        self.absZ=0
+    
+    def GetMaxTOTCentroid(self) :
+        maxTOTindex_tmp=0
+        maxTOT_tmp=self.tot[0]
+        for index,tot_tmp in enumerate(self.tot) :
+            if self.tot[index]>maxTOT_tmp:
+                maxTOT_tmp=self.tot[index]
+                maxTOTindex_tmp=index
+        self.relX=self.col[maxTOTindex_tmp]*pitchX+pitchX/2
+        self.relY=self.row[maxTOTindex_tmp]*pitchY+pitchY/2
+        
+        self.absX=self.relX
+        self.absY=self.relY
+        self.absZ=0
+        
+#     def GetEtaCorrectedQWeightedCentroid(self) :
+#         # study with clusterSize = 2 first
+#         if self.size==2:
+#             # search for pixel with higher energy
+#             maxTOTindex_tmp=0
+#             maxTOT_tmp=self.tot[0]
+#             for index,tot_tmp in enumerate(self.tot) :
+#                 if self.tot[index]>maxTOT_tmp:
+#                     maxTOT_tmp=self.tot[index]
+#                     maxTOTindex_tmp=index
+            
         
 
     def GetResiduals(self,x,y) :
