@@ -69,6 +69,9 @@ class EudetData:
         
     def FilterHotPixel(self,threshold,Nevents=-1):
         
+        # Threshold between [0,1], cut firing frequency of pixels
+        # Nevent is how many event for building the frequency Matrix
+        
         nevent_tmp =0
         n_max = 0 
         
@@ -334,7 +337,11 @@ class EudetData:
     #--------------------------------------------------------------- trackNum=[]
     #----------------------------------------------------------------- cluster=0
         
-    def FindMatchedCluster(self,i,r_max_X,r_max_Y,dut) :  
+    def FindMatchedCluster(self,i,r_max_X,r_max_Y,dut=6) :  
+        
+        # i : event number 
+        # r_max_X,Y maximum distance in X,Y between track and cluster
+        # dut = iden of the Device Under Test  
 
         clusters_tmp = self.AllClusters[i]
         for track in self.AllTracks[i] :
@@ -355,7 +362,7 @@ class EudetData:
         
         
               
-    def ClusterEvent(self,i):
+    def ClusterEvent(self,i,method="QWeighted"):
         
         self.getEvent(i) 
         
@@ -398,7 +405,17 @@ class EudetData:
 
         
             cluster.Statistics()
-            cluster.GetQWeightedCentroid()
+            if (method=="QWeighted"):
+                cluster.GetQWeightedCentroid()
+            elif (method=="DigitalCentroid"):
+                cluster.GetDigitalCentroid()
+            elif (method=="maxTOT"):
+                cluster.GetMaxTOTCentroid()
+#             elif (method=="EtaCorrectedQWeighted"):
+#                 cluster.GetEtaCorrectedQWeightedCentroid()    
+            # to be implemented in the future:
+            # digital, maxTOT/maxQ, eta corrected
+            
             cluster.id=clusterid
             clusters.append(cluster)
             clusterid+=1
