@@ -27,10 +27,10 @@ def rms(x):
 
     return rms
 
-def TrackClusterCorrelation(dataSet):
+def TrackClusterCorrelation(dataSet,dut=6):
     
-    histox = TH2D("corX","corX",256,0,256*0.055,256,0,256*0.055)
-    histoy = TH2D("corY","corY",256,0,256*0.055,256,0,256*0.055)
+    histox = TH2D("corX","corX",(npix_X),-(npix_X)*pitchX/2.,(npix_X)*pitchX/2.,(npix_X),-(npix_X)*pitchX/2.,(npix_X)*pitchX/2.)
+    histoy = TH2D("corY","corY",(npix_Y),-(npix_Y)*pitchY/2.,(npix_Y)*pitchY/2.,(npix_Y),-(npix_Y)*pitchY/2.,(npix_Y)*pitchY/2.)
     hl = [histox,histoy]
     
     for h in hl : 
@@ -41,8 +41,8 @@ def TrackClusterCorrelation(dataSet):
         for track in tracks :
             for cluster in dataSet.AllClusters[i] : 
                     if cluster.totalTOT<500 :
-                        histox.Fill(cluster.relX,track.trackX[3])
-                        histoy.Fill(cluster.relY,track.trackY[3])                    
+                        histox.Fill(cluster.absX,track.trackX[track.iden.index(dut)])
+                        histoy.Fill(cluster.absY,track.trackY[track.iden.index(dut)])                    
     return histox,histoy
 
 
@@ -90,7 +90,7 @@ def TotalMeanFunctionY(Translations,Tx,Rotations,aDataDet,nevents,skip,dut=6):
 
 
 
-def TotalRotationFunction(Rotations,Translations,aDataDet,nevents,skip,dut=6):
+def TotalRotationFunction(Rotations,Translations,aDataDet,nevents,skip=1,dut=6):
     
     totaldist_evaluator = 0.
     n = 0
@@ -102,17 +102,17 @@ def TotalRotationFunction(Rotations,Translations,aDataDet,nevents,skip,dut=6):
 	    if i%skip==0 : 
 		    for cluster in aDataDet.AllClusters[i] : 
 
-                	tmp=np.dot(RotationMatrix(Rotations),[cluster.relX-npix_X*pitchX/2,cluster.relY-npix_Y*pitchY/2,0])
+                	tmp=np.dot(RotationMatrix(Rotations),[cluster.absX,cluster.absY,0])
                 	tmp[0] = tmp[0] + Translations[0]
                 	tmp[1] = tmp[1] 
-                	distx=track.trackX[track.iden.index(dut)]-npix_X*pitchX/2 -tmp[0]
-                	disty=track.trackY[track.iden.index(dut)]-npix_Y*pitchY/2 -tmp[1]                
+                	distx=track.trackX[track.iden.index(dut)] -tmp[0]
+                	disty=track.trackY[track.iden.index(dut)] -tmp[1]                
 
 
-			if fabs(distx)<0.075 and fabs(disty)<0.075:
-				dist_tmp_x.append(distx)
-				dist_tmp_y.append(disty)
-				n+=1
+                    if fabs(distx)<0.075 and fabs(disty)<0.075:
+                        dist_tmp_x.append(distx)
+                        dist_tmp_y.append(disty)
+                        n+=1
 	
     result=sqrt(rms(dist_tmp_x)**2 + rms(dist_tmp_y)**2)
     print "Evaluating for Rotation : %.9f %.9f %.9f [deg] Trans : %f %f  [mm] metric = %.9f  n = %i"%(Rotations[0],Rotations[1],Rotations[2],Translations[0],0,result,n)
@@ -181,7 +181,7 @@ def ApplyAlignment(dataSet,translations,rotations,filename="Alignement.txt") :
     print "Applying Alignment with  Rotation : %0.10f %0.10f %0.10f [deg] Trans : %0.10f %0.10f  [mm]"%(rotations[0],rotations[1],rotations[2],translations[0],translations[1])
     
     f = open(filename,'w')
-    f.write("Rotation : %f %f %f [deg] Trans : %f %f  [mm]"%(rotations[0],rotations[1],rotations[2],translations[0],translations[1]))
+    f.write("Rotation : %f %f %f [deg] Trans : %f %f  [mm] \n"%(rotations[0],rotations[1],rotations[2],translations[0],translations[1]))
     f.close()
     for Clusters in dataSet.AllClusters : 
         for cluster in Clusters : 
