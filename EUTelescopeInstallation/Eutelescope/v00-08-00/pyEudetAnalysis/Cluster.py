@@ -29,6 +29,9 @@ class Cluster:
     resY = 0
     id = 0
     
+    # track number
+    tracknum = -1
+    
     def __init__(self):
         self.sizeX = 0
         self.sizeY = 0
@@ -45,7 +48,7 @@ class Cluster:
     def Print(self):
         for i in range(len(self.col)):
             print "x:%d y%d tot:%.3f"%(self.col[i],self.row[i],self.tot[i])
-        print "Cluster Total size = %d , in X = %d Y = %d , Aspect Ratio = %.3f , Total Energy (keV) = %.1f"%(self.size,self.sizeX,self.sizeY,self.aspectRatio,self.totalTOT)
+        print "Cluster Total size = %d , in X = %d Y = %d , Aspect Ratio = %.3f , Total Energy (keV) = %.1f ID = %i"%(self.size,self.sizeX,self.sizeY,self.aspectRatio,self.totalTOT,self.id)
         print "Position in sensor X = %.3f Y = %.3f"%(self.relX,self.relY)
    
     def Statistics(self) :     
@@ -109,5 +112,5 @@ class Cluster:
         
 
     def GetResiduals(self,x,y) :
-        self.resX = self.absX-(x-npix_X*pitchX/2)
-        self.resY = self.absY-(y-npix_Y*pitchY/2)
+        self.resX = self.absX-(x)
+        self.resY = self.absY-(y)
