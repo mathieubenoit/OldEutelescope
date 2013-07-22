@@ -44,7 +44,7 @@ def SolveForPlane(invMatrix,eps,y,i,N) :
 	print "Solution for plane %i"%i
 	for j in range(N):
 		res += invMatrix[i,j]*eps[j]*y[j]
-		
+		diff
 	return res
 	
 	

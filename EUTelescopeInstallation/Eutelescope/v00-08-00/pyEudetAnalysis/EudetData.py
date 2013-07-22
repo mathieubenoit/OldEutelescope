@@ -374,23 +374,30 @@ class EudetData:
 
         clusters_tmp = self.AllClusters[i]
         for track in self.AllTracks[i] :
-            for index,cluster in enumerate(clusters_tmp) :
-                cluster.GetResiduals(track.trackX[track.iden.index(dut)],track.trackY[track.iden.index(dut)])
-                if(fabs(cluster.resX)<r_max_X and (fabs(cluster.resY))<r_max_Y) :
-                    track.cluster=cluster.id
-                    cluster.tracknum=self.t_trackNum
-#                     print "Found a match"
-#                     print "resX : %f resY : %f"%(cluster.resX,cluster.resY)
-#                     cluster.Print()
-#                     track.Print()
-                    #clusters_tmp.pop(index)
-                    break
-                else : 
-                    track.cluster=-1
+            if len(clusters_tmp)!=0 : 
+                for index,cluster in enumerate(clusters_tmp) :
+                    cluster.GetResiduals(track.trackX[track.iden.index(dut)],track.trackY[track.iden.index(dut)])
+                    if(fabs(cluster.resX)<r_max_X and (fabs(cluster.resY))<r_max_Y) :
+                        track.cluster=cluster.id
+                        cluster.tracknum=self.t_trackNum
+    #                     print "Found a match"
+    #                     print "resX : %f resY : %f"%(cluster.resX,cluster.resY)
+    #                     cluster.Print()
+    #                     track.Print()
+                        #clusters_tmp.pop(index)
+                        break
+                    else : 
+                        track.cluster=-11
 #                     print "Found an unmatched "
 #                     print "resX : %f resY : %f"%(cluster.resX,cluster.resY)
 #                     cluster.Print()
 #                     track.Print()
+#             if(track.cluster!=-11):
+#                 
+#                 print "#### a Match #####"
+#                 self.AllClusters[i][track.cluster].Print()
+#                 track.Print()
+#                 print "#################"
             
             
         

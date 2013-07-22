@@ -21,12 +21,12 @@ class Cluster:
     relZ = 0.
     
 # telescope coordinates    
-    absX =0.
-    absY =0.
-    absZ =0.
+    absX =-10000.
+    absY =-10000.
+    absZ =-10000.
        
-    resX = 0
-    resY = 0
+    resX = -10000.
+    resY = -10000.
     id = 0
     
     # track number
@@ -49,7 +49,7 @@ class Cluster:
         for i in range(len(self.col)):
             print "x:%d y%d tot:%.3f"%(self.col[i],self.row[i],self.tot[i])
         print "Cluster Total size = %d , in X = %d Y = %d , Aspect Ratio = %.3f , Total Energy (keV) = %.1f ID = %i"%(self.size,self.sizeX,self.sizeY,self.aspectRatio,self.totalTOT,self.id)
-        print "Position in sensor X = %.3f Y = %.3f"%(self.relX,self.relY)
+        print "Position in sensor X = %.3f Y = %.3f"%(self.absX,self.absY)
    
     def Statistics(self) :     
         self.totalTOT=fsum(self.tot)

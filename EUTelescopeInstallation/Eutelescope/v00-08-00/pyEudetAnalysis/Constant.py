@@ -6,5 +6,8 @@ pitchY = 0.055
 npix_X = 256
 npix_Y = 256
 
-um = 1
-mm = 1000
+um = 1e-3
+mm = 1
+
+
+someData_in_um = 1000*um

@@ -9,7 +9,7 @@ class Track :
     trackNum = []
     dxdz = []
     dydz = []
-    cluster=0
+    cluster=-11
     
     def __init__(self):
         self.trackX=[]
@@ -37,5 +37,5 @@ class Track :
         
         print "##### Track #####"
         for i,x in enumerate(self.trackX) :
-            print "Track X : %f Track Y : %f iden : %i "%(self.trackX[i],self.trackY[i],self.iden[i])
+            print "Track X : %f Track Y : %f iden : %i cluster = %i"%(self.trackX[i],self.trackY[i],self.iden[i],self.cluster)
         print "#################" 
