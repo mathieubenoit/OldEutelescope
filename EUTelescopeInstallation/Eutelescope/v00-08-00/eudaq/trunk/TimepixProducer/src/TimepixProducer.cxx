@@ -16,12 +16,18 @@
 #include "eudaq/Mutex.hh"
 #include "mpxmanagerapi.h"
 #include "mpxhw.h"
-#include <pthread.h>    /* POSIX Threads */
-#include "MIMTLU.h"
+
 
 #include <iostream>
 #include <ostream>
 #include <vector>
+#include <pthread.h>    /* POSIX Threads */
+
+
+#include "MIMTLU.h"
+#include "TimepixDevice.h"
+
+
 
 using namespace std;
 
@@ -34,15 +40,14 @@ static const std::string EVENT_TYPE = "TimepixRaw";
 int status;
 int AcqPreStarted=0;
 int FrameReady;
-FRAMEID id;
 unsigned int TLU;
 
 MIMTLU *aMIMTLU;
 
 
 // TOT . start on trigger stop on Timer
-char configName[256] = "config_I10-W0015_TOT_4-06-13" ;
-char AsciiconfigName[256] = "config_I10-W0015_TOT_4-06-13_ascii" ;
+//char configName[256] = "config_I10-W0015_TOT_4-06-13" ;
+//char AsciiconfigName[256] = "config_I10-W0015_TOT_4-06-13_ascii" ;
 
 //TOT Start and stop on trigger
 //char configName[256] = "config_I10-W0015_TOT_6-06-13_start_stop_on_trigger" ;
@@ -99,317 +104,6 @@ inline void unpack (vector <unsigned char >& src, int index, T& data) {
     copy (&src[index], &src[index + sizeof (T)], &data);
 }
 
-class TimepixDevice {
-
-public:
-
-	TimepixDevice(){
-
-
-		// Init manager
-		control = -1;
-		u32 flags = MGRINIT_NOEXHANDLING;
-		control = mgrInitManager(flags, '\0');
-		if(mgrIsRunning()){
-			cout << "Manager running " << endl;
-		}
-
-		mgrRegisterCallback("mpxctrl",MPXCTRL_CB_ACQCOMPL,&AcquisitionFinished,0);
-		mgrRegisterCallback("mpxmgr",MPXMGR_CB_FRAME_NEW,&FrameIsReady,0);
-		mgrRegisterCallback("mpxctrl",MPXCTRL_CB_ACQPRESTART,&AcquisitionPreStarted,0);
-		mgrRegisterCallback("mpxctrl",MPXCTRL_CB_ACQSTART,&AcquisitionStarted,0);
-
-
-		// Find device
-		count = 0;
-		
-		
-		control = mpxCtrlGetFirstMpx(&devId, &count);
-		cout << "found : " << count << " | devId : " << devId << endl;
-		numberOfChips=0;
-		numberOfRows=0;
-
-
-		//Get Info on device
-		int info = mpxCtrlGetMedipixInfo(devId,&numberOfChips,&numberOfRows,chipBoardID,ifaceName);
-		if(info==0) cout << "Number of chips : " << numberOfChips << " Number of rows : " <<  numberOfRows << " chipBoard ID : " <<  chipBoardID << " Interface Name : " << ifaceName <<  endl;
-                
-		else cout << "board not found !! " << endl;
-
- 
-		// Load binary pixels config
-		//char configName[256] = "default.bpc" ;
-		//char configName[256] = "config_I10-W0015_TOT_4-06-13" ;
-		//char configName[256] = "config_I10-W0015_TOA48MHz_4-06-13" ;
-
-		control = mpxCtrlLoadPixelsCfg(devId, configName , true);
-		cout << "Load pixels config : " << configName << endl;
-		//control << endl;
-
-
-		//mpxCtrlLoadMpxCfg(devId,"default_ascii");
-		mpxCtrlLoadMpxCfg(devId,AsciiconfigName);
-		cout << "Load Ascii pixels config : " << AsciiconfigName << endl;
-
-		//mpxCtrlLoadMpxCfg(devId,"config_I10-W0015_TOA48MHz_4-06-13_ascii");
-
-
-		// Get number of parameters in the Hw Info list
-		hwInfoCount = 0;
-		control = mpxCtrlGetHwInfoCount(devId, &hwInfoCount);
-		cout << "count : " << hwInfoCount << endl;
-
-
-		// Set bias voltage
-		double voltage = 80.0;
-		byte triggmode = 2;
-
-		byte * data = new byte(sizeof(double));//(byte)voltage;
-		byte * data2 = new byte(sizeof(byte));//(byte)trig;
-
-		data = (byte * )(&voltage);
-		data2 = (byte * )(&triggmode);
-
-		//control = mpxCtrlSetHwInfoItem(devId, 8, data, sizeof(double));	 // 8 voltage
-		//control = mpxCtrlSetHwInfoItem(devId, 20, &triggmode, 1);
-		
-		
-		usleep(1000000);
-
-		// Read bias voltage and bias voltage verification
-		ItemInfo data_hv;
-		int datar_size = 0;
-		byte trgg_back;
-		data_hv.data = &trgg_back;
-
-		mpxCtrlGetHwInfoItem(devId, 20, &data_hv, &datar_size);
-		cout << "data size  : " << datar_size << endl;
-		cout << "array size : " << data_hv.count << endl;
-		cout << "flags      : " << data_hv.flags << endl;
-		cout << "name       : " << data_hv.name << endl;
-		cout << "descr      : " << data_hv.descr << endl;
-		cout << "type       : " << data_hv.type << endl;
-		cout << "data       : " << trgg_back << endl;
-
-//		ItemInfo data_hv;
-		datar_size = 8;
-		double voltage_back;
-		data_hv.data = &voltage_back;
-
-		// 18 signal delay u16
-		// 12 Freq
-		// 8 HV
-		// 9 HV ver
-		for ( int i = 8; i < 10 ; i++ ) {
-
-			cout << "Item : " << i << endl;
-			mpxCtrlGetHwInfoItem(devId, i, &data_hv, &datar_size);
-			cout << "data size  : " << datar_size << endl;
-			cout << "array size : " << data_hv.count << endl;
-			cout << "flags      : " << data_hv.flags << endl;
-			cout << "name       : " << data_hv.name << endl;
-			cout << "descr      : " << data_hv.descr << endl;
-			cout << "type       : " << data_hv.type << endl;
-			cout << "data       : " << voltage_back << endl;
-
-			// rewind
-			datar_size = 0;
-		}
-
-		//control =mpxCtrlGetAcqMode(devId, &mode);
-		//cout << "Acq mode before = " << mode << endl;
-		control = mpxCtrlSetAcqMode(devId,ACQMODE_HWTRIGSTART_TIMERSTOP );
-		// check mode
-		//control =mpxCtrlGetAcqMode(devId, &mode);
-		//cout << "Acq mode after = " << mode << endl;
- 
-
-
-
-		// Data type Set
-		mgrSetFrameType(0,TYPE_U32);
-
-		//cout << "Test acquisition" << endl;
-		byte *buf=new byte[MATRIX_SIZE];
-		//this->PerformAcquisition("test");
-		delete buf;
-
-
-
-
-
-	}
-
-
-
-
-	int  ReadFrame(char * Filename, char* buffer){
-
-
-
-			ifstream in(Filename,ios::binary|ios::ate);
-			long size = in.tellg();
-			in.seekg(0,ios::beg);
-
-			in.read(buffer,size);
-			in.close();
-
-
-
-			return 0;
-
-	}
-
-	int SetTHL(int THL){
-
-		// Get and Set Daqs
-		DACTYPE dacVals[14];
-		int chipnumber = 0;
-
-		dacVals[TPX_THLFINE] = THL; // 1000e- above thl adjustment mean
-		control = mpxCtrlSetDACs(devId, dacVals, 14, chipnumber);
-		cout << "[TimepixProducer] Setting THL Fine to " << THL << endl;
-
-		DACTYPE dacVals_new[14];
-		control = mpxCtrlGetDACs(devId, dacVals_new, 14, chipnumber);
-		cout << "[TimepixProducer] THL Fine Readout = " << dacVals_new[TPX_THLFINE] << endl;
-
-		control = mpxCtrlRefreshDACs(devId);
-		return control; 
-
-	}
-	int SetIkrum(int IKrum){
-
-		// Get and Set Daqs
-		DACTYPE dacVals[14];
-		int chipnumber = 0;
-
-		dacVals[TPX_IKRUM] = IKrum; // 1000e- above thl adjustment mean
-		control = mpxCtrlSetDACs(devId, dacVals, 14, chipnumber);
-		cout << "[TimepixProducer] Setting Ikrum to " << IKrum << endl;
-
-		DACTYPE dacVals_new[14];
-		control = mpxCtrlGetDACs(devId, dacVals_new, 14, chipnumber);
-		cout << "[TimepixProducer] IKrum Readout = " << dacVals_new[TPX_IKRUM] << endl;
-
-		control = mpxCtrlRefreshDACs(devId);
-		return control;
-
-	}
-
-
-	int ReadDACs(){
-
-
-		DACTYPE dacVals_readout[14];
-		int chipnumber = 0;
-
-		control = mpxCtrlGetDACs(devId, dacVals_readout, 14, chipnumber);
-		cout << "[TimepixProducer] IKrum Readout = " << dacVals_readout[TPX_IKRUM] << endl;
-		cout << "[TimepixProducer] DISC Readout = " << dacVals_readout[TPX_DISC] << endl;
-		cout << "[TimepixProducer] PREAMP Readout = " << dacVals_readout[TPX_PREAMP] << endl;
-		cout << "[TimepixProducer] BUFFA Readout = " << dacVals_readout[TPX_BUFFA] << endl;
-		cout << "[TimepixProducer] BUFFB Readout = " << dacVals_readout[TPX_BUFFB] << endl;
-		cout << "[TimepixProducer] HIST Readout = " << dacVals_readout[TPX_HIST] << endl;
-		cout << "[TimepixProducer] THLFINE Readout = " << dacVals_readout[TPX_THLFINE] << endl;
-		cout << "[TimepixProducer] THLCOARSE Readout = " << dacVals_readout[TPX_THLCOARSE] << endl;
-		cout << "[TimepixProducer] VCAS Readout = " << dacVals_readout[TPX_VCAS] << endl;
-		cout << "[TimepixProducer] FBK Readout = " << dacVals_readout[TPX_FBK] << endl;
-		cout << "[TimepixProducer] GND Readout = " << dacVals_readout[TPX_GND] << endl;
-		cout << "[TimepixProducer] THS Readout = " << dacVals_readout[TPX_THS] << endl;
-		cout << "[TimepixProducer] BIASLVDS Readout = " << dacVals_readout[TPX_BIASLVDS] << endl;
-		cout << "[TimepixProducer] REFLVDS Readout = " << dacVals_readout[TPX_REFLVDS] << endl;
-
-		return 0;
-	}
-
-
-	int PerformAcquisition(char *output){
-
-		//cout << "[timepixProducer] Starting acquisition to file " << output << endl;
-		control = mpxCtrlPerformFrameAcq(devId, 1,acqTime, FSAVE_BINARY |FSAVE_U32 ,output);
-
-		//mpxCtrlGetFrame32(devId,buffer, MATRIX_SIZE, u32 frameNumber);
-		return control;
-
-	}
-
-	int GetFrameData(byte *buffer){
-
-		control=mpxCtrlGetFrameID(devId,0,&FrameID);
-		control=mgrGetFrameData(id,buffer, &size , TYPE_DOUBLE);
-		return control;
-	}
-	int  GetFrameData2(char * Filename, char* buffer){
-
-
-
-			ifstream in(Filename,ios::binary|ios::ate);
-			long size = in.tellg();
-			in.seekg(0,ios::beg);
-
-			in.read(buffer,size);
-			in.close();
-
-
-
-			return 0;
-
-	}
-
-	int  GetFrameDatadAscii(char * Filename, u32* buffer){
-
-
-
-			ifstream in(Filename);
-
-			u32 tot;
-			int i=0;
-			while(!in.eof()){
-				in >> tot;
-				buffer[i]=tot;
-				cout << tot << endl;
-
-				i++;
-			}
-
-			in.close();
-
-
-
-			return 0;
-
-	}
-	u32 GetBufferSize(){return size;}
-
-	int Abort (){
-		control = mpxCtrlAbortOperation(devId);
-		return control;
-	}
-
-   int SetAcqTime(double time){
-	   acqTime=time;
-   	   return 1;
-   }
-
-private:
-		int control; // Control int for verifying success of operation
-		DEVID devId; // Timepix Device ID
-		int count; // Number of chip connected to FitPix
-		int numberOfChips;
-		int numberOfRows;
-		char chipBoardID[MPX_MAX_CHBID];
-		char ifaceName[MPX_MAX_IFACENAME];
-		double acqTime ;
-		bool acqFinished;
-
-		int hwInfoCount;
-		int mode;
-		DACTYPE dacVals[14];
-		int chipnumber;
-		u32 size;
-		FRAMEID FrameID;
-};
 
 
 
@@ -434,7 +128,7 @@ public:
 	  running =false;
 	  
 	  aMIMTLU= new MIMTLU();
-	  int mimtlu_status = aMIMTLU->Connect(const_cast<char *>("192.168.1.10"),const_cast<char *>("7"));
+	  int mimtlu_status = aMIMTLU->Connect(const_cast<char *>("192.168.222.200"),const_cast<char *>("23"));
 	  if(mimtlu_status!=1)	   SetStatus(eudaq::Status::LVL_ERROR, "MIMTLU Not Running !!");
 
 
@@ -532,7 +226,7 @@ public:
   }
 
   // This is just an example, adapt it to your hardware
-  void ReadoutLoop() {
+ void ReadoutLoop() {
     // Loop until Run Control tells us to terminate
     
     while (!done) {
@@ -564,21 +258,25 @@ public:
 	    	} 
 		cout << "after loop" <<  endl;
 
-aMIMTLU->Arm();
+	aMIMTLU->Arm();
 		//cout << "[timepixProducer] Finished acquisition to file " << output <<  endl;
 
-		while(FrameReady!=1){
+	while(FrameReady!=1){
 				//cout << status << endl;
 	    		eudaq::mSleep(0.01);
 	    	} 
-pthread_join(thread1, NULL);
+	pthread_join(thread1, NULL);
 
 	TLU = aMIMTLU->GetEvent();
+	cout << "TLU: " << TLU << " " << "event counter : " << m_ev << endl;	
+
 /*	if((m_ev%(128*256))-TLU!=0) {
 	    
 	  // SetStatus(eudaq::Status::LVL_ERROR, "Mismatch");
 	   cout << "TLU: " << TLU << " " << "event counter : " << m_ev << endl;	 
 	}*/
+	
+	
 	
 	if(TLU==0) {
 	    
@@ -586,17 +284,9 @@ pthread_join(thread1, NULL);
 	   cout << "TLU: " << TLU << " " << "event counter : " << m_ev << endl;	 
 	}
 
-    	//u32 *bufferAscii = new u32[MATRIX_SIZE];
-	//control=aTimepix->GetFrameDatadAscii(output,bufferAscii);
+
 	control=aTimepix->GetFrameData2(output,buffer);
 	
-	//buffer=(char*)bufferAscii;
-    	//pthread_mutex_unlock(&m_producer_mutex);
-
-    	//pthread_mutex_lock(&m_producer_mutex);
-    	//status=aTimepix->ReadFrame(output,buffer);
-    	//pthread_mutex_unlock(&m_producer_mutex);
-
     	unsigned int Data[MATRIX_SIZE];
 
     	for(int i =0;i<MATRIX_SIZE;i++){
@@ -681,9 +371,13 @@ pthread_join(thread1, NULL);
 
 void runfitpix()
 {
+#ifdef DEBUGPROD	
 cout << "before run"<<endl;
+#endif
 	control=aTimepix->PerformAcquisition(output);
+#ifdef DEBUGPROD	
 cout << "after run"<<endl;
+#endif
 }
 
 private:
@@ -736,121 +430,6 @@ int main(int /*argc*/, const char ** argv) {
   return 0;
 }
 
-MIMTLU::MIMTLU() {
-	// TODO Auto-generated constructor stub
-
-}
-
-
-
-int MIMTLU::Connect(char* IP,char* port){
-
-	memset(&host_info, 0, sizeof host_info);
-	host_info.ai_family = AF_UNSPEC;     // IP version not specified. Can be both.
-	host_info.ai_socktype = SOCK_STREAM; // Use SOCK_STREAM for TCP or SOCK_DGRAM for UDP.
-
-
-	// Address
-	status = getaddrinfo(IP,port, &host_info, &host_info_list);
-	if (status != 0)
-		{
-		cout << "[MIMTLU] getaddrinfo error" << gai_strerror(status) << endl;
-		return -1;
-		};
-
-	// Socket
-	socketfd = socket(host_info_list->ai_family, host_info_list->ai_socktype,
-			host_info_list->ai_protocol);
-
-	if (socketfd == -1) {
-				std::cout << "[MIMTLU] Socket error " << endl;
-				return -2;
-	};
-
-	// Connection
-	status = connect(socketfd, host_info_list->ai_addr, host_info_list->ai_addrlen);
-	if (status == -1)  {
-		std::cout << "connect error " << gai_strerror(status) << " " << host_info.ai_flags << endl;
-		return -3;
-	}
-	else {
-		std::cout << "[MIMTLU] connect established " << endl;
-		return 1;
-
-	}
-
-
-
-
-}
-
-
-int MIMTLU::Arm(){
-
-#ifdef DEBUGPROD	
-	std::cout << "ARM"<<std::endl;
-#endif
-        memset(msg,0,1024);
-	sprintf(msg,"ARM");
-	len = sizeof(msg);
-	bytes_sent = send(socketfd,msg, 8, 0);
-	
-//	incoming_data_buffer= 0;
-	bytes_recieved = recv(socketfd, incoming_data_buffer,8, 0);
-
-//std::cout << incoming_data_buffer<<std::endl;
-
-	// If no data arrives, the program will just wait here until some data arrives.
-	if (bytes_recieved == 0) {
-		std::cout << "host shut down." << std::endl ;
-		return -100;
-	}
-	else if (bytes_recieved == -1){
-		std::cout << "recieve error!" << std::endl ;
-		return -200;
-	}
-	else{
-	//std::cout << incoming_data_buffer<<std::endl;
-		return 0;
-	}
-
-}
-
-int MIMTLU::GetEvent(){
-
-        memset(msg,0,1024);
-#ifdef DEBUGPROD		
-	std::cout << "READ"<<std::endl;
-#endif
-	sprintf(msg,"READ");
-	len = sizeof(msg);
-	bytes_sent = send(socketfd,msg, 8, 0);
-
-	//incoming_data_buffer= 0;
-	bytes_recieved = recv(socketfd, &incoming_data_buffer,8, 0);
-	// If no data arrives, the program will just wait here until some data arrives.
-
-#ifdef DEBUGPROD		
-	std::cout << "buffer : " << incoming_data_buffer<<std::endl;
-#endif
-	
-	if (bytes_recieved == 0) {
-		std::cout << "host shut down." << std::endl ;
-		return -100;
-	}
-	else if (bytes_recieved == -1){
-		std::cout << "recieve error!" << std::endl ;
-		return -200;
-	}
-	else{
-		sscanf(incoming_data_buffer,"%x",&tluevtnr);
-		//std::cout << "read "<<tluevtnr<<std::endl;
-		
-		return tluevtnr;
-	}
-	
-	
-}
 
 
 void * fitpix_acq ( void *ptr )
