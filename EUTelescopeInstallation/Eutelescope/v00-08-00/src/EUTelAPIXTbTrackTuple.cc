@@ -522,7 +522,7 @@ int EUTelAPIXTbTrackTuple::readZsHits( std::string colName, LCEvent* event){
 	p_chip->push_back( 0 );
 	p_row->push_back( telPixel.getYCoord() );
 	p_col->push_back( telPixel.getXCoord() );
-	p_tot->push_back( (int)telPixel.getSignal() );
+	p_tot->push_back( (unsigned int)telPixel.getSignal() );
 	p_lv1->push_back( 0 );
       }
     }
@@ -933,7 +933,7 @@ void EUTelAPIXTbTrackTuple::prepareTree(){
   
   p_col = new vector<int>();
   p_row = new vector<int>();
-  p_tot = new vector<int>();
+  p_tot = new vector<unsigned int>();
   p_iden = new vector<int>();
   p_lv1 = new vector<int>();
   p_chip = new vector<int>();
