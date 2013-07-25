@@ -74,7 +74,7 @@ namespace eutelescope {
     void setYCoord(short yCoord) { _yCoord = yCoord ; }
 
     //! Setter for the signal
-    void setSignal(short signal) { _signal = signal ; }
+    void setSignal(float signal) { _signal = signal ; }
 
     //! Getter for the x coordinate
     inline short getXCoord() const { return _xCoord ; } 
@@ -96,7 +96,7 @@ namespace eutelescope {
     short _yCoord;
 
     //! The signal
-    short _signal;
+    float _signal;
 
   };
 }
