@@ -27,26 +27,26 @@ def rms(x):
 
     return rms
 
-def TrackHitProb(dataSet,dut=6):
-    HitProb_1_track = TH2D("HitProb_1_track","Hit probability, cluster size 1",300,0.,0.060,300,0.,0.060)
+def TrackHitProb(dataSet,nbin,dut=6):
+    HitProb_1_track = TH2D("HitProb_1_track_nbin%i"%nbin,"Hit probability, cluster size 1",nbin,0.,0.060,nbin,0.,0.060)
     HitProb_1_track.GetXaxis().SetRangeUser(0.,0.055)
     HitProb_1_track.GetXaxis().SetTitle("Track X position within pixel [mm]")
     HitProb_1_track.GetYaxis().SetRangeUser(0.,0.055)
     HitProb_1_track.GetYaxis().SetTitle("Track Y position within pixel [mm]")
       
-    HitProb_2_track = TH2D("HitProb_2_track","Hit probability, cluster size 2",300,0.,0.060,300,0.,0.060)
+    HitProb_2_track = TH2D("HitProb_2_track_nbin%i"%nbin,"Hit probability, cluster size 2",nbin,0.,0.060,nbin,0.,0.060)
     HitProb_2_track.GetXaxis().SetRangeUser(0.,0.055)
     HitProb_2_track.GetXaxis().SetTitle("Track X position within pixel [mm]")
     HitProb_2_track.GetYaxis().SetRangeUser(0.,0.055)
     HitProb_2_track.GetYaxis().SetTitle("Track Y position within pixel [mm]")
       
-    HitProb_3_track = TH2D("HitProb_3_track","Hit probability, cluster size 3",300,0.,0.060,300,0.,0.060)
+    HitProb_3_track = TH2D("HitProb_3_track_nbin%i"%nbin,"Hit probability, cluster size 3",nbin,0.,0.060,nbin,0.,0.060)
     HitProb_3_track.GetXaxis().SetRangeUser(0.,0.055)
     HitProb_3_track.GetXaxis().SetTitle("Track X position within pixel [mm]")
     HitProb_3_track.GetYaxis().SetRangeUser(0.,0.055)
     HitProb_3_track.GetYaxis().SetTitle("Track Y position within pixel [mm]")
       
-    HitProb_4_track = TH2D("HitProb_4_track","Hit probability, cluster size 4",300,0.,0.060,300,0.,0.060)
+    _nbin%i"%nbinHitProb_4_track = TH2D("HitProb_4_track","Hit probability, cluster size 4",nbin,0.,0.060,nbin,0.,0.060)
     HitProb_4_track.GetXaxis().SetRangeUser(0.,0.055)
     HitProb_4_track.GetXaxis().SetTitle("Track X position within pixel [mm]")
     HitProb_4_track.GetYaxis().SetRangeUser(0.,0.055)
@@ -92,26 +92,26 @@ def TrackHitProb(dataSet,dut=6):
     #         elif(cluster.size==4) : 
     #             HitProb_4_track.Fill((aDataSet.t_posX[3]-npix_X*pitchX/2)%pitchX,(aDataSet.t_posY[3]-npix_Y*pitchY/2)%pitchY)  
 
-def ClusterHitProb(dataSet,dut=6):
-    HitProb_1_cluster = TH2D("HitProb_1_cluster","Hit probability, cluster size 1",300,0.,0.060,300,0.,0.060)
+def ClusterHitProb(dataSet,nbin,dut=6):
+    HitProb_1_cluster = TH2D("HitProb_1_cluster_nbin%i"%nbin,"Hit probability, cluster size 1",nbin,0.,0.060,nbin,0.,0.060)
     HitProb_1_cluster.GetXaxis().SetRangeUser(0.,0.055)
     HitProb_1_cluster.GetXaxis().SetTitle("Cluster X position within pixel [mm]")
     HitProb_1_cluster.GetYaxis().SetRangeUser(0.,0.055)
     HitProb_1_cluster.GetYaxis().SetTitle("Cluster Y position within pixel [mm]")
      
-    HitProb_2_cluster = TH2D("HitProb_2_cluster","Hit probability, cluster size 2",300,0.,0.060,300,0.,0.060)
+    HitProb_2_cluster = TH2D("HitProb_2_cluster_nbin%i"%nbin,"Hit probability, cluster size 2",nbin,0.,0.060,nbin,0.,0.060)
     HitProb_2_cluster.GetXaxis().SetRangeUser(0.,0.055)
     HitProb_2_cluster.GetXaxis().SetTitle("Cluster X position within pixel [mm]")
     HitProb_2_cluster.GetYaxis().SetRangeUser(0.,0.055)
     HitProb_2_cluster.GetYaxis().SetTitle("Cluster Y position within pixel [mm]")
      
-    HitProb_3_cluster = TH2D("HitProb_3_cluster","Hit probability, cluster size 3",300,0.,0.060,300,0.,0.060)
+    HitProb_3_cluster = TH2D("HitProb_3_cluster_nbin%i"%nbin,"Hit probability, cluster size 3",nbin,0.,0.060,nbin,0.,0.060)
     HitProb_3_cluster.GetXaxis().SetRangeUser(0.,0.055)
     HitProb_3_cluster.GetXaxis().SetTitle("Cluster X position within pixel [mm]")
     HitProb_3_cluster.GetYaxis().SetRangeUser(0.,0.055)
     HitProb_3_cluster.GetYaxis().SetTitle("Cluster Y position within pixel [mm]")
      
-    HitProb_4_cluster = TH2D("HitProb_4_cluster","Hit probability, cluster size 4",300,0.,0.060,300,0.,0.060)
+    HitProb_4_cluster = TH2D("HitProb_4_cluster_nbin%i"%nbin,"Hit probability, cluster size 4",nbin,0.,0.060,nbin,0.,0.060)
     HitProb_4_cluster.GetXaxis().SetRangeUser(0.,0.055)
     HitProb_4_cluster.GetXaxis().SetTitle("Cluster X position within pixel [mm]")
     HitProb_4_cluster.GetYaxis().SetRangeUser(0.,0.055)

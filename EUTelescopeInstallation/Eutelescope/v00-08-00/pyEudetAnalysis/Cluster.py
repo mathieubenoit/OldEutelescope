@@ -62,8 +62,8 @@ class Cluster:
         self.relX=0.
         self.relY=0.
         for index,tot_tmp in enumerate(self.tot) :
-            self.relX+=(self.col[index]*pitchX+pitchX/2)*tot_tmp    
-            self.relY+=(self.row[index]*pitchY+pitchY/2)*tot_tmp    
+            self.relX+=(self.col[index]*pitchX+pitchX/2.)*tot_tmp    
+            self.relY+=(self.row[index]*pitchY+pitchY/2.)*tot_tmp    
         self.relX/=self.totalTOT
         self.relY/=self.totalTOT
         
@@ -75,8 +75,8 @@ class Cluster:
         self.relX=0.
         self.relY=0.
         for index,col_tmp in enumerate(self.col) :
-            self.relX+=(self.col[index]*pitchX+pitchX/2)    
-            self.relY+=(self.row[index]*pitchY+pitchY/2)    
+            self.relX+=(self.col[index]*pitchX+pitchX/2.)    
+            self.relY+=(self.row[index]*pitchY+pitchY/2.)    
         self.relX/=len(self.col)
         self.relY/=len(self.row)
         
@@ -91,8 +91,8 @@ class Cluster:
             if self.tot[index]>maxTOT_tmp:
                 maxTOT_tmp=self.tot[index]
                 maxTOTindex_tmp=index
-        self.relX=self.col[maxTOTindex_tmp]*pitchX+pitchX/2
-        self.relY=self.row[maxTOTindex_tmp]*pitchY+pitchY/2
+        self.relX=self.col[maxTOTindex_tmp]*pitchX+pitchX/2.
+        self.relY=self.row[maxTOTindex_tmp]*pitchY+pitchY/2.
         
         self.absX=self.relX
         self.absY=self.relY
