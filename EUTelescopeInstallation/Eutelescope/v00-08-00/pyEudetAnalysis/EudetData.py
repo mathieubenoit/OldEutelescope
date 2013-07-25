@@ -181,7 +181,7 @@ class EudetData:
         self.p_euEv = self.pixelTree.euEvt
         
         for index,totvalue in enumerate(self.p_tot) :
-            self.p_tot=totvalue/self.scale
+            self.p_tot[index]=totvalue/self.scale
             
         
   
