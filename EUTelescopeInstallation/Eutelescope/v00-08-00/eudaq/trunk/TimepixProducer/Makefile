@@ -6,11 +6,11 @@ EXTERNAL_INCS += $(PIXELMAN_INSTALL)/_other_/headers
 
 include ../Makefile.common
 
-PIXELMAN_INSTALL:=/home/lcd/eudaq/TimepixProducer/Pixelman_SCL_2011_12_07
+PIXELMAN_INSTALL:=$(TPPROD)/Pixelman_SCL_2011_12_07
 PIXELMAN_HWLIBS:=$(PIXELMAN_INSTALL)/hwlibs
 
 
-BIN = /home/lcd/eudaq/TimepixProducer
+BIN = $(TPPROD)
 
 CFLAGS += -c -m32 -isystem $(PIXELMAN_INSTALL)/_other_/headers -I$(PIXELMAN_INSTALL)/_other_/headers
 LDFLAGS +=  -m32 -L$(PIXELMAN_INSTALL) -lMpxManager -lMpxCtrl -L$(PIXELMAN_HWLIBS) -lusb -lstdc++ -ldl -lc 

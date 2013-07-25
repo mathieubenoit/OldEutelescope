@@ -15,6 +15,7 @@ class EudetData:
     TrackTree = ROOT.TTree()
  
     EnergyCut = 0.
+    scale =1.
     
     AllClusters = []
     AllTracks = []
@@ -68,8 +69,9 @@ class EudetData:
     frequency_map = [[0 for x in xrange(npix_X)] for x in xrange(npix_Y)] 
     hotpixels = []
     
-    def __init__(self,filename,ECut):
+    def __init__(self,filename,ECut,scale=1.0):
         
+        self.scale=scale
         self.tbtrack_file = TFile(filename)
         self.TrackTree = self.tbtrack_file.Get("eutracks")
         self.pixelTree = self.tbtrack_file.Get("zspix")
@@ -177,6 +179,10 @@ class EudetData:
         self.p_chip= self.pixelTree.chip
         self.p_iden= self.pixelTree.iden
         self.p_euEv = self.pixelTree.euEvt
+        
+        for index,totvalue in enumerate(self.p_tot) :
+            self.p_tot[index]=totvalue/self.scale
+            
         
   
     def DumpClusterTree(self,filename):
