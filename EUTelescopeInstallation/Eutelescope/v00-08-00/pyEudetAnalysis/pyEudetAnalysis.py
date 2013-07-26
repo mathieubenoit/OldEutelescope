@@ -21,6 +21,21 @@ def h1_style(h, optstat=0) :
 #     h.SetTitle(0)
     h.SetTitleFont(42, "XYZ")
 
+def TGraph_style (h) :
+    h.GetXaxis().SetLabelOffset(0.005)
+    h.GetXaxis().SetLabelFont(42)
+    h.GetXaxis().SetLabelSize(0.055)
+    h.GetXaxis().SetTitleOffset(1.15)
+    h.GetXaxis().SetTitleSize(0.04)
+    h.GetXaxis().SetTitleFont(42)
+#     h.GetYaxis().SetRangeUser(0.,1.)
+    h.GetYaxis().SetLabelOffset(0.005)
+    h.GetYaxis().SetLabelFont(42)
+    h.GetYaxis().SetLabelSize(0.045)   
+    h.GetYaxis().SetTitleOffset(1.2)
+    h.GetYaxis().SetTitleFont(42)
+    h.GetYaxis().SetTitleSize(0.04)   
+
 
 
 gStyle.SetOptStat("nemruoi")
@@ -101,7 +116,7 @@ print "Found %i matched track-cluster binome"%n_matched
 resr,rest = Perform3StepAlignment(aDataSet,[[0,360],[0,360],[0,360],[-0.5,0.5],[-0.5,0.5]],aDataSet.p_nEntries,20)
 ApplyAlignment(aDataSet,rest,resr)
 
-#ApplyAlignment(aDataSet,[0.016125, 0.020414 , 0.],[0.0000000000, 0.0000000000, -0.072316])
+# ApplyAlignment(aDataSet,[0.016125, 0.020414 , 0.],[0.0000000000, 0.0000000000, -0.072316])
 
 # for i in range(10000) : 
 for i in range(aDataSet.p_nEntries) :
@@ -149,8 +164,8 @@ relX_vs_relY.GetXaxis().SetTitle("Cluster relX position within pixel [mm]")
 relX_vs_relY.GetYaxis().SetRangeUser(-0.,14.08)
 relX_vs_relY.GetYaxis().SetTitle("Cluster relY position within pixel [mm]")
 
-HitProb_1_cluster_binning1m,HitProb_2_cluster_binning1m,HitProb_3_cluster_binning1m,HitProb_4_cluster_binning1m = ClusterHitProb(aDataSet,60,6)
-HitProb_1_cluster_binning2m,HitProb_2_cluster_binning2m,HitProb_3_cluster_binning2m,HitProb_4_cluster_binning2m = ClusterHitProb(aDataSet,30,6)
+HitProb_1_cluster_binning1m,HitProb_2_cluster_binning1m,HitProb_3_cluster_binning1m,HitProb_4_cluster_binning1m = ClusterHitProb(aDataSet,55,6)
+HitProb_1_cluster_binning2m,HitProb_2_cluster_binning2m,HitProb_3_cluster_binning2m,HitProb_4_cluster_binning2m = ClusterHitProb(aDataSet,28,6)
 
 h1_style(allTOT,1) 
 h1_style(TOT1,1) 
@@ -168,6 +183,16 @@ h1_style(HitProb_2_cluster_binning2m)
 h1_style(HitProb_3_cluster_binning2m)
 h1_style(HitProb_4_cluster_binning2m)
 h1_style(relX_vs_relY)
+
+AllDistances,AllCharges = ComputeChargeDistance(aDataSet)
+graph1 = TGraph(len(AllDistances))
+for i,point in enumerate(AllDistances) :
+    graph1.SetPoint(i,AllDistances[i],AllCharges[i])
+canEtaCorr = TCanvas()
+graph1.Draw("ap")
+graph1.GetXaxis().SetTitle("min distance (mm)")
+graph1.GetYaxis().SetTitle("relative charge")
+TGraph_style(graph1)
  
 #resX_calib = TH1D("resX_calib","Unbiased residual X, calibrated",500,-0.150,0.150)
 #resY_calib = TH1D("resY_calib","Unbiased residual Y, calibrated",500,-0.150,0.150)
@@ -305,6 +330,7 @@ leg2.AddEntry(TOT4,"cluster size 4","l")
 leg2.SetFillColor(0)
 leg2.SetFillStyle(0)
 leg2.Draw("SAME")
+gPad.Update()
 
  
 can3 = TCanvas()
@@ -360,6 +386,7 @@ leg5.AddEntry(resX_cs[3],"cluster size 4","l")
 leg5.SetFillColor(0)
 leg5.SetFillStyle(0)
 leg5.Draw("SAME")
+gPad.Update()
  
 can6 = TCanvas()
  
@@ -404,6 +431,7 @@ leg6.AddEntry(resY_cs[3],"cluster size 4","l")
 leg6.SetFillColor(0)
 leg6.SetFillStyle(0)
 leg6.Draw("SAME")
+gPad.Update()
 
 
 can7 = TCanvas()
@@ -447,8 +475,8 @@ relX_vs_relY.Draw("colz")
 # ApplyAlignment(aDataSet,[0.0154687500 , 0.0205156250 , 0.],[0.0000000000, 0.0000000000, -0.0719150199])  
      
    
-HitProb_1_track_binning1m,HitProb_2_track_binning1m,HitProb_3_track_binning1m,HitProb_4_track_binning1m = TrackHitProb(aDataSet,60,6)
-HitProb_1_track_binning2m,HitProb_2_track_binning2m,HitProb_3_track_binning2m,HitProb_4_track_binning2m = TrackHitProb(aDataSet,30,6)
+HitProb_1_track_binning1m,HitProb_2_track_binning1m,HitProb_3_track_binning1m,HitProb_4_track_binning1m = TrackHitProb(aDataSet,55,6)
+HitProb_1_track_binning2m,HitProb_2_track_binning2m,HitProb_3_track_binning2m,HitProb_4_track_binning2m = TrackHitProb(aDataSet,28,6)
 
 h1_style(HitProb_1_track_binning1m)
 h1_style(HitProb_2_track_binning1m)
@@ -510,7 +538,7 @@ hClusterSizeY.Draw()
 
 can20 = TCanvas()
 can20.cd()
-hClusterSizeX.Draw()
+hClusterSize.Draw()
 
 
 if method_name == "QWeighted" :
@@ -547,6 +575,8 @@ if method_name == "QWeighted" :
     can18.SaveAs("/afs/cern.ch/work/a/apequegn/public/DESY_TB_DATA_02_07-06-2013_results/pyEudetAnalysisPlots/QWeighted/ClusterSizeX_QWeighted.png")
     can19.SaveAs("/afs/cern.ch/work/a/apequegn/public/DESY_TB_DATA_02_07-06-2013_results/pyEudetAnalysisPlots/QWeighted/ClusterSizeY_QWeighted.png")
     can20.SaveAs("/afs/cern.ch/work/a/apequegn/public/DESY_TB_DATA_02_07-06-2013_results/pyEudetAnalysisPlots/QWeighted/ClusterSize_QWeighted.png")
+    canEtaCorr.SaveAs("/afs/cern.ch/work/a/apequegn/public/DESY_TB_DATA_02_07-06-2013_results/pyEudetAnalysisPlots/QWeighted/Eta_QWeighted.png")
+ 
  
 elif method_name == "DigitalCentroid" :
     out = TFile("/afs/cern.ch/work/a/apequegn/public/DESY_TB_DATA_02_07-06-2013_results/pyEudetAnalysisPlots/DigitalCentroid/output_rootfile_DigitalCentroid_firingFreq001_run000131.root", "recreate")
@@ -582,7 +612,8 @@ elif method_name == "DigitalCentroid" :
     can18.SaveAs("/afs/cern.ch/work/a/apequegn/public/DESY_TB_DATA_02_07-06-2013_results/pyEudetAnalysisPlots/DigitalCentroid/ClusterSizeX_DigitalCentroid.png")
     can19.SaveAs("/afs/cern.ch/work/a/apequegn/public/DESY_TB_DATA_02_07-06-2013_results/pyEudetAnalysisPlots/DigitalCentroid/ClusterSizeY_DigitalCentroid.png")
     can20.SaveAs("/afs/cern.ch/work/a/apequegn/public/DESY_TB_DATA_02_07-06-2013_results/pyEudetAnalysisPlots/DigitalCentroid/ClusterSize_DigitalCentroid.png")
-     
+    canEtaCorr.SaveAs("/afs/cern.ch/work/a/apequegn/public/DESY_TB_DATA_02_07-06-2013_results/pyEudetAnalysisPlots/DigitalCentroid/Eta_DigitalCentroid.png")
+         
 elif method_name == "maxTOT" : 
     out = TFile("/afs/cern.ch/work/a/apequegn/public/DESY_TB_DATA_02_07-06-2013_results/pyEudetAnalysisPlots/maxTOT/output_rootfile_maxTOT_firingFreq001_run000131.root", "recreate")
     canhot.SaveAs("/afs/cern.ch/work/a/apequegn/public/DESY_TB_DATA_02_07-06-2013_results/pyEudetAnalysisPlots/maxTOT/histo_hot_maxTOT.png")
@@ -617,6 +648,7 @@ elif method_name == "maxTOT" :
     can18.SaveAs("/afs/cern.ch/work/a/apequegn/public/DESY_TB_DATA_02_07-06-2013_results/pyEudetAnalysisPlots/maxTOT/ClusterSizeX_maxTOT.png")
     can19.SaveAs("/afs/cern.ch/work/a/apequegn/public/DESY_TB_DATA_02_07-06-2013_results/pyEudetAnalysisPlots/maxTOT/ClusterSizeY_maxTOT.png")
     can20.SaveAs("/afs/cern.ch/work/a/apequegn/public/DESY_TB_DATA_02_07-06-2013_results/pyEudetAnalysisPlots/maxTOT/ClusterSize_maxTOT.png")
+    canEtaCorr.SaveAs("/afs/cern.ch/work/a/apequegn/public/DESY_TB_DATA_02_07-06-2013_results/pyEudetAnalysisPlots/maxTOT/Eta_maxTOT.png")
  
  
 g1 = TF1("m1","gaus",-0.025,pitchX/sqrt(12))
