@@ -27,29 +27,81 @@ def rms(x):
 
     return rms
 
-def TrackHitProb(dataSet,dut=6,nbin=300):
-    HitProb_1_track = TH2D("HitProb_1_track_nbin%i"%nbin,"Hit probability, cluster size 1",300,0.,0.060,300,0.,0.060)
-    HitProb_1_track.GetXaxis().SetRangeUser(0.,0.055)
+def ComputeChargeDistance(dataSet):
+    AllDistances = [0.]
+    AllCharges = [0.]
+    
+    for i,tracks in enumerate(dataSet.AllTracks) : 
+        for track in tracks : 
+            if track.cluster!=-11 :
+                if(dataSet.AllClusters[i][track.cluster].size==2) :
+                    maxTOTindex_tmp=0
+                    maxTOT_tmp=dataSet.AllClusters[i][track.cluster].tot[0]
+                    for index,tot_tmp in enumerate(dataSet.AllClusters[i][track.cluster].tot) :
+                        print "tot_tmp : "
+                        print tot_tmp
+                        if dataSet.AllClusters[i][track.cluster].tot[index]>maxTOT_tmp:
+                            maxTOT_tmp=dataSet.AllClusters[i][track.cluster].tot[index]
+                            maxTOTindex_tmp=index
+                    print "maxTOTindex_tmp : "
+                    print maxTOTindex_tmp
+                    print "dataSet.AllClusters[i][track.cluster].col[maxTOTindex_tmp] : "
+                    print dataSet.AllClusters[i][track.cluster].col[maxTOTindex_tmp]        
+#                     X = (dataSet.AllClusters[i][track.cluster].col[maxTOTindex_tmp]*pitchX+pitchX/2.)%pitchX
+#                     Y = (dataSet.AllClusters[i][track.cluster].row[maxTOTindex_tmp]*pitchY+pitchY/2.)%pitchY
+                    X = (dataSet.AllClusters[i][track.cluster].absX)%pitchX
+                    Y = (dataSet.AllClusters[i][track.cluster].absY)%pitchY
+                    print "dataSet.AllClusters[i][track.cluster].tot[maxTOTindex_tmp] : "
+                    print dataSet.AllClusters[i][track.cluster].tot[maxTOTindex_tmp]
+                    print "dataSet.AllClusters[i][track.cluster].totalTOT : "
+                    print dataSet.AllClusters[i][track.cluster].totalTOT
+                    Qrel = (dataSet.AllClusters[i][track.cluster].tot[maxTOTindex_tmp])/(dataSet.AllClusters[i][track.cluster].totalTOT)
+                    print "X : "
+                    print X
+                    print "Y : "
+                    print Y
+                    print "Qrel : "
+                    print Qrel
+                    if(Y<X and Y<(-X+pitchY)):
+                        d = Y                
+                    elif(Y<X and Y>=(-X+pitchY)):
+                        d = pitchX - X
+                    elif(Y>=X and Y<(-X+pitchY)):
+                        d = X
+                    elif(Y>=X and Y>=(-X+pitchY)):
+                        d = pitchY - Y
+                    print "d : "
+                    print d
+                    AllDistances.append(d)
+                    AllCharges.append(Qrel)
+#     print AllDistances
+#     print AllCharges
+    return AllDistances,AllCharges
+    
+
+def TrackHitProb(dataSet,nbin,dut=6):
+    HitProb_1_track = TH2D("HitProb_1_track_nbin%i"%nbin,"Hit probability, cluster size 1",nbin,0.,0.055,nbin,0.,0.055)
+    #HitProb_1_track.GetXaxis().SetRangeUser(0.,0.055)
     HitProb_1_track.GetXaxis().SetTitle("Track X position within pixel [mm]")
-    HitProb_1_track.GetYaxis().SetRangeUser(0.,0.055)
+    #HitProb_1_track.GetYaxis().SetRangeUser(0.,0.055)
     HitProb_1_track.GetYaxis().SetTitle("Track Y position within pixel [mm]")
       
-    HitProb_2_track = TH2D("HitProb_2_track","Hit probability, cluster size 2",300,0.,0.060,300,0.,0.060)
-    HitProb_2_track.GetXaxis().SetRangeUser(0.,0.055)
+    HitProb_2_track = TH2D("HitProb_2_track_nbin%i"%nbin,"Hit probability, cluster size 2",nbin,0.,0.055,nbin,0.,0.055)
+    #HitProb_2_track.GetXaxis().SetRangeUser(0.,0.055)
     HitProb_2_track.GetXaxis().SetTitle("Track X position within pixel [mm]")
-    HitProb_2_track.GetYaxis().SetRangeUser(0.,0.055)
+    #HitProb_2_track.GetYaxis().SetRangeUser(0.,0.055)
     HitProb_2_track.GetYaxis().SetTitle("Track Y position within pixel [mm]")
       
-    HitProb_3_track = TH2D("HitProb_3_track","Hit probability, cluster size 3",300,0.,0.060,300,0.,0.060)
-    HitProb_3_track.GetXaxis().SetRangeUser(0.,0.055)
+    HitProb_3_track = TH2D("HitProb_3_track_nbin%i"%nbin,"Hit probability, cluster size 3",nbin,0.,0.055,nbin,0.,0.055)
+    #HitProb_3_track.GetXaxis().SetRangeUser(0.,0.055)
     HitProb_3_track.GetXaxis().SetTitle("Track X position within pixel [mm]")
-    HitProb_3_track.GetYaxis().SetRangeUser(0.,0.055)
+    #HitProb_3_track.GetYaxis().SetRangeUser(0.,0.055)
     HitProb_3_track.GetYaxis().SetTitle("Track Y position within pixel [mm]")
       
-    HitProb_4_track = TH2D("HitProb_4_track","Hit probability, cluster size 4",300,0.,0.060,300,0.,0.060)
-    HitProb_4_track.GetXaxis().SetRangeUser(0.,0.055)
+    HitProb_4_track = TH2D("HitProb_4_track_nbin%i"%nbin,"Hit probability, cluster size 4",nbin,0.,0.055,nbin,0.,0.055)
+    #HitProb_4_track.GetXaxis().SetRangeUser(0.,0.055)
     HitProb_4_track.GetXaxis().SetTitle("Track X position within pixel [mm]")
-    HitProb_4_track.GetYaxis().SetRangeUser(0.,0.055)
+    #HitProb_4_track.GetYaxis().SetRangeUser(0.,0.055)
     HitProb_4_track.GetYaxis().SetTitle("Track Y position within pixel [mm]")  
       
     for i,tracks in enumerate(dataSet.AllTracks) : 
@@ -92,29 +144,29 @@ def TrackHitProb(dataSet,dut=6,nbin=300):
     #         elif(cluster.size==4) : 
     #             HitProb_4_track.Fill((aDataSet.t_posX[3]-npix_X*pitchX/2)%pitchX,(aDataSet.t_posY[3]-npix_Y*pitchY/2)%pitchY)  
 
-def ClusterHitProb(dataSet,dut=6):
-    HitProb_1_cluster = TH2D("HitProb_1_cluster","Hit probability, cluster size 1",300,0.,0.060,300,0.,0.060)
-    HitProb_1_cluster.GetXaxis().SetRangeUser(0.,0.055)
+def ClusterHitProb(dataSet,nbin,dut=6):
+    HitProb_1_cluster = TH2D("HitProb_1_cluster_nbin%i"%nbin,"Hit probability, cluster size 1",nbin,0.,0.055,nbin,0.,0.055)
+    #HitProb_1_cluster.GetXaxis().SetRangeUser(0.,0.055)
     HitProb_1_cluster.GetXaxis().SetTitle("Cluster X position within pixel [mm]")
-    HitProb_1_cluster.GetYaxis().SetRangeUser(0.,0.055)
+    #HitProb_1_cluster.GetYaxis().SetRangeUser(0.,0.055)
     HitProb_1_cluster.GetYaxis().SetTitle("Cluster Y position within pixel [mm]")
      
-    HitProb_2_cluster = TH2D("HitProb_2_cluster","Hit probability, cluster size 2",300,0.,0.060,300,0.,0.060)
-    HitProb_2_cluster.GetXaxis().SetRangeUser(0.,0.055)
+    HitProb_2_cluster = TH2D("HitProb_2_cluster_nbin%i"%nbin,"Hit probability, cluster size 2",nbin,0.,0.055,nbin,0.,0.055)
+    #HitProb_2_cluster.GetXaxis().SetRangeUser(0.,0.055)
     HitProb_2_cluster.GetXaxis().SetTitle("Cluster X position within pixel [mm]")
-    HitProb_2_cluster.GetYaxis().SetRangeUser(0.,0.055)
+    #HitProb_2_cluster.GetYaxis().SetRangeUser(0.,0.055)
     HitProb_2_cluster.GetYaxis().SetTitle("Cluster Y position within pixel [mm]")
      
-    HitProb_3_cluster = TH2D("HitProb_3_cluster","Hit probability, cluster size 3",300,0.,0.060,300,0.,0.060)
-    HitProb_3_cluster.GetXaxis().SetRangeUser(0.,0.055)
+    HitProb_3_cluster = TH2D("HitProb_3_cluster_nbin%i"%nbin,"Hit probability, cluster size 3",nbin,0.,0.055,nbin,0.,0.055)
+    #HitProb_3_cluster.GetXaxis().SetRangeUser(0.,0.055)
     HitProb_3_cluster.GetXaxis().SetTitle("Cluster X position within pixel [mm]")
-    HitProb_3_cluster.GetYaxis().SetRangeUser(0.,0.055)
+    #HitProb_3_cluster.GetYaxis().SetRangeUser(0.,0.055)
     HitProb_3_cluster.GetYaxis().SetTitle("Cluster Y position within pixel [mm]")
      
-    HitProb_4_cluster = TH2D("HitProb_4_cluster","Hit probability, cluster size 4",300,0.,0.060,300,0.,0.060)
-    HitProb_4_cluster.GetXaxis().SetRangeUser(0.,0.055)
+    HitProb_4_cluster = TH2D("HitProb_4_cluster_nbin%i"%nbin,"Hit probability, cluster size 4",nbin,0.,0.055,nbin,0.,0.055)
+    #HitProb_4_cluster.GetXaxis().SetRangeUser(0.,0.055)
     HitProb_4_cluster.GetXaxis().SetTitle("Cluster X position within pixel [mm]")
-    HitProb_4_cluster.GetYaxis().SetRangeUser(0.,0.055)
+    #HitProb_4_cluster.GetYaxis().SetRangeUser(0.,0.055)
     HitProb_4_cluster.GetYaxis().SetTitle("Cluster Y position within pixel [mm]")
      
     for i,tracks in enumerate(dataSet.AllTracks) : 
