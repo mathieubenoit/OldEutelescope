@@ -18,7 +18,7 @@ def h1_style(h, optstat=0) :
     h.SetTitleOffset(1.15,"Y")
     h.SetTitleSize(0.04,"X")
     h.SetTitleSize(0.04,"Y")
-#     h.SetTitle(0)
+    h.SetTitle(0)
     h.SetTitleFont(42, "XYZ")
 
 def TGraph_style (h) :
@@ -47,7 +47,7 @@ method_name = "QWeighted"
 
 
 #aDataSet = EudetData("/VertexScratch/TB_Data/DESY_TB_DATA_02_07-06-2013_results/histo/tbtrackrun000062.root",500.0)
-aDataSet = EudetData("/VertexScratch/TB_Data/DESY_TB_DATA_02_07-06-2013_results/histo/tbtrackrun000131.root",500.0)
+aDataSet = EudetData("/VertexScratch/TB_Data/DESY_TB_DATA_02_07-06-2013_results/histo/tbtrackrun000131.root",500.0,2)
 
 # aDataSet.PrintTBranchElement()
 
@@ -113,12 +113,12 @@ print "Found %i matched track-cluster binome"%n_matched
 #resr,rest = PerformAlignement(aDataSet,[[0,360],[0,360],[0,360],[-0.5,0.5],[-0.5,0.5]])
 
 #decomment to perform the alignment in 3 steps
-resr,rest = Perform3StepAlignment(aDataSet,[[0,360],[0,360],[0,360],[-0.5,0.5],[-0.5,0.5]],aDataSet.p_nEntries,20)
+resr,rest = Perform2StepAlignment(aDataSet,[[0,360],[0,360],[0,360],[-0.5,0.5],[-0.5,0.5]],aDataSet.p_nEntries,20)
 ApplyAlignment(aDataSet,rest,resr)
 
-# ApplyAlignment(aDataSet,[0.016125, 0.020414 , 0.],[0.0000000000, 0.0000000000, -0.072316])
+#ApplyAlignment(aDataSet,[0.016125, 0.020414 , 0.],[0.0000000000, 0.0000000000, -0.072316])
 
-# for i in range(10000) : 
+#for i in range(10000) : 
 for i in range(aDataSet.p_nEntries) :
     aDataSet.ComputeResiduals(i)
         
@@ -503,7 +503,7 @@ HitProb_1_track_binning1m.Draw("colz")
 can13 = TCanvas()
 can13.cd()
 HitProb_2_track_binning1m.Draw("colz")
-  
+  kdiff3
 can14 = TCanvas()
 can14.cd()
 HitProb_3_track_binning1m.Draw("colz")

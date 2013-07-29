@@ -448,6 +448,16 @@ def Perform3StepAlignment(aDataSet,boundary,nevent,skip) :
       
     return resr.x ,[rest.x[0],rest2.x[0],0]
 
+def Perform2StepAlignment(aDataSet,boundary,nevent,skip) : 
+    x_tx = np.array([0.])
+    x_ty = np.array([0.])
+    xr= np.array([0.,0.,0.])
+    #resr = minimize(TotalRotationFunction,xr,[x_tx,aDataSet,nevent,skip],method='Nelder-Mead',options={'xtol': 1e-5,'disp': True})    
+    rest = minimize(TotalMeanFunctionX,x_tx,[xr,aDataSet,nevent,skip],method='Nelder-Mead',options={'xtol': 1e-5,'disp': True}) 
+    rest2 = minimize(TotalMeanFunctionY,x_ty,[rest.x[0],xr,aDataSet,nevent,skip],method='Nelder-Mead',options={'xtol': 1e-5,'disp': True}) 
+      
+    return xr,[rest.x[0],rest2.x[0],0]
+
 def ApplyAlignment(dataSet,translations,rotations,dut=6,filename="Alignement.txt") :
 
     print "Applying Alignment with  Rotation : %0.10f %0.10f %0.10f [deg] Trans : %0.10f %0.10f  [mm]"%(rotations[0],rotations[1],rotations[2],translations[0],translations[1])
