@@ -27,8 +27,8 @@ def rms(x):
 
     return rms
 
-def TrackHitProb(dataSet,dut=6):
-    HitProb_1_track = TH2D("HitProb_1_track","Hit probability, cluster size 1",300,0.,0.060,300,0.,0.060)
+def TrackHitProb(dataSet,dut=6,nbin=300):
+    HitProb_1_track = TH2D("HitProb_1_track_nbin%i"%nbin,"Hit probability, cluster size 1",300,0.,0.060,300,0.,0.060)
     HitProb_1_track.GetXaxis().SetRangeUser(0.,0.055)
     HitProb_1_track.GetXaxis().SetTitle("Track X position within pixel [mm]")
     HitProb_1_track.GetYaxis().SetRangeUser(0.,0.055)
@@ -381,6 +381,16 @@ def Perform3StepAlignment(aDataSet,boundary,nevent,skip) :
     rest2 = minimize(TotalMeanFunctionY,x_ty,[rest.x[0],resr.x,aDataSet,nevent,skip],method='Nelder-Mead',options={'xtol': 1e-5,'disp': True}) 
       
     return resr.x ,[rest.x[0],rest2.x[0],0]
+
+def Perform2StepAlignment(aDataSet,boundary,nevent,skip) : 
+    x_tx = np.array([0.])
+    x_ty = np.array([0.])
+    xr= np.array([0.,0.,0.])
+    #resr = minimize(TotalRotationFunction,xr,[x_tx,aDataSet,nevent,skip],method='Nelder-Mead',options={'xtol': 1e-5,'disp': True})    
+    rest = minimize(TotalMeanFunctionX,x_tx,[xr,aDataSet,nevent,skip],method='Nelder-Mead',options={'xtol': 1e-5,'disp': True}) 
+    rest2 = minimize(TotalMeanFunctionY,x_ty,[rest.x[0],xr,aDataSet,nevent,skip],method='Nelder-Mead',options={'xtol': 1e-5,'disp': True}) 
+      
+    return xr,[rest.x[0],rest2.x[0],0]
 
 def ApplyAlignment(dataSet,translations,rotations,dut=6,filename="Alignement.txt") :
 

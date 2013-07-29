@@ -181,7 +181,7 @@ class EudetData:
         self.p_euEv = self.pixelTree.euEvt
         
         for index,totvalue in enumerate(self.p_tot) :
-            self.p_tot[index]=totvalue/self.scale
+            self.p_tot[index]=float(totvalue)/self.scale
             
         
   
@@ -348,8 +348,8 @@ class EudetData:
             aTrack.trackX = posX_tmp[j*ndata:j*ndata+ndata]           
             aTrack.trackY = posY_tmp[j*ndata:j*ndata+ndata] 
             for index,element in enumerate(aTrack.trackX) :
-                aTrack.trackX[index] = aTrack.trackX[index]-npix_X*pitchX/2.
-                aTrack.trackY[index] = aTrack.trackY[index]-npix_Y*pitchY/2.   
+                aTrack.trackX[index] = aTrack.trackX[index]-npix_X*pitchX/2.-pitchX/2.
+                aTrack.trackY[index] = aTrack.trackY[index]-npix_Y*pitchY/2.-pitchY/2.   
             aTrack.iden = iden_tmp[j*ndata:j*ndata+ndata]
             aTrack.chi2 = chi2_tmp[j*ndata:j*ndata+ndata]
             aTrack.trackNum = trackNum_tmp[j*ndata:j*ndata+ndata]

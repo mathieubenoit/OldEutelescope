@@ -62,26 +62,26 @@ class Cluster:
         self.relX=0.
         self.relY=0.
         for index,tot_tmp in enumerate(self.tot) :
-            self.relX+=(self.col[index]*pitchX+pitchX/2)*tot_tmp    
-            self.relY+=(self.row[index]*pitchY+pitchY/2)*tot_tmp    
+            self.relX+=(self.col[index]*pitchX)*tot_tmp    
+            self.relY+=(self.row[index]*pitchY)*tot_tmp    
         self.relX/=self.totalTOT
         self.relY/=self.totalTOT
         
-        self.absX=self.relX
-        self.absY=self.relY
+        self.absX=self.relX + pitchX/2.
+        self.absY=self.relY + pitchY/2.
         self.absZ=0
         
     def GetDigitalCentroid(self) :         
         self.relX=0.
         self.relY=0.
         for index,col_tmp in enumerate(self.col) :
-            self.relX+=(self.col[index]*pitchX+pitchX/2)    
-            self.relY+=(self.row[index]*pitchY+pitchY/2)    
+            self.relX+=(self.col[index]*pitchX)    
+            self.relY+=(self.row[index]*pitchY)    
         self.relX/=len(self.col)
         self.relY/=len(self.row)
         
-        self.absX=self.relX
-        self.absY=self.relY
+        self.absX=self.relX + pitchX/2.
+        self.absY=self.relY + pitchY/2.
         self.absZ=0
     
     def GetMaxTOTCentroid(self) :
@@ -91,11 +91,11 @@ class Cluster:
             if self.tot[index]>maxTOT_tmp:
                 maxTOT_tmp=self.tot[index]
                 maxTOTindex_tmp=index
-        self.relX=self.col[maxTOTindex_tmp]*pitchX+pitchX/2
-        self.relY=self.row[maxTOTindex_tmp]*pitchY+pitchY/2
+        self.relX=self.col[maxTOTindex_tmp]*pitchX
+        self.relY=self.row[maxTOTindex_tmp]*pitchY
         
-        self.absX=self.relX
-        self.absY=self.relY
+        self.absX=self.relX + pitchX/2.
+        self.absY=self.relY + pitchY/2.
         self.absZ=0
         
 #     def GetEtaCorrectedQWeightedCentroid(self) :

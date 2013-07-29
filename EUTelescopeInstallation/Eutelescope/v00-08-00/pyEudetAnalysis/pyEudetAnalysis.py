@@ -18,7 +18,7 @@ def h1_style(h, optstat=0) :
     h.SetTitleOffset(1.15,"Y")
     h.SetTitleSize(0.04,"X")
     h.SetTitleSize(0.04,"Y")
-    h.SetTitle(0)
+    h.SetTitle("0")
     h.SetTitleFont(42, "XYZ")
 
 
@@ -32,7 +32,7 @@ method_name = "QWeighted"
 
 
 #aDataSet = EudetData("/VertexScratch/TB_Data/DESY_TB_DATA_02_07-06-2013_results/histo/tbtrackrun000062.root",500.0)
-aDataSet = EudetData("/VertexScratch/TB_Data/DESY_TB_DATA_02_07-06-2013_results/histo/tbtrackrun000131.root",500.0)
+aDataSet = EudetData("/VertexScratch/TB_Data/DESY_TB_DATA_02_07-06-2013_results/histo/tbtrackrun000131.root",500.0,2)
 
 # aDataSet.PrintTBranchElement()
 
@@ -64,8 +64,8 @@ canfreq.SetLogy()
 histo_freq.Draw("")
 
 n_matched = 0
-#for i in range(aDataSet.p_nEntries) : 
-for i in range(10000) : 
+for i in range(aDataSet.p_nEntries) : 
+#for i in range(10000) : 
 
     aDataSet.ClusterEvent(i,method_name)
     aDataSet.GetTrack(i)
@@ -98,13 +98,13 @@ print "Found %i matched track-cluster binome"%n_matched
 #resr,rest = PerformAlignement(aDataSet,[[0,360],[0,360],[0,360],[-0.5,0.5],[-0.5,0.5]])
 
 #decomment to perform the alignment in 3 steps
-#resr,rest = Perform3StepAlignment(aDataSet,[[0,360],[0,360],[0,360],[-0.5,0.5],[-0.5,0.5]],aDataSet.p_nEntries,20)
-#ApplyAlignment(aDataSet,rest,resr)
+resr,rest = Perform2StepAlignment(aDataSet,[[0,360],[0,360],[0,360],[-0.5,0.5],[-0.5,0.5]],aDataSet.p_nEntries,20)
+ApplyAlignment(aDataSet,rest,resr)
 
-ApplyAlignment(aDataSet,[0.016125, 0.020414 , 0.],[0.0000000000, 0.0000000000, -0.072316])
+#ApplyAlignment(aDataSet,[0.016125, 0.020414 , 0.],[0.0000000000, 0.0000000000, -0.072316])
 
-for i in range(10000) : 
-#for i in range(aDataSet.p_nEntries) :
+#for i in range(10000) : 
+for i in range(aDataSet.p_nEntries) :
     aDataSet.ComputeResiduals(i)
         
 hx,hy = TrackClusterCorrelation(aDataSet)
