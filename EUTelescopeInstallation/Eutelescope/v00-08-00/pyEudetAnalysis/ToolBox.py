@@ -27,7 +27,7 @@ def rms(x):
 
     return rms
 
-def ComputeChargeDistance(dataSet):
+def ComputeChargeDistance(dataSet,d=0.005,dut=6):
     AllDistances = [0.]
     AllCharges = [0.]
     
@@ -37,41 +37,55 @@ def ComputeChargeDistance(dataSet):
                 if(dataSet.AllClusters[i][track.cluster].size==2) :
                     maxTOTindex_tmp=0
                     maxTOT_tmp=dataSet.AllClusters[i][track.cluster].tot[0]
+#looking for the pixel with the highest energy
                     for index,tot_tmp in enumerate(dataSet.AllClusters[i][track.cluster].tot) :
                         print "tot_tmp : "
                         print tot_tmp
                         if dataSet.AllClusters[i][track.cluster].tot[index]>maxTOT_tmp:
                             maxTOT_tmp=dataSet.AllClusters[i][track.cluster].tot[index]
                             maxTOTindex_tmp=index
+     
+#computing for the track positions X and Y in the pixel and the relative charge i.e. Qrel = (charge of the pixel with the highest energy)/(total charge of the cluster)
+                    X = (track.trackX[track.iden.index(dut)])%pitchX
+                    Y = (track.trackY[track.iden.index(dut)])%pitchY
+#                     X = (dataSet.AllClusters[i][track.cluster].col[maxTOTindex_tmp]*pitchX+pitchX/2.)%pitchX
+#                     Y = (dataSet.AllClusters[i][track.cluster].row[maxTOTindex_tmp]*pitchY+pitchY/2.)%pitchY
+#                     X = (dataSet.AllClusters[i][track.cluster].absX)%pitchX
+#                     Y = (dataSet.AllClusters[i][track.cluster].absY)%pitchY
+                    Qrel = (dataSet.AllClusters[i][track.cluster].tot[maxTOTindex_tmp])/(dataSet.AllClusters[i][track.cluster].totalTOT)
+#firing tracks for whom the position is in the corner of the pixel
+                    if((X<=d and Y<=d) or (X>=d and Y<=d) or (X>=d and Y>=d) or (X<=d and Y>=d)) :
+                        break
+                    else :                    
+#finding the region of the track in the pixel and computing the minimal distance between the track position and the pixel edge
+                        if(Y<X and Y<(-X+pitchY)):
+                            d = Y                
+                        elif(Y<X and Y>=(-X+pitchY)):
+                            d = pitchX - X
+                        elif(Y>=X and Y<(-X+pitchY)):
+                            d = X
+                        elif(Y>=X and Y>=(-X+pitchY)):
+                            d = pitchY - Y
+
+#checking computations...
                     print "maxTOTindex_tmp : "
                     print maxTOTindex_tmp
                     print "dataSet.AllClusters[i][track.cluster].col[maxTOTindex_tmp] : "
-                    print dataSet.AllClusters[i][track.cluster].col[maxTOTindex_tmp]        
-#                     X = (dataSet.AllClusters[i][track.cluster].col[maxTOTindex_tmp]*pitchX+pitchX/2.)%pitchX
-#                     Y = (dataSet.AllClusters[i][track.cluster].row[maxTOTindex_tmp]*pitchY+pitchY/2.)%pitchY
-                    X = (dataSet.AllClusters[i][track.cluster].absX)%pitchX
-                    Y = (dataSet.AllClusters[i][track.cluster].absY)%pitchY
+                    print dataSet.AllClusters[i][track.cluster].col[maxTOTindex_tmp]   
                     print "dataSet.AllClusters[i][track.cluster].tot[maxTOTindex_tmp] : "
                     print dataSet.AllClusters[i][track.cluster].tot[maxTOTindex_tmp]
                     print "dataSet.AllClusters[i][track.cluster].totalTOT : "
-                    print dataSet.AllClusters[i][track.cluster].totalTOT
-                    Qrel = (dataSet.AllClusters[i][track.cluster].tot[maxTOTindex_tmp])/(dataSet.AllClusters[i][track.cluster].totalTOT)
+                    print dataSet.AllClusters[i][track.cluster].totalTOT                    
                     print "X : "
                     print X
                     print "Y : "
                     print Y
                     print "Qrel : "
                     print Qrel
-                    if(Y<X and Y<(-X+pitchY)):
-                        d = Y                
-                    elif(Y<X and Y>=(-X+pitchY)):
-                        d = pitchX - X
-                    elif(Y>=X and Y<(-X+pitchY)):
-                        d = X
-                    elif(Y>=X and Y>=(-X+pitchY)):
-                        d = pitchY - Y
                     print "d : "
                     print d
+                    
+#adding points to the list of Qrel and minDistances
                     AllDistances.append(d)
                     AllCharges.append(Qrel)
 #     print AllDistances
