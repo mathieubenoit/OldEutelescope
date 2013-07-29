@@ -186,13 +186,21 @@ h1_style(relX_vs_relY)
 
 AllDistances,AllCharges = ComputeChargeDistance(aDataSet)
 graph1 = TGraph(len(AllDistances))
+QrelWrtMindistance = TH2D("QrelWrtMindistance","Relative charge as a function of the minimal distance to the pixel edge",55,0,0.0275,100,0,1)
 for i,point in enumerate(AllDistances) :
     graph1.SetPoint(i,AllDistances[i],AllCharges[i])
+    QrelWrtMindistance.Fill(AllDistances[i],AllCharges[i])
 canEtaCorr = TCanvas()
 graph1.Draw("ap")
-graph1.GetXaxis().SetTitle("min distance (mm)")
+graph1.GetXaxis().SetTitle("minimal distance (mm)")
 graph1.GetYaxis().SetTitle("relative charge")
 TGraph_style(graph1)
+
+canEtaCorr2 = TCanvas()
+QrelWrtMindistance.Draw("colz")
+QrelWrtMindistance.GetXaxis().SetTitle("minimal distance (mm)")
+QrelWrtMindistance.GetYaxis().SetTitle("relative charge")
+h1_style(QrelWrtMindistance)
  
 #resX_calib = TH1D("resX_calib","Unbiased residual X, calibrated",500,-0.150,0.150)
 #resY_calib = TH1D("resY_calib","Unbiased residual Y, calibrated",500,-0.150,0.150)
@@ -576,6 +584,7 @@ if method_name == "QWeighted" :
     can19.SaveAs("/afs/cern.ch/work/a/apequegn/public/DESY_TB_DATA_02_07-06-2013_results/pyEudetAnalysisPlots/QWeighted/ClusterSizeY_QWeighted.png")
     can20.SaveAs("/afs/cern.ch/work/a/apequegn/public/DESY_TB_DATA_02_07-06-2013_results/pyEudetAnalysisPlots/QWeighted/ClusterSize_QWeighted.png")
     canEtaCorr.SaveAs("/afs/cern.ch/work/a/apequegn/public/DESY_TB_DATA_02_07-06-2013_results/pyEudetAnalysisPlots/QWeighted/Eta_QWeighted.png")
+    canEtaCorr2.SaveAs("/afs/cern.ch/work/a/apequegn/public/DESY_TB_DATA_02_07-06-2013_results/pyEudetAnalysisPlots/QWeighted/Eta_hist_QWeighted.png")
  
  
 elif method_name == "DigitalCentroid" :
@@ -613,6 +622,8 @@ elif method_name == "DigitalCentroid" :
     can19.SaveAs("/afs/cern.ch/work/a/apequegn/public/DESY_TB_DATA_02_07-06-2013_results/pyEudetAnalysisPlots/DigitalCentroid/ClusterSizeY_DigitalCentroid.png")
     can20.SaveAs("/afs/cern.ch/work/a/apequegn/public/DESY_TB_DATA_02_07-06-2013_results/pyEudetAnalysisPlots/DigitalCentroid/ClusterSize_DigitalCentroid.png")
     canEtaCorr.SaveAs("/afs/cern.ch/work/a/apequegn/public/DESY_TB_DATA_02_07-06-2013_results/pyEudetAnalysisPlots/DigitalCentroid/Eta_DigitalCentroid.png")
+    canEtaCorr2.SaveAs("/afs/cern.ch/work/a/apequegn/public/DESY_TB_DATA_02_07-06-2013_results/pyEudetAnalysisPlots/DigitalCentroid/Eta_hist_DigitalCentroid.png")
+
          
 elif method_name == "maxTOT" : 
     out = TFile("/afs/cern.ch/work/a/apequegn/public/DESY_TB_DATA_02_07-06-2013_results/pyEudetAnalysisPlots/maxTOT/output_rootfile_maxTOT_firingFreq001_run000131.root", "recreate")
@@ -649,7 +660,8 @@ elif method_name == "maxTOT" :
     can19.SaveAs("/afs/cern.ch/work/a/apequegn/public/DESY_TB_DATA_02_07-06-2013_results/pyEudetAnalysisPlots/maxTOT/ClusterSizeY_maxTOT.png")
     can20.SaveAs("/afs/cern.ch/work/a/apequegn/public/DESY_TB_DATA_02_07-06-2013_results/pyEudetAnalysisPlots/maxTOT/ClusterSize_maxTOT.png")
     canEtaCorr.SaveAs("/afs/cern.ch/work/a/apequegn/public/DESY_TB_DATA_02_07-06-2013_results/pyEudetAnalysisPlots/maxTOT/Eta_maxTOT.png")
- 
+    canEtaCorr2.SaveAs("/afs/cern.ch/work/a/apequegn/public/DESY_TB_DATA_02_07-06-2013_results/pyEudetAnalysisPlots/maxTOT/Eta_hist_maxTOT.png")
+
  
 g1 = TF1("m1","gaus",-0.025,pitchX/sqrt(12))
 g2 = TF1("m2","gaus",0.025,pitchX/sqrt(12))
