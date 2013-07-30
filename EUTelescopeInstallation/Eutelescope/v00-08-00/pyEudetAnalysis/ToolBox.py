@@ -27,6 +27,15 @@ def rms(x):
 
     return rms
 
+def ComputeDetectorAcceptance(dataSet, dut=6):
+    n_tracks_in = 0
+    for i,tracks in enumerate(dataSet.AllTracks) : 
+        for track in tracks : 
+            if (track.trackX[track.iden.index(dut)]>=0 and track.trackX[track.iden.index(dut)]<=(pitchX*npix_X)) and (track.trackY[track.iden.index(dut)]>=0 and track.trackY[track.iden.index(dut)]<=(pitchY*npix_Y)) :
+                n_tracks_in+=1
+    return n_tracks_in
+    
+
 def ComputeChargeDistance(dataSet,d=0.005,dut=6):
     AllDistances = [0.]
     AllCharges = [0.]
@@ -39,13 +48,13 @@ def ComputeChargeDistance(dataSet,d=0.005,dut=6):
                     maxTOT_tmp=dataSet.AllClusters[i][track.cluster].tot[0]
 #looking for the pixel with the highest energy
                     for index,tot_tmp in enumerate(dataSet.AllClusters[i][track.cluster].tot) :
-                        print "tot_tmp : "
-                        print tot_tmp
+#                         print "tot_tmp : "
+#                         print tot_tmp
                         if dataSet.AllClusters[i][track.cluster].tot[index]>maxTOT_tmp:
                             maxTOT_tmp=dataSet.AllClusters[i][track.cluster].tot[index]
                             maxTOTindex_tmp=index
      
-#computing for the track positions X and Y in the pixel and the relative charge i.e. Qrel = (charge of the pixel with the highest energy)/(total charge of the cluster)
+#computing the track positions X and Y in the pixel and the relative charge i.e. Qrel = (charge of the pixel with the highest energy)/(total charge of the cluster)
                     X = (track.trackX[track.iden.index(dut)])%pitchX
                     Y = (track.trackY[track.iden.index(dut)])%pitchY
 #                     X = (dataSet.AllClusters[i][track.cluster].col[maxTOTindex_tmp]*pitchX+pitchX/2.)%pitchX
@@ -54,8 +63,8 @@ def ComputeChargeDistance(dataSet,d=0.005,dut=6):
 #                     Y = (dataSet.AllClusters[i][track.cluster].absY)%pitchY
                     Qrel = (dataSet.AllClusters[i][track.cluster].tot[maxTOTindex_tmp])/(dataSet.AllClusters[i][track.cluster].totalTOT)
 #firing tracks for whom the position is in the corner of the pixel
-                    if((X<=d and Y<=d) or (X>=d and Y<=d) or (X>=d and Y>=d) or (X<=d and Y>=d)) :
-                        break
+                    if(((X<=d and Y<=d) or (X>=(pitchX-d) and Y<=d)) or ((X>=(pitchX-d) and Y>=(pitchY-d)) or (X<=d and Y>=(pitchY-d)))) :
+                        continue
                     else :                    
 #finding the region of the track in the pixel and computing the minimal distance between the track position and the pixel edge
                         if(Y<X and Y<(-X+pitchY)):
@@ -68,22 +77,22 @@ def ComputeChargeDistance(dataSet,d=0.005,dut=6):
                             d = pitchY - Y
 
 #checking computations...
-                    print "maxTOTindex_tmp : "
-                    print maxTOTindex_tmp
-                    print "dataSet.AllClusters[i][track.cluster].col[maxTOTindex_tmp] : "
-                    print dataSet.AllClusters[i][track.cluster].col[maxTOTindex_tmp]   
-                    print "dataSet.AllClusters[i][track.cluster].tot[maxTOTindex_tmp] : "
-                    print dataSet.AllClusters[i][track.cluster].tot[maxTOTindex_tmp]
-                    print "dataSet.AllClusters[i][track.cluster].totalTOT : "
-                    print dataSet.AllClusters[i][track.cluster].totalTOT                    
-                    print "X : "
-                    print X
-                    print "Y : "
-                    print Y
-                    print "Qrel : "
-                    print Qrel
-                    print "d : "
-                    print d
+#                     print "maxTOTindex_tmp : "
+#                     print maxTOTindex_tmp
+#                     print "dataSet.AllClusters[i][track.cluster].col[maxTOTindex_tmp] : "
+#                     print dataSet.AllClusters[i][track.cluster].col[maxTOTindex_tmp]   
+#                     print "dataSet.AllClusters[i][track.cluster].tot[maxTOTindex_tmp] : "
+#                     print dataSet.AllClusters[i][track.cluster].tot[maxTOTindex_tmp]
+#                     print "dataSet.AllClusters[i][track.cluster].totalTOT : "
+#                     print dataSet.AllClusters[i][track.cluster].totalTOT                    
+#                     print "X : "
+#                     print X
+#                     print "Y : "
+#                     print Y
+#                     print "Qrel : "
+#                     print Qrel
+#                     print "d : "
+#                     print d
                     
 #adding points to the list of Qrel and minDistances
                     AllDistances.append(d)
@@ -238,6 +247,7 @@ def TotalMeanFunctionX(Translations,Rotations,aDataDet,nevents,skip,dut=6):
                     if fabs(distx)<0.1 and fabs(disty)<0.1:
                         totaldist_evaluator+=distx 
                         n+=1
+    print "n : %i"%n
     print "Evaluating for Trans : %.9f %.9f  [mm] metric = %.9f  n = %i"%(Translations[0],0,fabs(totaldist_evaluator/n),n)
     return fabs(totaldist_evaluator/n)
     # return -n
