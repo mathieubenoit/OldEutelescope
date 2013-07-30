@@ -4,6 +4,7 @@ author: Anne-Laure pequegnot
 
 from math import fsum
 from Constant import *
+from ROOT import TMath
 class Cluster:
     
     col = []
@@ -97,19 +98,102 @@ class Cluster:
         self.absX=self.relX + pitchX/2.
         self.absY=self.relY + pitchY/2.
         self.absZ=0
-        
-#     def GetEtaCorrectedQWeightedCentroid(self) :
-#         # study with clusterSize = 2 first
-#         if self.size==2:
-#             # search for pixel with higher energy
-#             maxTOTindex_tmp=0
-#             maxTOT_tmp=self.tot[0]
-#             for index,tot_tmp in enumerate(self.tot) :
-#                 if self.tot[index]>maxTOT_tmp:
-#                     maxTOT_tmp=self.tot[index]
-#                     maxTOTindex_tmp=index
-            
-        
+
+
+    def GetEtaCorrectedQWeightedCentroid(self) :
+        maxTOTindex_tmp=0
+        maxTOT_tmp=self.tot[0]
+        for index,tot_tmp in enumerate(self.tot) :
+            if self.tot[index]>maxTOT_tmp:
+                maxTOT_tmp=self.tot[index]
+                maxTOTindex_tmp=index
+                
+            if(self.size==2) :      
+#computing the relative charge i.e. Qrel = (charge of the pixel with the highest energy)/(total charge of the cluster)
+                Qrel = (self.tot[maxTOTindex_tmp])/(self.totalTOT)
+#                 print "TMath.ErfInverse(2.*Qrel-1.) : %f"%(float(TMath.ErfInverse(2.*Qrel-1.)))
+#                 print "sigma : %f"%(float(sigma))
+#                 print sigma
+#                 print "sigma*TMath.ErfInverse(2.*Qrel-1.) : %f"%(float(sigma)*TMath.ErfInverse(2.*Qrel-1.))
+#                 print 'self.sizeX : %i'%self.sizeX
+#                 print 'self.sizeY : %i'%self.sizeY
+#                 print 'maxTOTindex_tmp : %i'%maxTOTindex_tmp
+#                 print 'self.row[maxTOTindex_tmp]*pitchY : %f'%(float(self.row[maxTOTindex_tmp])*pitchY)
+#                 print 'self.col[maxTOTindex_tmp]*pitchY : %f'%(float(self.col[maxTOTindex_tmp])*pitchY)
+#distinguishing the 2 cases 'cluster size 2x1' and 'cluster size 1x2'
+                if(self.sizeX==2) :
+                #cluster size 2x1
+                    if(maxTOTindex_tmp==1) :
+                    #neighbor on the left side
+                        self.relX = maxTOTindex_tmp*pitchX + sigma*TMath.ErfInverse(2.*Qrel-1.) 
+                        self.relY = self.row[maxTOTindex_tmp]*pitchY                      
+                    elif(maxTOTindex_tmp==0) :
+                    #neighbor on the right side
+                        self.relX = (maxTOTindex_tmp+1.)*pitchX - sigma*TMath.ErfInverse(2.*Qrel-1.)   
+                        self.relY = self.row[maxTOTindex_tmp]*pitchY                      
+                elif(self.sizeX==1) :
+                #cluster size 1x2
+                    if(maxTOTindex_tmp==1) :
+                    #neighbor on the bottom side
+                        self.relX = self.col[maxTOTindex_tmp]*pitchX
+                        self.relY = maxTOTindex_tmp*pitchY + sigma*TMath.ErfInverse(2.*Qrel-1.)                        
+                    elif(maxTOTindex_tmp==0) :
+                    #neighbor on the top side
+                        self.relX = self.col[maxTOTindex_tmp]*pitchX
+                        self.relY = (maxTOTindex_tmp+1.)*pitchY - sigma*TMath.ErfInverse(2.*Qrel-1.) 
+#                 print "absX : %f"%float(self.absX)
+#                 print "absY : %f"%float(self.absY)
+            else :
+                self.relX = 0
+                self.relY = 0
+            self.absX=self.relX + pitchX/2.
+            self.absY=self.relY + pitchY/2.
+            self.absZ=0
+
+                
+
+# def GetEtaCorrectedQWeightedCentroid(self,dataSet,dut=6) :
+#     for i,tracks in enumerate(dataSet.AllTracks) : 
+#         for track in tracks : 
+#             if track.cluster!=-11 :
+#                 if(dataSet.AllClusters[i][track.cluster].size==2) :
+#                     maxTOTindex_tmp=0
+#                     maxTOT_tmp=dataSet.AllClusters[i][track.cluster].tot[0]
+# #looking for the pixel with the highest energy
+#                     for index,tot_tmp in enumerate(dataSet.AllClusters[i][track.cluster].tot) :
+# #                         print "tot_tmp : "
+# #                         print tot_tmp
+#                         if dataSet.AllClusters[i][track.cluster].tot[index]>maxTOT_tmp:
+#                             maxTOT_tmp=dataSet.AllClusters[i][track.cluster].tot[index]
+#                             maxTOTindex_tmp=index
+#       
+# #computing the relative charge i.e. Qrel = (charge of the pixel with the highest energy)/(total charge of the cluster)
+#                     Qrel = (dataSet.AllClusters[i][track.cluster].tot[maxTOTindex_tmp])/(dataSet.AllClusters[i][track.cluster].totalTOT)
+# #distinguishing the 2 cases 'cluster size 2x1' and 'cluster size 1x2'
+#                     if(dataSet.AllClusters[i][track.cluster].sizeX==2) :
+#                     #cluster size 2x1
+#                         if(maxTOTindex_tmp==1) :
+#                         #neighbor on the left side
+#                             self.absX = maxTOTindex_tmp*pitchX + sigma*ErfInverse(2*Qrel-1) 
+#                             self.absY=dataSet.AllClusters[i][track.cluster].row[maxTOTindex_tmp]*pitchY + pitchY/2.                      
+#                         elif(maxTOTindex_tmp==0) :
+#                         #neighbor on the right side
+#                             self.absX = (maxTOTindex_tmp+1)*pitchX - sigma*ErfInverse(2*Qrel-1)   
+#                             self.absY=dataSet.AllClusters[i][track.cluster].row[maxTOTindex_tmp]*pitchY + pitchY/2.                      
+#                     elif(dataSet.AllClusters[i][track.cluster].sizeX==1) :
+#                     #cluster size 1x2
+#                         if(maxTOTindex_tmp==1) :
+#                         #neighbor on the bottom side
+#                             self.absX=dataSet.AllClusters[i][track.cluster].col[maxTOTindex_tmp]*pitchX + pitchX/2.
+#                             self.absY = maxTOTindex_tmp*pitchY + sigma*ErfInverse(2*Qrel-1)                        
+#                         elif(maxTOTindex_tmp==0) :
+#                         #neighbor on the top side
+#                             self.absX=dataSet.AllClusters[i][track.cluster].col[maxTOTindex_tmp]*pitchX + pitchX/2.
+#                             self.absY = (maxTOTindex_tmp+1)*pitchY - sigma*ErfInverse(2*Qrel-1) 
+#                 else :
+#                     self.absX = 0
+#                     self.absY = 0
+
 
     def GetResiduals(self,x,y) :
         self.resX = self.absX-(x)
