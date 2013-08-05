@@ -31,7 +31,7 @@ def ComputeDetectorAcceptance(dataSet, dut=6):
     n_tracks_in = 0
     for i,tracks in enumerate(dataSet.AllTracks) : 
         for track in tracks : 
-            if (track.trackX[track.iden.index(dut)]>=0 and track.trackX[track.iden.index(dut)]<=(pitchX*npix_X)) and (track.trackY[track.iden.index(dut)]>=0 and track.trackY[track.iden.index(dut)]<=(pitchY*npix_Y)) :
+            if (track.trackX[track.iden.index(dut)]>=-(pitchX*npix_X)/2. and track.trackX[track.iden.index(dut)]<=(pitchX*npix_X)/2.) and (track.trackY[track.iden.index(dut)]>=-(pitchY*npix_Y)/2. and track.trackY[track.iden.index(dut)]<=(pitchY*npix_Y)/2.) :
                 n_tracks_in+=1
     return n_tracks_in
     
@@ -102,6 +102,86 @@ def ComputeChargeDistance(dataSet,d=0.005,dut=6):
     return AllDistances,AllCharges
     
 
+def HitProbCorrelationX(dataSet,nbin,dut=6):
+    HitProb_1_correlationX = TH2D("HitProb_1_correlationX_nbin%i"%nbin,"Hit probability, cluster size 1",nbin,0.,0.055,nbin,0.,0.055)
+    #HitProb_1_correlationX.GetXaxis().SetRangeUser(0.,0.055)
+    HitProb_1_correlationX.GetXaxis().SetTitle("Track X position within pixel [mm]")
+    #HitProb_1_correlationX.GetYaxis().SetRangeUser(0.,0.055)
+    HitProb_1_correlationX.GetYaxis().SetTitle("Cluster X position within pixel [mm]")
+      
+    HitProb_2_correlationX = TH2D("HitProb_2_correlationX_nbin%i"%nbin,"Hit probability, cluster size 2",nbin,0.,0.055,nbin,0.,0.055)
+    #HitProb_2_correlationX.GetXaxis().SetRangeUser(0.,0.055)
+    HitProb_2_correlationX.GetXaxis().SetTitle("Track X position within pixel [mm]")
+    #HitProb_2_correlationX.GetYaxis().SetRangeUser(0.,0.055)
+    HitProb_2_correlationX.GetYaxis().SetTitle("Cluster X position within pixel [mm]")
+      
+    HitProb_3_correlationX = TH2D("HitProb_3_correlationX_nbin%i"%nbin,"Hit probability, cluster size 3",nbin,0.,0.055,nbin,0.,0.055)
+    #HitProb_3_correlationX.GetXaxis().SetRangeUser(0.,0.055)
+    HitProb_3_correlationX.GetXaxis().SetTitle("Track X position within pixel [mm]")
+    #HitProb_3_correlationX.GetYaxis().SetRangeUser(0.,0.055)
+    HitProb_3_correlationX.GetYaxis().SetTitle("Cluster X position within pixel [mm]")
+          
+    HitProb_4_correlationX = TH2D("HitProb_4_correlationX_nbin%i"%nbin,"Hit probability, cluster size 4",nbin,0.,0.055,nbin,0.,0.055)
+    #HitProb_4_correlationX.GetXaxis().SetRangeUser(0.,0.055)
+    HitProb_4_correlationX.GetXaxis().SetTitle("Track X position within pixel [mm]")
+    #HitProb_4_correlationX.GetYaxis().SetRangeUser(0.,0.055)
+    HitProb_4_correlationX.GetYaxis().SetTitle("Cluster X position within pixel [mm]") 
+
+    for i,tracks in enumerate(dataSet.AllTracks) : 
+        for track in tracks : 
+            if track.cluster!=-11 :
+                if(dataSet.AllClusters[i][track.cluster].size==1) : 
+                    HitProb_1_correlationX.Fill((track.trackX[track.iden.index(dut)])%pitchX,(dataSet.AllClusters[i][track.cluster].absX)%pitchX) 
+                elif(dataSet.AllClusters[i][track.cluster].size==2) : 
+                    HitProb_2_correlationX.Fill((track.trackX[track.iden.index(dut)])%pitchX,(dataSet.AllClusters[i][track.cluster].absX)%pitchX)  
+                elif(dataSet.AllClusters[i][track.cluster].size==3 and (dataSet.AllClusters[i][track.cluster].sizeX==2 and dataSet.AllClusters[i][track.cluster].sizeY==2)) : 
+                    HitProb_3_correlationX.Fill((track.trackX[track.iden.index(dut)])%pitchX,(dataSet.AllClusters[i][track.cluster].absX)%pitchX)
+                elif(dataSet.AllClusters[i][track.cluster].size==4 and (dataSet.AllClusters[i][track.cluster].sizeX==2 and dataSet.AllClusters[i][track.cluster].sizeY==2)) : 
+                    HitProb_4_correlationX.Fill((track.trackX[track.iden.index(dut)])%pitchX,(dataSet.AllClusters[i][track.cluster].absX)%pitchX)
+    
+    return HitProb_1_correlationX,HitProb_2_correlationX,HitProb_3_correlationX,HitProb_4_correlationX
+    
+def HitProbCorrelationY(dataSet,nbin,dut=6):
+    HitProb_1_correlationY = TH2D("HitProb_1_correlationY_nbin%i"%nbin,"Hit probability, cluster size 1",nbin,0.,0.055,nbin,0.,0.055)
+    #HitProb_1_correlationY.GetXaxis().SetRangeUser(0.,0.055)
+    HitProb_1_correlationY.GetXaxis().SetTitle("Track Y position within pixel [mm]")
+    #HitProb_1_correlationY.GetYaxis().SetRangeUser(0.,0.055)
+    HitProb_1_correlationY.GetYaxis().SetTitle("Cluster Y position within pixel [mm]")
+      
+    HitProb_2_correlationY = TH2D("HitProb_2_correlationY_nbin%i"%nbin,"Hit probability, cluster size 2",nbin,0.,0.055,nbin,0.,0.055)
+    #HitProb_2_correlationY.GetXaxis().SetRangeUser(0.,0.055)
+    HitProb_2_correlationY.GetXaxis().SetTitle("Track Y position within pixel [mm]")
+    #HitProb_2_correlationY.GetYaxis().SetRangeUser(0.,0.055)
+    HitProb_2_correlationY.GetYaxis().SetTitle("Cluster Y position within pixel [mm]")
+      
+    HitProb_3_correlationY = TH2D("HitProb_3_correlationY_nbin%i"%nbin,"Hit probability, cluster size 3",nbin,0.,0.055,nbin,0.,0.055)
+    #HitProb_3_correlationY.GetXaxis().SetRangeUser(0.,0.055)
+    HitProb_3_correlationY.GetXaxis().SetTitle("Track Y position within pixel [mm]")
+    #HitProb_3_correlationY.GetYaxis().SetRangeUser(0.,0.055)
+    HitProb_3_correlationY.GetYaxis().SetTitle("Cluster Y position within pixel [mm]")
+          
+    HitProb_4_correlationY = TH2D("HitProb_4_correlationY_nbin%i"%nbin,"Hit probability, cluster size 4",nbin,0.,0.055,nbin,0.,0.055)
+    #HitProb_4_correlationY.GetXaxis().SetRangeUser(0.,0.055)
+    HitProb_4_correlationY.GetXaxis().SetTitle("Track Y position within pixel [mm]")
+    #HitProb_4_correlationY.GetYaxis().SetRangeUser(0.,0.055)
+    HitProb_4_correlationY.GetYaxis().SetTitle("Cluster Y position within pixel [mm]")
+    
+    for i,tracks in enumerate(dataSet.AllTracks) : 
+        for track in tracks : 
+            if track.cluster!=-11 :
+                if(dataSet.AllClusters[i][track.cluster].size==1) : 
+                    HitProb_1_correlationY.Fill((track.trackY[track.iden.index(dut)])%pitchY,(dataSet.AllClusters[i][track.cluster].absY)%pitchY) 
+                elif(dataSet.AllClusters[i][track.cluster].size==2) : 
+                    HitProb_2_correlationY.Fill((track.trackY[track.iden.index(dut)])%pitchY,(dataSet.AllClusters[i][track.cluster].absY)%pitchY)  
+                elif(dataSet.AllClusters[i][track.cluster].size==3 and (dataSet.AllClusters[i][track.cluster].sizeX==2 and dataSet.AllClusters[i][track.cluster].sizeY==2)) : 
+                    HitProb_3_correlationY.Fill((track.trackY[track.iden.index(dut)])%pitchY,(dataSet.AllClusters[i][track.cluster].absY)%pitchY)
+                elif(dataSet.AllClusters[i][track.cluster].size==4 and (dataSet.AllClusters[i][track.cluster].sizeX==2 and dataSet.AllClusters[i][track.cluster].sizeY==2)) : 
+                    HitProb_4_correlationY.Fill((track.trackY[track.iden.index(dut)])%pitchY,(dataSet.AllClusters[i][track.cluster].absY)%pitchY)
+    
+    return HitProb_1_correlationY,HitProb_2_correlationY,HitProb_3_correlationY,HitProb_4_correlationY
+    
+
+
 def TrackHitProb(dataSet,nbin,dut=6):
     HitProb_1_track = TH2D("HitProb_1_track_nbin%i"%nbin,"Hit probability, cluster size 1",nbin,0.,0.055,nbin,0.,0.055)
     #HitProb_1_track.GetXaxis().SetRangeUser(0.,0.055)
@@ -134,9 +214,9 @@ def TrackHitProb(dataSet,nbin,dut=6):
                     HitProb_1_track.Fill((track.trackX[track.iden.index(dut)])%pitchX,(track.trackY[track.iden.index(dut)])%pitchY) 
                 elif(dataSet.AllClusters[i][track.cluster].size==2) : 
                     HitProb_2_track.Fill((track.trackX[track.iden.index(dut)])%pitchX,(track.trackY[track.iden.index(dut)])%pitchY)  
-                elif(dataSet.AllClusters[i][track.cluster].size==3) : 
+                elif(dataSet.AllClusters[i][track.cluster].size==3 and (dataSet.AllClusters[i][track.cluster].sizeX==2 and dataSet.AllClusters[i][track.cluster].sizeY==2)) : 
                     HitProb_3_track.Fill((track.trackX[track.iden.index(dut)])%pitchX,(track.trackY[track.iden.index(dut)])%pitchY)
-                elif(dataSet.AllClusters[i][track.cluster].size==4) : 
+                elif(dataSet.AllClusters[i][track.cluster].size==4 and (dataSet.AllClusters[i][track.cluster].sizeX==2 and dataSet.AllClusters[i][track.cluster].sizeY==2)) : 
                     HitProb_4_track.Fill((track.trackX[track.iden.index(dut)])%pitchX,(track.trackY[track.iden.index(dut)])%pitchY)
     
     return HitProb_1_track,HitProb_2_track,HitProb_3_track,HitProb_4_track
@@ -200,13 +280,13 @@ def ClusterHitProb(dataSet,nbin,dut=6):
 #                 print 'track.cluster : '
 #                 print track.cluster
                 if(dataSet.AllClusters[i][track.cluster].size==1) : 
-                    HitProb_1_cluster.Fill((dataSet.AllClusters[i][track.cluster].relX)%pitchX,(dataSet.AllClusters[i][track.cluster].relY)%pitchY) 
+                    HitProb_1_cluster.Fill((dataSet.AllClusters[i][track.cluster].absX)%pitchX,(dataSet.AllClusters[i][track.cluster].absY)%pitchY) 
                 elif(dataSet.AllClusters[i][track.cluster].size==2) : 
-                    HitProb_2_cluster.Fill((dataSet.AllClusters[i][track.cluster].relX)%pitchX,(dataSet.AllClusters[i][track.cluster].relY)%pitchY)  
-                elif(dataSet.AllClusters[i][track.cluster].size==3) : 
-                    HitProb_3_cluster.Fill((dataSet.AllClusters[i][track.cluster].relX)%pitchX,(dataSet.AllClusters[i][track.cluster].relY)%pitchY) 
-                elif(dataSet.AllClusters[i][track.cluster].size==4) : 
-                    HitProb_4_cluster.Fill((dataSet.AllClusters[i][track.cluster].relX)%pitchX,(dataSet.AllClusters[i][track.cluster].relY)%pitchY)
+                    HitProb_2_cluster.Fill((dataSet.AllClusters[i][track.cluster].absX)%pitchX,(dataSet.AllClusters[i][track.cluster].absY)%pitchY)  
+                elif((dataSet.AllClusters[i][track.cluster].size==3) and (dataSet.AllClusters[i][track.cluster].sizeX==2 and dataSet.AllClusters[i][track.cluster].sizeY==2)) : 
+                    HitProb_3_cluster.Fill((dataSet.AllClusters[i][track.cluster].absX)%pitchX,(dataSet.AllClusters[i][track.cluster].absY)%pitchY) 
+                elif(dataSet.AllClusters[i][track.cluster].size==4 and (dataSet.AllClusters[i][track.cluster].sizeX==2 and dataSet.AllClusters[i][track.cluster].sizeY==2)) : 
+                    HitProb_4_cluster.Fill((dataSet.AllClusters[i][track.cluster].absX)%pitchX,(dataSet.AllClusters[i][track.cluster].absY)%pitchY)
                 
     return HitProb_1_cluster,HitProb_2_cluster,HitProb_3_cluster,HitProb_4_cluster
 
@@ -367,7 +447,70 @@ def TotalRotationFunction(Rotations,Translations,aDataDet,nevents,skip=1,dut=6):
 #     print "Evaluating for Rotation : %.9f %.9f %.9f [deg] Trans : %f %f  [mm] metric = %.9f  n = %i"%(Rotations[0],Rotations[1],Rotations[2],Translations[0],0,result,n)
 #     return result
 
+def TotalSigmaFunctionX(aDataDet,sigma_tmp,skip,dut=6):
 
+#     for j,tracks in enumerate(aDataSet.AllTracks) : 
+#         for track in tracks : 
+#             if track.cluster!=-11 and len(aDataSet.AllClusters[j])!=0 :  
+#                 aDataSet.AllClusters[i][track.cluster].
+
+    for i in range(aDataSet.p_nEntries) :
+        if i%skip==0 :  
+            aDataSet.ClusterEvent(i,method_name,sigma_tmp)
+            aDataSet.ComputeResiduals(i)
+    for i in range(1,n_cs+2) : #n_cs+2 excluded
+        tmpx = TH1D("resX_%i"%i,"Unbiased residual X, cluster size X = %i"%i,300,-0.150,0.150)
+        tmpx.GetXaxis().SetTitle("X_{track} - X_{Timepix} (mm)")
+        tmpx.GetYaxis().SetTitle("Number of hits")
+        tmpx.SetLineColor(i)
+        resX_cs.append(tmpx)
+    for j,tracks in enumerate(aDataSet.AllTracks) : 
+        for track in tracks : 
+            if track.cluster!=-11 and len(aDataSet.AllClusters[j])!=0 :     
+                aCluster = aDataSet.AllClusters[j][track.cluster]
+                for i in range(1,n_cs+2) :
+                    if(aCluster.sizeX==i) : 
+                        resX_cs[i-1].Fill(aCluster.resX) 
+   
+      
+    g1 = TF1("m1","gaus",-1,1)            
+    rX = resX_cs[1].Fit(g1,"RS","")
+    sigmaX = rX.Parameter(2) #retrieve the value for the parameter 2 i.e sigma of the gaussian fit
+    sigmaX_err = rX.ParError(2) #retrieve the error for the parameter 2
+      
+    return sigmaX
+  
+def TotalSigmaFunctionY(aDataDet,sigma_tmp,skip,dut=6):
+#     for j,tracks in enumerate(aDataSet.AllTracks) : 
+#         for track in tracks : 
+#             if track.cluster!=-11 and len(aDataSet.AllClusters[j])!=0 :  
+#                 dataSet.AllClusters[i][track.cluster].
+    for i in range(aDataSet.p_nEntries) :
+        if i%skip==0 :  
+            aDataSet.ClusterEvent(i,method_name,sigma_tmp)
+            aDataSet.ComputeResiduals(i)
+    for i in range(1,n_cs+2) : #n_cs+2 excluded
+        tmpy = TH1D("resY_%i"%i,"Unbiased residual Y, cluster size Y = %i"%i,300,-0.150,0.150)
+        tmpy.GetXaxis().SetTitle("Y_{track} - Y_{Timepix} (mm)")
+        tmpy.GetYaxis().SetTitle("Number of hits")
+        tmpy.SetLineColor(i)
+        resY_cs.append(tmpy)
+    for j,tracks in enumerate(aDataSet.AllTracks) : 
+        for track in tracks : 
+            if track.cluster!=-11 and len(aDataSet.AllClusters[j])!=0 :     
+                aCluster = aDataSet.AllClusters[j][track.cluster]
+                for i in range(1,n_cs+2) :
+                    if(aCluster.sizeY==i) : 
+                        resY_cs[i-1].Fill(aCluster.resY)    
+      
+    g2 = TF1("m1","gaus",-1,1)            
+  
+    rY = resY_cs[1].Fit(g2,"RS","")
+    sigmaY = rY.Parameter(2)
+    sigmaY_err = rY.ParError(2)
+      
+    return sigmaY
+  
 
 
 def TotalDistanceFunction(parameters,aDataDet,nevents,skip,dut=6):
@@ -467,6 +610,14 @@ def Perform2StepAlignment(aDataSet,boundary,nevent,skip) :
     rest2 = minimize(TotalMeanFunctionY,x_ty,[rest.x[0],xr,aDataSet,nevent,skip],method='Nelder-Mead',options={'xtol': 1e-5,'disp': True}) 
       
     return xr,[rest.x[0],rest2.x[0],0]
+
+def FindSigmaMin(aDataSet,sigma_tmp,skip) : 
+    xsigmaX = 9.
+    xsigmaY = 9.
+    ressigmaX = minimize(TotalSigmaFunctionX,xsigmaX,[aDataSet,sigma_tmp,skip],method='BFGS',options={'disp': True})    
+    ressigmaY = minimize(TotalSigmaFunctionY,xsigmaY,[aDataSet,sigma_tmp,skip],method='BFGS',options={'disp': True})    
+       
+    return ressigmaX.x ,ressigmaY.x
 
 def ApplyAlignment(dataSet,translations,rotations,dut=6,filename="Alignement.txt") :
 

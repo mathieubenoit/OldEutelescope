@@ -409,7 +409,8 @@ class EudetData:
         
         
               
-    def ClusterEvent(self,i,method="QWeighted"):
+#     def ClusterEvent(self,i,method="QWeighted"):
+    def ClusterEvent(self,i,method="QWeighted",sigma=0.003):
         
         self.getEvent(i) 
         
@@ -458,8 +459,9 @@ class EudetData:
                 cluster.GetDigitalCentroid()
             elif (method=="maxTOT"):
                 cluster.GetMaxTOTCentroid()
-#             elif (method=="EtaCorrectedQWeighted"):
-#                 cluster.GetEtaCorrectedQWeightedCentroid()    
+            elif (method=="EtaCorrection"):
+#                 cluster.GetEtaCorrectedQWeightedCentroid() 
+                cluster.GetEtaCorrectedQWeightedCentroid(sigma)   
             # to be implemented in the future:
             # digital, maxTOT/maxQ, eta corrected
             

@@ -100,17 +100,29 @@ class Cluster:
         self.absZ=0
 
 
-    def GetEtaCorrectedQWeightedCentroid(self) :
+    def GetEtaCorrectedQWeightedCentroid(self,sigma=0.003) :
+#     def GetEtaCorrectedQWeightedCentroid(self) :
         maxTOTindex_tmp=0
+        minTOTindex_tmp = 0
         maxTOT_tmp=self.tot[0]
+        
+        self.relX=-1000
+        self.relY=-1000
+        self.absX=-1000
+        self.absY=-1000
+        #self.GetQWeightedCentroid()
         for index,tot_tmp in enumerate(self.tot) :
             if self.tot[index]>maxTOT_tmp:
                 maxTOT_tmp=self.tot[index]
                 maxTOTindex_tmp=index
-                
+            if(maxTOTindex_tmp==1)  :
+                minTOTindex_tmp =0
+            else :
+                minTOTindex_tmp = 1    
             if(self.size==2) :      
 #computing the relative charge i.e. Qrel = (charge of the pixel with the highest energy)/(total charge of the cluster)
                 Qrel = (self.tot[maxTOTindex_tmp])/(self.totalTOT)
+#                 self.Print()
 #                 print "TMath.ErfInverse(2.*Qrel-1.) : %f"%(float(TMath.ErfInverse(2.*Qrel-1.)))
 #                 print "sigma : %f"%(float(sigma))
 #                 print sigma
@@ -121,34 +133,34 @@ class Cluster:
 #                 print 'self.row[maxTOTindex_tmp]*pitchY : %f'%(float(self.row[maxTOTindex_tmp])*pitchY)
 #                 print 'self.col[maxTOTindex_tmp]*pitchY : %f'%(float(self.col[maxTOTindex_tmp])*pitchY)
 #distinguishing the 2 cases 'cluster size 2x1' and 'cluster size 1x2'
-                if(self.sizeX==2) :
+                if(self.sizeX==2 and self.sizeY==1) :
                 #cluster size 2x1
-                    if(maxTOTindex_tmp==1) :
+                    if(self.col[maxTOTindex_tmp]>self.col[minTOTindex_tmp]) :
                     #neighbor on the left side
-                        self.relX = maxTOTindex_tmp*pitchX + sigma*TMath.ErfInverse(2.*Qrel-1.) 
-                        self.relY = self.row[maxTOTindex_tmp]*pitchY                      
-                    elif(maxTOTindex_tmp==0) :
+                        self.relX = self.col[maxTOTindex_tmp]*pitchX + sigma*TMath.ErfInverse(2.*Qrel-1.) 
+                        self.relY = self.row[maxTOTindex_tmp]*pitchY +pitchY/2.                     
+                    elif(self.col[maxTOTindex_tmp]<self.col[minTOTindex_tmp]) :
                     #neighbor on the right side
-                        self.relX = (maxTOTindex_tmp+1.)*pitchX - sigma*TMath.ErfInverse(2.*Qrel-1.)   
-                        self.relY = self.row[maxTOTindex_tmp]*pitchY                      
-                elif(self.sizeX==1) :
+                        self.relX = (self.col[maxTOTindex_tmp]+1.)*pitchX - sigma*TMath.ErfInverse(2.*Qrel-1.)   
+                        self.relY = self.row[maxTOTindex_tmp]*pitchY +pitchY/2. 
+#                     print "relX : %f"%float(self.relX)
+#                     print "relY : %f"%float(self.relY)                    
+                elif(self.sizeX==1 and self.sizeY==2) :
                 #cluster size 1x2
-                    if(maxTOTindex_tmp==1) :
+                    if(self.row[maxTOTindex_tmp]>self.row[minTOTindex_tmp]) :
                     #neighbor on the bottom side
-                        self.relX = self.col[maxTOTindex_tmp]*pitchX
-                        self.relY = maxTOTindex_tmp*pitchY + sigma*TMath.ErfInverse(2.*Qrel-1.)                        
-                    elif(maxTOTindex_tmp==0) :
+                        self.relX = self.col[maxTOTindex_tmp]*pitchX + pitchX/2.
+                        self.relY = self.row[maxTOTindex_tmp]*pitchY + sigma*TMath.ErfInverse(2.*Qrel-1.)                        
+                    elif(self.row[maxTOTindex_tmp]<self.row[minTOTindex_tmp]) :
                     #neighbor on the top side
-                        self.relX = self.col[maxTOTindex_tmp]*pitchX
-                        self.relY = (maxTOTindex_tmp+1.)*pitchY - sigma*TMath.ErfInverse(2.*Qrel-1.) 
-#                 print "absX : %f"%float(self.absX)
-#                 print "absY : %f"%float(self.absY)
-            else :
-                self.relX = 0
-                self.relY = 0
-            self.absX=self.relX + pitchX/2.
-            self.absY=self.relY + pitchY/2.
-            self.absZ=0
+                        self.relX = self.col[maxTOTindex_tmp]*pitchX + pitchX/2.
+                        self.relY = (self.row[maxTOTindex_tmp]+1.)*pitchY - sigma*TMath.ErfInverse(2.*Qrel-1.) 
+#                     print "relX : %f"%float(self.relX)
+#                     print "relY : %f"%float(self.relY)
+
+                self.absX=self.relX 
+                self.absY=self.relY 
+                self.absZ=0
 
                 
 
