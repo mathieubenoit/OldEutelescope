@@ -9,6 +9,9 @@ from ToolBox import *
 
 PlotPath = "/afs/cern.ch/work/a/apequegn/public/DESY_TB_DATA_02_07-06-2013_results/pyEudetAnalysisPlots"
 
+# global n_sizeX2sizeY2
+
+
 def h1_style(h, optstat=0) :
     h.SetStats(optstat)   
     h.SetLabelFont(42,"X")
@@ -102,12 +105,27 @@ for i in range(aDataSet.p_nEntries) :
     trackX_vs_trackY_plan0.Fill(aDataSet.t_posX[0],aDataSet.t_posY[0])
 
 print "Found %i matched track-cluster binome"%n_matched
-
+# print "number of clusters with sixe 2 sizeX2 and sizeY2 : %f"%n_sizeX2sizeY2 
+ 
 n_tracks_in = ComputeDetectorAcceptance(aDataSet)
 print "Found %i tracks in the detector acceptance"%n_tracks_in
 
 if n_tracks_in!=0 :
     print "detector efficiency = %f"%float((1.*n_matched)/(1.*n_tracks_in))
+    
+hClusterSizeCounter,hClusterSizeCounter_percent = CountPixelSize(aDataSet)
+h1_style(hClusterSizeCounter)
+h1_style(hClusterSizeCounter_percent)
+
+cClusterSizeCounter = TCanvas()
+cClusterSizeCounter.cd()
+hClusterSizeCounter.Draw()
+cClusterSizeCounter.SetLogy()
+
+cClusterSizeCounter_percent = TCanvas()
+cClusterSizeCounter_percent.cd()
+hClusterSizeCounter_percent.Draw()
+cClusterSizeCounter_percent.SetLogy()
 
 #for i in range(aDataSet_calib.p_nEntries) : 
 #===============================================================================
@@ -135,10 +153,19 @@ for i in range(aDataSet.p_nEntries) :
         
 hx,hy = TrackClusterCorrelation(aDataSet)
 #hxc,hyc = TrackClusterCorrelation(aDataSet_calib)
+# ressigmachargeX, ressigmachargeY = FindSigmaMin(aDataSet,10000,1)
+ressigmachargeX, ressigmachargeY = FindSigmaMin(aDataSet,aDataSet.p_nEntries,20)
+print "ressigmachargeX : %d"%float(ressigmachargeX)
+print "ressigmachargeY : %d"%float(ressigmachargeY)
 
-ressigmaX, ressigmaY = FindSigmaMin(aDataSet,9,20)
-print "ressigmaX : %d"%ressigmaX
-print "ressigmaY : %d"%ressigmaY
+# for j,tracks in enumerate(aDataSet.AllTracks) : 
+#     for track in tracks : 
+#         if track.cluster!=-11 and len(dataSet.AllClusters[j])!=0 :     
+#             aCluster = dataSet.AllClusters[j][track.cluster]
+#             if(dataSet.AllClusters[j][track.cluster].size==2) : 
+#                 dataSet.AllClusters[j][track.cluster].GetEtaCorrectedQWeightedCentroid(ressigmachargeX)          
+#     aDataSet.FindMatchedCluster(j, 0.350, 0.350,6)
+#     aDataSet.ComputeResiduals(j)
  
 h1_style(hx,1)
 h1_style(hy,1) 
@@ -252,6 +279,8 @@ for i in range(1,n_cs+2) : #n_cs+2 excluded
     tmpy.GetYaxis().SetTitle("Number of hits")
     tmpx.SetLineColor(i)
     tmpy.SetLineColor(i)
+    tmpx.Sumw2()
+    tmpy.Sumw2()   
     resX_cs.append(tmpx)
     resY_cs.append(tmpy)
 
@@ -705,6 +734,8 @@ if method_name == "QWeighted" :
     can29.SaveAs("%s/QWeighted/HitProb_4_correlationY_QWeighted.png"%PlotPath)
     canEtaCorr.SaveAs("%s/QWeighted/Eta_QWeighted.png"%PlotPath)
     canEtaCorr2.SaveAs("%s/QWeighted/Eta_hist_QWeighted.png"%PlotPath)
+    cClusterSizeCounter.SaveAs("%s/QWeighted/ClusterSizeCounter.png"%PlotPath)
+    cClusterSizeCounter_percent.SaveAs("%s/QWeighted/ClusterSizeCounter_percent.png"%PlotPath)
  
  
 elif method_name == "DigitalCentroid" :
@@ -753,6 +784,8 @@ elif method_name == "DigitalCentroid" :
     can29.SaveAs("%s/DigitalCentroid/HitProb_4_correlationY_DigitalCentroid.png"%PlotPath)
     canEtaCorr.SaveAs("%s/DigitalCentroid/Eta_DigitalCentroid.png"%PlotPath)
     canEtaCorr2.SaveAs("%s/DigitalCentroid/Eta_hist_DigitalCentroid.png"%PlotPath)
+    cClusterSizeCounter.SaveAs("%s/DigitalCentroid/ClusterSizeCounter.png"%PlotPath)
+    cClusterSizeCounter_percent.SaveAs("%s/DigitalCentroid/ClusterSizeCounter_percent.png"%PlotPath)
 
          
 elif method_name == "maxTOT" : 
@@ -801,6 +834,8 @@ elif method_name == "maxTOT" :
     can29.SaveAs("%s/maxTOT/HitProb_4_correlationY_maxTOT.png"%PlotPath)
     canEtaCorr.SaveAs("%s/maxTOT/Eta_maxTOT.png"%PlotPath)
     canEtaCorr2.SaveAs("%s/maxTOT/Eta_hist_maxTOT.png"%PlotPath)
+    cClusterSizeCounter.SaveAs("%s/maxTOT/ClusterSizeCounter.png"%PlotPath)
+    cClusterSizeCounter_percent.SaveAs("%s/maxTOT/ClusterSizeCounter_percent.png"%PlotPath)
     
 elif method_name == "EtaCorrection" : 
     out = TFile("%s/EtaCorrection/output_rootfile_EtaCorrection_firingFreq001_run000131_distance%i.root"%(PlotPath,distance), "recreate")
@@ -848,6 +883,8 @@ elif method_name == "EtaCorrection" :
     can29.SaveAs("%s/EtaCorrection/HitProb_4_correlationY_EtaCorrection.png"%PlotPath)
     canEtaCorr.SaveAs("%s/EtaCorrection/Eta_EtaCorrection.png"%PlotPath)
     canEtaCorr2.SaveAs("%s/EtaCorrection/Eta_hist_EtaCorrection.png"%PlotPath)
+    cClusterSizeCounter.SaveAs("%s/EtaCorrection/ClusterSizeCounter.png"%PlotPath)
+    cClusterSizeCounter_percent.SaveAs("%s/EtaCorrection/ClusterSizeCounter_percent.png"%PlotPath)
 
 
 can_resX_cs_0 = TCanvas()
@@ -1029,6 +1066,8 @@ HitProb_4_correlationY.Write()
 for i in range(1,n_cs+2) :
     resX_cs[i-1].Write()
     resY_cs[i-1].Write()
+hClusterSizeCounter_percent.Write()
+hClusterSizeCounter.Write()
        
 #aDataSet.DumpClusterTree("run131_uncalibrated_cluster.root")
 #aDataSet_calib.DumpClusterTree("run131_calibrated_cluster.root")

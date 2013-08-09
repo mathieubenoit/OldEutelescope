@@ -5,6 +5,7 @@ from array import array
 from Cluster import *
 from Track import  *
 from Constant import *
+from ToolBox import *
 
    
 class EudetData:
@@ -466,8 +467,6 @@ class EudetData:
             # digital, maxTOT/maxQ, eta corrected
             
             cluster.id=clusterid
-            cluster.absX=cluster.absX-npix_X*pitchX/2.
-            cluster.absY=cluster.absY-npix_Y*pitchY/2.
             clusters.append(cluster)
             clusterid+=1
             cluster=0

@@ -5,6 +5,8 @@ author: Anne-Laure pequegnot
 from math import fsum
 from Constant import *
 from ROOT import TMath
+from ToolBox import *
+
 class Cluster:
     
     col = []
@@ -40,7 +42,7 @@ class Cluster:
         self.col = []
         self.row = []
         self.tot = []  
-         
+           
     def addPixel(self,col,row,tot):
         self.col.append(col)
         self.row.append(row)
@@ -68,8 +70,8 @@ class Cluster:
         self.relX/=self.totalTOT
         self.relY/=self.totalTOT
         
-        self.absX=self.relX + pitchX/2.
-        self.absY=self.relY + pitchY/2.
+        self.absX=self.relX + pitchX/2. -npix_X*pitchX/2.
+        self.absY=self.relY + pitchY/2. -npix_X*pitchX/2.
         self.absZ=0
         
     def GetDigitalCentroid(self) :         
@@ -81,8 +83,8 @@ class Cluster:
         self.relX/=len(self.col)
         self.relY/=len(self.row)
         
-        self.absX=self.relX + pitchX/2.
-        self.absY=self.relY + pitchY/2.
+        self.absX=self.relX + pitchX/2. -npix_X*pitchX/2.
+        self.absY=self.relY + pitchY/2. -npix_X*pitchX/2.
         self.absZ=0
     
     def GetMaxTOTCentroid(self) :
@@ -95,13 +97,14 @@ class Cluster:
         self.relX=self.col[maxTOTindex_tmp]*pitchX
         self.relY=self.row[maxTOTindex_tmp]*pitchY
         
-        self.absX=self.relX + pitchX/2.
-        self.absY=self.relY + pitchY/2.
+        self.absX=self.relX + pitchX/2. -npix_X*pitchX/2.
+        self.absY=self.relY + pitchY/2. -npix_X*pitchX/2.
         self.absZ=0
 
 
     def GetEtaCorrectedQWeightedCentroid(self,sigma=0.003) :
 #     def GetEtaCorrectedQWeightedCentroid(self) :
+#         global n_sizeX2sizeY2
         maxTOTindex_tmp=0
         minTOTindex_tmp = 0
         maxTOT_tmp=self.tot[0]
@@ -137,11 +140,11 @@ class Cluster:
                 #cluster size 2x1
                     if(self.col[maxTOTindex_tmp]>self.col[minTOTindex_tmp]) :
                     #neighbor on the left side
-                        self.relX = self.col[maxTOTindex_tmp]*pitchX + sigma*TMath.ErfInverse(2.*Qrel-1.) 
+                        self.relX = self.col[maxTOTindex_tmp]*pitchX + shiftLat(sigma,Qrel)
                         self.relY = self.row[maxTOTindex_tmp]*pitchY +pitchY/2.                     
                     elif(self.col[maxTOTindex_tmp]<self.col[minTOTindex_tmp]) :
                     #neighbor on the right side
-                        self.relX = (self.col[maxTOTindex_tmp]+1.)*pitchX - sigma*TMath.ErfInverse(2.*Qrel-1.)   
+                        self.relX = (self.col[maxTOTindex_tmp]+1.)*pitchX - shiftLat(sigma,Qrel)  
                         self.relY = self.row[maxTOTindex_tmp]*pitchY +pitchY/2. 
 #                     print "relX : %f"%float(self.relX)
 #                     print "relY : %f"%float(self.relY)                    
@@ -150,16 +153,31 @@ class Cluster:
                     if(self.row[maxTOTindex_tmp]>self.row[minTOTindex_tmp]) :
                     #neighbor on the bottom side
                         self.relX = self.col[maxTOTindex_tmp]*pitchX + pitchX/2.
-                        self.relY = self.row[maxTOTindex_tmp]*pitchY + sigma*TMath.ErfInverse(2.*Qrel-1.)                        
+                        self.relY = self.row[maxTOTindex_tmp]*pitchY + shiftLat(sigma,Qrel)                    
                     elif(self.row[maxTOTindex_tmp]<self.row[minTOTindex_tmp]) :
                     #neighbor on the top side
                         self.relX = self.col[maxTOTindex_tmp]*pitchX + pitchX/2.
-                        self.relY = (self.row[maxTOTindex_tmp]+1.)*pitchY - sigma*TMath.ErfInverse(2.*Qrel-1.) 
-#                     print "relX : %f"%float(self.relX)
-#                     print "relY : %f"%float(self.relY)
-
-                self.absX=self.relX 
-                self.absY=self.relY 
+                        self.relY = (self.row[maxTOTindex_tmp]+1.)*pitchY - shiftLat(sigma,Qrel)
+                elif(self.sizeX==2 and self.sizeY==2) :
+                #cluster size 2 with sizeX = 2 and sizeY = 2 i.e. 2 pixels on a diagonal
+                    #print"cluster sizeX : 2 ; sizeY : 2 ; size : 2"
+#                     n_sizeX2sizeY2 = n_sizeX2sizeY2 + 1
+                    if(self.col[maxTOTindex_tmp]>self.col[minTOTindex_tmp] and self.row[maxTOTindex_tmp]>self.row[minTOTindex_tmp]) :
+                        self.relX = self.col[maxTOTindex_tmp]*pitchX + shiftDiag(sigma,Qrel)
+                        self.relY = self.row[maxTOTindex_tmp]*pitchY + shiftDiag(sigma,Qrel)
+                    elif(self.col[maxTOTindex_tmp]>self.col[minTOTindex_tmp] and self.row[maxTOTindex_tmp]<self.row[minTOTindex_tmp]) :
+                        self.relX = self.col[maxTOTindex_tmp]*pitchX + shiftDiag(sigma,Qrel)
+                        self.relY = (self.row[maxTOTindex_tmp]+1.)*pitchY - shiftDiag(sigma,Qrel)
+                    elif(self.col[maxTOTindex_tmp]<self.col[minTOTindex_tmp] and self.row[maxTOTindex_tmp]>self.row[minTOTindex_tmp]) :
+                        self.relX = (self.col[maxTOTindex_tmp]+1.)*pitchX - shiftDiag(sigma,Qrel) 
+                        self.relY = self.row[maxTOTindex_tmp]*pitchY + shiftDiag(sigma,Qrel)
+                    elif(self.col[maxTOTindex_tmp]<self.col[minTOTindex_tmp] and self.row[maxTOTindex_tmp]<self.row[minTOTindex_tmp]) :
+                        self.relX = (self.col[maxTOTindex_tmp]+1.)*pitchX - shiftDiag(sigma,Qrel)
+                        self.relY = (self.row[maxTOTindex_tmp]+1.)*pitchY - shiftDiag(sigma,Qrel)  
+                #print "relX : %f"%float(self.relX)
+                #print "relY : %f"%float(self.relY) 
+                self.absX=self.relX + pitchX/2. -npix_X*pitchX/2.
+                self.absY=self.relY + pitchY/2. -npix_X*pitchX/2.
                 self.absZ=0
 
                 

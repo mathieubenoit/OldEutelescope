@@ -6,7 +6,6 @@ pitchY = 0.055
 npix_X = 256
 npix_Y = 256
 # sigma = 0.015
-
 um = 1e-3
 mm = 1
 

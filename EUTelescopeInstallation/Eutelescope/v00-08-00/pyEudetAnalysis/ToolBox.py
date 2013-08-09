@@ -7,6 +7,92 @@ from array import array
 from EudetData import *
 from Constant import *
 
+
+def shiftLat(sigma_tmp,Qrel_tmp):
+    #compute shift when we are doing the eta correction, neighboor pixels aligned
+    return sigma_tmp*TMath.ErfInverse(2.*Qrel_tmp-1.)
+    
+def shiftDiag(sigma_tmp,Qrel_tmp):
+    #compute shift when we are doing the eta correction, neighboor pixels on a diagonal
+    return sigma_tmp*TMath.ErfInverse(2.*Qrel_tmp-1.)*1./sqrt(2.)
+
+def CountPixelSize(dataSet):
+    n_s1x1y1 = 0.
+    n_s2x1y2 = 0.
+    n_s2x2y1 = 0.
+    n_s2x2y2 = 0.
+    n_s3x2y2 = 0.
+    n_s4x2y2 = 0.
+    n_else = 0.
+    
+    for i,tracks in enumerate(dataSet.AllTracks) : 
+        for track in tracks : 
+            if track.cluster!=-11 :
+                if(dataSet.AllClusters[i][track.cluster].size==1) :
+                    n_s1x1y1 = n_s1x1y1 + 1.
+                elif(dataSet.AllClusters[i][track.cluster].size==2 and (dataSet.AllClusters[i][track.cluster].sizeY==2 and dataSet.AllClusters[i][track.cluster].sizeX==1)) :
+                    n_s2x1y2 = n_s2x1y2 + 1.
+                elif(dataSet.AllClusters[i][track.cluster].size==2 and (dataSet.AllClusters[i][track.cluster].sizeY==1 and dataSet.AllClusters[i][track.cluster].sizeX==2)) :
+                    n_s2x2y1 = n_s2x2y1 + 1.
+                elif(dataSet.AllClusters[i][track.cluster].size==2 and (dataSet.AllClusters[i][track.cluster].sizeY==2 and dataSet.AllClusters[i][track.cluster].sizeX==2)) :    
+                    n_s2x2y2 = n_s2x2y2 + 1.
+                elif(dataSet.AllClusters[i][track.cluster].size==3 and (dataSet.AllClusters[i][track.cluster].sizeY==2 and dataSet.AllClusters[i][track.cluster].sizeX==2)) : 
+                    n_s3x2y2 = n_s3x2y2 + 1.
+                elif(dataSet.AllClusters[i][track.cluster].size==4 and (dataSet.AllClusters[i][track.cluster].sizeY==2 and dataSet.AllClusters[i][track.cluster].sizeX==2)) :     
+                    n_s4x2y2 = n_s4x2y2 + 1.
+                else :  
+                    n_else = n_else + 1.
+                    
+    n_tot = n_s1x1y1 + n_s2x1y2 + n_s2x2y1 + n_s2x2y2 + n_s3x2y2 + n_s4x2y2 + n_else
+
+    hClusterSizeCounter = TH1D("ClusterSizeCounter","Number of the clusters for different cluster sizes",7,0.,7.)
+    hClusterSizeCounter.GetXaxis().SetTitle("cluster size")
+    hClusterSizeCounter.GetYaxis().SetTitle("number of events")
+    
+    hClusterSizeCounter.SetBinContent(1,n_s1x1y1)
+    hClusterSizeCounter.SetBinContent(2,n_s2x1y2)
+    hClusterSizeCounter.SetBinContent(3,n_s2x2y1)
+    hClusterSizeCounter.SetBinContent(4,n_s2x2y2)
+    hClusterSizeCounter.SetBinContent(5,n_s3x2y2)
+    hClusterSizeCounter.SetBinContent(6,n_s4x2y2)
+    hClusterSizeCounter.SetBinContent(7,n_else)
+    hClusterSizeCounter.GetXaxis().SetNdivisions(7,kTRUE)
+    hClusterSizeCounter.GetXaxis().SetBinLabel(1,"size 1 (1x1)")
+    hClusterSizeCounter.GetXaxis().SetBinLabel(2,"size 2 (1x2)")
+    hClusterSizeCounter.GetXaxis().SetBinLabel(3,"size 2 (2x1)")
+    hClusterSizeCounter.GetXaxis().SetBinLabel(4,"size 2 (2x2)")
+    hClusterSizeCounter.GetXaxis().SetBinLabel(5,"size 3 (1x2)")
+    hClusterSizeCounter.GetXaxis().SetBinLabel(6,"size 4 (2x1)")
+    hClusterSizeCounter.GetXaxis().SetBinLabel(7,"else")
+    hClusterSizeCounter.SetStats(0)
+    
+    hClusterSizeCounter_percent = TH1D("ClusterSizeCounter_percent","Number of the clusters for different cluster sizes",7,0.,7.)
+    hClusterSizeCounter_percent.GetXaxis().SetTitle("cluster size")
+    hClusterSizeCounter_percent.GetYaxis().SetTitle("number of events (%)")
+    
+    hClusterSizeCounter_percent.SetBinContent(1,n_s1x1y1/n_tot*100.)
+    hClusterSizeCounter_percent.SetBinContent(2,n_s2x1y2/n_tot*100.)
+    hClusterSizeCounter_percent.SetBinContent(3,n_s2x2y1/n_tot*100.)
+    hClusterSizeCounter_percent.SetBinContent(4,n_s2x2y2/n_tot*100.)
+    hClusterSizeCounter_percent.SetBinContent(5,n_s3x2y2/n_tot*100.)
+    hClusterSizeCounter_percent.SetBinContent(6,n_s4x2y2/n_tot*100.)
+    hClusterSizeCounter_percent.SetBinContent(7,n_else/n_tot*100.)
+    hClusterSizeCounter_percent.GetXaxis().SetNdivisions(7,kTRUE)
+    hClusterSizeCounter_percent.GetXaxis().SetBinLabel(1,"size 1 (1x1)")
+    hClusterSizeCounter_percent.GetXaxis().SetBinLabel(2,"size 2 (1x2)")
+    hClusterSizeCounter_percent.GetXaxis().SetBinLabel(3,"size 2 (2x1)")
+    hClusterSizeCounter_percent.GetXaxis().SetBinLabel(4,"size 2 (2x2)")
+    hClusterSizeCounter_percent.GetXaxis().SetBinLabel(5,"size 3 (1x2)")
+    hClusterSizeCounter_percent.GetXaxis().SetBinLabel(6,"size 4 (2x1)")
+    hClusterSizeCounter_percent.GetXaxis().SetBinLabel(7,"else")
+    hClusterSizeCounter_percent.SetStats(0)
+    
+    return hClusterSizeCounter,hClusterSizeCounter_percent
+                    
+    
+                    
+                    
+                       
 def RotationMatrix(theta):
     tx,ty,tz = theta
     tx = 2*pi*tx/360.
@@ -37,6 +123,7 @@ def ComputeDetectorAcceptance(dataSet, dut=6):
     
 
 def ComputeChargeDistance(dataSet,d=0.005,dut=6):
+    #compute the smaller distance between the hit with higher energy and the pixel edge
     AllDistances = [0.]
     AllCharges = [0.]
     
@@ -447,27 +534,36 @@ def TotalRotationFunction(Rotations,Translations,aDataDet,nevents,skip=1,dut=6):
 #     print "Evaluating for Rotation : %.9f %.9f %.9f [deg] Trans : %f %f  [mm] metric = %.9f  n = %i"%(Rotations[0],Rotations[1],Rotations[2],Translations[0],0,result,n)
 #     return result
 
-def TotalSigmaFunctionX(aDataDet,sigma_tmp,skip,dut=6):
+def TotalSigmaFunctionX(sigmaCharge_tmp_X,dataSet,skip,dut=6):
 
-#     for j,tracks in enumerate(aDataSet.AllTracks) : 
-#         for track in tracks : 
-#             if track.cluster!=-11 and len(aDataSet.AllClusters[j])!=0 :  
-#                 aDataSet.AllClusters[i][track.cluster].
-
-    for i in range(aDataSet.p_nEntries) :
-        if i%skip==0 :  
-            aDataSet.ClusterEvent(i,method_name,sigma_tmp)
-            aDataSet.ComputeResiduals(i)
+    nmatched = 0
+    for j,tracks in enumerate(dataSet.AllTracks) : 
+        if j%skip==0 :  
+            for track in tracks : 
+                if track.cluster!=-11 and len(dataSet.AllClusters[j])!=0 :     
+                    aCluster = dataSet.AllClusters[j][track.cluster]
+                    if(dataSet.AllClusters[j][track.cluster].size==2) : 
+                        dataSet.AllClusters[j][track.cluster].GetEtaCorrectedQWeightedCentroid(sigmaCharge_tmp_X)          
+            dataSet.FindMatchedCluster(j, 0.350, 0.350,6)
+            nmatched+=dataSet.ComputeResiduals(j)
+#     for i in range(dataSet.p_nEntries) :
+#         if i%skip==0 :  
+#             #dataSet.ClusterEvent(i,method_name,sigmaCharge_tmp_X)
+#             dataSet.ClusterEvent(i,"EtaCorrection",sigmaCharge_tmp_X)
+#             dataSet.ComputeResiduals(i)
+    resX_cs = []
+    n_cs = 3
+    
     for i in range(1,n_cs+2) : #n_cs+2 excluded
         tmpx = TH1D("resX_%i"%i,"Unbiased residual X, cluster size X = %i"%i,300,-0.150,0.150)
         tmpx.GetXaxis().SetTitle("X_{track} - X_{Timepix} (mm)")
         tmpx.GetYaxis().SetTitle("Number of hits")
         tmpx.SetLineColor(i)
         resX_cs.append(tmpx)
-    for j,tracks in enumerate(aDataSet.AllTracks) : 
+    for j,tracks in enumerate(dataSet.AllTracks) : 
         for track in tracks : 
-            if track.cluster!=-11 and len(aDataSet.AllClusters[j])!=0 :     
-                aCluster = aDataSet.AllClusters[j][track.cluster]
+            if track.cluster!=-11 and len(dataSet.AllClusters[j])!=0 :     
+                aCluster = dataSet.AllClusters[j][track.cluster]
                 for i in range(1,n_cs+2) :
                     if(aCluster.sizeX==i) : 
                         resX_cs[i-1].Fill(aCluster.resX) 
@@ -475,30 +571,38 @@ def TotalSigmaFunctionX(aDataDet,sigma_tmp,skip,dut=6):
       
     g1 = TF1("m1","gaus",-1,1)            
     rX = resX_cs[1].Fit(g1,"RS","")
-    sigmaX = rX.Parameter(2) #retrieve the value for the parameter 2 i.e sigma of the gaussian fit
-    sigmaX_err = rX.ParError(2) #retrieve the error for the parameter 2
-      
-    return sigmaX
+    sigmaResX = rX.Parameter(2) #retrieve the value for the parameter 2 i.e sigma of the gaussian fit
+    sigmaResX_err = rX.ParError(2) #retrieve the error for the parameter 2
+    print "resolution = %f for sigma=%f"%(sigmaResX,sigmaCharge_tmp_X)
+    return sigmaResX
   
-def TotalSigmaFunctionY(aDataDet,sigma_tmp,skip,dut=6):
-#     for j,tracks in enumerate(aDataSet.AllTracks) : 
-#         for track in tracks : 
-#             if track.cluster!=-11 and len(aDataSet.AllClusters[j])!=0 :  
-#                 dataSet.AllClusters[i][track.cluster].
-    for i in range(aDataSet.p_nEntries) :
-        if i%skip==0 :  
-            aDataSet.ClusterEvent(i,method_name,sigma_tmp)
-            aDataSet.ComputeResiduals(i)
+def TotalSigmaFunctionY(sigmaCharge_tmp_Y,dataSet,skip,dut=6):
+    for j,tracks in enumerate(dataSet.AllTracks) : 
+        if j%skip==0 :  
+            for track in tracks : 
+                if track.cluster!=-11 and len(dataSet.AllClusters[j])!=0 :     
+                    aCluster = dataSet.AllClusters[j][track.cluster]
+                    if(aCluster.size==2) : 
+                        aCluster.GetEtaCorrectedQWeightedCentroid(sigmaCharge_tmp_Y)
+            dataSet.FindMatchedCluster(j, 0.350, 0.350,6)
+            dataSet.ComputeResiduals(j)
+            
+#     for i in range(dataSet.p_nEntries) :
+#         if i%skip==0 :  
+#             dataSet.ClusterEvent(i,method_name,sigmaCharge_tmp_Y)
+#             dataSet.ComputeResiduals(i)
+    resY_cs = []
+    n_cs = 3
     for i in range(1,n_cs+2) : #n_cs+2 excluded
         tmpy = TH1D("resY_%i"%i,"Unbiased residual Y, cluster size Y = %i"%i,300,-0.150,0.150)
         tmpy.GetXaxis().SetTitle("Y_{track} - Y_{Timepix} (mm)")
         tmpy.GetYaxis().SetTitle("Number of hits")
         tmpy.SetLineColor(i)
         resY_cs.append(tmpy)
-    for j,tracks in enumerate(aDataSet.AllTracks) : 
+    for j,tracks in enumerate(dataSet.AllTracks) : 
         for track in tracks : 
-            if track.cluster!=-11 and len(aDataSet.AllClusters[j])!=0 :     
-                aCluster = aDataSet.AllClusters[j][track.cluster]
+            if track.cluster!=-11 and len(dataSet.AllClusters[j])!=0 :     
+                aCluster = dataSet.AllClusters[j][track.cluster]
                 for i in range(1,n_cs+2) :
                     if(aCluster.sizeY==i) : 
                         resY_cs[i-1].Fill(aCluster.resY)    
@@ -506,10 +610,10 @@ def TotalSigmaFunctionY(aDataDet,sigma_tmp,skip,dut=6):
     g2 = TF1("m1","gaus",-1,1)            
   
     rY = resY_cs[1].Fit(g2,"RS","")
-    sigmaY = rY.Parameter(2)
-    sigmaY_err = rY.ParError(2)
+    sigmaResY = rY.Parameter(2)
+    sigmaResY_err = rY.ParError(2)
       
-    return sigmaY
+    return sigmaResY
   
 
 
@@ -611,13 +715,13 @@ def Perform2StepAlignment(aDataSet,boundary,nevent,skip) :
       
     return xr,[rest.x[0],rest2.x[0],0]
 
-def FindSigmaMin(aDataSet,sigma_tmp,skip) : 
-    xsigmaX = 9.
-    xsigmaY = 9.
-    ressigmaX = minimize(TotalSigmaFunctionX,xsigmaX,[aDataSet,sigma_tmp,skip],method='BFGS',options={'disp': True})    
-    ressigmaY = minimize(TotalSigmaFunctionY,xsigmaY,[aDataSet,sigma_tmp,skip],method='BFGS',options={'disp': True})    
-       
-    return ressigmaX.x ,ressigmaY.x
+def FindSigmaMin(dataSet,nevent,skip) : 
+    xsigmachargeX = np.array([0.009])
+    xsigmachargeY = np.array([0.009])
+    ressigmachargeX = minimize(TotalSigmaFunctionX,xsigmachargeX,[dataSet,skip],method='Nelder-Mead',options={'xtol': 1e-5,'disp': True})    
+    ressigmachargeY = minimize(TotalSigmaFunctionY,xsigmachargeY,[dataSet,skip],method='Nelder-Mead',options={'xtol': 1e-5,'disp': True})    
+        
+    return ressigmachargeX.x ,ressigmachargeY.x
 
 def ApplyAlignment(dataSet,translations,rotations,dut=6,filename="Alignement.txt") :
 
