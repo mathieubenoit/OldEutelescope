@@ -7,6 +7,11 @@ from Track import  *
 from Constant import *
 from ToolBox import *
 
+###############################################################################################################################
+#
+#        A container for TBTrack Data: contains all the informations about tracks and cluster from data
+#
+###############################################################################################################################
    
 class EudetData:
     """A container for TBTrack Data """

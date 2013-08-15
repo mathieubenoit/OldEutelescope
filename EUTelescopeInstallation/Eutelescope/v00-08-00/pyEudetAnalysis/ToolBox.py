@@ -7,17 +7,36 @@ from array import array
 from EudetData import *
 from Constant import *
 
+###############################################################################################################################
+#
+#                        Box with tools usefull for the analysis
+#
+###############################################################################################################################
 
+
+#
+#Compute the additional shift for the hit position du to the charge sharing (eta correction) when neighbor pixels are on the same raw or the same column (neighbor pixels aligned)
+#first parameter:sigma of the eta correction (charge sharing)
+#second parameter:relative charge i.e. Qrel = (charge of the pixel with the highest energy)/(total charge of the cluster)
+#
 def shiftLat(sigma_tmp,Qrel_tmp):
-    #compute shift when we are doing the eta correction, neighboor pixels aligned
     return sigma_tmp*TMath.ErfInverse(2.*Qrel_tmp-1.)
-    
+
+#
+#Compute the additional shift for the hit position du to the charge sharing (eta correction) when neighbor pixels are on a diadonal
+#first parameter:sigma of the eta correction (charge sharing)
+#second parameter:relative charge i.e. Qrel = (charge of the pixel with the highest energy)/(total charge of the cluster) 
+#   
 def shiftDiag(sigma_tmp,Qrel_tmp):
-    #compute shift when we are doing the eta correction, neighboor pixels on a diagonal
     return sigma_tmp*TMath.ErfInverse(2.*Qrel_tmp-1.)*1./sqrt(2.)
 
+
+#
+#Count the number of clusters for the different topologies and draw histograms of the results
+#parameter: a data set (class EudetData) 
+#
 def CountPixelSize(dataSet):
-    n_s1x1y1 = 0.
+    n_s1x1y1 = 0.#number of clusters with cluster size = 1 : cluster sizeX = 1 : cluster sizeY = 1
     n_s2x1y2 = 0.
     n_s2x2y1 = 0.
     n_s2x2y2 = 0.
@@ -44,6 +63,15 @@ def CountPixelSize(dataSet):
                     n_else = n_else + 1.
                     
     n_tot = n_s1x1y1 + n_s2x1y2 + n_s2x2y1 + n_s2x2y2 + n_s3x2y2 + n_s4x2y2 + n_else
+    allSizes = [n_s1x1y1 ,n_s2x1y2 , n_s2x2y1 , n_s2x2y2 , n_s3x2y2 , n_s4x2y2 , n_else]
+    allSizesPercent = [n_s1x1y1/n_tot*100. ,n_s2x1y2/n_tot*100. , n_s2x2y1/n_tot*100. , n_s2x2y2/n_tot*100. , n_s3x2y2/n_tot*100. , n_s4x2y2/n_tot*100. , n_else/n_tot*100.]
+    for size in allSizes :
+        print"cluster sizes number..." 
+        print size
+    for size in allSizesPercent :
+        print"cluster sizes percentage..." 
+        print size
+        
 
     hClusterSizeCounter = TH1D("ClusterSizeCounter","Number of the clusters for different cluster sizes",7,0.,7.)
     hClusterSizeCounter.GetXaxis().SetTitle("cluster size")
@@ -61,8 +89,8 @@ def CountPixelSize(dataSet):
     hClusterSizeCounter.GetXaxis().SetBinLabel(2,"size 2 (1x2)")
     hClusterSizeCounter.GetXaxis().SetBinLabel(3,"size 2 (2x1)")
     hClusterSizeCounter.GetXaxis().SetBinLabel(4,"size 2 (2x2)")
-    hClusterSizeCounter.GetXaxis().SetBinLabel(5,"size 3 (1x2)")
-    hClusterSizeCounter.GetXaxis().SetBinLabel(6,"size 4 (2x1)")
+    hClusterSizeCounter.GetXaxis().SetBinLabel(5,"size 3 (2x2)")
+    hClusterSizeCounter.GetXaxis().SetBinLabel(6,"size 4 (2x2)")
     hClusterSizeCounter.GetXaxis().SetBinLabel(7,"else")
     hClusterSizeCounter.SetStats(0)
     
@@ -82,8 +110,8 @@ def CountPixelSize(dataSet):
     hClusterSizeCounter_percent.GetXaxis().SetBinLabel(2,"size 2 (1x2)")
     hClusterSizeCounter_percent.GetXaxis().SetBinLabel(3,"size 2 (2x1)")
     hClusterSizeCounter_percent.GetXaxis().SetBinLabel(4,"size 2 (2x2)")
-    hClusterSizeCounter_percent.GetXaxis().SetBinLabel(5,"size 3 (1x2)")
-    hClusterSizeCounter_percent.GetXaxis().SetBinLabel(6,"size 4 (2x1)")
+    hClusterSizeCounter_percent.GetXaxis().SetBinLabel(5,"size 3 (2x2)")
+    hClusterSizeCounter_percent.GetXaxis().SetBinLabel(6,"size 4 (2x2)")
     hClusterSizeCounter_percent.GetXaxis().SetBinLabel(7,"else")
     hClusterSizeCounter_percent.SetStats(0)
     
@@ -113,6 +141,11 @@ def rms(x):
 
     return rms
 
+#
+#compute the number of tracks falling in the detector acceptance
+#first parameter: a data set (class EudetData) 
+#second parameter: position of the device under test in the list of planes (the timepix detector in our case)
+#
 def ComputeDetectorAcceptance(dataSet, dut=6):
     n_tracks_in = 0
     for i,tracks in enumerate(dataSet.AllTracks) : 
@@ -122,8 +155,13 @@ def ComputeDetectorAcceptance(dataSet, dut=6):
     return n_tracks_in
     
 
+#
+#compute the smaller distance between the hit with higher energy and the pixel edge
+#first parameter: a data set (class EudetData) 
+#second parameter: minimal distance between the track position and the pixel edge. This value is also used to fire the tracks which are in the corner of the pixel
+#third parameter:  position of the device under test in the list of planes
+#
 def ComputeChargeDistance(dataSet,d=0.005,dut=6):
-    #compute the smaller distance between the hit with higher energy and the pixel edge
     AllDistances = [0.]
     AllCharges = [0.]
     
@@ -187,8 +225,14 @@ def ComputeChargeDistance(dataSet,d=0.005,dut=6):
 #     print AllDistances
 #     print AllCharges
     return AllDistances,AllCharges
-    
 
+
+#    
+#compute the correlation in X i.e. X position of the tracks as a function of the X position of the clusters
+#param 1: a data set (class EudetData) 
+#param 2: number of bins in the histograms
+#param 3: position of the device under test in the list of planes
+#
 def HitProbCorrelationX(dataSet,nbin,dut=6):
     HitProb_1_correlationX = TH2D("HitProb_1_correlationX_nbin%i"%nbin,"Hit probability, cluster size 1",nbin,0.,0.055,nbin,0.,0.055)
     #HitProb_1_correlationX.GetXaxis().SetRangeUser(0.,0.055)
@@ -227,7 +271,14 @@ def HitProbCorrelationX(dataSet,nbin,dut=6):
                     HitProb_4_correlationX.Fill((track.trackX[track.iden.index(dut)])%pitchX,(dataSet.AllClusters[i][track.cluster].absX)%pitchX)
     
     return HitProb_1_correlationX,HitProb_2_correlationX,HitProb_3_correlationX,HitProb_4_correlationX
-    
+
+
+#
+#compute the correlation in Y i.e. Y position of the tracks as a function of the Y position of the clusters
+#param 1: a data set (class EudetData) 
+#param 2: number of bins in the histograms
+#param 3: position of the device under test in the list of planes 
+#   
 def HitProbCorrelationY(dataSet,nbin,dut=6):
     HitProb_1_correlationY = TH2D("HitProb_1_correlationY_nbin%i"%nbin,"Hit probability, cluster size 1",nbin,0.,0.055,nbin,0.,0.055)
     #HitProb_1_correlationY.GetXaxis().SetRangeUser(0.,0.055)
@@ -268,7 +319,14 @@ def HitProbCorrelationY(dataSet,nbin,dut=6):
     return HitProb_1_correlationY,HitProb_2_correlationY,HitProb_3_correlationY,HitProb_4_correlationY
     
 
-
+#
+#this function computes the position hit probability coming from the tracks in the pixel plan 
+#i.e. Track X and Track Y positions within pixel
+#it returns 4 histograms for the different cluster sizes
+#param 1: a data set (class EudetData) 
+#param 2: number of bins in the histograms
+#param 3: position of the device under test in the list of planes
+#   
 def TrackHitProb(dataSet,nbin,dut=6):
     HitProb_1_track = TH2D("HitProb_1_track_nbin%i"%nbin,"Hit probability, cluster size 1",nbin,0.,0.055,nbin,0.,0.055)
     #HitProb_1_track.GetXaxis().SetRangeUser(0.,0.055)
@@ -308,32 +366,15 @@ def TrackHitProb(dataSet,nbin,dut=6):
     
     return HitProb_1_track,HitProb_2_track,HitProb_3_track,HitProb_4_track
 
-    # for i in range(aDataSet.p_nEntries) : 
-    #     aDataSet.getEvent(i)
-    #     print "Event %d"%i
-    #     for j,cluster in enumerate(aDataSet.AllClusters[i]) : 
-    #         print "cluster %d"%j
-    #         print aDataSet.t_posX[3]
-    #         if(cluster.size==1) : 
-    #             HitProb_1_track.Fill((aDataSet.t_posX[3]-npix_X*pitchX/2)%pitchX,(aDataSet.t_posY[3]-npix_Y*pitchY/2)%pitchY) 
-    #         elif(cluster.size==2) : 
-    #             HitProb_2_track.Fill((aDataSet.t_posX[3]-npix_X*pitchX/2)%pitchX,(aDataSet.t_posY[3]-npix_Y*pitchY/2)%pitchY)  
-    #         elif(cluster.size==3) : 
-    #             HitProb_3_track.Fill((aDataSet.t_posX[3]-npix_X*pitchX/2)%pitchX,(aDataSet.t_posY[3]-npix_Y*pitchY/2)%pitchY) 
-    #         elif(cluster.size==4) : 
-    #             HitProb_4_track.Fill((aDataSet.t_posX[3]-npix_X*pitchX/2)%pitchX,(aDataSet.t_posY[3]-npix_Y*pitchY/2)%pitchY) 
-                        
-    # for clusters in aDataSet.AllClusters : 
-    #     for cluster in clusters : 
-    #         if(cluster.size==1) : 
-    #             HitProb_1_track.Fill((aDataSet.t_posX[3]-npix_X*pitchX/2)%pitchX,(aDataSet.t_posY[3]-npix_Y*pitchY/2)%pitchY) 
-    #         elif(cluster.size==2) : 
-    #             HitProb_2_track.Fill((aDataSet.t_posX[3]-npix_X*pitchX/2)%pitchX,(aDataSet.t_posY[3]-npix_Y*pitchY/2)%pitchY)  
-    #         elif(cluster.size==3) : 
-    #             HitProb_3_track.Fill((aDataSet.t_posX[3]-npix_X*pitchX/2)%pitchX,(aDataSet.t_posY[3]-npix_Y*pitchY/2)%pitchY) 
-    #         elif(cluster.size==4) : 
-    #             HitProb_4_track.Fill((aDataSet.t_posX[3]-npix_X*pitchX/2)%pitchX,(aDataSet.t_posY[3]-npix_Y*pitchY/2)%pitchY)  
 
+#
+#this function computes the position hit probability reconstructed from the clusters in the pixel plan 
+#i.e. cluster X and cluster Y positions within pixel
+#it returns 4 histograms for the different cluster sizes
+#param 1: a data set (class EudetData) 
+#param 2: number of bins in the histograms
+#param 3: position of the device under test in the list of planes
+# 
 def ClusterHitProb(dataSet,nbin,dut=6):
     HitProb_1_cluster = TH2D("HitProb_1_cluster_nbin%i"%nbin,"Hit probability, cluster size 1",nbin,0.,0.055,nbin,0.,0.055)
     #HitProb_1_cluster.GetXaxis().SetRangeUser(0.,0.055)
@@ -418,25 +459,7 @@ def TotalMeanFunctionX(Translations,Rotations,aDataDet,nevents,skip,dut=6):
     print "Evaluating for Trans : %.9f %.9f  [mm] metric = %.9f  n = %i"%(Translations[0],0,fabs(totaldist_evaluator/n),n)
     return fabs(totaldist_evaluator/n)
     # return -n
-    
-#     totaldist_evaluator = 0.
-#     n = 0
-#     for i,tracks in enumerate(aDataDet.AllTracks[0:nevents]) : 
-#         for track in tracks:
-# 	    if i%skip==0 : 	
-# 		     for cluster in aDataDet.AllClusters[i] : 
-#                 	 tmp=np.dot(RotationMatrix(Rotations),[cluster.relX-npix_X*pitchX/2,cluster.relY-npix_Y*pitchY/2,0])
-#                 	 tmp[0] = tmp[0] + Translations[0]
-#                 	 tmp[1] = tmp[1] 
-#                 	 distx=track.trackX[track.iden.index(dut)]-npix_X*pitchX/2 -tmp[0]
-#                 	 disty=track.trackY[track.iden.index(dut)]-npix_Y*pitchY/2 -tmp[1]                 
-# 
-# 			 if fabs(distx)<0.1 and fabs(disty)<0.1:
-# 				 totaldist_evaluator+=distx 
-# 				 n+=1
-#     print "Evaluating for Trans : %.9f %.9f  [mm] metric = %.9f  n = %i"%(Translations[0],0,fabs(totaldist_evaluator/n),n)
-#     return fabs(totaldist_evaluator/n)
-#     # return -n
+
 
 def TotalMeanFunctionY(Translations,Tx,Rotations,aDataDet,nevents,skip,dut=6):
 
@@ -458,25 +481,6 @@ def TotalMeanFunctionY(Translations,Tx,Rotations,aDataDet,nevents,skip,dut=6):
     print "Evaluating for Trans : %.9f %.9f  [mm] metric = %.9f  n = %i"%(Tx,Translations[0],fabs(totaldist_evaluator/n),n)
     return fabs(totaldist_evaluator/n)
     # return -n
-    
-#     totaldist_evaluator = 0.
-#     n = 0
-#     for i,tracks in enumerate(aDataDet.AllTracks[0:nevents]) : 
-#         for track in tracks:
-# 	    if i%skip==0 : 
-# 		    for cluster in aDataDet.AllClusters[i] : 
-#                 	tmp=np.dot(RotationMatrix(Rotations),[cluster.relX-npix_X*pitchX/2,cluster.relY-npix_Y*pitchY/2,0])
-#                 	tmp[0] = tmp[0] + Tx
-#                 	tmp[1] = tmp[1] + Translations[0]
-#                 	distx=track.trackX[track.iden.index(dut)]-npix_X*pitchX/2 -tmp[0]
-#                 	disty=track.trackY[track.iden.index(dut)]-npix_Y*pitchY/2 -tmp[1]                 
-# 
-# 			if fabs(distx)<0.1 and fabs(disty)<0.1:
-# 				totaldist_evaluator+=disty
-# 				n+=1
-#     print "Evaluating for Trans : %.9f %.9f  [mm] metric = %.9f  n = %i"%(Tx,Translations[0],fabs(totaldist_evaluator/n),n)
-#     return fabs(totaldist_evaluator/n)
-#     # return -n
 
 
 
@@ -507,33 +511,15 @@ def TotalRotationFunction(Rotations,Translations,aDataDet,nevents,skip=1,dut=6):
     result=sqrt(rms(dist_tmp_x)**2 + rms(dist_tmp_y)**2)
     print "Evaluating for Rotation : %.9f %.9f %.9f [deg] Trans : %f %f  [mm] metric = %.9f  n = %i"%(Rotations[0],Rotations[1],Rotations[2],Translations[0],0,result,n)
     return result
-    
-#     totaldist_evaluator = 0.
-#     n = 0
-#     dist_tmp_x = []
-#     dist_tmp_y = []
-#   
-#     for i,tracks in enumerate(aDataDet.AllTracks[0:nevents]) : 
-#         for track in tracks:
-# 	    if i%skip==0 : 
-# 		    for cluster in aDataDet.AllClusters[i] : 
-# 
-#                 	tmp=np.dot(RotationMatrix(Rotations),[cluster.absX,cluster.absY,0])
-#                 	tmp[0] = tmp[0] + Translations[0]
-#                 	tmp[1] = tmp[1] 
-#                 	distx=track.trackX[track.iden.index(dut)] -tmp[0]
-#                 	disty=track.trackY[track.iden.index(dut)] -tmp[1]                
-# 
-# 
-#                     if fabs(distx)<0.075 and fabs(disty)<0.075:
-#                         dist_tmp_x.append(distx)
-#                         dist_tmp_y.append(disty)
-#                         n+=1
-# 	
-#     result=sqrt(rms(dist_tmp_x)**2 + rms(dist_tmp_y)**2)
-#     print "Evaluating for Rotation : %.9f %.9f %.9f [deg] Trans : %f %f  [mm] metric = %.9f  n = %i"%(Rotations[0],Rotations[1],Rotations[2],Translations[0],0,result,n)
-#     return result
 
+
+#
+#return the X resolution (sigma of the X residuals distribution) for a given value of the sigma for the charge sharing (eta correction)
+#param 1: value of the sigma for the charge sharing (eta correction)
+#param 2: a data set (class EudetData) 
+#param 3: number of skiped events (compute residuals for 1 event over 'skip' events)
+#param 4: position of the device under test in the list of planes
+# 
 def TotalSigmaFunctionX(sigmaCharge_tmp_X,dataSet,skip,dut=6):
 
     nmatched = 0
@@ -575,7 +561,16 @@ def TotalSigmaFunctionX(sigmaCharge_tmp_X,dataSet,skip,dut=6):
     sigmaResX_err = rX.ParError(2) #retrieve the error for the parameter 2
     print "resolution = %f for sigma=%f"%(sigmaResX,sigmaCharge_tmp_X)
     return sigmaResX
-  
+
+
+
+#
+#return the Y resolution (sigma of the Y residuals distribution) for a given value of the sigma for the charge sharing (eta correction)
+#param 1: value of the sigma for the charge sharing (eta correction)
+#param 2: a data set (class EudetData) 
+#param 3: number of skiped events (compute residuals for 1 event over 'skip' events)
+#param 4: position of the device under test in the list of planes
+#   
 def TotalSigmaFunctionY(sigmaCharge_tmp_Y,dataSet,skip,dut=6):
     for j,tracks in enumerate(dataSet.AllTracks) : 
         if j%skip==0 :  
@@ -652,40 +647,6 @@ def TotalDistanceFunction(parameters,aDataDet,nevents,skip,dut=6):
     print "Evaluating for Rotation : %f %f %f [deg] Trans : %f %f  [mm] metric = %f  n = %i"%(parameters[0],parameters[1],parameters[2],parameters[3],parameters[4],result,n)
     return result
     
-#     totaldist_evaluator = 0.
-#     n = 0
-#     dist_tmp_x = []
-#     dist_tmp_y = []
-#     for i,tracks in enumerate(aDataDet.AllTracks[0:nevents]) : 
-#         for track in tracks:
-# 	    if i%skip==0 : 
-# 	    
-# 		    for cluster in aDataDet.AllClusters[i] : 
-#                 	#print len(aDataDet.AllClusters[i]),track.cluster
-#                 	#cluster = aDataDet.AllClusters[i][track.cluster]
-#                 	tmp=np.dot(RotationMatrix(parameters[0:3]),[cluster.relX-npix_X*pitchX/2,cluster.relY-npix_Y*pitchY/2,0])
-#                 	tmp[0] = tmp[0] + parameters[3]
-#                 	tmp[1] = tmp[1] + parameters[4]
-# 
-# 
-# 			dist=sqrt(pow( track.trackX[track.iden.index(dut)]-npix_X*pitchX/2. -tmp[0],2)+pow( track.trackY[track.iden.index(dut)]-npix_Y*pitchY/2. -tmp[1],2))		
-# 			distx=track.trackX[track.iden.index(dut)]-npix_X*pitchX/2. -tmp[0]
-#                 	disty=track.trackY[track.iden.index(dut)]-npix_Y*pitchY/2. -tmp[1]                
-# 
-#  			if(fabs(distx)<0.1 and fabs(disty)<0.1):
-#                 		dist_tmp_x.append(distx)
-#                 		dist_tmp_y.append(disty)               
-# 				totaldist_evaluator+=distx
-# 				n+=1
-# 
-#     if(n!=0):
-#     	result = fabs(totaldist_evaluator/n) 
-#     else :
-#     	result = 1000.
-#     print "Evaluating for Rotation : %f %f %f [deg] Trans : %f %f  [mm] metric = %f  n = %i"%(parameters[0],parameters[1],parameters[2],parameters[3],parameters[4],result,n)
-#     return result
- 
- 
  
  
         
@@ -715,6 +676,14 @@ def Perform2StepAlignment(aDataSet,boundary,nevent,skip) :
       
     return xr,[rest.x[0],rest2.x[0],0]
 
+
+#
+#optimize the sigma for the eta correction 
+#i.e. find the sigma for charge sharing which gives the best detector resolution (minimum value for the sigma of the residuals distributions)
+#param 1: a data set (class EudetData) 
+#param 2: number of events we are running on
+#param 3: number of skiped events 
+#
 def FindSigmaMin(dataSet,nevent,skip) : 
     xsigmachargeX = np.array([0.009])
     xsigmachargeY = np.array([0.009])
@@ -737,16 +706,31 @@ def ApplyAlignment(dataSet,translations,rotations,dut=6,filename="Alignement.txt
             track.trackY[track.iden.index(dut)] = tmp[1] + translations[1]
 #             track.trackZ[track.iden.index(dut)] = tmp[2] + translations[2]        
 
-#     print "Applying Alignment with  Rotation : %0.10f %0.10f %0.10f [deg] Trans : %0.10f %0.10f  [mm]"%(rotations[0],rotations[1],rotations[2],translations[0],translations[1])
-#     
-#     f = open(filename,'w')
-#     f.write("Rotation : %f %f %f [deg] Trans : %f %f  [mm] \n"%(rotations[0],rotations[1],rotations[2],translations[0],translations[1]))
-#     f.close()
-#     for Clusters in dataSet.AllClusters : 
-#         for cluster in Clusters : 
-#             tmp=np.dot(RotationMatrix(rotations),[cluster.relX-npix_X*pitchX/2.,cluster.relY-npix_Y*pitchY/2.,0])
-#             cluster.absX = tmp[0] + translations[0]
-#             cluster.absY = tmp[1] + translations[1]
-#             cluster.absZ = tmp[2] + translations[2]            
+
+
+#
+#apply the eta correction i.e. compute the final residuals with the optimum charge sharing sigma
+#param 1: a data set (class EudetData) 
+#param 2: value of the optimum charge sharing sigma coming from the X residuals study
+#param 3: value of the optimum charge sharing sigma coming from the Y residuals study
+#param 4: position of the device under test in the list of planes
+#param 5: name of the file in which we store the results of the sigma optimisation
+#
+def ApplyEtaCorrection(dataSet,ressigmachargeX,ressigmachargeY,dut=6,filename="EtaCorrection.txt") :
+
+    print "Applying Eta Correction with  chargeSigmaX : %f [mm] chargeSigmaY : %f [mm]"%(float(ressigmachargeX),float(ressigmachargeY))
+    
+#     f2 = open(filename,'w')
+#     f2.write("ChargeSigmaX : %f [mm] ChargeSigmaY : %f [mm] \n"%(float(ressigmachargeX),float(ressigmachargeY))
+#     f2.close()
+    ressigmachargeMean = (ressigmachargeX + ressigmachargeY)/2.
+    for j,tracks in enumerate(dataSet.AllTracks) :  
+        for track in tracks : 
+            if track.cluster!=-11 and len(dataSet.AllClusters[j])!=0 :     
+                aCluster = dataSet.AllClusters[j][track.cluster]
+                if(aCluster.size==2) : 
+                    aCluster.GetEtaCorrectedQWeightedCentroid(ressigmachargeMean)
+        dataSet.FindMatchedCluster(j, 0.350, 0.350,6)
+        dataSet.ComputeResiduals(j)         
             
     
