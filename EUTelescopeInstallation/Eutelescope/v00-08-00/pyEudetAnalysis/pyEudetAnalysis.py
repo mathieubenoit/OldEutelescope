@@ -9,6 +9,9 @@ from ToolBox import *
 
 PlotPath = "/afs/cern.ch/work/a/apequegn/public/DESY_TB_DATA_02_07-06-2013_results/pyEudetAnalysisPlots"
 
+# global n_sizeX2sizeY2
+
+
 def h1_style(h, optstat=0) :
     h.SetStats(optstat)   
     h.SetLabelFont(42,"X")
@@ -88,8 +91,8 @@ for i in range(aDataSet.p_nEntries) :
 
     aDataSet.ClusterEvent(i,method_name)
     aDataSet.GetTrack(i)
-    #aDataSet.FindMatchedCluster(i, 0.350, 0.350,6)
-    aDataSet.FindMatchedCluster(i, 2., 2.,6)
+    aDataSet.FindMatchedCluster(i, 0.350, 0.350,6)
+#     aDataSet.FindMatchedCluster(i, 2., 2.,6)
     if i%1000 ==0 :
         print "Event %d"%i
     #aDataSet.PrintClusters(i)    
@@ -102,12 +105,28 @@ for i in range(aDataSet.p_nEntries) :
     trackX_vs_trackY_plan0.Fill(aDataSet.t_posX[0],aDataSet.t_posY[0])
 
 print "Found %i matched track-cluster binome"%n_matched
-
+# print "number of clusters with sixe 2 sizeX2 and sizeY2 : %f"%n_sizeX2sizeY2 
+ 
 n_tracks_in = ComputeDetectorAcceptance(aDataSet)
 print "Found %i tracks in the detector acceptance"%n_tracks_in
 
 if n_tracks_in!=0 :
     print "detector efficiency = %f"%float((1.*n_matched)/(1.*n_tracks_in))
+    
+hClusterSizeCounter,hClusterSizeCounter_percent = CountPixelSize(aDataSet)
+h1_style(hClusterSizeCounter)
+h1_style(hClusterSizeCounter_percent)
+
+cClusterSizeCounter = TCanvas()
+cClusterSizeCounter.cd()
+hClusterSizeCounter.Draw()
+cClusterSizeCounter.SetLogy()
+
+cClusterSizeCounter_percent = TCanvas()
+cClusterSizeCounter_percent.cd()
+# cClusterSizeCounter_percent.SetLogy()
+hClusterSizeCounter_percent.Draw()
+
 
 #for i in range(aDataSet_calib.p_nEntries) : 
 #===============================================================================
@@ -127,7 +146,7 @@ if n_tracks_in!=0 :
 resr,rest = Perform2StepAlignment(aDataSet,[[0,360],[0,360],[0,360],[-0.5,0.5],[-0.5,0.5]],aDataSet.p_nEntries,20)
 ApplyAlignment(aDataSet,rest,resr)
 
-#ApplyAlignment(aDataSet,[0.016125, 0.020414 , 0.],[0.0000000000, 0.0000000000, -0.072316])
+# ApplyAlignment(aDataSet,[-0.0439218750, -0.0463671875 , 0.],[0.0000000000, 0.0000000000, 0])
 
 # for i in range(10000) : 
 for i in range(aDataSet.p_nEntries) :
@@ -135,6 +154,23 @@ for i in range(aDataSet.p_nEntries) :
         
 hx,hy = TrackClusterCorrelation(aDataSet)
 #hxc,hyc = TrackClusterCorrelation(aDataSet_calib)
+
+if (method_name == "EtaCorrection") :
+    # ressigmachargeX, ressigmachargeY = FindSigmaMin(aDataSet,10000,1)
+    ressigmachargeX, ressigmachargeY = FindSigmaMin(aDataSet,aDataSet.p_nEntries,20)
+    print "ressigmachargeX : %f"%float(ressigmachargeX)
+    print "ressigmachargeY : %f"%float(ressigmachargeY)
+    
+    ApplyEtaCorrection(aDataSet,ressigmachargeX,ressigmachargeY)
+
+# for j,tracks in enumerate(aDataSet.AllTracks) : 
+#     for track in tracks : 
+#         if track.cluster!=-11 and len(dataSet.AllClusters[j])!=0 :     
+#             aCluster = dataSet.AllClusters[j][track.cluster]
+#             if(dataSet.AllClusters[j][track.cluster].size==2) : 
+#                 dataSet.AllClusters[j][track.cluster].GetEtaCorrectedQWeightedCentroid(ressigmachargeX)          
+#     aDataSet.FindMatchedCluster(j, 0.350, 0.350,6)
+#     aDataSet.ComputeResiduals(j)
  
 h1_style(hx,1)
 h1_style(hy,1) 
@@ -178,6 +214,12 @@ relX_vs_relY.GetYaxis().SetTitle("Cluster relY position within pixel [mm]")
 HitProb_1_cluster_binning1m,HitProb_2_cluster_binning1m,HitProb_3_cluster_binning1m,HitProb_4_cluster_binning1m = ClusterHitProb(aDataSet,55,6)
 HitProb_1_cluster_binning2m,HitProb_2_cluster_binning2m,HitProb_3_cluster_binning2m,HitProb_4_cluster_binning2m = ClusterHitProb(aDataSet,28,6)
 
+HitProb_1_correlationX,HitProb_2_correlationX,HitProb_3_correlationX,HitProb_4_correlationX = HitProbCorrelationX(aDataSet,55,6)
+HitProb_1_correlationY,HitProb_2_correlationY,HitProb_3_correlationY,HitProb_4_correlationY = HitProbCorrelationY(aDataSet,55,6)
+
+
+  
+
 h1_style(allTOT,1) 
 h1_style(TOT1,1) 
 h1_style(TOT2,1) 
@@ -195,7 +237,18 @@ h1_style(HitProb_3_cluster_binning2m)
 h1_style(HitProb_4_cluster_binning2m)
 h1_style(relX_vs_relY)
 
-distance = 0 #microns
+h1_style(HitProb_1_correlationX)
+h1_style(HitProb_2_correlationX)
+h1_style(HitProb_3_correlationX)
+h1_style(HitProb_4_correlationX)
+h1_style(HitProb_1_correlationY)
+h1_style(HitProb_2_correlationY)
+h1_style(HitProb_3_correlationY)
+h1_style(HitProb_4_correlationY)
+
+distance = 4 #microns
+print "Compute charge distance..."
+print distance*0.001
 AllDistances,AllCharges = ComputeChargeDistance(aDataSet,distance*0.001)
 graph1 = TGraph(len(AllDistances))
 QrelWrtMindistance = TH2D("QrelWrtMindistance","Relative charge as a function of the minimal distance to the pixel edge",110,0,0.0275,100,0.5,1)
@@ -220,6 +273,35 @@ h1_style(QrelWrtMindistance)
  
 resX_cs = []
 resY_cs = []
+
+resX_s2x2y2 = TH1D("resX_s2x2y2","Unbiased residual X, cluster size = 2, sizeX = 2 and sizeY = 2",300,-0.150,0.150)
+resY_s2x2y2 = TH1D("resY_s2x2y2","Unbiased residual Y, cluster size = 2, sizeX = 2 and sizeY = 2",300,-0.150,0.150)
+resX_s2x2y2.GetXaxis().SetTitle("X_{track} - X_{Timepix} (mm)")
+resX_s2x2y2.GetYaxis().SetTitle("Number of hits")
+resY_s2x2y2.GetXaxis().SetTitle("Y_{track} - Y_{Timepix} (mm)")
+resY_s2x2y2.GetYaxis().SetTitle("Number of hits")
+
+resX_s2x2y1 = TH1D("resX_s2x2y1","Unbiased residual X, cluster size = 2, sizeX = 2 and sizeY = 1",300,-0.150,0.150)
+resY_s2x2y1 = TH1D("resY_s2x2y1","Unbiased residual Y, cluster size = 2, sizeX = 2 and sizeY = 1",300,-0.150,0.150)
+resX_s2x2y1.GetXaxis().SetTitle("X_{track} - X_{Timepix} (mm)")
+resX_s2x2y1.GetYaxis().SetTitle("Number of hits")
+resY_s2x2y1.GetXaxis().SetTitle("Y_{track} - Y_{Timepix} (mm)")
+resY_s2x2y1.GetYaxis().SetTitle("Number of hits")
+
+resX_s2x1y2 = TH1D("resX_s2x1y2","Unbiased residual X, cluster size = 2, sizeX = 1 and sizeY = 2",300,-0.150,0.150)
+resY_s2x1y2 = TH1D("resY_s2x1y2","Unbiased residual Y, cluster size = 2, sizeX = 1 and sizeY = 2",300,-0.150,0.150)
+resX_s2x1y2.GetXaxis().SetTitle("X_{track} - X_{Timepix} (mm)")
+resX_s2x1y2.GetYaxis().SetTitle("Number of hits")
+resY_s2x1y2.GetXaxis().SetTitle("Y_{track} - Y_{Timepix} (mm)")
+resY_s2x1y2.GetYaxis().SetTitle("Number of hits")
+
+resX_s4x2y2 = TH1D("resX_s4x2y2","Unbiased residual X, cluster size = 4, sizeX = 2 and sizeY = 2",300,-0.150,0.150)
+resY_s4x2y2 = TH1D("resY_s4x2y2","Unbiased residual Y, cluster size = 4, sizeX = 2 and sizeY = 2",300,-0.150,0.150)
+resX_s4x2y2.GetXaxis().SetTitle("X_{track} - X_{Timepix} (mm)")
+resX_s4x2y2.GetYaxis().SetTitle("Number of hits")
+resY_s4x2y2.GetXaxis().SetTitle("Y_{track} - Y_{Timepix} (mm)")
+resY_s4x2y2.GetYaxis().SetTitle("Number of hits")
+
 n_cs = 3
  
 for i in range(1,n_cs+2) : #n_cs+2 excluded
@@ -231,6 +313,8 @@ for i in range(1,n_cs+2) : #n_cs+2 excluded
     tmpy.GetYaxis().SetTitle("Number of hits")
     tmpx.SetLineColor(i)
     tmpy.SetLineColor(i)
+    tmpx.Sumw2()
+    tmpy.Sumw2()   
     resX_cs.append(tmpx)
     resY_cs.append(tmpy)
 
@@ -248,43 +332,92 @@ h1_style(hClusterSizeY)
 h1_style(hClusterSize)
 h1_style(hClusterSizeXvsSizeY)
 
+if method_name == "EtaCorrection" :
 #cluster size for the eta correction method
-
-for j,clusters in enumerate(aDataSet.AllClusters) : 
-    for i,cluster in enumerate(clusters) :
-        if len(aDataSet.AllClusters[j])!=0 : 
-            aCluster = aDataSet.AllClusters[j][i]    
-            hClusterSizeX.Fill(aCluster.sizeX)
-            hClusterSizeY.Fill(aCluster.sizeY)
-            hClusterSize.Fill(aCluster.size)
-            hClusterSizeXvsSizeY.Fill(aCluster.sizeX,aCluster.sizeY)
-
-for j,tracks in enumerate(aDataSet.AllTracks) : 
-    for track in tracks : 
-        if track.cluster!=-11 and len(aDataSet.AllClusters[j])!=0 :     
-            aCluster = aDataSet.AllClusters[j][track.cluster]
-            allTOT.Fill(aCluster.totalTOT) 
-            relX_vs_relY.Fill(aCluster.relX,aCluster.relY)
-            #print aCluster.tracknum
-            resX.Fill(aCluster.resX) 
-            resY.Fill(aCluster.resY)
-#             hClusterSizeX.Fill(aCluster.sizeX)
-#             hClusterSizeY.Fill(aCluster.sizeY)
-#             hClusterSize.Fill(aCluster.size)
-#             hClusterSizeXvsSizeY.Fill(aCluster.sizeX,aCluster.sizeY)
-            for i in range(1,n_cs+2) :
-                if(aCluster.sizeX==i) : 
-                    resX_cs[i-1].Fill(aCluster.resX) 
-                if(aCluster.sizeY==i) : 
-                    resY_cs[i-1].Fill(aCluster.resY)             
-            if(aCluster.size==1) : 
-                TOT1.Fill(aCluster.totalTOT) 
-            if(aCluster.size==2) : 
-                TOT2.Fill(aCluster.totalTOT) 
-            if(aCluster.size==3) : 
-                TOT3.Fill(aCluster.totalTOT)
-            if(aCluster.size==4) : 
-                TOT4.Fill(aCluster.totalTOT)     
+    for j,clusters in enumerate(aDataSet.AllClusters) : 
+        for i,cluster in enumerate(clusters) :
+            if len(aDataSet.AllClusters[j])!=0 : 
+                aCluster = aDataSet.AllClusters[j][i]    
+                hClusterSizeX.Fill(aCluster.sizeX)
+                hClusterSizeY.Fill(aCluster.sizeY)
+                hClusterSize.Fill(aCluster.size)
+                hClusterSizeXvsSizeY.Fill(aCluster.sizeX,aCluster.sizeY)
+                
+    for j,tracks in enumerate(aDataSet.AllTracks) : 
+        for track in tracks : 
+            if track.cluster!=-11 and len(aDataSet.AllClusters[j])!=0 :     
+                aCluster = aDataSet.AllClusters[j][track.cluster]
+                allTOT.Fill(aCluster.totalTOT) 
+                relX_vs_relY.Fill(aCluster.relX,aCluster.relY)
+                #print aCluster.tracknum
+                resX.Fill(aCluster.resX) 
+                resY.Fill(aCluster.resY)
+                if(aCluster.size==2 and (aCluster.sizeX==2 and aCluster.sizeY==2)) :
+                    resX_s2x2y2.Fill(aCluster.resX) 
+                    resY_s2x2y2.Fill(aCluster.resY)
+                elif(aCluster.size==2 and (aCluster.sizeX==2 and aCluster.sizeY==1)) :
+                    resX_s2x2y1.Fill(aCluster.resX) 
+                    resY_s2x2y1.Fill(aCluster.resY)                   
+                elif(aCluster.size==2 and (aCluster.sizeX==1 and aCluster.sizeY==2)) :
+                    resX_s2x1y2.Fill(aCluster.resX) 
+                    resY_s2x1y2.Fill(aCluster.resY)
+                elif(aCluster.size==4 and (aCluster.sizeX==2 and aCluster.sizeY==2)) :
+                    resX_s4x2y2.Fill(aCluster.resX) 
+                    resY_s4x2y2.Fill(aCluster.resY)
+                          
+                for i in range(1,n_cs+2) :
+                    if(aCluster.sizeX==i) : 
+                        resX_cs[i-1].Fill(aCluster.resX) 
+                    if(aCluster.sizeY==i) : 
+                        resY_cs[i-1].Fill(aCluster.resY)             
+                if(aCluster.size==1) : 
+                    TOT1.Fill(aCluster.totalTOT) 
+                if(aCluster.size==2) : 
+                    TOT2.Fill(aCluster.totalTOT) 
+                if(aCluster.size==3) : 
+                    TOT3.Fill(aCluster.totalTOT)
+                if(aCluster.size==4) : 
+                    TOT4.Fill(aCluster.totalTOT)   
+else :
+    for j,tracks in enumerate(aDataSet.AllTracks) : 
+        for track in tracks : 
+            if track.cluster!=-11 and len(aDataSet.AllClusters[j])!=0 :     
+                aCluster = aDataSet.AllClusters[j][track.cluster]
+                allTOT.Fill(aCluster.totalTOT) 
+                relX_vs_relY.Fill(aCluster.relX,aCluster.relY)
+                #print aCluster.tracknum
+                resX.Fill(aCluster.resX) 
+                resY.Fill(aCluster.resY)
+                hClusterSizeX.Fill(aCluster.sizeX)
+                hClusterSizeY.Fill(aCluster.sizeY)
+                hClusterSize.Fill(aCluster.size)
+                hClusterSizeXvsSizeY.Fill(aCluster.sizeX,aCluster.sizeY)
+                if(aCluster.size==2 and (aCluster.sizeX==2 and aCluster.sizeY==2)) :
+                    resX_s2x2y2.Fill(aCluster.resX) 
+                    resY_s2x2y2.Fill(aCluster.resY)
+                elif(aCluster.size==2 and (aCluster.sizeX==2 and aCluster.sizeY==1)) :
+                    resX_s2x2y1.Fill(aCluster.resX) 
+                    resY_s2x2y1.Fill(aCluster.resY)                   
+                elif(aCluster.size==2 and (aCluster.sizeX==1 and aCluster.sizeY==2)) :
+                    resX_s2x1y2.Fill(aCluster.resX) 
+                    resY_s2x1y2.Fill(aCluster.resY)
+                elif(aCluster.size==4 and (aCluster.sizeX==2 and aCluster.sizeY==2)) :
+                    resX_s4x2y2.Fill(aCluster.resX) 
+                    resY_s4x2y2.Fill(aCluster.resY)
+                    
+                for i in range(1,n_cs+2) :
+                    if(aCluster.sizeX==i) : 
+                        resX_cs[i-1].Fill(aCluster.resX) 
+                    if(aCluster.sizeY==i) : 
+                        resY_cs[i-1].Fill(aCluster.resY)             
+                if(aCluster.size==1) : 
+                    TOT1.Fill(aCluster.totalTOT) 
+                if(aCluster.size==2) : 
+                    TOT2.Fill(aCluster.totalTOT) 
+                if(aCluster.size==3) : 
+                    TOT3.Fill(aCluster.totalTOT)
+                if(aCluster.size==4) : 
+                    TOT4.Fill(aCluster.totalTOT)     
      
 # for clusters in aDataSet.AllClusters : 
 #     for cluster in clusters : 
@@ -314,14 +447,43 @@ for j,tracks in enumerate(aDataSet.AllTracks) :
 #            resX_calib.Fill(cluster.resX+0.0058-0.0098)
 #        if(fabs(cluster.resY)<0.15) : 
 #            resY_calib.Fill(cluster.resY-0.0069-0.00543)
+
+canvas_resX_s2x2y2 = TCanvas()
+resX_s2x2y2.Draw()
+resX_s2x2y2.Fit("gaus","R","",-0.03,0.03)
+canvas_resY_s2x2y2 = TCanvas()
+resY_s2x2y2.Draw()
+resY_s2x2y2.Fit("gaus","R","",-0.03,0.03)
+
+canvas_resX_s2x2y1 = TCanvas()
+resX_s2x2y1.Draw()
+resX_s2x2y1.Fit("gaus","R","",-0.03,0.03)
+canvas_resY_s2x2y1 = TCanvas()
+resY_s2x2y1.Draw()
+resY_s2x2y1.Fit("gaus","R","",-0.03,0.03)
+
+canvas_resX_s2x1y2 = TCanvas()
+resX_s2x1y2.Draw()
+resX_s2x1y2.Fit("gaus","R","",-0.03,0.03)
+canvas_resY_s2x1y2 = TCanvas()
+resY_s2x1y2.Draw()
+resY_s2x1y2.Fit("gaus","R","",-0.03,0.03)
+
+canvas_resX_s4x2y2 = TCanvas()
+resX_s4x2y2.Draw()
+resX_s4x2y2.Fit("gaus","R","",-0.03,0.03)
+canvas_resY_s4x2y2 = TCanvas()
+resY_s4x2y2.Draw()
+resY_s4x2y2.Fit("gaus","R","",-0.03,0.03)
  
 can1 = TCanvas()			
 allTOT.Draw()
- 
-# TOT1.Scale(1./(TOT1.Integral())) 
-# TOT2.Scale(1./(TOT2.Integral()))
-# TOT3.Scale(1./(TOT3.Integral()))
-# TOT4.Scale(1./(TOT4.Integral()))
+
+if ((TOT1.Integral()!=0 and TOT2.Integral()!=0) and (TOT3.Integral()!=0 and TOT4.Integral()!=0)) : 
+    TOT1.Scale(1./(TOT1.Integral())) 
+    TOT2.Scale(1./(TOT2.Integral()))
+    TOT3.Scale(1./(TOT3.Integral()))
+    TOT4.Scale(1./(TOT4.Integral()))
 
 can2=TCanvas()
 TOT1.Draw()
@@ -382,7 +544,8 @@ resY.Fit("gaus","R","",-0.03,0.03)
 can5 = TCanvas() 
 for i in range(1,n_cs+2) : 
     h1_style(resX_cs[i-1],1)
-#     resX_cs[i-1].Scale(1./(resX_cs[i-1].Integral()))
+    if(resX_cs[i-1].Integral()!=0) :
+        resX_cs[i-1].Scale(1./(resX_cs[i-1].Integral()))
     if i==1 :         
         resX_cs[i-1].Draw("")
     else : 
@@ -427,7 +590,8 @@ can6 = TCanvas()
  
 for i in range(1,n_cs+2) :
     h1_style(resY_cs[i-1],1)
-#     resY_cs[i-1].Scale(1./(resY_cs[i-1].Integral())) 
+    if(resY_cs[i-1].Integral()!=0) :
+        resY_cs[i-1].Scale(1./(resY_cs[i-1].Integral())) 
     if i==1 :        
         resY_cs[i-1].Draw("")
     else : 
@@ -579,9 +743,42 @@ can21 = TCanvas()
 can21.cd()
 hClusterSizeXvsSizeY.Draw("colz")
 
+can22 = TCanvas()
+can22.cd()
+HitProb_1_correlationX.Draw("colz")
+  
+can23 = TCanvas()
+can23.cd()
+HitProb_2_correlationX.Draw("colz")
+
+can24 = TCanvas()
+can24.cd()
+HitProb_3_correlationX.Draw("colz")
+  
+can25 = TCanvas()
+can25.cd()
+HitProb_4_correlationX.Draw("colz")
+
+can26 = TCanvas()
+can26.cd()
+HitProb_1_correlationY.Draw("colz")
+  
+can27 = TCanvas()
+can27.cd()
+HitProb_2_correlationY.Draw("colz")
+
+can28 = TCanvas()
+can28.cd()
+HitProb_3_correlationY.Draw("colz")
+  
+can29 = TCanvas()
+can29.cd()
+HitProb_4_correlationY.Draw("colz")
+
 
 if method_name == "QWeighted" :
-    out = TFile("%s/QWeighted/output_rootfile_QWeighted_firingFreq001_run000131.root"%PlotPath, "recreate")
+#     out = TFile("%s/QWeighted/output_rootfile_QWeighted_firingFreq001_run000131.root"%PlotPath, "recreate")
+    out = TFile("%s/QWeighted/output_rootfile_QWeighted_firingFreq001_run000131_distance%i.root"%(PlotPath,distance), "recreate")
     canhot.SaveAs("%s/QWeighted/histo_hot_QWeighted.png"%PlotPath)
     canfreq.SaveAs("%s/QWeighted/histo_freq_QWeighted.png"%PlotPath)
     cancorx.SaveAs("%s/QWeighted/corx_QWeighted.png"%PlotPath)
@@ -615,12 +812,30 @@ if method_name == "QWeighted" :
     can19.SaveAs("%s/QWeighted/ClusterSizeY_QWeighted.png"%PlotPath)
     can20.SaveAs("%s/QWeighted/ClusterSize_QWeighted.png"%PlotPath)
     can21.SaveAs("%s/QWeighted/ClusterSizeXvsSizeY_QWeighted.png"%PlotPath)
+    can22.SaveAs("%s/QWeighted/HitProb_1_correlationX_QWeighted.png"%PlotPath)
+    can23.SaveAs("%s/QWeighted/HitProb_2_correlationX_QWeighted.png"%PlotPath)
+    can24.SaveAs("%s/QWeighted/HitProb_3_correlationX_QWeighted.png"%PlotPath)
+    can25.SaveAs("%s/QWeighted/HitProb_4_correlationX_QWeighted.png"%PlotPath)
+    can26.SaveAs("%s/QWeighted/HitProb_1_correlationY_QWeighted.png"%PlotPath)
+    can27.SaveAs("%s/QWeighted/HitProb_2_correlationY_QWeighted.png"%PlotPath)
+    can28.SaveAs("%s/QWeighted/HitProb_3_correlationY_QWeighted.png"%PlotPath)
+    can29.SaveAs("%s/QWeighted/HitProb_4_correlationY_QWeighted.png"%PlotPath)
     canEtaCorr.SaveAs("%s/QWeighted/Eta_QWeighted.png"%PlotPath)
     canEtaCorr2.SaveAs("%s/QWeighted/Eta_hist_QWeighted.png"%PlotPath)
- 
+    cClusterSizeCounter.SaveAs("%s/QWeighted/ClusterSizeCounter.png"%PlotPath)
+    cClusterSizeCounter_percent.SaveAs("%s/QWeighted/ClusterSizeCounter_percent.png"%PlotPath)
+    canvas_resX_s2x2y2.SaveAs("%s/QWeighted/resX_s2x2y2.png"%PlotPath)
+    canvas_resY_s2x2y2.SaveAs("%s/QWeighted/resY_s2x2y2.png"%PlotPath)
+    canvas_resX_s2x2y1.SaveAs("%s/QWeighted/resX_s2x2y1.png"%PlotPath)
+    canvas_resY_s2x2y1.SaveAs("%s/QWeighted/resY_s2x2y1.png"%PlotPath)
+    canvas_resX_s2x1y2.SaveAs("%s/QWeighted/resX_s2x1y2.png"%PlotPath)
+    canvas_resY_s2x1y2.SaveAs("%s/QWeighted/resY_s2x1y2.png"%PlotPath)
+    canvas_resX_s4x2y2.SaveAs("%s/QWeighted/resX_s4x2y2.png"%PlotPath)
+    canvas_resY_s4x2y2.SaveAs("%s/QWeighted/resY_s4x2y2.png"%PlotPath) 
  
 elif method_name == "DigitalCentroid" :
-    out = TFile("%s/DigitalCentroid/output_rootfile_DigitalCentroid_firingFreq001_run000131.root"%PlotPath, "recreate")
+    #out = TFile("%s/DigitalCentroid/output_rootfile_DigitalCentroid_firingFreq001_run000131.root"%PlotPath, "recreate")
+    out = TFile("%s/DigitalCentroid/output_rootfile_DigitalCentroid_firingFreq001_run000131_distance%i.root"%(PlotPath,distance), "recreate")
     canhot.SaveAs("%s/DigitalCentroid/histo_hot_DigitalCentroid.png"%PlotPath)
     canfreq.SaveAs("%s/DigitalCentroid/histo_freq_DigitalCentroid.png"%PlotPath)
     cancorx.SaveAs("%s/DigitalCentroid/corx_DigitalCentroid.png"%PlotPath)
@@ -654,12 +869,31 @@ elif method_name == "DigitalCentroid" :
     can19.SaveAs("%s/DigitalCentroid/ClusterSizeY_DigitalCentroid.png"%PlotPath)
     can20.SaveAs("%s/DigitalCentroid/ClusterSize_DigitalCentroid.png"%PlotPath)
     can21.SaveAs("%s/DigitalCentroid/ClusterSizeXvsSizeY_DigitalCentroid.png"%PlotPath)
+    can22.SaveAs("%s/DigitalCentroid/HitProb_1_correlationX_DigitalCentroid.png"%PlotPath)
+    can23.SaveAs("%s/DigitalCentroid/HitProb_2_correlationX_DigitalCentroid.png"%PlotPath)
+    can24.SaveAs("%s/DigitalCentroid/HitProb_3_correlationX_DigitalCentroid.png"%PlotPath)
+    can25.SaveAs("%s/DigitalCentroid/HitProb_4_correlationX_DigitalCentroid.png"%PlotPath)
+    can26.SaveAs("%s/DigitalCentroid/HitProb_1_correlationY_DigitalCentroid.png"%PlotPath)
+    can27.SaveAs("%s/DigitalCentroid/HitProb_2_correlationY_DigitalCentroid.png"%PlotPath)
+    can28.SaveAs("%s/DigitalCentroid/HitProb_3_correlationY_DigitalCentroid.png"%PlotPath)
+    can29.SaveAs("%s/DigitalCentroid/HitProb_4_correlationY_DigitalCentroid.png"%PlotPath)
     canEtaCorr.SaveAs("%s/DigitalCentroid/Eta_DigitalCentroid.png"%PlotPath)
     canEtaCorr2.SaveAs("%s/DigitalCentroid/Eta_hist_DigitalCentroid.png"%PlotPath)
+    cClusterSizeCounter.SaveAs("%s/DigitalCentroid/ClusterSizeCounter.png"%PlotPath)
+    cClusterSizeCounter_percent.SaveAs("%s/DigitalCentroid/ClusterSizeCounter_percent.png"%PlotPath)
+    canvas_resX_s2x2y2.SaveAs("%s/DigitalCentroid/resX_s2x2y2.png"%PlotPath)
+    canvas_resY_s2x2y2.SaveAs("%s/DigitalCentroid/resY_s2x2y2.png"%PlotPath)
+    canvas_resX_s2x2y1.SaveAs("%s/DigitalCentroid/resX_s2x2y1.png"%PlotPath)
+    canvas_resY_s2x2y1.SaveAs("%s/DigitalCentroid/resY_s2x2y1.png"%PlotPath)
+    canvas_resX_s2x1y2.SaveAs("%s/DigitalCentroid/resX_s2x1y2.png"%PlotPath)
+    canvas_resY_s2x1y2.SaveAs("%s/DigitalCentroid/resY_s2x1y2.png"%PlotPath)
+    canvas_resX_s4x2y2.SaveAs("%s/DigitalCentroid/resX_s4x2y2.png"%PlotPath)
+    canvas_resY_s4x2y2.SaveAs("%s/DigitalCentroid/resY_s4x2y2.png"%PlotPath) 
 
          
 elif method_name == "maxTOT" : 
-    out = TFile("%s/maxTOT/output_rootfile_maxTOT_firingFreq001_run000131.root"%PlotPath, "recreate")
+    #out = TFile("%s/maxTOT/output_rootfile_maxTOT_firingFreq001_run000131.root"%PlotPath, "recreate")
+    out = TFile("%s/maxTOT/output_rootfile_maxTOT_firingFreq001_run000131_distance%i.root"%(PlotPath,distance), "recreate")
     canhot.SaveAs("%s/maxTOT/histo_hot_maxTOT.png"%PlotPath)
     canfreq.SaveAs("%s/maxTOT/histo_freq_maxTOT.png"%PlotPath)
     cancorx.SaveAs("%s/maxTOT/corx_maxTOT.png"%PlotPath)
@@ -693,12 +927,30 @@ elif method_name == "maxTOT" :
     can19.SaveAs("%s/maxTOT/ClusterSizeY_maxTOT.png"%PlotPath)
     can20.SaveAs("%s/maxTOT/ClusterSize_maxTOT.png"%PlotPath)
     can21.SaveAs("%s/maxTOT/ClusterSizeXvsSizeY_maxTOT.png"%PlotPath)
+    can22.SaveAs("%s/maxTOT/HitProb_1_correlationX_maxTOT.png"%PlotPath)
+    can23.SaveAs("%s/maxTOT/HitProb_2_correlationX_maxTOT.png"%PlotPath)
+    can24.SaveAs("%s/maxTOT/HitProb_3_correlationX_maxTOT.png"%PlotPath)
+    can25.SaveAs("%s/maxTOT/HitProb_4_correlationX_maxTOT.png"%PlotPath)
+    can26.SaveAs("%s/maxTOT/HitProb_1_correlationY_maxTOT.png"%PlotPath)
+    can27.SaveAs("%s/maxTOT/HitProb_2_correlationY_maxTOT.png"%PlotPath)
+    can28.SaveAs("%s/maxTOT/HitProb_3_correlationY_maxTOT.png"%PlotPath)
+    can29.SaveAs("%s/maxTOT/HitProb_4_correlationY_maxTOT.png"%PlotPath)
     canEtaCorr.SaveAs("%s/maxTOT/Eta_maxTOT.png"%PlotPath)
     canEtaCorr2.SaveAs("%s/maxTOT/Eta_hist_maxTOT.png"%PlotPath)
+    cClusterSizeCounter.SaveAs("%s/maxTOT/ClusterSizeCounter.png"%PlotPath)
+    cClusterSizeCounter_percent.SaveAs("%s/maxTOT/ClusterSizeCounter_percent.png"%PlotPath)
+    canvas_resX_s2x2y2.SaveAs("%s/maxTOT/resX_s2x2y2.png"%PlotPath)
+    canvas_resY_s2x2y2.SaveAs("%s/maxTOT/resY_s2x2y2.png"%PlotPath)
+    canvas_resX_s2x2y1.SaveAs("%s/maxTOT/resX_s2x2y1.png"%PlotPath)
+    canvas_resY_s2x2y1.SaveAs("%s/maxTOT/resY_s2x2y1.png"%PlotPath)
+    canvas_resX_s2x1y2.SaveAs("%s/maxTOT/resX_s2x1y2.png"%PlotPath)
+    canvas_resY_s2x1y2.SaveAs("%s/maxTOT/resY_s2x1y2.png"%PlotPath)
+    canvas_resX_s4x2y2.SaveAs("%s/maxTOT/resX_s4x2y2.png"%PlotPath)
+    canvas_resY_s4x2y2.SaveAs("%s/maxTOT/resY_s4x2y2.png"%PlotPath) 
     
 elif method_name == "EtaCorrection" : 
-    out = TFile("%s/EtaCorrection/output_rootfile_EtaCorrection_firingFreq001_run000131.root"%PlotPath, "recreate")
     out = TFile("%s/EtaCorrection/output_rootfile_EtaCorrection_firingFreq001_run000131_distance%i.root"%(PlotPath,distance), "recreate")
+#     out = TFile("%s/EtaCorrection/output_rootfile_EtaCorrection_firingFreq001_run000131_distance%i_sigma%i.root"%(PlotPath,distance,sigma*1000), "recreate")
     canhot.SaveAs("%s/EtaCorrection/histo_hot_EtaCorrection.png"%PlotPath)
     canfreq.SaveAs("%s/EtaCorrection/histo_freq_EtaCorrection.png"%PlotPath)
     cancorx.SaveAs("%s/EtaCorrection/corx_EtaCorrection.png"%PlotPath)
@@ -732,17 +984,73 @@ elif method_name == "EtaCorrection" :
     can19.SaveAs("%s/EtaCorrection/ClusterSizeY_EtaCorrection.png"%PlotPath)
     can20.SaveAs("%s/EtaCorrection/ClusterSize_EtaCorrection.png"%PlotPath)
     can21.SaveAs("%s/EtaCorrection/ClusterSizeXvsSizeY_EtaCorrection.png"%PlotPath)
+    can22.SaveAs("%s/EtaCorrection/HitProb_1_correlationX_EtaCorrection.png"%PlotPath)
+    can23.SaveAs("%s/EtaCorrection/HitProb_2_correlationX_EtaCorrection.png"%PlotPath)
+    can24.SaveAs("%s/EtaCorrection/HitProb_3_correlationX_EtaCorrection.png"%PlotPath)
+    can25.SaveAs("%s/EtaCorrection/HitProb_4_correlationX_EtaCorrection.png"%PlotPath)
+    can26.SaveAs("%s/EtaCorrection/HitProb_1_correlationY_EtaCorrection.png"%PlotPath)
+    can27.SaveAs("%s/EtaCorrection/HitProb_2_correlationY_EtaCorrection.png"%PlotPath)
+    can28.SaveAs("%s/EtaCorrection/HitProb_3_correlationY_EtaCorrection.png"%PlotPath)
+    can29.SaveAs("%s/EtaCorrection/HitProb_4_correlationY_EtaCorrection.png"%PlotPath)
     canEtaCorr.SaveAs("%s/EtaCorrection/Eta_EtaCorrection.png"%PlotPath)
     canEtaCorr2.SaveAs("%s/EtaCorrection/Eta_hist_EtaCorrection.png"%PlotPath)
+    cClusterSizeCounter.SaveAs("%s/EtaCorrection/ClusterSizeCounter.png"%PlotPath)
+    cClusterSizeCounter_percent.SaveAs("%s/EtaCorrection/ClusterSizeCounter_percent.png"%PlotPath)
+    canvas_resX_s2x2y2.SaveAs("%s/EtaCorrection/resX_s2x2y2.png"%PlotPath)
+    canvas_resY_s2x2y2.SaveAs("%s/EtaCorrection/resY_s2x2y2.png"%PlotPath)
+    canvas_resX_s2x2y1.SaveAs("%s/EtaCorrection/resX_s2x2y1.png"%PlotPath)
+    canvas_resY_s2x2y1.SaveAs("%s/EtaCorrection/resY_s2x2y1.png"%PlotPath)
+    canvas_resX_s2x1y2.SaveAs("%s/EtaCorrection/resX_s2x1y2.png"%PlotPath)
+    canvas_resY_s2x1y2.SaveAs("%s/EtaCorrection/resY_s2x1y2.png"%PlotPath)
+    canvas_resX_s4x2y2.SaveAs("%s/EtaCorrection/resX_s4x2y2.png"%PlotPath)
+    canvas_resY_s4x2y2.SaveAs("%s/EtaCorrection/resY_s4x2y2.png"%PlotPath)
+
+can_resX_cs_0 = TCanvas()
+resX_cs[0].Draw()
+r0 = resX_cs[0].Fit("gaus","","") 
+ 
+can_resY_cs_0 = TCanvas()
+resY_cs[0].Draw()
+r0 = resY_cs[0].Fit("gaus","","") 
+    
+can_resX_cs_1 = TCanvas()
+resX_cs[1].Draw()
+r0 = resX_cs[1].Fit("gaus","","") 
+    
+can_resY_cs_1 = TCanvas()
+resY_cs[1].Draw()
+r0 = resY_cs[1].Fit("gaus","","") 
+    
+        
+if method_name == "EtaCorrection" : 
+    can_resX_cs_1.SaveAs("%s/EtaCorrection/resX_cs_1_fit_EtaCorrection.png"%PlotPath)
+    can_resY_cs_1.SaveAs("%s/EtaCorrection/resY_cs_1_fit_EtaCorrection.png"%PlotPath)
+    can_resX_cs_0.SaveAs("%s/EtaCorrection/resX_cs_0_fit_EtaCorrection.png"%PlotPath)
+    can_resY_cs_0.SaveAs("%s/EtaCorrection/resY_cs_0_fit_EtaCorrection.png"%PlotPath)
+elif method_name == "QWeighted" : 
+    can_resX_cs_1.SaveAs("%s/QWeighted/resX_cs_1_fit_QWeighted.png"%PlotPath)
+    can_resY_cs_1.SaveAs("%s/QWeighted/resY_cs_1_fit_QWeighted.png"%PlotPath)
+    can_resX_cs_0.SaveAs("%s/QWeighted/resX_cs_0_fit_QWeighted.png"%PlotPath)
+    can_resY_cs_0.SaveAs("%s/QWeighted/resY_cs_0_fit_QWeighted.png"%PlotPath)
+elif method_name == "DigitalCentroid" : 
+    can_resX_cs_1.SaveAs("%s/DigitalCentroid/resX_cs_1_fit_DigitalCentroid.png"%PlotPath)
+    can_resY_cs_1.SaveAs("%s/DigitalCentroid/resY_cs_1_fit_DigitalCentroid.png"%PlotPath)
+    can_resX_cs_0.SaveAs("%s/DigitalCentroid/resX_cs_0_fit_DigitalCentroid.png"%PlotPath)
+    can_resY_cs_0.SaveAs("%s/DigitalCentroid/resY_cs_0_fit_DigitalCentroid.png"%PlotPath)
+elif method_name == "maxTOT" : 
+    can_resX_cs_1.SaveAs("%s/maxTOT/resX_cs_1_fit_maxTOT.png"%PlotPath)
+    can_resY_cs_1.SaveAs("%s/maxTOT/resY_cs_1_fit_maxTOT.png"%PlotPath)
+    can_resX_cs_0.SaveAs("%s/maxTOT/resX_cs_0_fit_maxTOT.png"%PlotPath)
+    can_resY_cs_0.SaveAs("%s/maxTOT/resY_cs_0_fit_maxTOT.png"%PlotPath)
 
  
 # g1 = TF1("m1","gaus",-0.025,pitchX/sqrt(12))
 # g2 = TF1("m2","gaus",0.025,pitchX/sqrt(12))
-# 
+#    
 # can_resX_cs_0 = TCanvas()
 # resX_cs[0].Draw()
 # r0 = resX_cs[0].Fit("gaus","","",-0.05,0.05) 
-# 
+#    
 # can_resX_cs_1 = TCanvas()
 # resX_cs[1].Draw()
 # r1 = resX_cs[1].Fit(g1,"S","",-0.03,0.0)
@@ -754,7 +1062,7 @@ elif method_name == "EtaCorrection" :
 # fitResult_resX_cs_1.AddText("mean 2 : %f"%(r1bis.Parameter(1)))
 # fitResult_resX_cs_1.AddText("sigma 2 : %f"%(r1bis.Parameter(2)))
 # fitResult_resX_cs_1.Draw("same")
-# 
+#    
 # can_resX_cs_2 = TCanvas()
 # resX_cs[2].Draw()
 # r2 = resX_cs[2].Fit(g1,"RS")
@@ -766,11 +1074,11 @@ elif method_name == "EtaCorrection" :
 # fitResult_resX_cs_2.AddText("mean 2 : %f"%(r2bis.Parameter(1)))
 # fitResult_resX_cs_2.AddText("sigma 2 : %f"%(r2bis.Parameter(2)))
 # fitResult_resX_cs_2.Draw("same")
-# 
+#    
 # can_resY_cs_0 = TCanvas()
 # resY_cs[0].Draw()
 # r0 = resY_cs[0].Fit("gaus","","",-0.05,0.05) 
-# 
+#    
 # can_resY_cs_1 = TCanvas()
 # resY_cs[1].Draw()
 # r1 = resY_cs[1].Fit(g1,"RS")
@@ -782,7 +1090,7 @@ elif method_name == "EtaCorrection" :
 # fitResult_resY_cs_1.AddText("mean 2 : %f"%(r1bis.Parameter(1)))
 # fitResult_resY_cs_1.AddText("sigma 2 : %f"%(r1bis.Parameter(2)))
 # fitResult_resY_cs_1.Draw("same")
-# 
+#    
 # can_resY_cs_2 = TCanvas()
 # resY_cs[2].Draw()
 # r2 = resY_cs[2].Fit(g1,"RS")
@@ -794,8 +1102,8 @@ elif method_name == "EtaCorrection" :
 # fitResult_resY_cs_2.AddText("mean 2 : %f"%(r2bis.Parameter(1)))
 # fitResult_resY_cs_2.AddText("sigma 2 : %f"%(r2bis.Parameter(2)))
 # fitResult_resY_cs_2.Draw("same")
-# 
-# 
+#    
+#    
 # if method_name == "QWeighted" :
 #     can_resX_cs_0.SaveAs("%s/QWeighted/resX_cs_0_fit_QWeighted.png"%PlotPath)
 #     can_resX_cs_1.SaveAs("%s/QWeighted/resX_cs_1_fit_QWeighted.png"%PlotPath)
@@ -803,7 +1111,7 @@ elif method_name == "EtaCorrection" :
 #     can_resY_cs_0.SaveAs("%s/QWeighted/resY_cs_0_fit_QWeighted.png"%PlotPath)
 #     can_resY_cs_1.SaveAs("%s/QWeighted/resY_cs_1_fit_QWeighted.png"%PlotPath)
 #     can_resY_cs_2.SaveAs("%s/QWeighted/resY_cs_2_fit_QWeighted.png"%PlotPath)
-#  
+#     
 # elif method_name == "DigitalCentroid" :
 #     can_resX_cs_0.SaveAs("%s/DigitalCentroid/resX_cs_0_fit_DigitalCentroid.png"%PlotPath)
 #     can_resX_cs_1.SaveAs("%s/DigitalCentroid/resX_cs_1_fit_DigitalCentroid.png"%PlotPath)
@@ -811,7 +1119,7 @@ elif method_name == "EtaCorrection" :
 #     can_resY_cs_0.SaveAs("%s/DigitalCentroid/resY_cs_0_fit_DigitalCentroid.png"%PlotPath)
 #     can_resY_cs_1.SaveAs("%s/DigitalCentroid/resY_cs_1_fit_DigitalCentroid.png"%PlotPath)
 #     can_resY_cs_2.SaveAs("%s/DigitalCentroid/resY_cs_2_fit_DigitalCentroid.png"%PlotPath)
-#      
+#         
 # elif method_name == "maxTOT" : 
 #     can_resX_cs_0.SaveAs("%s/maxTOT/resX_cs_0_fit_maxTOT.png"%PlotPath)
 #     can_resX_cs_1.SaveAs("%s/maxTOT/resX_cs_1_fit_maxTOT.png"%PlotPath)
@@ -819,7 +1127,7 @@ elif method_name == "EtaCorrection" :
 #     can_resY_cs_0.SaveAs("%s/maxTOT/resY_cs_0_fit_maxTOT.png"%PlotPath)
 #     can_resY_cs_1.SaveAs("%s/maxTOT/resY_cs_1_fit_maxTOT.png"%PlotPath)
 #     can_resY_cs_2.SaveAs("%s/maxTOT/resY_cs_2_fit_maxTOT.png"%PlotPath)
-#     
+#        
 # elif method_name == "EtaCorrection" : 
 #     can_resX_cs_0.SaveAs("%s/EtaCorrection/resX_cs_0_fit_EtaCorrection.png"%PlotPath)
 #     can_resX_cs_1.SaveAs("%s/EtaCorrection/resX_cs_1_fit_EtaCorrection.png"%PlotPath)
@@ -865,6 +1173,19 @@ hClusterSizeX.Write()
 hClusterSizeY.Write() 
 hClusterSize.Write()
 hClusterSizeXvsSizeY.Write()
+HitProb_1_correlationX.Write()
+HitProb_2_correlationX.Write()
+HitProb_3_correlationX.Write()
+HitProb_4_correlationX.Write()
+HitProb_1_correlationY.Write()
+HitProb_2_correlationY.Write()
+HitProb_3_correlationY.Write()
+HitProb_4_correlationY.Write()
+for i in range(1,n_cs+2) :
+    resX_cs[i-1].Write()
+    resY_cs[i-1].Write()
+hClusterSizeCounter_percent.Write()
+hClusterSizeCounter.Write()
        
 #aDataSet.DumpClusterTree("run131_uncalibrated_cluster.root")
 #aDataSet_calib.DumpClusterTree("run131_calibrated_cluster.root")
