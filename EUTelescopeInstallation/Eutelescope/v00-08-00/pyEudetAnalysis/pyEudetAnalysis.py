@@ -44,10 +44,10 @@ def TGraph_style (h) :
 gStyle.SetOptStat("nemruoi")
 gStyle.SetOptFit(1111)
 
-# method_name = "QWeighted"
+method_name = "QWeighted"
 # method_name = "DigitalCentroid"
 # method_name = "maxTOT"
-method_name = "EtaCorrection"
+#method_name = "EtaCorrection"
 
 
 #aDataSet = EudetData("/VertexScratch/TB_Data/DESY_TB_DATA_02_07-06-2013_results/histo/tbtrackrun000062.root",500.0)
