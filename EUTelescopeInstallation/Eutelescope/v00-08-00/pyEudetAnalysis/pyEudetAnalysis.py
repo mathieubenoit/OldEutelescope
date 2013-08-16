@@ -7,6 +7,24 @@ from array import array
 from EudetData import *
 from ToolBox import *
 
+###############################################################################################################################
+#
+#                        landau * gauss fit tools
+#
+###############################################################################################################################
+# first compile the code in ROOT using ACLIC: (testLangauFit.C)
+# .L File.C+
+
+# Start pyROOT and load the library (.so) file:
+from ROOT import gSystem
+gSystem.Load('testLangauFit_C.so')
+# gSystem.Load('/afs/cern.ch/work/a/apequegn/public/DESY_TB_DATA_02_07-06-2013_results/pyEudetAnalysisPlots/testLangauFit_C.so')
+
+# Now the function should be available in the ROOT namespace
+from ROOT import langaufun, langaufit, langaupro
+
+###############################################################################################################################
+
 PlotPath = "/afs/cern.ch/work/a/apequegn/public/DESY_TB_DATA_02_07-06-2013_results/pyEudetAnalysisPlots"
 
 # global n_sizeX2sizeY2
@@ -86,8 +104,8 @@ canfreq.SetLogy()
 histo_freq.Draw("")
 
 n_matched = 0
-for i in range(aDataSet.p_nEntries) : 
-# for i in range(10000) : 
+# for i in range(aDataSet.p_nEntries) : 
+for i in range(10000) : 
 
     aDataSet.ClusterEvent(i,method_name)
     aDataSet.GetTrack(i)
@@ -148,16 +166,16 @@ ApplyAlignment(aDataSet,rest,resr)
 
 # ApplyAlignment(aDataSet,[-0.0439218750, -0.0463671875 , 0.],[0.0000000000, 0.0000000000, 0])
 
-# for i in range(10000) : 
-for i in range(aDataSet.p_nEntries) :
+for i in range(10000) : 
+# for i in range(aDataSet.p_nEntries) :
     aDataSet.ComputeResiduals(i)
         
 hx,hy = TrackClusterCorrelation(aDataSet)
 #hxc,hyc = TrackClusterCorrelation(aDataSet_calib)
 
 if (method_name == "EtaCorrection") :
-    # ressigmachargeX, ressigmachargeY = FindSigmaMin(aDataSet,10000,1)
-    ressigmachargeX, ressigmachargeY = FindSigmaMin(aDataSet,aDataSet.p_nEntries,20)
+    ressigmachargeX, ressigmachargeY = FindSigmaMin(aDataSet,10000,1)
+#     ressigmachargeX, ressigmachargeY = FindSigmaMin(aDataSet,aDataSet.p_nEntries,20)
     print "ressigmachargeX : %f"%float(ressigmachargeX)
     print "ressigmachargeY : %f"%float(ressigmachargeY)
     
@@ -478,6 +496,136 @@ resY_s4x2y2.Fit("gaus","R","",-0.03,0.03)
  
 can1 = TCanvas()			
 allTOT.Draw()
+
+###############################################################################################################################
+#
+#                        landau * gauss fit, allTOT
+#
+################################################################################################################################ 
+
+#langaufit(allTOT,fr_allTOT,sv_allTOT,pllo_allTOT,plhi_allTOT,fp_allTOT,fpe_allTOT,chisqr_allTOT,ndf_allTOT)
+#
+# allTOT : his               histogram to fit
+# fr_allTOT : fitrange       lo and hi boundaries of fit range
+# sv_allTOT : startvalues    reasonable start values for the fit
+# pllo_allTOT : parlimitslo  lower parameter limits
+# plhi_allTOT : parlimitshi  upper parameter limits
+# fp_allTOT : fitparams      returns the final fit parameters
+# fpe_allTOT : fiterrors     returns the final fit errors
+
+fr_allTOT = array('d',[0.2*TOT2.GetMean(),3.0*TOT2.GetMean()])
+sv_allTOT = array('d',[1.8,20.0,50000.0,3.0]) 
+pllo_allTOT = array('d',[0.5,5.0,1.0,0.4])
+plhi_allTOT = array('d',[5.0,50.0,1000000.0,5.0]) 
+fp_allTOT = array('d',[0.]) 
+fpe_allTOT = array('d',[0.]) 
+
+chisqr_allTOT = array('d',[0.])
+ndf_allTOT = array('i',[0])
+allTOTPeak = ROOT.Double(0.) 
+allTOTFWHM = ROOT.Double(0.) 
+
+
+fitallTOT = langaufit(allTOT,fr_allTOT,sv_allTOT,pllo_allTOT,plhi_allTOT,fp_allTOT,fpe_allTOT,chisqr_allTOT,ndf_allTOT)
+langaupro(fp_allTOT,allTOTPeak,allTOTFWHM)
+
+print"Fitting done\nPlotting results...\n"
+
+
+canvasTest_allTOT = TCanvas()
+canvasTest_allTOT.cd()
+allTOT.Draw()
+fitallTOT.Draw("lsame")
+canvasTest_allTOT.Update()
+
+###############################################################################################################################
+
+
+###############################################################################################################################
+#
+#                        landau * gauss fit, TOT2 
+#
+################################################################################################################################ 
+
+#langaufit(TOT2,fr_TOT2,sv_TOT2,pllo_TOT2,plhi_TOT2,fp_TOT2,fpe_TOT2,chisqr_TOT2,ndf_TOT2)
+#
+# TOT2 : his               histogram to fit
+# fr_TOT2 : fitrange       lo and hi boundaries of fit range
+# sv_TOT2 : startvalues    reasonable start values for the fit
+# pllo_TOT2 : parlimitslo  lower parameter limits
+# plhi_TOT2 : parlimitshi  upper parameter limits
+# fp_TOT2 : fitparams      returns the final fit parameters
+# fpe_TOT2 : fiterrors     returns the final fit errors
+
+fr_TOT2 = array('d',[0.2*TOT2.GetMean(),3.0*TOT2.GetMean()])
+sv_TOT2 = array('d',[1.8,20.0,50000.0,3.0]) 
+pllo_TOT2 = array('d',[0.5,5.0,1.0,0.4])
+plhi_TOT2 = array('d',[5.0,50.0,1000000.0,5.0]) 
+fp_TOT2 = array('d',[0.]) 
+fpe_TOT2 = array('d',[0.]) 
+
+chisqr_TOT2 = array('d',[0.])
+ndf_TOT2 = array('i',[0])
+TOT2Peak = ROOT.Double(0.) 
+TOT2FWHM = ROOT.Double(0.) 
+
+
+fitTOT2 = langaufit(TOT2,fr_TOT2,sv_TOT2,pllo_TOT2,plhi_TOT2,fp_TOT2,fpe_TOT2,chisqr_TOT2,ndf_TOT2)
+langaupro(fp_TOT2,TOT2Peak,TOT2FWHM)
+
+print"Fitting done\nPlotting results...\n"
+
+
+canvasTest_TOT2 = TCanvas()
+canvasTest_TOT2.cd()
+TOT2.Draw()
+fitTOT2.Draw("lsame")
+canvasTest_TOT2.Update()
+
+###############################################################################################################################
+
+###############################################################################################################################
+#
+#                        landau * gauss fit, TOT4 
+#
+###############################################################################################################################
+
+#langaufit(TOT4,fr_TOT4,sv_TOT4,pllo_TOT4,plhi_TOT4,fp_TOT4,fpe_TOT4,chisqr_TOT4,ndf_TOT4)
+#
+# TOT4 : his               histogram to fit
+# fr_TOT4 : fitrange       lo and hi boundaries of fit range
+# sv_TOT4 : startvalues    reasonable start values for the fit
+# pllo_TOT4 : parlimitslo  lower parameter limits
+# plhi_TOT4 : parlimitshi  upper parameter limits
+# fp_TOT4 : fitparams      returns the final fit parameters
+# fpe_TOT4 : fiterrors     returns the final fit errors
+
+fr_TOT4 = array('d',[0.2*TOT4.GetMean(),3.0*TOT4.GetMean()])
+sv_TOT4 = array('d',[1.8,20.0,50000.0,3.0]) 
+pllo_TOT4 = array('d',[0.5,5.0,1.0,0.4])
+plhi_TOT4 = array('d',[5.0,50.0,1000000.0,5.0]) 
+fp_TOT4 = array('d',[0.]) 
+fpe_TOT4 = array('d',[0.]) 
+
+chisqr_TOT4 = array('d',[0.])
+ndf_TOT4 = array('i',[0])
+TOT4Peak = ROOT.Double(0.) 
+TOT4FWHM = ROOT.Double(0.) 
+
+
+fitTOT4 = langaufit(TOT4,fr_TOT4,sv_TOT4,pllo_TOT4,plhi_TOT4,fp_TOT4,fpe_TOT4,chisqr_TOT4,ndf_TOT4)
+langaupro(fp_TOT4,TOT4Peak,TOT4FWHM)
+
+print"Fitting done\nPlotting results...\n"
+
+
+canvasTest_TOT4 = TCanvas()
+canvasTest_TOT4.cd()
+TOT4.Draw()
+fitTOT4.Draw("lsame")
+canvasTest_TOT4.Update()
+
+###############################################################################################################################
 
 if ((TOT1.Integral()!=0 and TOT2.Integral()!=0) and (TOT3.Integral()!=0 and TOT4.Integral()!=0)) : 
     TOT1.Scale(1./(TOT1.Integral())) 
@@ -832,6 +980,9 @@ if method_name == "QWeighted" :
     canvas_resY_s2x1y2.SaveAs("%s/QWeighted/resY_s2x1y2.png"%PlotPath)
     canvas_resX_s4x2y2.SaveAs("%s/QWeighted/resX_s4x2y2.png"%PlotPath)
     canvas_resY_s4x2y2.SaveAs("%s/QWeighted/resY_s4x2y2.png"%PlotPath) 
+    canvasTest_allTOT.SaveAs("%s/QWeighted/allTOT_landaugausFit.png"%PlotPath)
+    canvasTest_TOT2.SaveAs("%s/QWeighted/TOT2_landaugausFit.png"%PlotPath)
+    canvasTest_TOT4.SaveAs("%s/QWeighted/TOT4_landaugausFit.png"%PlotPath)
  
 elif method_name == "DigitalCentroid" :
     #out = TFile("%s/DigitalCentroid/output_rootfile_DigitalCentroid_firingFreq001_run000131.root"%PlotPath, "recreate")
@@ -889,6 +1040,9 @@ elif method_name == "DigitalCentroid" :
     canvas_resY_s2x1y2.SaveAs("%s/DigitalCentroid/resY_s2x1y2.png"%PlotPath)
     canvas_resX_s4x2y2.SaveAs("%s/DigitalCentroid/resX_s4x2y2.png"%PlotPath)
     canvas_resY_s4x2y2.SaveAs("%s/DigitalCentroid/resY_s4x2y2.png"%PlotPath) 
+    canvasTest_allTOT.SaveAs("%s/DigitalCentroid/allTOT_landaugausFit.png"%PlotPath)
+    canvasTest_TOT2.SaveAs("%s/DigitalCentroid/TOT2_landaugausFit.png"%PlotPath)
+    canvasTest_TOT4.SaveAs("%s/DigitalCentroid/TOT4_landaugausFit.png"%PlotPath)
 
          
 elif method_name == "maxTOT" : 
@@ -946,7 +1100,10 @@ elif method_name == "maxTOT" :
     canvas_resX_s2x1y2.SaveAs("%s/maxTOT/resX_s2x1y2.png"%PlotPath)
     canvas_resY_s2x1y2.SaveAs("%s/maxTOT/resY_s2x1y2.png"%PlotPath)
     canvas_resX_s4x2y2.SaveAs("%s/maxTOT/resX_s4x2y2.png"%PlotPath)
-    canvas_resY_s4x2y2.SaveAs("%s/maxTOT/resY_s4x2y2.png"%PlotPath) 
+    canvas_resY_s4x2y2.SaveAs("%s/maxTOT/resY_s4x2y2.png"%PlotPath)
+    canvasTest_allTOT.SaveAs("%s/maxTOT/allTOT_landaugausFit.png"%PlotPath) 
+    canvasTest_TOT2.SaveAs("%s/maxTOT/TOT2_landaugausFit.png"%PlotPath)
+    canvasTest_TOT4.SaveAs("%s/maxTOT/TOT4_landaugausFit.png"%PlotPath)
     
 elif method_name == "EtaCorrection" : 
     out = TFile("%s/EtaCorrection/output_rootfile_EtaCorrection_firingFreq001_run000131_distance%i.root"%(PlotPath,distance), "recreate")
@@ -1004,6 +1161,9 @@ elif method_name == "EtaCorrection" :
     canvas_resY_s2x1y2.SaveAs("%s/EtaCorrection/resY_s2x1y2.png"%PlotPath)
     canvas_resX_s4x2y2.SaveAs("%s/EtaCorrection/resX_s4x2y2.png"%PlotPath)
     canvas_resY_s4x2y2.SaveAs("%s/EtaCorrection/resY_s4x2y2.png"%PlotPath)
+    canvasTest_allTOT.SaveAs("%s/EtaCorrection/allTOT_landaugausFit.png"%PlotPath)
+    canvasTest_TOT2.SaveAs("%s/EtaCorrection/TOT2_landaugausFit.png"%PlotPath)
+    canvasTest_TOT4.SaveAs("%s/EtaCorrection/TOT4_landaugausFit.png"%PlotPath)
 
 can_resX_cs_0 = TCanvas()
 resX_cs[0].Draw()

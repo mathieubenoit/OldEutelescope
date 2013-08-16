@@ -2,6 +2,7 @@ import numpy as np
 from scipy.optimize import minimize
 from ROOT import *
 import ROOT
+from ROOT import TH1,TF1,TROOT,TStyle,TMath
 from math import *
 from array import array 
 from EudetData import *
@@ -733,4 +734,219 @@ def ApplyEtaCorrection(dataSet,ressigmachargeX,ressigmachargeY,dut=6,filename="E
         dataSet.FindMatchedCluster(j, 0.350, 0.350,6)
         dataSet.ComputeResiduals(j)         
             
-    
+
+
+###############################################################################################################################
+#
+#                        landau * gauss fit tools
+#
+###############################################################################################################################
+
+
+
+# def langaufun(x,par) :
+# 
+#     #Fit parameters:
+#     #par[0]=Width (scale) parameter of Landau density
+#     #par[1]=Most Probable (MP, location) parameter of Landau density
+#     #par[2]=Total area (integral -inf to inf, normalization constant)
+#     #par[3]=Width (sigma) of convoluted Gaussian function
+#     #
+#     #In the Landau distribution (represented by the CERNLIB approximation), 
+#     #the maximum is located at x=-0.22278298 with the location parameter=0.
+#     #This shift is corrected within this function, so that the actual
+#     #maximum is identical to the MP parameter.
+#     
+#     # Numeric constants
+#     invsq2pi = 0.3989422804014   # (2 pi)^(-1/2)
+#     mpshift  = -0.22278298       # Landau maximum location
+#     
+#     # Control constants
+#     np = 100.0      # number of convolution steps
+#     sc =   5.0      # convolution extends to +-sc Gaussian sigmas
+#     
+#     # Variables
+#     sum = 0.0
+#     
+#     
+#     # MP shift correction
+#     mpc = par[1] - mpshift * par[0] 
+#     
+#     # Range of convolution integral
+#     xlow = x - sc * par[3]
+#     xupp = x + sc * par[3]
+# #     xlow = x[0] - sc * par[3]
+# #     xupp = x[0] + sc * par[3]
+#     
+#     step = (xupp-xlow) / np
+#     
+#     # Convolution integral of Landau and Gaussian by sum
+#     #for(i=1.0; i<=np/2; i++) {
+#     for i in range(1,np/2 + 1) :
+#         xx = xlow + (i-.5) * step
+#         fland = TMath.Landau(xx,mpc,par[0]) / par[0]
+#         sum = sum + fland * TMath.Gaus(x[0],xx,par[3])
+#         
+#         xx = xupp - (i-.5) * step;
+#         fland = TMath.Landau(xx,mpc,par[0]) / par[0]
+#         sum = sum + fland * TMath.Gaus(x[0],xx,par[3])
+#     
+#     
+#     return (par[2] * step * sum * invsq2pi / par[3])
+# 
+# 
+# 
+# 
+# def langaufit(his, fitrange,startvalues, parlimitslo, parlimitshi, fitparams, fiterrors, ChiSqr, NDF) :
+# 
+#     # Once again, here are the Landau * Gaussian parameters:
+#     #   par[0]=Width (scale) parameter of Landau density
+#     #   par[1]=Most Probable (MP, location) parameter of Landau density
+#     #   par[2]=Total area (integral -inf to inf, normalization constant)
+#     #   par[3]=Width (sigma) of convoluted Gaussian function
+#     #
+#     # Variables for langaufit call:
+#     #   his             histogram to fit
+#     #   fitrange[2]     lo and hi boundaries of fit range
+#     #   startvalues[4]  reasonable start values for the fit
+#     #   parlimitslo[4]  lower parameter limits
+#     #   parlimitshi[4]  upper parameter limits
+#     #   fitparams[4]    returns the final fit parameters
+#     #   fiterrors[4]    returns the final fit errors
+#     #   ChiSqr          returns the chi square
+#     #   NDF             returns ndf
+#     
+#     
+# #     FunName = "Fitfcn_%s"%his.GetName()
+#     # sprintf(FunName,"Fitfcn_%s",his->GetName());
+#     
+# #     ffitold = gROOT.GetListOfFunctions().FindObject(FunName)
+# #     if (ffitold) :
+# #         ffitold.Delete
+#     
+#     ffit = TF1("ffit",langaufun,fitrange[0],fitrange[1],4)
+#     ffit.SetParameters(startvalues[0],startvalues[1],startvalues[2],startvalues[3])
+#     ffit.SetParNames("Width","MP","Area","GSigma")
+#        
+#     for i in range (0,4) :
+#         ffit.SetParLimits(i, parlimitslo[i], parlimitshi[i])
+#     
+#     
+#     his.Fit("ffit","RB0")   # fit within specified range, use ParLimits, do not plot
+#     
+#     fitparams=ffit.GetParameters()    # obtain fit parameters
+#     for i in range (0,4) :
+#         fiterrors.append(ffit.GetParError(i))     # obtain fit parameter errors
+# #         fiterrors[i] = ffit.GetParError(i)     # obtain fit parameter errors
+#     
+#     ChiSqr = ffit.GetChisquare()   # obtain chi^2
+#     NDF = ffit.GetNDF()           # obtain ndf
+# #     ChiSqr[0] = ffit.GetChisquare()   # obtain chi^2
+# #     NDF[0] = ffit.GetNDF()           # obtain ndf
+#     
+#     return (ffit)              # return fit function
+# 
+# 
+# 
+# 
+# def langaupro(params, maxx, FWHM) :
+# 
+#     # Seaches for the location (x value) at the maximum of the 
+#     # Landau-Gaussian convolute and its full width at half-maximum.
+#     #
+#     # The search is probably not very efficient, but it's a first try.
+#     
+#     i = 0
+#     MAXCALLS = 10000
+# 
+# #for test, to comment after !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!    
+#     params.append(1000)
+#     params.append(1000)
+#     
+#     # Search for maximum
+#     
+#     p = params[1] - 0.1 * params[0]
+#     step = 0.05 * params[0]
+#     lold = -2.0
+#     l    = -1.0
+#     
+#     
+#     while ( (l != lold) and (i < MAXCALLS) ) :
+#         i = i + 1
+#     
+#         lold = l
+#         x = p + step
+#         l = langaufun(x,params)
+#          
+#         if (l < lold) :
+#             step = -step/10
+#          
+#         p = p + step
+#     
+#     
+#     if (i == MAXCALLS) :
+#         return (-1)
+#     
+#     maxx = x
+#     
+#     fy = l/2
+#     
+#     
+#     # Search for right x location of fy
+#     
+#     p = maxx + params[0]
+#     step = params[0]
+#     lold = -2.0
+#     l    = -1e300
+#     i    = 0
+#     
+#     
+#     while ( (l != lold) and (i < MAXCALLS) ) :
+#         i = i + 1
+#         
+#         lold = l
+#         x = p + step
+#         l = Abs(langaufun(x,params) - fy)
+#          
+#         if (l > lold) :
+#             step = -step/10
+#          
+#         p = p + step
+#     
+#     
+#     if (i == MAXCALLS) :
+#         return (-2)
+#     
+#     fxr = x
+#     
+#     
+#     # Search for left x location of fy
+#     
+#     p = maxx - 0.5 * params[0]
+#     step = -params[0]
+#     lold = -2.0
+#     l    = -1e300
+#     i    = 0
+#     
+#     while ( (l != lold) and (i < MAXCALLS) ) :
+#         i = i + 1
+#         
+#         lold = l
+#         x = p + step
+#         l = Abs(langaufun(x,params) - fy)
+#          
+#         if (l > lold) :
+#             step = -step/10
+#          
+#         p = p + step
+#     
+#     
+#     if (i == MAXCALLS) :
+#         return (-3)
+#     
+#     
+#     fxl = x
+#     
+#     FWHM = fxr - fxl
+#     return (0)
+ 
