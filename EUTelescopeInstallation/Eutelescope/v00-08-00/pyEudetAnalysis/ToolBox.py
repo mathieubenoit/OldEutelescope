@@ -95,7 +95,7 @@ def CountPixelSize(dataSet):
     hClusterSizeCounter.GetXaxis().SetBinLabel(7,"else")
     hClusterSizeCounter.SetStats(0)
     
-    hClusterSizeCounter_percent = TH1D("ClusterSizeCounter_percent","Number of the clusters for different cluster sizes",7,0.,7.)
+    hClusterSizeCounter_percent = TH1D("ClusterSizeCounter_percent","Percentage of the clusters for different cluster sizes",7,0.,7.)
     hClusterSizeCounter_percent.GetXaxis().SetTitle("cluster size")
     hClusterSizeCounter_percent.GetYaxis().SetTitle("number of events (%)")
     

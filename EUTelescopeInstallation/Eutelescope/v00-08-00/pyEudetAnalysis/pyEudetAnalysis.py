@@ -65,14 +65,16 @@ def TGraph_style (h) :
 gStyle.SetOptStat("nemruoi")
 gStyle.SetOptFit(1111)
 
-# method_name = "QWeighted"
+method_name = "QWeighted"
 # method_name = "DigitalCentroid"
 # method_name = "maxTOT"
-method_name = "EtaCorrection"
+# method_name = "EtaCorrection"
 
 
 #aDataSet = EudetData("/VertexScratch/TB_Data/DESY_TB_DATA_02_07-06-2013_results/histo/tbtrackrun000062.root",500.0)
-aDataSet = EudetData("/VertexScratch/TB_Data/DESY_TB_DATA_02_07-06-2013_results/histo/tbtrackrun000131.root",500.0,2)
+
+aDataSet = EudetData("/VertexScratch/TB_Data/DESY_TB_DATA_August2013_results/tbtrack/tbtrackrun000059.root",500.0,2)
+# aDataSet = EudetData("/VertexScratch/TB_Data/DESY_TB_DATA_02_07-06-2013_results/histo/tbtrackrun000131.root",500.0,2)
 
 # aDataSet.PrintTBranchElement()
 
@@ -93,7 +95,7 @@ h1_style(trackX_vs_trackY_plan0)
 
 # Filter Hot Pixels
 # histo_hot,histo_freq = aDataSet.FilterHotPixel(0.005,25000)
-histo_hot,histo_freq = aDataSet.FilterHotPixel(0.001,25000)
+histo_hot,histo_freq = aDataSet.FilterHotPixel(0.00025,25000)
 
 canhot = TCanvas()
 histo_hot.Draw("colz")
@@ -104,8 +106,8 @@ canfreq.SetLogy()
 histo_freq.Draw("")
 
 n_matched = 0
-# for i in range(aDataSet.p_nEntries) : 
-for i in range(10000) : 
+for i in range(aDataSet.p_nEntries) : 
+# for i in range(10000) : 
 
     aDataSet.ClusterEvent(i,method_name)
     aDataSet.GetTrack(i)
@@ -166,16 +168,16 @@ ApplyAlignment(aDataSet,rest,resr)
 
 # ApplyAlignment(aDataSet,[-0.0439218750, -0.0463671875 , 0.],[0.0000000000, 0.0000000000, 0])
 
-for i in range(10000) : 
-# for i in range(aDataSet.p_nEntries) :
+# for i in range(10000) : 
+for i in range(aDataSet.p_nEntries) :
     aDataSet.ComputeResiduals(i)
         
 hx,hy = TrackClusterCorrelation(aDataSet)
 #hxc,hyc = TrackClusterCorrelation(aDataSet_calib)
 
 if (method_name == "EtaCorrection") :
-    ressigmachargeX, ressigmachargeY = FindSigmaMin(aDataSet,10000,1)
-#     ressigmachargeX, ressigmachargeY = FindSigmaMin(aDataSet,aDataSet.p_nEntries,20)
+#     ressigmachargeX, ressigmachargeY = FindSigmaMin(aDataSet,10000,1)
+    ressigmachargeX, ressigmachargeY = FindSigmaMin(aDataSet,aDataSet.p_nEntries,20)
     print "ressigmachargeX : %f"%float(ressigmachargeX)
     print "ressigmachargeY : %f"%float(ressigmachargeY)
     
@@ -502,41 +504,42 @@ allTOT.Draw()
 #                        landau * gauss fit, allTOT
 #
 ################################################################################################################################ 
-
-#langaufit(allTOT,fr_allTOT,sv_allTOT,pllo_allTOT,plhi_allTOT,fp_allTOT,fpe_allTOT,chisqr_allTOT,ndf_allTOT)
-#
-# allTOT : his               histogram to fit
-# fr_allTOT : fitrange       lo and hi boundaries of fit range
-# sv_allTOT : startvalues    reasonable start values for the fit
-# pllo_allTOT : parlimitslo  lower parameter limits
-# plhi_allTOT : parlimitshi  upper parameter limits
-# fp_allTOT : fitparams      returns the final fit parameters
-# fpe_allTOT : fiterrors     returns the final fit errors
-
-fr_allTOT = array('d',[0.2*TOT2.GetMean(),3.0*TOT2.GetMean()])
-sv_allTOT = array('d',[1.8,20.0,50000.0,3.0]) 
-pllo_allTOT = array('d',[0.5,5.0,1.0,0.4])
-plhi_allTOT = array('d',[5.0,50.0,1000000.0,5.0]) 
-fp_allTOT = array('d',[0.]) 
-fpe_allTOT = array('d',[0.]) 
-
-chisqr_allTOT = array('d',[0.])
-ndf_allTOT = array('i',[0])
-allTOTPeak = ROOT.Double(0.) 
-allTOTFWHM = ROOT.Double(0.) 
-
-
-fitallTOT = langaufit(allTOT,fr_allTOT,sv_allTOT,pllo_allTOT,plhi_allTOT,fp_allTOT,fpe_allTOT,chisqr_allTOT,ndf_allTOT)
-langaupro(fp_allTOT,allTOTPeak,allTOTFWHM)
-
-print"Fitting done\nPlotting results...\n"
-
-
-canvasTest_allTOT = TCanvas()
-canvasTest_allTOT.cd()
-allTOT.Draw()
-fitallTOT.Draw("lsame")
-canvasTest_allTOT.Update()
+ 
+# #langaufit(allTOT,fr_allTOT,sv_allTOT,pllo_allTOT,plhi_allTOT,fp_allTOT,fpe_allTOT,chisqr_allTOT,ndf_allTOT)
+# #
+# # allTOT : his               histogram to fit
+# # fr_allTOT : fitrange       lo and hi boundaries of fit range
+# # sv_allTOT : startvalues    reasonable start values for the fit
+# # pllo_allTOT : parlimitslo  lower parameter limits
+# # plhi_allTOT : parlimitshi  upper parameter limits
+# # fp_allTOT : fitparams      returns the final fit parameters
+# # fpe_allTOT : fiterrors     returns the final fit errors
+#  
+#  
+# fr_allTOT = array('d',[0.2*TOT2.GetMean(),3.0*TOT2.GetMean()])
+# sv_allTOT = array('d',[1.8,20.0,50000.0,3.0]) 
+# pllo_allTOT = array('d',[0.5,5.0,1.0,0.4])
+# plhi_allTOT = array('d',[5.0,50.0,1000000.0,5.0]) 
+# fp_allTOT = array('d',[0.]) 
+# fpe_allTOT = array('d',[0.]) 
+#  
+# chisqr_allTOT = array('d',[0.])
+# ndf_allTOT = array('i',[0])
+# allTOTPeak = ROOT.Double(0.) 
+# allTOTFWHM = ROOT.Double(0.) 
+#  
+#  
+# fitallTOT = langaufit(allTOT,fr_allTOT,sv_allTOT,pllo_allTOT,plhi_allTOT,fp_allTOT,fpe_allTOT,chisqr_allTOT,ndf_allTOT)
+# langaupro(fp_allTOT,allTOTPeak,allTOTFWHM)
+#  
+# print"Fitting done\nPlotting results...\n"
+#  
+#  
+# canvasTest_allTOT = TCanvas()
+# canvasTest_allTOT.cd()
+# allTOT.Draw()
+# fitallTOT.Draw("lsame")
+# canvasTest_allTOT.Update()
 
 ###############################################################################################################################
 
@@ -547,40 +550,41 @@ canvasTest_allTOT.Update()
 #
 ################################################################################################################################ 
 
-#langaufit(TOT2,fr_TOT2,sv_TOT2,pllo_TOT2,plhi_TOT2,fp_TOT2,fpe_TOT2,chisqr_TOT2,ndf_TOT2)
-#
-# TOT2 : his               histogram to fit
-# fr_TOT2 : fitrange       lo and hi boundaries of fit range
-# sv_TOT2 : startvalues    reasonable start values for the fit
-# pllo_TOT2 : parlimitslo  lower parameter limits
-# plhi_TOT2 : parlimitshi  upper parameter limits
-# fp_TOT2 : fitparams      returns the final fit parameters
-# fpe_TOT2 : fiterrors     returns the final fit errors
+# #langaufit(TOT2,fr_TOT2,sv_TOT2,pllo_TOT2,plhi_TOT2,fp_TOT2,fpe_TOT2,chisqr_TOT2,ndf_TOT2)
+# #
+# # TOT2 : his               histogram to fit
+# # fr_TOT2 : fitrange       lo and hi boundaries of fit range
+# # sv_TOT2 : startvalues    reasonable start values for the fit
+# # pllo_TOT2 : parlimitslo  lower parameter limits
+# # plhi_TOT2 : parlimitshi  upper parameter limits
+# # fp_TOT2 : fitparams      returns the final fit parameters
+# # fpe_TOT2 : fiterrors     returns the final fit errors
+#  
+# fr_TOT2 = array('d',[0.2*TOT2.GetMean(),3.0*TOT2.GetMean()])
+# sv_TOT2 = array('d',[1.8,20.0,50000.0,3.0]) 
+# pllo_TOT2 = array('d',[0.5,5.0,1.0,0.4])
+# plhi_TOT2 = array('d',[5.0,50.0,1000000.0,5.0]) 
+# fp_TOT2 = array('d',[0.]) 
+# fpe_TOT2 = array('d',[0.]) 
+#  
+# chisqr_TOT2 = array('d',[0.])
+# ndf_TOT2 = array('i',[0])
+# TOT2Peak = ROOT.Double(0.) 
+# TOT2FWHM = ROOT.Double(0.) 
+#  
+#  
+# fitTOT2 = langaufit(TOT2,fr_TOT2,sv_TOT2,pllo_TOT2,plhi_TOT2,fp_TOT2,fpe_TOT2,chisqr_TOT2,ndf_TOT2)
+# langaupro(fp_TOT2,TOT2Peak,TOT2FWHM)
+#  
+# print"Fitting done\nPlotting results...\n"
+#  
+#  
+# canvasTest_TOT2 = TCanvas()
+# canvasTest_TOT2.cd()
+# TOT2.Draw()
+# fitTOT2.Draw("lsame")
+# canvasTest_TOT2.Update()
 
-fr_TOT2 = array('d',[0.2*TOT2.GetMean(),3.0*TOT2.GetMean()])
-sv_TOT2 = array('d',[1.8,20.0,50000.0,3.0]) 
-pllo_TOT2 = array('d',[0.5,5.0,1.0,0.4])
-plhi_TOT2 = array('d',[5.0,50.0,1000000.0,5.0]) 
-fp_TOT2 = array('d',[0.]) 
-fpe_TOT2 = array('d',[0.]) 
-
-chisqr_TOT2 = array('d',[0.])
-ndf_TOT2 = array('i',[0])
-TOT2Peak = ROOT.Double(0.) 
-TOT2FWHM = ROOT.Double(0.) 
-
-
-fitTOT2 = langaufit(TOT2,fr_TOT2,sv_TOT2,pllo_TOT2,plhi_TOT2,fp_TOT2,fpe_TOT2,chisqr_TOT2,ndf_TOT2)
-langaupro(fp_TOT2,TOT2Peak,TOT2FWHM)
-
-print"Fitting done\nPlotting results...\n"
-
-
-canvasTest_TOT2 = TCanvas()
-canvasTest_TOT2.cd()
-TOT2.Draw()
-fitTOT2.Draw("lsame")
-canvasTest_TOT2.Update()
 
 ###############################################################################################################################
 
@@ -590,40 +594,40 @@ canvasTest_TOT2.Update()
 #
 ###############################################################################################################################
 
-#langaufit(TOT4,fr_TOT4,sv_TOT4,pllo_TOT4,plhi_TOT4,fp_TOT4,fpe_TOT4,chisqr_TOT4,ndf_TOT4)
-#
-# TOT4 : his               histogram to fit
-# fr_TOT4 : fitrange       lo and hi boundaries of fit range
-# sv_TOT4 : startvalues    reasonable start values for the fit
-# pllo_TOT4 : parlimitslo  lower parameter limits
-# plhi_TOT4 : parlimitshi  upper parameter limits
-# fp_TOT4 : fitparams      returns the final fit parameters
-# fpe_TOT4 : fiterrors     returns the final fit errors
-
-fr_TOT4 = array('d',[0.2*TOT4.GetMean(),3.0*TOT4.GetMean()])
-sv_TOT4 = array('d',[1.8,20.0,50000.0,3.0]) 
-pllo_TOT4 = array('d',[0.5,5.0,1.0,0.4])
-plhi_TOT4 = array('d',[5.0,50.0,1000000.0,5.0]) 
-fp_TOT4 = array('d',[0.]) 
-fpe_TOT4 = array('d',[0.]) 
-
-chisqr_TOT4 = array('d',[0.])
-ndf_TOT4 = array('i',[0])
-TOT4Peak = ROOT.Double(0.) 
-TOT4FWHM = ROOT.Double(0.) 
-
-
-fitTOT4 = langaufit(TOT4,fr_TOT4,sv_TOT4,pllo_TOT4,plhi_TOT4,fp_TOT4,fpe_TOT4,chisqr_TOT4,ndf_TOT4)
-langaupro(fp_TOT4,TOT4Peak,TOT4FWHM)
-
-print"Fitting done\nPlotting results...\n"
-
-
-canvasTest_TOT4 = TCanvas()
-canvasTest_TOT4.cd()
-TOT4.Draw()
-fitTOT4.Draw("lsame")
-canvasTest_TOT4.Update()
+# #langaufit(TOT4,fr_TOT4,sv_TOT4,pllo_TOT4,plhi_TOT4,fp_TOT4,fpe_TOT4,chisqr_TOT4,ndf_TOT4)
+# #
+# # TOT4 : his               histogram to fit
+# # fr_TOT4 : fitrange       lo and hi boundaries of fit range
+# # sv_TOT4 : startvalues    reasonable start values for the fit
+# # pllo_TOT4 : parlimitslo  lower parameter limits
+# # plhi_TOT4 : parlimitshi  upper parameter limits
+# # fp_TOT4 : fitparams      returns the final fit parameters
+# # fpe_TOT4 : fiterrors     returns the final fit errors
+#   
+# fr_TOT4 = array('d',[0.2*TOT4.GetMean(),3.0*TOT4.GetMean()])
+# sv_TOT4 = array('d',[1.8,20.0,50000.0,3.0]) 
+# pllo_TOT4 = array('d',[0.5,5.0,1.0,0.4])
+# plhi_TOT4 = array('d',[5.0,50.0,1000000.0,5.0]) 
+# fp_TOT4 = array('d',[0.]) 
+# fpe_TOT4 = array('d',[0.]) 
+#   
+# chisqr_TOT4 = array('d',[0.])
+# ndf_TOT4 = array('i',[0])
+# TOT4Peak = ROOT.Double(0.) 
+# TOT4FWHM = ROOT.Double(0.) 
+#   
+#   
+# fitTOT4 = langaufit(TOT4,fr_TOT4,sv_TOT4,pllo_TOT4,plhi_TOT4,fp_TOT4,fpe_TOT4,chisqr_TOT4,ndf_TOT4)
+# langaupro(fp_TOT4,TOT4Peak,TOT4FWHM)
+#   
+# print"Fitting done\nPlotting results...\n"
+#   
+#   
+# canvasTest_TOT4 = TCanvas()
+# canvasTest_TOT4.cd()
+# TOT4.Draw()
+# fitTOT4.Draw("lsame")
+# canvasTest_TOT4.Update()
 
 ###############################################################################################################################
 
@@ -634,6 +638,7 @@ if ((TOT1.Integral()!=0 and TOT2.Integral()!=0) and (TOT3.Integral()!=0 and TOT4
     TOT4.Scale(1./(TOT4.Integral()))
 
 can2=TCanvas()
+can2.cd()
 TOT1.Draw()
 TOT2.Draw("sames")
 TOT3.Draw("sames")
@@ -926,291 +931,295 @@ HitProb_4_correlationY.Draw("colz")
 
 if method_name == "QWeighted" :
 #     out = TFile("%s/QWeighted/output_rootfile_QWeighted_firingFreq001_run000131.root"%PlotPath, "recreate")
-    out = TFile("%s/QWeighted/output_rootfile_QWeighted_firingFreq001_run000131_distance%i.root"%(PlotPath,distance), "recreate")
-    canhot.SaveAs("%s/QWeighted/histo_hot_QWeighted.png"%PlotPath)
-    canfreq.SaveAs("%s/QWeighted/histo_freq_QWeighted.png"%PlotPath)
-    cancorx.SaveAs("%s/QWeighted/corx_QWeighted.png"%PlotPath)
-    cancory.SaveAs("%s/QWeighted/cory_QWeighted.png"%PlotPath)
-    can1.SaveAs("%s/QWeighted/allTOT_QWeighted.png"%PlotPath)
-    can2.SaveAs("%s/QWeighted/TOTnormalized_QWeighted.png"%PlotPath)
-    can3.SaveAs("%s/QWeighted/resX_QWeighted.png"%PlotPath)
-    can4.SaveAs("%s/QWeighted/resY_QWeighted.png"%PlotPath)
-    can5.SaveAs("%s/QWeighted/resX_cs_QWeighted.png"%PlotPath)
-    can6.SaveAs("%s/QWeighted/resY_cs_QWeighted.png"%PlotPath)
-    can7.SaveAs("%s/QWeighted/HitProb_1_cluster_binning1m_QWeighted.png"%PlotPath)
-    can8.SaveAs("%s/QWeighted/HitProb_2_cluster_binning1m_QWeighted.png"%PlotPath)
-    can9.SaveAs("%s/QWeighted/HitProb_3_cluster_binning1m_QWeighted.png"%PlotPath)
-    can10.SaveAs("%s/QWeighted/HitProb_4_cluster_binning1m_QWeighted.png"%PlotPath)
-    can7bis.SaveAs("%s/QWeighted/HitProb_1_cluster_binning2m_QWeighted.png"%PlotPath)
-    can8bis.SaveAs("%s/QWeighted/HitProb_2_cluster_binning2m_QWeighted.png"%PlotPath)
-    can9bis.SaveAs("%s/QWeighted/HitProb_3_cluster_binning2m_QWeighted.png"%PlotPath)
-    can10bis.SaveAs("%s/QWeighted/HitProb_4_cluster_binning2m_QWeighted.png"%PlotPath)
-    can11.SaveAs("%s/QWeighted/relX_vs_relY_QWeighted.png"%PlotPath)
-    can12.SaveAs("%s/QWeighted/HitProb_1_track_binning1m_QWeighted.png"%PlotPath)
-    can13.SaveAs("%s/QWeighted/HitProb_2_track_binning1m_QWeighted.png"%PlotPath)
-    can14.SaveAs("%s/QWeighted/HitProb_3_track_binning1m_QWeighted.png"%PlotPath)
-    can15.SaveAs("%s/QWeighted/HitProb_4_track_binning1m_QWeighted.png"%PlotPath)
-    can12bis.SaveAs("%s/QWeighted/HitProb_1_track_binning2m_QWeighted.png"%PlotPath)
-    can13bis.SaveAs("%s/QWeighted/HitProb_2_track_binning2m_QWeighted.png"%PlotPath)
-    can14bis.SaveAs("%s/QWeighted/HitProb_3_track_binning2m_QWeighted.png"%PlotPath)
-    can15bis.SaveAs("%s/QWeighted/HitProb_4_track_binning2m_QWeighted.png"%PlotPath)    
-    can16.SaveAs("%s/QWeighted/trackX_vs_trackY_plan3_QWeighted.png"%PlotPath)
-    can17.SaveAs("%s/QWeighted/trackX_vs_trackY_plan0_QWeighted.png"%PlotPath)
-    can18.SaveAs("%s/QWeighted/ClusterSizeX_QWeighted.png"%PlotPath)
-    can19.SaveAs("%s/QWeighted/ClusterSizeY_QWeighted.png"%PlotPath)
-    can20.SaveAs("%s/QWeighted/ClusterSize_QWeighted.png"%PlotPath)
-    can21.SaveAs("%s/QWeighted/ClusterSizeXvsSizeY_QWeighted.png"%PlotPath)
-    can22.SaveAs("%s/QWeighted/HitProb_1_correlationX_QWeighted.png"%PlotPath)
-    can23.SaveAs("%s/QWeighted/HitProb_2_correlationX_QWeighted.png"%PlotPath)
-    can24.SaveAs("%s/QWeighted/HitProb_3_correlationX_QWeighted.png"%PlotPath)
-    can25.SaveAs("%s/QWeighted/HitProb_4_correlationX_QWeighted.png"%PlotPath)
-    can26.SaveAs("%s/QWeighted/HitProb_1_correlationY_QWeighted.png"%PlotPath)
-    can27.SaveAs("%s/QWeighted/HitProb_2_correlationY_QWeighted.png"%PlotPath)
-    can28.SaveAs("%s/QWeighted/HitProb_3_correlationY_QWeighted.png"%PlotPath)
-    can29.SaveAs("%s/QWeighted/HitProb_4_correlationY_QWeighted.png"%PlotPath)
-    canEtaCorr.SaveAs("%s/QWeighted/Eta_QWeighted.png"%PlotPath)
-    canEtaCorr2.SaveAs("%s/QWeighted/Eta_hist_QWeighted.png"%PlotPath)
-    cClusterSizeCounter.SaveAs("%s/QWeighted/ClusterSizeCounter.png"%PlotPath)
-    cClusterSizeCounter_percent.SaveAs("%s/QWeighted/ClusterSizeCounter_percent.png"%PlotPath)
-    canvas_resX_s2x2y2.SaveAs("%s/QWeighted/resX_s2x2y2.png"%PlotPath)
-    canvas_resY_s2x2y2.SaveAs("%s/QWeighted/resY_s2x2y2.png"%PlotPath)
-    canvas_resX_s2x2y1.SaveAs("%s/QWeighted/resX_s2x2y1.png"%PlotPath)
-    canvas_resY_s2x2y1.SaveAs("%s/QWeighted/resY_s2x2y1.png"%PlotPath)
-    canvas_resX_s2x1y2.SaveAs("%s/QWeighted/resX_s2x1y2.png"%PlotPath)
-    canvas_resY_s2x1y2.SaveAs("%s/QWeighted/resY_s2x1y2.png"%PlotPath)
-    canvas_resX_s4x2y2.SaveAs("%s/QWeighted/resX_s4x2y2.png"%PlotPath)
-    canvas_resY_s4x2y2.SaveAs("%s/QWeighted/resY_s4x2y2.png"%PlotPath) 
-    canvasTest_allTOT.SaveAs("%s/QWeighted/allTOT_landaugausFit.png"%PlotPath)
-    canvasTest_TOT2.SaveAs("%s/QWeighted/TOT2_landaugausFit.png"%PlotPath)
-    canvasTest_TOT4.SaveAs("%s/QWeighted/TOT4_landaugausFit.png"%PlotPath)
+    out = TFile("%s/run59/QWeighted/output_rootfile_QWeighted_firingFreq001_run000131_distance%i.root"%(PlotPath,distance), "recreate")
+    canhot.SaveAs("%s/run59/QWeighted/histo_hot_QWeighted.pdf"%PlotPath)
+    canfreq.SaveAs("%s/run59/QWeighted/histo_freq_QWeighted.pdf"%PlotPath)
+    cancorx.SaveAs("%s/run59/QWeighted/corx_QWeighted.pdf"%PlotPath)
+    cancory.SaveAs("%s/run59/QWeighted/cory_QWeighted.pdf"%PlotPath)
+    can1.SaveAs("%s/run59/QWeighted/allTOT_QWeighted.pdf"%PlotPath)
+    can2.SaveAs("%s/run59/QWeighted/TOTnormalized_QWeighted.pdf"%PlotPath)
+    can3.SaveAs("%s/run59/QWeighted/resX_QWeighted.pdf"%PlotPath)
+    can4.SaveAs("%s/run59/QWeighted/resY_QWeighted.pdf"%PlotPath)
+    can5.SaveAs("%s/run59/QWeighted/resX_cs_QWeighted.pdf"%PlotPath)
+    can6.SaveAs("%s/run59/QWeighted/resY_cs_QWeighted.pdf"%PlotPath)
+    can7.SaveAs("%s/run59/QWeighted/HitProb_1_cluster_binning1m_QWeighted.pdf"%PlotPath)
+    can8.SaveAs("%s/run59/QWeighted/HitProb_2_cluster_binning1m_QWeighted.pdf"%PlotPath)
+    can9.SaveAs("%s/run59/QWeighted/HitProb_3_cluster_binning1m_QWeighted.pdf"%PlotPath)
+    can10.SaveAs("%s/run59/QWeighted/HitProb_4_cluster_binning1m_QWeighted.pdf"%PlotPath)
+    can7bis.SaveAs("%s/run59/QWeighted/HitProb_1_cluster_binning2m_QWeighted.pdf"%PlotPath)
+    can8bis.SaveAs("%s/run59/QWeighted/HitProb_2_cluster_binning2m_QWeighted.pdf"%PlotPath)
+    can9bis.SaveAs("%s/run59/QWeighted/HitProb_3_cluster_binning2m_QWeighted.pdf"%PlotPath)
+    can10bis.SaveAs("%s/run59/QWeighted/HitProb_4_cluster_binning2m_QWeighted.pdf"%PlotPath)
+    can11.SaveAs("%s/run59/QWeighted/relX_vs_relY_QWeighted.pdf"%PlotPath)
+    can12.SaveAs("%s/run59/QWeighted/HitProb_1_track_binning1m_QWeighted.pdf"%PlotPath)
+    can13.SaveAs("%s/run59/QWeighted/HitProb_2_track_binning1m_QWeighted.pdf"%PlotPath)
+    can14.SaveAs("%s/run59/QWeighted/HitProb_3_track_binning1m_QWeighted.pdf"%PlotPath)
+    can15.SaveAs("%s/run59/QWeighted/HitProb_4_track_binning1m_QWeighted.pdf"%PlotPath)
+    can12bis.SaveAs("%s/run59/QWeighted/HitProb_1_track_binning2m_QWeighted.pdf"%PlotPath)
+    can13bis.SaveAs("%s/run59/QWeighted/HitProb_2_track_binning2m_QWeighted.pdf"%PlotPath)
+    can14bis.SaveAs("%s/run59/QWeighted/HitProb_3_track_binning2m_QWeighted.pdf"%PlotPath)
+    can15bis.SaveAs("%s/run59/QWeighted/HitProb_4_track_binning2m_QWeighted.pdf"%PlotPath)    
+    can16.SaveAs("%s/run59/QWeighted/trackX_vs_trackY_plan3_QWeighted.pdf"%PlotPath)
+    can17.SaveAs("%s/run59/QWeighted/trackX_vs_trackY_plan0_QWeighted.pdf"%PlotPath)
+    can18.SaveAs("%s/run59/QWeighted/ClusterSizeX_QWeighted.pdf"%PlotPath)
+    can19.SaveAs("%s/run59/QWeighted/ClusterSizeY_QWeighted.pdf"%PlotPath)
+    can20.SaveAs("%s/run59/QWeighted/ClusterSize_QWeighted.pdf"%PlotPath)
+    can21.SaveAs("%s/run59/QWeighted/ClusterSizeXvsSizeY_QWeighted.pdf"%PlotPath)
+    can22.SaveAs("%s/run59/QWeighted/HitProb_1_correlationX_QWeighted.pdf"%PlotPath)
+    can23.SaveAs("%s/run59/QWeighted/HitProb_2_correlationX_QWeighted.pdf"%PlotPath)
+    can24.SaveAs("%s/run59/QWeighted/HitProb_3_correlationX_QWeighted.pdf"%PlotPath)
+    can25.SaveAs("%s/run59/QWeighted/HitProb_4_correlationX_QWeighted.pdf"%PlotPath)
+    can26.SaveAs("%s/run59/QWeighted/HitProb_1_correlationY_QWeighted.pdf"%PlotPath)
+    can27.SaveAs("%s/run59/QWeighted/HitProb_2_correlationY_QWeighted.pdf"%PlotPath)
+    can28.SaveAs("%s/run59/QWeighted/HitProb_3_correlationY_QWeighted.pdf"%PlotPath)
+    can29.SaveAs("%s/run59/QWeighted/HitProb_4_correlationY_QWeighted.pdf"%PlotPath)
+    canEtaCorr.SaveAs("%s/run59/QWeighted/Eta_QWeighted.pdf"%PlotPath)
+    canEtaCorr2.SaveAs("%s/run59/QWeighted/Eta_hist_QWeighted.pdf"%PlotPath)
+    cClusterSizeCounter.SaveAs("%s/run59/QWeighted/ClusterSizeCounter.pdf"%PlotPath)
+    cClusterSizeCounter_percent.SaveAs("%s/run59/QWeighted/ClusterSizeCounter_percent.pdf"%PlotPath)
+    canvas_resX_s2x2y2.SaveAs("%s/run59/QWeighted/resX_s2x2y2.pdf"%PlotPath)
+    canvas_resY_s2x2y2.SaveAs("%s/run59/QWeighted/resY_s2x2y2.pdf"%PlotPath)
+    canvas_resX_s2x2y1.SaveAs("%s/run59/QWeighted/resX_s2x2y1.pdf"%PlotPath)
+    canvas_resY_s2x2y1.SaveAs("%s/run59/QWeighted/resY_s2x2y1.pdf"%PlotPath)
+    canvas_resX_s2x1y2.SaveAs("%s/run59/QWeighted/resX_s2x1y2.pdf"%PlotPath)
+    canvas_resY_s2x1y2.SaveAs("%s/run59/QWeighted/resY_s2x1y2.pdf"%PlotPath)
+    canvas_resX_s4x2y2.SaveAs("%s/run59/QWeighted/resX_s4x2y2.pdf"%PlotPath)
+    canvas_resY_s4x2y2.SaveAs("%s/run59/QWeighted/resY_s4x2y2.pdf"%PlotPath) 
+    canvasTest_allTOT.SaveAs("%s/run59/QWeighted/allTOT_landaugausFit.pdf"%PlotPath)
+    canvasTest_TOT2.SaveAs("%s/run59/QWeighted/TOT2_landaugausFit.pdf"%PlotPath)
+    canvasTest_TOT4.SaveAs("%s/run59/QWeighted/TOT4_landaugausFit.pdf"%PlotPath)
  
 elif method_name == "DigitalCentroid" :
     #out = TFile("%s/DigitalCentroid/output_rootfile_DigitalCentroid_firingFreq001_run000131.root"%PlotPath, "recreate")
-    out = TFile("%s/DigitalCentroid/output_rootfile_DigitalCentroid_firingFreq001_run000131_distance%i.root"%(PlotPath,distance), "recreate")
-    canhot.SaveAs("%s/DigitalCentroid/histo_hot_DigitalCentroid.png"%PlotPath)
-    canfreq.SaveAs("%s/DigitalCentroid/histo_freq_DigitalCentroid.png"%PlotPath)
-    cancorx.SaveAs("%s/DigitalCentroid/corx_DigitalCentroid.png"%PlotPath)
-    cancory.SaveAs("%s/DigitalCentroid/cory_DigitalCentroid.png"%PlotPath)
-    can1.SaveAs("%s/DigitalCentroid/allTOT_DigitalCentroid.png"%PlotPath)
-    can2.SaveAs("%s/DigitalCentroid/TOTnormalized_DigitalCentroid.png"%PlotPath)
-    can3.SaveAs("%s/DigitalCentroid/resX_DigitalCentroid.png"%PlotPath)
-    can4.SaveAs("%s/DigitalCentroid/resY_DigitalCentroid.png"%PlotPath)
-    can5.SaveAs("%s/DigitalCentroid/resX_cs_DigitalCentroid.png"%PlotPath)
-    can6.SaveAs("%s/DigitalCentroid/resY_cs_DigitalCentroid.png"%PlotPath)
-    can7.SaveAs("%s/DigitalCentroid/HitProb_1_cluster_binning1m_DigitalCentroid.png"%PlotPath)
-    can8.SaveAs("%s/DigitalCentroid/HitProb_2_cluster_binning1m_DigitalCentroid.png"%PlotPath)
-    can9.SaveAs("%s/DigitalCentroid/HitProb_3_cluster_binning1m_DigitalCentroid.png"%PlotPath)
-    can10.SaveAs("%s/DigitalCentroid/HitProb_4_cluster_binning1m_DigitalCentroid.png"%PlotPath)
-    can7bis.SaveAs("%s/DigitalCentroid/HitProb_1_cluster_binning2m_DigitalCentroid.png"%PlotPath)
-    can8bis.SaveAs("%s/DigitalCentroid/HitProb_2_cluster_binning2m_DigitalCentroid.png"%PlotPath)
-    can9bis.SaveAs("%s/DigitalCentroid/HitProb_3_cluster_binning2m_DigitalCentroid.png"%PlotPath)
-    can10bis.SaveAs("%s/DigitalCentroid/HitProb_4_cluster_binning2m_DigitalCentroid.png"%PlotPath)
-    can11.SaveAs("%s/DigitalCentroid/relX_vs_relY_DigitalCentroid.png"%PlotPath)
-    can12.SaveAs("%s/DigitalCentroid/HitProb_1_track_binning1m_DigitalCentroid.png"%PlotPath)
-    can13.SaveAs("%s/DigitalCentroid/HitProb_2_track_binning1m_DigitalCentroid.png"%PlotPath)
-    can14.SaveAs("%s/DigitalCentroid/HitProb_3_track_binning1m_DigitalCentroid.png"%PlotPath)
-    can15.SaveAs("%s/DigitalCentroid/HitProb_4_track_binning1m_DigitalCentroid.png"%PlotPath)
-    can12bis.SaveAs("%s/DigitalCentroid/HitProb_1_track_binning2m_DigitalCentroid.png"%PlotPath)
-    can13bis.SaveAs("%s/DigitalCentroid/HitProb_2_track_binning2m_DigitalCentroid.png"%PlotPath)
-    can14bis.SaveAs("%s/DigitalCentroid/HitProb_3_track_binning2m_DigitalCentroid.png"%PlotPath)
-    can15bis.SaveAs("%s/DigitalCentroid/HitProb_4_track_binning2m_DigitalCentroid.png"%PlotPath)    
-    can16.SaveAs("%s/DigitalCentroid/trackX_vs_trackY_plan3_DigitalCentroid.png"%PlotPath)
-    can17.SaveAs("%s/DigitalCentroid/trackX_vs_trackY_plan0_DigitalCentroid.png"%PlotPath)
-    can18.SaveAs("%s/DigitalCentroid/ClusterSizeX_DigitalCentroid.png"%PlotPath)
-    can19.SaveAs("%s/DigitalCentroid/ClusterSizeY_DigitalCentroid.png"%PlotPath)
-    can20.SaveAs("%s/DigitalCentroid/ClusterSize_DigitalCentroid.png"%PlotPath)
-    can21.SaveAs("%s/DigitalCentroid/ClusterSizeXvsSizeY_DigitalCentroid.png"%PlotPath)
-    can22.SaveAs("%s/DigitalCentroid/HitProb_1_correlationX_DigitalCentroid.png"%PlotPath)
-    can23.SaveAs("%s/DigitalCentroid/HitProb_2_correlationX_DigitalCentroid.png"%PlotPath)
-    can24.SaveAs("%s/DigitalCentroid/HitProb_3_correlationX_DigitalCentroid.png"%PlotPath)
-    can25.SaveAs("%s/DigitalCentroid/HitProb_4_correlationX_DigitalCentroid.png"%PlotPath)
-    can26.SaveAs("%s/DigitalCentroid/HitProb_1_correlationY_DigitalCentroid.png"%PlotPath)
-    can27.SaveAs("%s/DigitalCentroid/HitProb_2_correlationY_DigitalCentroid.png"%PlotPath)
-    can28.SaveAs("%s/DigitalCentroid/HitProb_3_correlationY_DigitalCentroid.png"%PlotPath)
-    can29.SaveAs("%s/DigitalCentroid/HitProb_4_correlationY_DigitalCentroid.png"%PlotPath)
-    canEtaCorr.SaveAs("%s/DigitalCentroid/Eta_DigitalCentroid.png"%PlotPath)
-    canEtaCorr2.SaveAs("%s/DigitalCentroid/Eta_hist_DigitalCentroid.png"%PlotPath)
-    cClusterSizeCounter.SaveAs("%s/DigitalCentroid/ClusterSizeCounter.png"%PlotPath)
-    cClusterSizeCounter_percent.SaveAs("%s/DigitalCentroid/ClusterSizeCounter_percent.png"%PlotPath)
-    canvas_resX_s2x2y2.SaveAs("%s/DigitalCentroid/resX_s2x2y2.png"%PlotPath)
-    canvas_resY_s2x2y2.SaveAs("%s/DigitalCentroid/resY_s2x2y2.png"%PlotPath)
-    canvas_resX_s2x2y1.SaveAs("%s/DigitalCentroid/resX_s2x2y1.png"%PlotPath)
-    canvas_resY_s2x2y1.SaveAs("%s/DigitalCentroid/resY_s2x2y1.png"%PlotPath)
-    canvas_resX_s2x1y2.SaveAs("%s/DigitalCentroid/resX_s2x1y2.png"%PlotPath)
-    canvas_resY_s2x1y2.SaveAs("%s/DigitalCentroid/resY_s2x1y2.png"%PlotPath)
-    canvas_resX_s4x2y2.SaveAs("%s/DigitalCentroid/resX_s4x2y2.png"%PlotPath)
-    canvas_resY_s4x2y2.SaveAs("%s/DigitalCentroid/resY_s4x2y2.png"%PlotPath) 
-    canvasTest_allTOT.SaveAs("%s/DigitalCentroid/allTOT_landaugausFit.png"%PlotPath)
-    canvasTest_TOT2.SaveAs("%s/DigitalCentroid/TOT2_landaugausFit.png"%PlotPath)
-    canvasTest_TOT4.SaveAs("%s/DigitalCentroid/TOT4_landaugausFit.png"%PlotPath)
+    out = TFile("%s/run59/DigitalCentroid/output_rootfile_DigitalCentroid_firingFreq001_run000131_distance%i.root"%(PlotPath,distance), "recreate")
+    canhot.SaveAs("%s/run59/DigitalCentroid/histo_hot_DigitalCentroid.pdf"%PlotPath)
+    canfreq.SaveAs("%s/run59/DigitalCentroid/histo_freq_DigitalCentroid.pdf"%PlotPath)
+    cancorx.SaveAs("%s/run59/DigitalCentroid/corx_DigitalCentroid.pdf"%PlotPath)
+    cancory.SaveAs("%s/run59/DigitalCentroid/cory_DigitalCentroid.pdf"%PlotPath)
+    can1.SaveAs("%s/run59/DigitalCentroid/allTOT_DigitalCentroid.pdf"%PlotPath)
+    can2.SaveAs("%s/run59/DigitalCentroid/TOTnormalized_DigitalCentroid.pdf"%PlotPath)
+    can3.SaveAs("%s/run59/DigitalCentroid/resX_DigitalCentroid.pdf"%PlotPath)
+    can4.SaveAs("%s/run59/DigitalCentroid/resY_DigitalCentroid.pdf"%PlotPath)
+    can5.SaveAs("%s/run59/DigitalCentroid/resX_cs_DigitalCentroid.pdf"%PlotPath)
+    can6.SaveAs("%s/run59/DigitalCentroid/resY_cs_DigitalCentroid.pdf"%PlotPath)
+    can7.SaveAs("%/run59s/DigitalCentroid/HitProb_1_cluster_binning1m_DigitalCentroid.pdf"%PlotPath)
+    can8.SaveAs("%s/run59/DigitalCentroid/HitProb_2_cluster_binning1m_DigitalCentroid.pdf"%PlotPath)
+    can9.SaveAs("%s/run59/DigitalCentroid/HitProb_3_cluster_binning1m_DigitalCentroid.pdf"%PlotPath)
+    can10.SaveAs("%s/run59/DigitalCentroid/HitProb_4_cluster_binning1m_DigitalCentroid.pdf"%PlotPath)
+    can7bis.SaveAs("%s/run59/DigitalCentroid/HitProb_1_cluster_binning2m_DigitalCentroid.pdf"%PlotPath)
+    can8bis.SaveAs("%s/run59/DigitalCentroid/HitProb_2_cluster_binning2m_DigitalCentroid.pdf"%PlotPath)
+    can9bis.SaveAs("%s/run59/DigitalCentroid/HitProb_3_cluster_binning2m_DigitalCentroid.pdf"%PlotPath)
+    can10bis.SaveAs("%s/run59/DigitalCentroid/HitProb_4_cluster_binning2m_DigitalCentroid.pdf"%PlotPath)
+    can11.SaveAs("%s/run59/DigitalCentroid/relX_vs_relY_DigitalCentroid.pdf"%PlotPath)
+    can12.SaveAs("%s/run59/DigitalCentroid/HitProb_1_track_binning1m_DigitalCentroid.pdf"%PlotPath)
+    can13.SaveAs("%s/run59/DigitalCentroid/HitProb_2_track_binning1m_DigitalCentroid.pdf"%PlotPath)
+    can14.SaveAs("%s/run59/DigitalCentroid/HitProb_3_track_binning1m_DigitalCentroid.pdf"%PlotPath)
+    can15.SaveAs("%s/run59/DigitalCentroid/HitProb_4_track_binning1m_DigitalCentroid.pdf"%PlotPath)
+    can12bis.SaveAs("%s/run59/DigitalCentroid/HitProb_1_track_binning2m_DigitalCentroid.pdf"%PlotPath)
+    can13bis.SaveAs("%s/run59/DigitalCentroid/HitProb_2_track_binning2m_DigitalCentroid.pdf"%PlotPath)
+    can14bis.SaveAs("%s/run59/DigitalCentroid/HitProb_3_track_binning2m_DigitalCentroid.pdf"%PlotPath)
+    can15bis.SaveAs("%s/run59/DigitalCentroid/HitProb_4_track_binning2m_DigitalCentroid.pdf"%PlotPath)    
+    can16.SaveAs("%s/run59/DigitalCentroid/trackX_vs_trackY_plan3_DigitalCentroid.pdf"%PlotPath)
+    can17.SaveAs("%s/run59/DigitalCentroid/trackX_vs_trackY_plan0_DigitalCentroid.pdf"%PlotPath)
+    can18.SaveAs("%s/run59/DigitalCentroid/ClusterSizeX_DigitalCentroid.pdf"%PlotPath)
+    can19.SaveAs("%s/run59/DigitalCentroid/ClusterSizeY_DigitalCentroid.pdf"%PlotPath)
+    can20.SaveAs("%s/run59/DigitalCentroid/ClusterSize_DigitalCentroid.pdf"%PlotPath)
+    can21.SaveAs("%s/run59/DigitalCentroid/ClusterSizeXvsSizeY_DigitalCentroid.pdf"%PlotPath)
+    can22.SaveAs("%s/run59/DigitalCentroid/HitProb_1_correlationX_DigitalCentroid.pdf"%PlotPath)
+    can23.SaveAs("%s/run59/DigitalCentroid/HitProb_2_correlationX_DigitalCentroid.pdf"%PlotPath)
+    can24.SaveAs("%s/run59/DigitalCentroid/HitProb_3_correlationX_DigitalCentroid.pdf"%PlotPath)
+    can25.SaveAs("%s/run59/DigitalCentroid/HitProb_4_correlationX_DigitalCentroid.pdf"%PlotPath)
+    can26.SaveAs("%s/run59/DigitalCentroid/HitProb_1_correlationY_DigitalCentroid.pdf"%PlotPath)
+    can27.SaveAs("%s/run59/DigitalCentroid/HitProb_2_correlationY_DigitalCentroid.pdf"%PlotPath)
+    can28.SaveAs("%s/run59/DigitalCentroid/HitProb_3_correlationY_DigitalCentroid.pdf"%PlotPath)
+    can29.SaveAs("%s/run59/DigitalCentroid/HitProb_4_correlationY_DigitalCentroid.pdf"%PlotPath)
+    canEtaCorr.SaveAs("%s/run59/DigitalCentroid/Eta_DigitalCentroid.pdf"%PlotPath)
+    canEtaCorr2.SaveAs("%s/run59/DigitalCentroid/Eta_hist_DigitalCentroid.pdf"%PlotPath)
+    cClusterSizeCounter.SaveAs("%s/run59/DigitalCentroid/ClusterSizeCounter.pdf"%PlotPath)
+    cClusterSizeCounter_percent.SaveAs("%s/run59/DigitalCentroid/ClusterSizeCounter_percent.pdf"%PlotPath)
+    canvas_resX_s2x2y2.SaveAs("%s/run59/DigitalCentroid/resX_s2x2y2.pdf"%PlotPath)
+    canvas_resY_s2x2y2.SaveAs("%s/run59/DigitalCentroid/resY_s2x2y2.pdf"%PlotPath)
+    canvas_resX_s2x2y1.SaveAs("%s/run59/DigitalCentroid/resX_s2x2y1.pdf"%PlotPath)
+    canvas_resY_s2x2y1.SaveAs("%s/run59/DigitalCentroid/resY_s2x2y1.pdf"%PlotPath)
+    canvas_resX_s2x1y2.SaveAs("%s/run59/DigitalCentroid/resX_s2x1y2.pdf"%PlotPath)
+    canvas_resY_s2x1y2.SaveAs("%s/run59/DigitalCentroid/resY_s2x1y2.pdf"%PlotPath)
+    canvas_resX_s4x2y2.SaveAs("%s/run59/DigitalCentroid/resX_s4x2y2.pdf"%PlotPath)
+    canvas_resY_s4x2y2.SaveAs("%s/run59/DigitalCentroid/resY_s4x2y2.pdf"%PlotPath) 
+    canvasTest_allTOT.SaveAs("%s/run59/DigitalCentroid/allTOT_landaugausFit.pdf"%PlotPath)
+    canvasTest_TOT2.SaveAs("%s/run59/DigitalCentroid/TOT2_landaugausFit.pdf"%PlotPath)
+    canvasTest_TOT4.SaveAs("%s/run59/DigitalCentroid/TOT4_landaugausFit.pdf"%PlotPath)
 
          
 elif method_name == "maxTOT" : 
-    #out = TFile("%s/maxTOT/output_rootfile_maxTOT_firingFreq001_run000131.root"%PlotPath, "recreate")
-    out = TFile("%s/maxTOT/output_rootfile_maxTOT_firingFreq001_run000131_distance%i.root"%(PlotPath,distance), "recreate")
-    canhot.SaveAs("%s/maxTOT/histo_hot_maxTOT.png"%PlotPath)
-    canfreq.SaveAs("%s/maxTOT/histo_freq_maxTOT.png"%PlotPath)
-    cancorx.SaveAs("%s/maxTOT/corx_maxTOT.png"%PlotPath)
-    cancory.SaveAs("%s/maxTOT/cory_maxTOT.png"%PlotPath)
-    can1.SaveAs("%s/maxTOT/allTOT_maxTOT.png"%PlotPath)
-    can2.SaveAs("%s/maxTOT/TOTnormalized_maxTOT.png"%PlotPath)
-    can3.SaveAs("%s/maxTOT/resX_maxTOT.png"%PlotPath)
-    can4.SaveAs("%s/maxTOT/resY_maxTOT.png"%PlotPath)
-    can5.SaveAs("%s/maxTOT/resX_cs_maxTOT.png"%PlotPath)
-    can6.SaveAs("%s/maxTOT/resY_cs_maxTOT.png"%PlotPath)
-    can7.SaveAs("%s/maxTOT/HitProb_1_cluster_binning1m_maxTOT.png"%PlotPath)
-    can8.SaveAs("%s/maxTOT/HitProb_2_cluster_binning1m_maxTOT.png"%PlotPath)
-    can9.SaveAs("%s/maxTOT/HitProb_3_cluster_binning1m_maxTOT.png"%PlotPath)
-    can10.SaveAs("%s/maxTOT/HitProb_4_cluster_binning1m_maxTOT.png"%PlotPath)
-    can7bis.SaveAs("%s/maxTOT/HitProb_1_cluster_binning2m_maxTOT.png"%PlotPath)
-    can8bis.SaveAs("%s/maxTOT/HitProb_2_cluster_binning2m_maxTOT.png"%PlotPath)
-    can9bis.SaveAs("%s/maxTOT/HitProb_3_cluster_binning2m_maxTOT.png"%PlotPath)
-    can10bis.SaveAs("%s/maxTOT/HitProb_4_cluster_binning2m_maxTOT.png"%PlotPath)
-    can11.SaveAs("%s/maxTOT/relX_vs_relY_maxTOT.png"%PlotPath)
-    can12.SaveAs("%s/maxTOT/HitProb_1_track_binning1m_maxTOT.png"%PlotPath)
-    can13.SaveAs("%s/maxTOT/HitProb_2_track_binning1m_maxTOT.png"%PlotPath)
-    can14.SaveAs("%s/maxTOT/HitProb_3_track_binning1m_maxTOT.png"%PlotPath)
-    can15.SaveAs("%s/maxTOT/HitProb_4_track_binning1m_maxTOT.png"%PlotPath)
-    can12bis.SaveAs("%s/maxTOT/HitProb_1_track_binning2m_maxTOT.png"%PlotPath)
-    can13bis.SaveAs("%s/maxTOT/HitProb_2_track_binning2m_maxTOT.png"%PlotPath)
-    can14bis.SaveAs("%s/maxTOT/HitProb_3_track_binning2m_maxTOT.png"%PlotPath)
-    can15bis.SaveAs("%s/maxTOT/HitProb_4_track_binning2m_maxTOT.png"%PlotPath)    
-    can16.SaveAs("%s/maxTOT/trackX_vs_trackY_plan3_maxTOT.png"%PlotPath)
-    can17.SaveAs("%s/maxTOT/trackX_vs_trackY_plan0_maxTOT.png"%PlotPath)
-    can18.SaveAs("%s/maxTOT/ClusterSizeX_maxTOT.png"%PlotPath)
-    can19.SaveAs("%s/maxTOT/ClusterSizeY_maxTOT.png"%PlotPath)
-    can20.SaveAs("%s/maxTOT/ClusterSize_maxTOT.png"%PlotPath)
-    can21.SaveAs("%s/maxTOT/ClusterSizeXvsSizeY_maxTOT.png"%PlotPath)
-    can22.SaveAs("%s/maxTOT/HitProb_1_correlationX_maxTOT.png"%PlotPath)
-    can23.SaveAs("%s/maxTOT/HitProb_2_correlationX_maxTOT.png"%PlotPath)
-    can24.SaveAs("%s/maxTOT/HitProb_3_correlationX_maxTOT.png"%PlotPath)
-    can25.SaveAs("%s/maxTOT/HitProb_4_correlationX_maxTOT.png"%PlotPath)
-    can26.SaveAs("%s/maxTOT/HitProb_1_correlationY_maxTOT.png"%PlotPath)
-    can27.SaveAs("%s/maxTOT/HitProb_2_correlationY_maxTOT.png"%PlotPath)
-    can28.SaveAs("%s/maxTOT/HitProb_3_correlationY_maxTOT.png"%PlotPath)
-    can29.SaveAs("%s/maxTOT/HitProb_4_correlationY_maxTOT.png"%PlotPath)
-    canEtaCorr.SaveAs("%s/maxTOT/Eta_maxTOT.png"%PlotPath)
-    canEtaCorr2.SaveAs("%s/maxTOT/Eta_hist_maxTOT.png"%PlotPath)
-    cClusterSizeCounter.SaveAs("%s/maxTOT/ClusterSizeCounter.png"%PlotPath)
-    cClusterSizeCounter_percent.SaveAs("%s/maxTOT/ClusterSizeCounter_percent.png"%PlotPath)
-    canvas_resX_s2x2y2.SaveAs("%s/maxTOT/resX_s2x2y2.png"%PlotPath)
-    canvas_resY_s2x2y2.SaveAs("%s/maxTOT/resY_s2x2y2.png"%PlotPath)
-    canvas_resX_s2x2y1.SaveAs("%s/maxTOT/resX_s2x2y1.png"%PlotPath)
-    canvas_resY_s2x2y1.SaveAs("%s/maxTOT/resY_s2x2y1.png"%PlotPath)
-    canvas_resX_s2x1y2.SaveAs("%s/maxTOT/resX_s2x1y2.png"%PlotPath)
-    canvas_resY_s2x1y2.SaveAs("%s/maxTOT/resY_s2x1y2.png"%PlotPath)
-    canvas_resX_s4x2y2.SaveAs("%s/maxTOT/resX_s4x2y2.png"%PlotPath)
-    canvas_resY_s4x2y2.SaveAs("%s/maxTOT/resY_s4x2y2.png"%PlotPath)
-    canvasTest_allTOT.SaveAs("%s/maxTOT/allTOT_landaugausFit.png"%PlotPath) 
-    canvasTest_TOT2.SaveAs("%s/maxTOT/TOT2_landaugausFit.png"%PlotPath)
-    canvasTest_TOT4.SaveAs("%s/maxTOT/TOT4_landaugausFit.png"%PlotPath)
+    #out = TFile("%s/run59/run59/maxTOT/output_rootfile_maxTOT_firingFreq001_run000131.root"%PlotPath, "recreate")
+    out = TFile("%s/run59/maxTOT/output_rootfile_maxTOT_firingFreq001_run000131_distance%i.root"%(PlotPath,distance), "recreate")
+    canhot.SaveAs("%s/run59/maxTOT/histo_hot_maxTOT.pdf"%PlotPath)
+    canfreq.SaveAs("%s/run59/maxTOT/histo_freq_maxTOT.pdf"%PlotPath)
+    cancorx.SaveAs("%s/run59/maxTOT/corx_maxTOT.pdf"%PlotPath)
+    cancory.SaveAs("%s/run59/maxTOT/cory_maxTOT.pdf"%PlotPath)
+    can1.SaveAs("%s/run59/maxTOT/allTOT_maxTOT.pdf"%PlotPath)
+    can2.SaveAs("%s/run59/maxTOT/TOTnormalized_maxTOT.pdf"%PlotPath)
+    can3.SaveAs("%s/run59/maxTOT/resX_maxTOT.pdf"%PlotPath)
+    can4.SaveAs("%s/run59/maxTOT/resY_maxTOT.pdf"%PlotPath)
+    can5.SaveAs("%s/run59/maxTOT/resX_cs_maxTOT.pdf"%PlotPath)
+    can6.SaveAs("%s/run59/maxTOT/resY_cs_maxTOT.pdf"%PlotPath)
+    can7.SaveAs("%s/run59/maxTOT/HitProb_1_cluster_binning1m_maxTOT.pdf"%PlotPath)
+    can8.SaveAs("%s/run59/maxTOT/HitProb_2_cluster_binning1m_maxTOT.pdf"%PlotPath)
+    can9.SaveAs("%s/run59/maxTOT/HitProb_3_cluster_binning1m_maxTOT.pdf"%PlotPath)
+    can10.SaveAs("%s/run59/maxTOT/HitProb_4_cluster_binning1m_maxTOT.pdf"%PlotPath)
+    can7bis.SaveAs("%s/run59/maxTOT/HitProb_1_cluster_binning2m_maxTOT.pdf"%PlotPath)
+    can8bis.SaveAs("%s/run59/maxTOT/HitProb_2_cluster_binning2m_maxTOT.pdf"%PlotPath)
+    can9bis.SaveAs("%s/run59/maxTOT/HitProb_3_cluster_binning2m_maxTOT.pdf"%PlotPath)
+    can10bis.SaveAs("%s/run59/maxTOT/HitProb_4_cluster_binning2m_maxTOT.pdf"%PlotPath)
+    can11.SaveAs("%s/run59/maxTOT/relX_vs_relY_maxTOT.pdf"%PlotPath)
+    can12.SaveAs("%s/run59/maxTOT/HitProb_1_track_binning1m_maxTOT.pdf"%PlotPath)
+    can13.SaveAs("%s/run59/maxTOT/HitProb_2_track_binning1m_maxTOT.pdf"%PlotPath)
+    can14.SaveAs("%s/run59/maxTOT/HitProb_3_track_binning1m_maxTOT.pdf"%PlotPath)
+    can15.SaveAs("%s/run59/maxTOT/HitProb_4_track_binning1m_maxTOT.pdf"%PlotPath)
+    can12bis.SaveAs("%s/run59/maxTOT/HitProb_1_track_binning2m_maxTOT.pdf"%PlotPath)
+    can13bis.SaveAs("%s/run59/maxTOT/HitProb_2_track_binning2m_maxTOT.pdf"%PlotPath)
+    can14bis.SaveAs("%s/run59/maxTOT/HitProb_3_track_binning2m_maxTOT.pdf"%PlotPath)
+    can15bis.SaveAs("%s/run59/maxTOT/HitProb_4_track_binning2m_maxTOT.pdf"%PlotPath)    
+    can16.SaveAs("%s/run59/maxTOT/trackX_vs_trackY_plan3_maxTOT.pdf"%PlotPath)
+    can17.SaveAs("%s/run59/maxTOT/trackX_vs_trackY_plan0_maxTOT.pdf"%PlotPath)
+    can18.SaveAs("%s/run59/maxTOT/ClusterSizeX_maxTOT.pdf"%PlotPath)
+    can19.SaveAs("%s/run59/maxTOT/ClusterSizeY_maxTOT.pdf"%PlotPath)
+    can20.SaveAs("%s/run59/maxTOT/ClusterSize_maxTOT.pdf"%PlotPath)
+    can21.SaveAs("%s/run59/maxTOT/ClusterSizeXvsSizeY_maxTOT.pdf"%PlotPath)
+    can22.SaveAs("%s/run59/maxTOT/HitProb_1_correlationX_maxTOT.pdf"%PlotPath)
+    can23.SaveAs("%s/run59/maxTOT/HitProb_2_correlationX_maxTOT.pdf"%PlotPath)
+    can24.SaveAs("%s/run59/maxTOT/HitProb_3_correlationX_maxTOT.pdf"%PlotPath)
+    can25.SaveAs("%s/run59/maxTOT/HitProb_4_correlationX_maxTOT.pdf"%PlotPath)
+    can26.SaveAs("%s/run59/maxTOT/HitProb_1_correlationY_maxTOT.pdf"%PlotPath)
+    can27.SaveAs("%s/run59/maxTOT/HitProb_2_correlationY_maxTOT.pdf"%PlotPath)
+    can28.SaveAs("%s/run59/maxTOT/HitProb_3_correlationY_maxTOT.pdf"%PlotPath)
+    can29.SaveAs("%s/run59/maxTOT/HitProb_4_correlationY_maxTOT.pdf"%PlotPath)
+    canEtaCorr.SaveAs("%s/run59/maxTOT/Eta_maxTOT.pdf"%PlotPath)
+    canEtaCorr2.SaveAs("%s/run59/maxTOT/Eta_hist_maxTOT.pdf"%PlotPath)
+    cClusterSizeCounter.SaveAs("%s/run59/maxTOT/ClusterSizeCounter.pdf"%PlotPath)
+    cClusterSizeCounter_percent.SaveAs("%s/run59/maxTOT/ClusterSizeCounter_percent.pdf"%PlotPath)
+    canvas_resX_s2x2y2.SaveAs("%s/run59/maxTOT/resX_s2x2y2.pdf"%PlotPath)
+    canvas_resY_s2x2y2.SaveAs("%s/run59/maxTOT/resY_s2x2y2.pdf"%PlotPath)
+    canvas_resX_s2x2y1.SaveAs("%s/run59/maxTOT/resX_s2x2y1.pdf"%PlotPath)
+    canvas_resY_s2x2y1.SaveAs("%s/run59/maxTOT/resY_s2x2y1.pdf"%PlotPath)
+    canvas_resX_s2x1y2.SaveAs("%s/run59/maxTOT/resX_s2x1y2.pdf"%PlotPath)
+    canvas_resY_s2x1y2.SaveAs("%s/run59/maxTOT/resY_s2x1y2.pdf"%PlotPath)
+    canvas_resX_s4x2y2.SaveAs("%s/run59/maxTOT/resX_s4x2y2.pdf"%PlotPath)
+    canvas_resY_s4x2y2.SaveAs("%s/run59/maxTOT/resY_s4x2y2.pdf"%PlotPath)
+    canvasTest_allTOT.SaveAs("%s/run59/maxTOT/allTOT_landaugausFit.pdf"%PlotPath) 
+    canvasTest_TOT2.SaveAs("%s/run59/maxTOT/TOT2_landaugausFit.pdf"%PlotPath)
+    canvasTest_TOT4.SaveAs("%s/run59/maxTOT/TOT4_landaugausFit.pdf"%PlotPath)
     
 elif method_name == "EtaCorrection" : 
-    out = TFile("%s/EtaCorrection/output_rootfile_EtaCorrection_firingFreq001_run000131_distance%i.root"%(PlotPath,distance), "recreate")
-#     out = TFile("%s/EtaCorrection/output_rootfile_EtaCorrection_firingFreq001_run000131_distance%i_sigma%i.root"%(PlotPath,distance,sigma*1000), "recreate")
-    canhot.SaveAs("%s/EtaCorrection/histo_hot_EtaCorrection.png"%PlotPath)
-    canfreq.SaveAs("%s/EtaCorrection/histo_freq_EtaCorrection.png"%PlotPath)
-    cancorx.SaveAs("%s/EtaCorrection/corx_EtaCorrection.png"%PlotPath)
-    cancory.SaveAs("%s/EtaCorrection/cory_EtaCorrection.png"%PlotPath)
-    can1.SaveAs("%s/EtaCorrection/allTOT_EtaCorrection.png"%PlotPath)
-    can2.SaveAs("%s/EtaCorrection/TOTnormalized_EtaCorrection.png"%PlotPath)
-    can3.SaveAs("%s/EtaCorrection/resX_EtaCorrection.png"%PlotPath)
-    can4.SaveAs("%s/EtaCorrection/resY_EtaCorrection.png"%PlotPath)
-    can5.SaveAs("%s/EtaCorrection/resX_cs_EtaCorrection.png"%PlotPath)
-    can6.SaveAs("%s/EtaCorrection/resY_cs_EtaCorrection.png"%PlotPath)
-    can7.SaveAs("%s/EtaCorrection/HitProb_1_cluster_binning1m_EtaCorrection.png"%PlotPath)
-    can8.SaveAs("%s/EtaCorrection/HitProb_2_cluster_binning1m_EtaCorrection.png"%PlotPath)
-    can9.SaveAs("%s/EtaCorrection/HitProb_3_cluster_binning1m_EtaCorrection.png"%PlotPath)
-    can10.SaveAs("%s/EtaCorrection/HitProb_4_cluster_binning1m_EtaCorrection.png"%PlotPath)
-    can7bis.SaveAs("%s/EtaCorrection/HitProb_1_cluster_binning2m_EtaCorrection.png"%PlotPath)
-    can8bis.SaveAs("%s/EtaCorrection/HitProb_2_cluster_binning2m_EtaCorrection.png"%PlotPath)
-    can9bis.SaveAs("%s/EtaCorrection/HitProb_3_cluster_binning2m_EtaCorrection.png"%PlotPath)
-    can10bis.SaveAs("%s/EtaCorrection/HitProb_4_cluster_binning2m_EtaCorrection.png"%PlotPath)
-    can11.SaveAs("%s/EtaCorrection/relX_vs_relY_EtaCorrection.png"%PlotPath)
-    can12.SaveAs("%s/EtaCorrection/HitProb_1_track_binning1m_EtaCorrection.png"%PlotPath)
-    can13.SaveAs("%s/EtaCorrection/HitProb_2_track_binning1m_EtaCorrection.png"%PlotPath)
-    can14.SaveAs("%s/EtaCorrection/HitProb_3_track_binning1m_EtaCorrection.png"%PlotPath)
-    can15.SaveAs("%s/EtaCorrection/HitProb_4_track_binning1m_EtaCorrection.png"%PlotPath)
-    can12bis.SaveAs("%s/EtaCorrection/HitProb_1_track_binning2m_EtaCorrection.png"%PlotPath)
-    can13bis.SaveAs("%s/EtaCorrection/HitProb_2_track_binning2m_EtaCorrection.png"%PlotPath)
-    can14bis.SaveAs("%s/EtaCorrection/HitProb_3_track_binning2m_EtaCorrection.png"%PlotPath)
-    can15bis.SaveAs("%s/EtaCorrection/HitProb_4_track_binning2m_EtaCorrection.png"%PlotPath)    
-    can16.SaveAs("%s/EtaCorrection/trackX_vs_trackY_plan3_EtaCorrection.png"%PlotPath)
-    can17.SaveAs("%s/EtaCorrection/trackX_vs_trackY_plan0_EtaCorrection.png"%PlotPath)
-    can18.SaveAs("%s/EtaCorrection/ClusterSizeX_EtaCorrection.png"%PlotPath)
-    can19.SaveAs("%s/EtaCorrection/ClusterSizeY_EtaCorrection.png"%PlotPath)
-    can20.SaveAs("%s/EtaCorrection/ClusterSize_EtaCorrection.png"%PlotPath)
-    can21.SaveAs("%s/EtaCorrection/ClusterSizeXvsSizeY_EtaCorrection.png"%PlotPath)
-    can22.SaveAs("%s/EtaCorrection/HitProb_1_correlationX_EtaCorrection.png"%PlotPath)
-    can23.SaveAs("%s/EtaCorrection/HitProb_2_correlationX_EtaCorrection.png"%PlotPath)
-    can24.SaveAs("%s/EtaCorrection/HitProb_3_correlationX_EtaCorrection.png"%PlotPath)
-    can25.SaveAs("%s/EtaCorrection/HitProb_4_correlationX_EtaCorrection.png"%PlotPath)
-    can26.SaveAs("%s/EtaCorrection/HitProb_1_correlationY_EtaCorrection.png"%PlotPath)
-    can27.SaveAs("%s/EtaCorrection/HitProb_2_correlationY_EtaCorrection.png"%PlotPath)
-    can28.SaveAs("%s/EtaCorrection/HitProb_3_correlationY_EtaCorrection.png"%PlotPath)
-    can29.SaveAs("%s/EtaCorrection/HitProb_4_correlationY_EtaCorrection.png"%PlotPath)
-    canEtaCorr.SaveAs("%s/EtaCorrection/Eta_EtaCorrection.png"%PlotPath)
-    canEtaCorr2.SaveAs("%s/EtaCorrection/Eta_hist_EtaCorrection.png"%PlotPath)
-    cClusterSizeCounter.SaveAs("%s/EtaCorrection/ClusterSizeCounter.png"%PlotPath)
-    cClusterSizeCounter_percent.SaveAs("%s/EtaCorrection/ClusterSizeCounter_percent.png"%PlotPath)
-    canvas_resX_s2x2y2.SaveAs("%s/EtaCorrection/resX_s2x2y2.png"%PlotPath)
-    canvas_resY_s2x2y2.SaveAs("%s/EtaCorrection/resY_s2x2y2.png"%PlotPath)
-    canvas_resX_s2x2y1.SaveAs("%s/EtaCorrection/resX_s2x2y1.png"%PlotPath)
-    canvas_resY_s2x2y1.SaveAs("%s/EtaCorrection/resY_s2x2y1.png"%PlotPath)
-    canvas_resX_s2x1y2.SaveAs("%s/EtaCorrection/resX_s2x1y2.png"%PlotPath)
-    canvas_resY_s2x1y2.SaveAs("%s/EtaCorrection/resY_s2x1y2.png"%PlotPath)
-    canvas_resX_s4x2y2.SaveAs("%s/EtaCorrection/resX_s4x2y2.png"%PlotPath)
-    canvas_resY_s4x2y2.SaveAs("%s/EtaCorrection/resY_s4x2y2.png"%PlotPath)
-    canvasTest_allTOT.SaveAs("%s/EtaCorrection/allTOT_landaugausFit.png"%PlotPath)
-    canvasTest_TOT2.SaveAs("%s/EtaCorrection/TOT2_landaugausFit.png"%PlotPath)
-    canvasTest_TOT4.SaveAs("%s/EtaCorrection/TOT4_landaugausFit.png"%PlotPath)
+    out = TFile("%s/run59/EtaCorrection/output_rootfile_EtaCorrection_firingFreq001_run000131_distance%i.root"%(PlotPath,distance), "recreate")
+#     out = TFile("%s/run59/EtaCorrection/output_rootfile_EtaCorrection_firingFreq001_run000131_distance%i_sigma%i.root"%(PlotPath,distance,sigma*1000), "recreate")
+    canhot.SaveAs("%s/run59/EtaCorrection/histo_hot_EtaCorrection.pdf"%PlotPath)
+    canfreq.SaveAs("%s/run59/EtaCorrection/histo_freq_EtaCorrection.pdf"%PlotPath)
+    cancorx.SaveAs("%s/run59/EtaCorrection/corx_EtaCorrection.pdf"%PlotPath)
+    cancory.SaveAs("%s/run59/EtaCorrection/cory_EtaCorrection.pdf"%PlotPath)
+    can1.SaveAs("%s/run59/EtaCorrection/allTOT_EtaCorrection.pdf"%PlotPath)
+    can2.SaveAs("%s/run59/EtaCorrection/TOTnormalized_EtaCorrection.pdf"%PlotPath)
+    can3.SaveAs("%s/run59/EtaCorrection/resX_EtaCorrection.pdf"%PlotPath)
+    can4.SaveAs("%s/run59/EtaCorrection/resY_EtaCorrection.pdf"%PlotPath)
+    can5.SaveAs("%s/run59/EtaCorrection/resX_cs_EtaCorrection.pdf"%PlotPath)
+    can6.SaveAs("%s/run59/EtaCorrection/resY_cs_EtaCorrection.pdf"%PlotPath)
+    can7.SaveAs("%s/run59/EtaCorrection/HitProb_1_cluster_binning1m_EtaCorrection.pdf"%PlotPath)
+    can8.SaveAs("%s/run59/EtaCorrection/HitProb_2_cluster_binning1m_EtaCorrection.pdf"%PlotPath)
+    can9.SaveAs("%s/run59/EtaCorrection/HitProb_3_cluster_binning1m_EtaCorrection.pdf"%PlotPath)
+    can10.SaveAs("%s/run59/EtaCorrection/HitProb_4_cluster_binning1m_EtaCorrection.pdf"%PlotPath)
+    can7bis.SaveAs("%s/run59/EtaCorrection/HitProb_1_cluster_binning2m_EtaCorrection.pdf"%PlotPath)
+    can8bis.SaveAs("%s/run59/EtaCorrection/HitProb_2_cluster_binning2m_EtaCorrection.pdf"%PlotPath)
+    can9bis.SaveAs("%s/run59/EtaCorrection/HitProb_3_cluster_binning2m_EtaCorrection.pdf"%PlotPath)
+    can10bis.SaveAs("%s/run59/EtaCorrection/HitProb_4_cluster_binning2m_EtaCorrection.pdf"%PlotPath)
+    can11.SaveAs("%s/run59/EtaCorrection/relX_vs_relY_EtaCorrection.pdf"%PlotPath)
+    can12.SaveAs("%s/run59/EtaCorrection/HitProb_1_track_binning1m_EtaCorrection.pdf"%PlotPath)
+    can13.SaveAs("%s/run59/EtaCorrection/HitProb_2_track_binning1m_EtaCorrection.pdf"%PlotPath)
+    can14.SaveAs("%s/run59/EtaCorrection/HitProb_3_track_binning1m_EtaCorrection.pdf"%PlotPath)
+    can15.SaveAs("%s/run59/EtaCorrection/HitProb_4_track_binning1m_EtaCorrection.pdf"%PlotPath)
+    can12bis.SaveAs("%s/run59/EtaCorrection/HitProb_1_track_binning2m_EtaCorrection.pdf"%PlotPath)
+    can13bis.SaveAs("%s/run59/EtaCorrection/HitProb_2_track_binning2m_EtaCorrection.pdf"%PlotPath)
+    can14bis.SaveAs("%s/run59/EtaCorrection/HitProb_3_track_binning2m_EtaCorrection.pdf"%PlotPath)
+    can15bis.SaveAs("%s/run59/EtaCorrection/HitProb_4_track_binning2m_EtaCorrection.pdf"%PlotPath)    
+    can16.SaveAs("%s/run59/EtaCorrection/trackX_vs_trackY_plan3_EtaCorrection.pdf"%PlotPath)
+    can17.SaveAs("%s/run59/EtaCorrection/trackX_vs_trackY_plan0_EtaCorrection.pdf"%PlotPath)
+    can18.SaveAs("%s/run59/EtaCorrection/ClusterSizeX_EtaCorrection.pdf"%PlotPath)
+    can19.SaveAs("%s/run59/EtaCorrection/ClusterSizeY_EtaCorrection.pdf"%PlotPath)
+    can20.SaveAs("%s/run59/EtaCorrection/ClusterSize_EtaCorrection.pdf"%PlotPath)
+    can21.SaveAs("%s/run59/EtaCorrection/ClusterSizeXvsSizeY_EtaCorrection.pdf"%PlotPath)
+    can22.SaveAs("%s/run59/EtaCorrection/HitProb_1_correlationX_EtaCorrection.pdf"%PlotPath)
+    can23.SaveAs("%s/run59/EtaCorrection/HitProb_2_correlationX_EtaCorrection.pdf"%PlotPath)
+    can24.SaveAs("%s/run59/EtaCorrection/HitProb_3_correlationX_EtaCorrection.pdf"%PlotPath)
+    can25.SaveAs("%s/run59/EtaCorrection/HitProb_4_correlationX_EtaCorrection.pdf"%PlotPath)
+    can26.SaveAs("%s/run59/EtaCorrection/HitProb_1_correlationY_EtaCorrection.pdf"%PlotPath)
+    can27.SaveAs("%s/run59/EtaCorrection/HitProb_2_correlationY_EtaCorrection.pdf"%PlotPath)
+    can28.SaveAs("%s/run59/EtaCorrection/HitProb_3_correlationY_EtaCorrection.pdf"%PlotPath)
+    can29.SaveAs("%s/run59/EtaCorrection/HitProb_4_correlationY_EtaCorrection.pdf"%PlotPath)
+    canEtaCorr.SaveAs("%s/run59/EtaCorrection/Eta_EtaCorrection.pdf"%PlotPath)
+    canEtaCorr2.SaveAs("%s/run59/EtaCorrection/Eta_hist_EtaCorrection.pdf"%PlotPath)
+    cClusterSizeCounter.SaveAs("%s/run59/EtaCorrection/ClusterSizeCounter.pdf"%PlotPath)
+    cClusterSizeCounter_percent.SaveAs("%s/run59/EtaCorrection/ClusterSizeCounter_percent.pdf"%PlotPath)
+    canvas_resX_s2x2y2.SaveAs("%s/run59/EtaCorrection/resX_s2x2y2.pdf"%PlotPath)
+    canvas_resY_s2x2y2.SaveAs("%s/run59/EtaCorrection/resY_s2x2y2.pdf"%PlotPath)
+    canvas_resX_s2x2y1.SaveAs("%s/run59/EtaCorrection/resX_s2x2y1.pdf"%PlotPath)
+    canvas_resY_s2x2y1.SaveAs("%s/run59/EtaCorrection/resY_s2x2y1.pdf"%PlotPath)
+    canvas_resX_s2x1y2.SaveAs("%s/run59/EtaCorrection/resX_s2x1y2.pdf"%PlotPath)
+    canvas_resY_s2x1y2.SaveAs("%s/run59/EtaCorrection/resY_s2x1y2.pdf"%PlotPath)
+    canvas_resX_s4x2y2.SaveAs("%s/run59/EtaCorrection/resX_s4x2y2.pdf"%PlotPath)
+    canvas_resY_s4x2y2.SaveAs("%s/run59/EtaCorrection/resY_s4x2y2.pdf"%PlotPath)
+#     canvasTest_allTOT.SaveAs("%s/run59/EtaCorrection/allTOT_landaugausFit.pdf"%PlotPath)
+#     canvasTest_TOT2.SaveAs("%s/run59/EtaCorrection/TOT2_landaugausFit.pdf"%PlotPath)
+#     canvasTest_TOT4.SaveAs("%s/run59/EtaCorrection/TOT4_landaugausFit.pdf"%PlotPath)
 
 can_resX_cs_0 = TCanvas()
 resX_cs[0].Draw()
 r0 = resX_cs[0].Fit("gaus","","") 
- 
+    
 can_resY_cs_0 = TCanvas()
 resY_cs[0].Draw()
 r0 = resY_cs[0].Fit("gaus","","") 
-    
+       
 can_resX_cs_1 = TCanvas()
 resX_cs[1].Draw()
 r0 = resX_cs[1].Fit("gaus","","") 
-    
+       
 can_resY_cs_1 = TCanvas()
 resY_cs[1].Draw()
 r0 = resY_cs[1].Fit("gaus","","") 
-    
-        
+       
+           
 if method_name == "EtaCorrection" : 
-    can_resX_cs_1.SaveAs("%s/EtaCorrection/resX_cs_1_fit_EtaCorrection.png"%PlotPath)
-    can_resY_cs_1.SaveAs("%s/EtaCorrection/resY_cs_1_fit_EtaCorrection.png"%PlotPath)
-    can_resX_cs_0.SaveAs("%s/EtaCorrection/resX_cs_0_fit_EtaCorrection.png"%PlotPath)
-    can_resY_cs_0.SaveAs("%s/EtaCorrection/resY_cs_0_fit_EtaCorrection.png"%PlotPath)
+    can_resX_cs_1.SaveAs("%s/run59/EtaCorrection/resX_cs_1_fit_EtaCorrection.pdf"%PlotPath)
+    can_resY_cs_1.SaveAs("%s/run59/EtaCorrection/resY_cs_1_fit_EtaCorrection.pdf"%PlotPath)
+    can_resX_cs_0.SaveAs("%s/run59/EtaCorrection/resX_cs_0_fit_EtaCorrection.pdf"%PlotPath)
+    can_resY_cs_0.SaveAs("%s/run59/EtaCorrection/resY_cs_0_fit_EtaCorrection.pdf"%PlotPath)
 elif method_name == "QWeighted" : 
-    can_resX_cs_1.SaveAs("%s/QWeighted/resX_cs_1_fit_QWeighted.png"%PlotPath)
-    can_resY_cs_1.SaveAs("%s/QWeighted/resY_cs_1_fit_QWeighted.png"%PlotPath)
-    can_resX_cs_0.SaveAs("%s/QWeighted/resX_cs_0_fit_QWeighted.png"%PlotPath)
-    can_resY_cs_0.SaveAs("%s/QWeighted/resY_cs_0_fit_QWeighted.png"%PlotPath)
+    can_resX_cs_1.SaveAs("%s/run59/QWeighted/resX_cs_1_fit_QWeighted.pdf"%PlotPath)
+    can_resY_cs_1.SaveAs("%s/run59/QWeighted/resY_cs_1_fit_QWeighted.pdf"%PlotPath)
+    can_resX_cs_0.SaveAs("%s/run59/QWeighted/resX_cs_0_fit_QWeighted.pdf"%PlotPath)
+    can_resY_cs_0.SaveAs("%s/run59/QWeighted/resY_cs_0_fit_QWeighted.pdf"%PlotPath)
 elif method_name == "DigitalCentroid" : 
-    can_resX_cs_1.SaveAs("%s/DigitalCentroid/resX_cs_1_fit_DigitalCentroid.png"%PlotPath)
-    can_resY_cs_1.SaveAs("%s/DigitalCentroid/resY_cs_1_fit_DigitalCentroid.png"%PlotPath)
-    can_resX_cs_0.SaveAs("%s/DigitalCentroid/resX_cs_0_fit_DigitalCentroid.png"%PlotPath)
-    can_resY_cs_0.SaveAs("%s/DigitalCentroid/resY_cs_0_fit_DigitalCentroid.png"%PlotPath)
+    can_resX_cs_1.SaveAs("%s/run59/DigitalCentroid/resX_cs_1_fit_DigitalCentroid.pdf"%PlotPath)
+    can_resY_cs_1.SaveAs("%s/run59/DigitalCentroid/resY_cs_1_fit_DigitalCentroid.pdf"%PlotPath)
+    can_resX_cs_0.SaveAs("%s/run59/DigitalCentroid/resX_cs_0_fit_DigitalCentroid.pdf"%PlotPath)
+    can_resY_cs_0.SaveAs("%s/run59/DigitalCentroid/resY_cs_0_fit_DigitalCentroid.pdf"%PlotPath)
 elif method_name == "maxTOT" : 
-    can_resX_cs_1.SaveAs("%s/maxTOT/resX_cs_1_fit_maxTOT.png"%PlotPath)
-    can_resY_cs_1.SaveAs("%s/maxTOT/resY_cs_1_fit_maxTOT.png"%PlotPath)
-    can_resX_cs_0.SaveAs("%s/maxTOT/resX_cs_0_fit_maxTOT.png"%PlotPath)
-    can_resY_cs_0.SaveAs("%s/maxTOT/resY_cs_0_fit_maxTOT.png"%PlotPath)
+    can_resX_cs_1.SaveAs("%s/run59/maxTOT/resX_cs_1_fit_maxTOT.pdf"%PlotPath)
+    can_resY_cs_1.SaveAs("%s/run59/maxTOT/resY_cs_1_fit_maxTOT.pdf"%PlotPath)
+    can_resX_cs_0.SaveAs("%s/run59/maxTOT/resX_cs_0_fit_maxTOT.pdf"%PlotPath)
+    can_resY_cs_0.SaveAs("%s/run59/maxTOT/resY_cs_0_fit_maxTOT.pdf"%PlotPath)
 
- 
+
+# print 'test1'
+#  
 # g1 = TF1("m1","gaus",-0.025,pitchX/sqrt(12))
 # g2 = TF1("m2","gaus",0.025,pitchX/sqrt(12))
-#    
+#       
 # can_resX_cs_0 = TCanvas()
 # resX_cs[0].Draw()
 # r0 = resX_cs[0].Fit("gaus","","",-0.05,0.05) 
-#    
+#  
+# print 'test2'
+#       
 # can_resX_cs_1 = TCanvas()
 # resX_cs[1].Draw()
 # r1 = resX_cs[1].Fit(g1,"S","",-0.03,0.0)
@@ -1222,11 +1231,15 @@ elif method_name == "maxTOT" :
 # fitResult_resX_cs_1.AddText("mean 2 : %f"%(r1bis.Parameter(1)))
 # fitResult_resX_cs_1.AddText("sigma 2 : %f"%(r1bis.Parameter(2)))
 # fitResult_resX_cs_1.Draw("same")
-#    
+# 
+# print 'test3'
+#       
 # can_resX_cs_2 = TCanvas()
 # resX_cs[2].Draw()
-# r2 = resX_cs[2].Fit(g1,"RS")
-# r2bis = resX_cs[2].Fit(g2,"RS+")
+# r2 = resX_cs[2].Fit(g1,"S","",-0.05,0.0)
+# r2bis = resX_cs[2].Fit(g2,"S+","",0.0,0.050)
+# # r2 = resX_cs[2].Fit(g1,"RS")
+# # r2bis = resX_cs[2].Fit(g2,"RS+")
 # fitResult_resX_cs_2 = TPaveText(0.13,0.69,0.33,0.88,"NDC")
 # fitResult_resX_cs_2.AddText("mean 1 : %f"%(r2.Parameter(1)))
 # fitResult_resX_cs_2.AddText("sigma 1 : %f"%(r2.Parameter(2)))
@@ -1234,15 +1247,19 @@ elif method_name == "maxTOT" :
 # fitResult_resX_cs_2.AddText("mean 2 : %f"%(r2bis.Parameter(1)))
 # fitResult_resX_cs_2.AddText("sigma 2 : %f"%(r2bis.Parameter(2)))
 # fitResult_resX_cs_2.Draw("same")
-#    
+# 
+# print 'test4'
+#       
 # can_resY_cs_0 = TCanvas()
 # resY_cs[0].Draw()
 # r0 = resY_cs[0].Fit("gaus","","",-0.05,0.05) 
-#    
+#       
 # can_resY_cs_1 = TCanvas()
 # resY_cs[1].Draw()
-# r1 = resY_cs[1].Fit(g1,"RS")
-# r1bis = resY_cs[1].Fit(g2,"RS+")
+# r1 = resY_cs[1].Fit(g1,"S","",-0.05,0.0)
+# r1bis = resY_cs[1].Fit(g2,"S+","",0.0,0.050)
+# # r1 = resY_cs[1].Fit(g1,"RS")
+# # r1bis = resY_cs[1].Fit(g2,"RS+")
 # fitResult_resY_cs_1 = TPaveText(0.13,0.69,0.33,0.88,"NDC")
 # fitResult_resY_cs_1.AddText("mean 1 : %f"%(r1.Parameter(1)))
 # fitResult_resY_cs_1.AddText("sigma 1 : %f"%(r1.Parameter(2)))
@@ -1250,7 +1267,7 @@ elif method_name == "maxTOT" :
 # fitResult_resY_cs_1.AddText("mean 2 : %f"%(r1bis.Parameter(1)))
 # fitResult_resY_cs_1.AddText("sigma 2 : %f"%(r1bis.Parameter(2)))
 # fitResult_resY_cs_1.Draw("same")
-#    
+#       
 # can_resY_cs_2 = TCanvas()
 # resY_cs[2].Draw()
 # r2 = resY_cs[2].Fit(g1,"RS")
@@ -1262,39 +1279,39 @@ elif method_name == "maxTOT" :
 # fitResult_resY_cs_2.AddText("mean 2 : %f"%(r2bis.Parameter(1)))
 # fitResult_resY_cs_2.AddText("sigma 2 : %f"%(r2bis.Parameter(2)))
 # fitResult_resY_cs_2.Draw("same")
-#    
-#    
+#       
+#       
 # if method_name == "QWeighted" :
-#     can_resX_cs_0.SaveAs("%s/QWeighted/resX_cs_0_fit_QWeighted.png"%PlotPath)
-#     can_resX_cs_1.SaveAs("%s/QWeighted/resX_cs_1_fit_QWeighted.png"%PlotPath)
-#     can_resX_cs_2.SaveAs("%s/QWeighted/resX_cs_2_fit_QWeighted.png"%PlotPath)
-#     can_resY_cs_0.SaveAs("%s/QWeighted/resY_cs_0_fit_QWeighted.png"%PlotPath)
-#     can_resY_cs_1.SaveAs("%s/QWeighted/resY_cs_1_fit_QWeighted.png"%PlotPath)
-#     can_resY_cs_2.SaveAs("%s/QWeighted/resY_cs_2_fit_QWeighted.png"%PlotPath)
-#     
-# elif method_name == "DigitalCentroid" :
-#     can_resX_cs_0.SaveAs("%s/DigitalCentroid/resX_cs_0_fit_DigitalCentroid.png"%PlotPath)
-#     can_resX_cs_1.SaveAs("%s/DigitalCentroid/resX_cs_1_fit_DigitalCentroid.png"%PlotPath)
-#     can_resX_cs_2.SaveAs("%s/DigitalCentroid/resX_cs_2_fit_DigitalCentroid.png"%PlotPath)
-#     can_resY_cs_0.SaveAs("%s/DigitalCentroid/resY_cs_0_fit_DigitalCentroid.png"%PlotPath)
-#     can_resY_cs_1.SaveAs("%s/DigitalCentroid/resY_cs_1_fit_DigitalCentroid.png"%PlotPath)
-#     can_resY_cs_2.SaveAs("%s/DigitalCentroid/resY_cs_2_fit_DigitalCentroid.png"%PlotPath)
-#         
-# elif method_name == "maxTOT" : 
-#     can_resX_cs_0.SaveAs("%s/maxTOT/resX_cs_0_fit_maxTOT.png"%PlotPath)
-#     can_resX_cs_1.SaveAs("%s/maxTOT/resX_cs_1_fit_maxTOT.png"%PlotPath)
-#     can_resX_cs_2.SaveAs("%s/maxTOT/resX_cs_2_fit_maxTOT.png"%PlotPath)
-#     can_resY_cs_0.SaveAs("%s/maxTOT/resY_cs_0_fit_maxTOT.png"%PlotPath)
-#     can_resY_cs_1.SaveAs("%s/maxTOT/resY_cs_1_fit_maxTOT.png"%PlotPath)
-#     can_resY_cs_2.SaveAs("%s/maxTOT/resY_cs_2_fit_maxTOT.png"%PlotPath)
+#     can_resX_cs_0.SaveAs("%s/run59/QWeighted/resX_cs_0_fit_QWeighted.pdf"%PlotPath)
+#     can_resX_cs_1.SaveAs("%s/run59/QWeighted/resX_cs_1_fit_QWeighted.pdf"%PlotPath)
+#     can_resX_cs_2.SaveAs("%s/run59/QWeighted/resX_cs_2_fit_QWeighted.pdf"%PlotPath)
+#     can_resY_cs_0.SaveAs("%s/run59/QWeighted/resY_cs_0_fit_QWeighted.pdf"%PlotPath)
+#     can_resY_cs_1.SaveAs("%s/run59/QWeighted/resY_cs_1_fit_QWeighted.pdf"%PlotPath)
+#     can_resY_cs_2.SaveAs("%s/run59/QWeighted/resY_cs_2_fit_QWeighted.pdf"%PlotPath)
 #        
+# elif method_name == "DigitalCentroid" :
+#     can_resX_cs_0.SaveAs("%s/run59/DigitalCentroid/resX_cs_0_fit_DigitalCentroid.pdf"%PlotPath)
+#     can_resX_cs_1.SaveAs("%s/run59/DigitalCentroid/resX_cs_1_fit_DigitalCentroid.pdf"%PlotPath)
+#     can_resX_cs_2.SaveAs("%s/run59/DigitalCentroid/resX_cs_2_fit_DigitalCentroid.pdf"%PlotPath)
+#     can_resY_cs_0.SaveAs("%s/run59/DigitalCentroid/resY_cs_0_fit_DigitalCentroid.pdf"%PlotPath)
+#     can_resY_cs_1.SaveAs("%s/run59/DigitalCentroid/resY_cs_1_fit_DigitalCentroid.pdf"%PlotPath)
+#     can_resY_cs_2.SaveAs("%s/run59/DigitalCentroid/resY_cs_2_fit_DigitalCentroid.pdf"%PlotPath)
+#            
+# elif method_name == "maxTOT" : 
+#     can_resX_cs_0.SaveAs("%s/run59/maxTOT/resX_cs_0_fit_maxTOT.pdf"%PlotPath)
+#     can_resX_cs_1.SaveAs("%s/run59/maxTOT/resX_cs_1_fit_maxTOT.pdf"%PlotPath)
+#     can_resX_cs_2.SaveAs("%s/run59/maxTOT/resX_cs_2_fit_maxTOT.pdf"%PlotPath)
+#     can_resY_cs_0.SaveAs("%s/run59/maxTOT/resY_cs_0_fit_maxTOT.pdf"%PlotPath)
+#     can_resY_cs_1.SaveAs("%s/run59/maxTOT/resY_cs_1_fit_maxTOT.pdf"%PlotPath)
+#     can_resY_cs_2.SaveAs("%s/run59/maxTOT/resY_cs_2_fit_maxTOT.pdf"%PlotPath)
+#           
 # elif method_name == "EtaCorrection" : 
-#     can_resX_cs_0.SaveAs("%s/EtaCorrection/resX_cs_0_fit_EtaCorrection.png"%PlotPath)
-#     can_resX_cs_1.SaveAs("%s/EtaCorrection/resX_cs_1_fit_EtaCorrection.png"%PlotPath)
-#     can_resX_cs_2.SaveAs("%s/EtaCorrection/resX_cs_2_fit_EtaCorrection.png"%PlotPath)
-#     can_resY_cs_0.SaveAs("%s/EtaCorrection/resY_cs_0_fit_EtaCorrection.png"%PlotPath)
-#     can_resY_cs_1.SaveAs("%s/EtaCorrection/resY_cs_1_fit_EtaCorrection.png"%PlotPath)
-#     can_resY_cs_2.SaveAs("%s/EtaCorrection/resY_cs_2_fit_EtaCorrection.png"%PlotPath)
+#     can_resX_cs_0.SaveAs("%s/run59/EtaCorrection/resX_cs_0_fit_EtaCorrection.pdf"%PlotPath)
+#     can_resX_cs_1.SaveAs("%s/run59/EtaCorrection/resX_cs_1_fit_EtaCorrection.pdf"%PlotPath)
+#     can_resX_cs_2.SaveAs("%s/run59/EtaCorrection/resX_cs_2_fit_EtaCorrection.pdf"%PlotPath)
+#     can_resY_cs_0.SaveAs("%s/run59/EtaCorrection/resY_cs_0_fit_EtaCorrection.pdf"%PlotPath)
+#     can_resY_cs_1.SaveAs("%s/run59/EtaCorrection/resY_cs_1_fit_EtaCorrection.pdf"%PlotPath)
+#     can_resY_cs_2.SaveAs("%s/run59/EtaCorrection/resY_cs_2_fit_EtaCorrection.pdf"%PlotPath)
      
 out.cd()
 hx.Write()
