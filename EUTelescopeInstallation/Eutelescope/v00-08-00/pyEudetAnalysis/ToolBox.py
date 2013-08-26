@@ -433,7 +433,8 @@ def TrackClusterCorrelation(dataSet,dut=6):
     for i,tracks in enumerate(dataSet.AllTracks) : 
         for track in tracks :
             for index,cluster in enumerate(dataSet.AllClusters[i]) :
-                    if cluster.totalTOT<500 :
+#                     if cluster.totalTOT<500 :
+                    if cluster.totalTOT<2000 :    
                         histox.Fill(cluster.absX,track.trackX[track.iden.index(dut)])
                         histoy.Fill(cluster.absY,track.trackY[track.iden.index(dut)])                    
     return histox,histoy
@@ -453,7 +454,8 @@ def TotalMeanFunctionX(Translations,Rotations,aDataDet,nevents,skip,dut=6):
                     distx=cluster.absX -tmp[0]
                     disty=cluster.absY -tmp[1]                 
     
-                    if fabs(distx)<0.1 and fabs(disty)<0.1:
+                    if fabs(distx)<2. and fabs(disty)<2.:
+#                     if fabs(distx)<0.1 and fabs(disty)<0.1:
                         totaldist_evaluator+=distx 
                         n+=1
     print "n : %i"%n
@@ -476,7 +478,8 @@ def TotalMeanFunctionY(Translations,Tx,Rotations,aDataDet,nevents,skip,dut=6):
                     distx=cluster.absX -tmp[0]
                     disty=cluster.absY -tmp[1]                 
     
-                    if fabs(distx)<0.1 and fabs(disty)<0.1:
+#                     if fabs(distx)<0.1 and fabs(disty)<0.1:
+                    if fabs(distx)<2. and fabs(disty)<2.:    
                         totaldist_evaluator+=disty
                         n+=1
     print "Evaluating for Trans : %.9f %.9f  [mm] metric = %.9f  n = %i"%(Tx,Translations[0],fabs(totaldist_evaluator/n),n)
@@ -671,10 +674,12 @@ def Perform2StepAlignment(aDataSet,boundary,nevent,skip) :
     x_tx = np.array([0.])
     x_ty = np.array([0.])
     xr= np.array([0.,0.,0.])
-    #resr = minimize(TotalRotationFunction,xr,[x_tx,aDataSet,nevent,skip],method='Nelder-Mead',options={'xtol': 1e-5,'disp': True})    
+    #resr = minimize(TotalRotationFunction,xr,[x_tx,aDataSet,nevent,skip],method='Nelder-Mead',options={'xtol': 1e-5,'disp': True})
+        
     rest = minimize(TotalMeanFunctionX,x_tx,[xr,aDataSet,nevent,skip],method='Nelder-Mead',options={'xtol': 1e-5,'disp': True}) 
     rest2 = minimize(TotalMeanFunctionY,x_ty,[rest.x[0],xr,aDataSet,nevent,skip],method='Nelder-Mead',options={'xtol': 1e-5,'disp': True}) 
-      
+#     rest = minimize(TotalMeanFunctionX,x_tx,[xr,aDataSet,nevent,skip],method='Nelder-Mead',options={'xtol': 1e-3,'disp': True}) 
+#     rest2 = minimize(TotalMeanFunctionY,x_ty,[rest.x[0],xr,aDataSet,nevent,skip],method='Nelder-Mead',options={'xtol': 1e-3,'disp': True})      
     return xr,[rest.x[0],rest2.x[0],0]
 
 

@@ -20,7 +20,7 @@ class EudetData:
     pixelTree = ROOT.TTree()
     TrackTree = ROOT.TTree()
  
-    EnergyCut = 0.
+    EnergyCut = 200.
     scale =1.
     
     AllClusters = []

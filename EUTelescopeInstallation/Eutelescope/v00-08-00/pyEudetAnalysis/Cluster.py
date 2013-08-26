@@ -113,7 +113,7 @@ class Cluster:
         self.relY=self.row[maxTOTindex_tmp]*pitchY
         
         self.absX=self.relX + pitchX/2. -npix_X*pitchX/2.
-        self.absY=self.relY + pitchY/2. -npix_X*pitchX/2.
+        self.absY=self.relY + pitchY/2. -npix_Y*pitchY/2.
         self.absZ=0
 
 
@@ -294,7 +294,7 @@ class Cluster:
         #print "relX : %f"%float(self.relX)
         #print "relY : %f"%float(self.relY) 
         self.absX=self.relX + pitchX/2. -npix_X*pitchX/2.
-        self.absY=self.relY + pitchY/2. -npix_X*pitchX/2.
+        self.absY=self.relY + pitchY/2. -npix_Y*pitchY/2.
         self.absZ=0
 
                 
