@@ -110,6 +110,19 @@ canfreq.SetLogx()
 canfreq.SetLogy()
 histo_freq.Draw("")
 
+
+################################################################################################################
+
+hx_Test,hy_Test = TrackClusterCorrelation_Test(aDataSet)
+
+cancorx_Test = TCanvas()
+hx_Test.Draw("colz")
+ 
+cancory_Test = TCanvas()
+hy_Test.Draw("colz")
+
+################################################################################################################
+
 n_matched = 0
 # for i in range(aDataSet.p_nEntries) : 
 for i in range(50000) : 
@@ -946,12 +959,14 @@ hy.Draw("colz")
 
 
 if method_name == "QWeighted" :
-    out = TFile("%s/QWeighted/output_rootfile_QWeighted_firingFreq001_run00059.root"%PlotPath, "recreate")
+    out = TFile("%s/run59/QWeighted/output_rootfile_QWeighted_firingFreq001_run00059.root"%PlotPath, "recreate")
 #     out = TFile("%s/run59/QWeighted/output_rootfile_QWeighted_firingFreq001_run00059_distance%i.root"%(PlotPath,distance), "recreate")
     canhot.SaveAs("%s/run59/QWeighted/histo_hot_QWeighted.pdf"%PlotPath)
     canfreq.SaveAs("%s/run59/QWeighted/histo_freq_QWeighted.pdf"%PlotPath)
     cancorx.SaveAs("%s/run59/QWeighted/corx_QWeighted.pdf"%PlotPath)
     cancory.SaveAs("%s/run59/QWeighted/cory_QWeighted.pdf"%PlotPath)
+    cancorx_Test.SaveAs("%s/run59/QWeighted/corx_Test_QWeighted.pdf"%PlotPath)
+    cancory_Test.SaveAs("%s/run59/QWeighted/cory_Test_QWeighted.pdf"%PlotPath)
 #     can1.SaveAs("%s/run59/QWeighted/allTOT_QWeighted.pdf"%PlotPath)
 #     can2.SaveAs("%s/run59/QWeighted/TOTnormalized_QWeighted.pdf"%PlotPath)
 #     can3.SaveAs("%s/run59/QWeighted/resX_QWeighted.pdf"%PlotPath)

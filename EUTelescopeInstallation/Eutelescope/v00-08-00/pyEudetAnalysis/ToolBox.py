@@ -440,6 +440,25 @@ def TrackClusterCorrelation(dataSet,dut=6):
     return histox,histoy
 
 
+def TrackClusterCorrelation_Test(dataSet,dut=6):
+     
+    histox_Test = TH2D("corX","corX",(npix_X),-7.,7.,(npix_X),-7.,7.)
+    histoy_Test = TH2D("corY","corY",(npix_Y),-7.,7.,(npix_Y),-7.,7.)
+    hl_Test = [histox_Test,histoy_Test]
+     
+    for h in hl_Test : 
+        h.GetXaxis().SetTitle("Cluster Position (mm)")
+        h.GetYaxis().SetTitle("Track position (mm)")
+ 
+#     for i in range(dataSet.p_nEntries) :   
+    for i in range(50000) :         
+        for track in dataSet.AllTracks[i] :
+            for index,cluster in enumerate(dataSet.AllClusters[i]) :   
+                histox_Test.Fill(cluster.absX,track.trackX[track.iden.index(dut)])
+                histoy_Test.Fill(cluster.absY,track.trackY[track.iden.index(dut)])                    
+    return histox_Test,histoy_Test
+
+
 def TotalMeanFunctionX(Translations,Rotations,aDataDet,nevents,skip,dut=6):
    
     totaldist_evaluator = 0.
