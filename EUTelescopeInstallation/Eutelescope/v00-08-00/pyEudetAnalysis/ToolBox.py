@@ -442,15 +442,16 @@ def TrackClusterCorrelation(dataSet,dut=6):
 
 def TrackClusterCorrelation_Test(dataSet,dut=6):
      
-    histox_Test = TH2D("corX","corX",(npix_X),-7.,7.,(npix_X),-7.,7.)
-    histoy_Test = TH2D("corY","corY",(npix_Y),-7.,7.,(npix_Y),-7.,7.)
+    histox_Test = TH2D("corX","corX",(npix_X),-14.,14.,(npix_X),-14.,14.)
+    histoy_Test = TH2D("corY","corY",(npix_Y),-14.,14.,(npix_Y),-14.,14.)
     hl_Test = [histox_Test,histoy_Test]
      
     for h in hl_Test : 
         h.GetXaxis().SetTitle("Cluster Position (mm)")
         h.GetYaxis().SetTitle("Track position (mm)")
  
-#     for i in range(dataSet.p_nEntries) :   
+#     for i in range(dataSet.p_nEntries) :
+#         print "i: %i"%i   
     for i in range(50000) :         
         for track in dataSet.AllTracks[i] :
             for index,cluster in enumerate(dataSet.AllClusters[i]) :   

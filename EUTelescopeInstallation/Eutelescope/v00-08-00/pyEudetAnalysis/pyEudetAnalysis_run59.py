@@ -111,17 +111,6 @@ canfreq.SetLogy()
 histo_freq.Draw("")
 
 
-################################################################################################################
-
-hx_Test,hy_Test = TrackClusterCorrelation_Test(aDataSet)
-
-cancorx_Test = TCanvas()
-hx_Test.Draw("colz")
- 
-cancory_Test = TCanvas()
-hy_Test.Draw("colz")
-
-################################################################################################################
 
 n_matched = 0
 # for i in range(aDataSet.p_nEntries) : 
@@ -177,6 +166,18 @@ hClusterSizeCounter_percent.Draw()
 # 
 #    aDataSet_calib.ComputeResiduals(i)
 #===============================================================================
+
+################################################################################################################
+
+hx_Test,hy_Test = TrackClusterCorrelation_Test(aDataSet)
+
+cancorx_Test = TCanvas()
+hx_Test.Draw("colz")
+ 
+cancory_Test = TCanvas()
+hy_Test.Draw("colz")
+
+################################################################################################################
 
 #################################################################################
 hx,hy = TrackClusterCorrelation(aDataSet)
