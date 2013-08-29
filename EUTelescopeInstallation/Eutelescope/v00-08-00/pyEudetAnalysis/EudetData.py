@@ -357,8 +357,8 @@ class EudetData:
 #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!                
                 #WARNING!!!! additionnal shift of npix*pitch/2 added by hand
 #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!  
-                aTrack.trackX[index] = aTrack.trackX[index]-npix_X*pitchX/2.+pitchX/2.+ npix_X*pitchX/2.
-                aTrack.trackY[index] = aTrack.trackY[index]-npix_Y*pitchY/2.+pitchY/2.+ npix_Y*pitchY/2.   
+                aTrack.trackX[index] = aTrack.trackX[index]-npix_X*pitchX/2.+pitchX/2.#+ npix_X*pitchX/2.
+                aTrack.trackY[index] = aTrack.trackY[index]-npix_Y*pitchY/2.+pitchY/2.#+ npix_Y*pitchY/2.   
             aTrack.iden = iden_tmp[j*ndata:j*ndata+ndata]
             aTrack.chi2 = chi2_tmp[j*ndata:j*ndata+ndata]
             aTrack.trackNum = trackNum_tmp[j*ndata:j*ndata+ndata]

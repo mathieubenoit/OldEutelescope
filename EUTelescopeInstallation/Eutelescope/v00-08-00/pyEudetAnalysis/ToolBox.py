@@ -452,7 +452,7 @@ def TrackClusterCorrelation_Test(dataSet,dut=6):
  
 #     for i in range(dataSet.p_nEntries) :
 #         print "i: %i"%i   
-    for i in range(50000) :         
+    for i in range(10000) :         
         for track in dataSet.AllTracks[i] :
             for index,cluster in enumerate(dataSet.AllClusters[i]) :   
                 histox_Test.Fill(cluster.absX,track.trackX[track.iden.index(dut)])

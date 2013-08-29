@@ -78,7 +78,7 @@ method_name = "QWeighted"
 
 #aDataSet = EudetData("/VertexScratch/TB_Data/DESY_TB_DATA_02_07-06-2013_results/histo/tbtrackrun000062.root",500.0)
 
-aDataSet = EudetData("/VertexScratch/TB_Data/DESY_TB_DATA_August2013_results/tbtrack/tbtrackrun000059.root",500.0,2)
+aDataSet = EudetData("/VertexScratch/TB_Data/DESY_TB_DATA_August2013_results/tbtrack/tbtrackrun000059_DUTrotZ.root",500.0,2)
 # aDataSet = EudetData("/VertexScratch/TB_Data/DESY_TB_DATA_02_07-06-2013_results/histo/tbtrackrun000131.root",500.0,2)
 
 # aDataSet.PrintTBranchElement()
@@ -114,7 +114,7 @@ histo_freq.Draw("")
 
 n_matched = 0
 # for i in range(aDataSet.p_nEntries) : 
-for i in range(50000) : 
+for i in range(10000) : 
 
     aDataSet.ClusterEvent(i,method_name)
     aDataSet.GetTrack(i)
