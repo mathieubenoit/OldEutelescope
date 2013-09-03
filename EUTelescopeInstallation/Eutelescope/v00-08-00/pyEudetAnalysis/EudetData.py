@@ -20,7 +20,7 @@ class EudetData:
     pixelTree = ROOT.TTree()
     TrackTree = ROOT.TTree()
  
-    EnergyCut = 200.
+    EnergyCut = 0.
     scale =1.
     
     AllClusters = []
@@ -91,7 +91,7 @@ class EudetData:
                 self.hit_map[i][j]=0
 
         
-    def FilterHotPixel(self,threshold,Nevents=-1):
+    def FilterHotPixel(self,threshold,Nevents=-1,aScaler=1.):
         
         # Threshold between [0,1], cut firing frequency of pixels
         # Nevent is how many event for building the frequency Matrix
@@ -121,7 +121,7 @@ class EudetData:
                  
 #                last = self.hit_map[129][20]                                   
                 
-                self.hit_map[self.p_col[jj]][self.p_row[jj]]+=1.
+                self.hit_map[self.p_col[jj]][self.p_row[jj]]+=1./aScaler
                 
 #                now = self.hit_map[129][20]     
                 
@@ -354,11 +354,8 @@ class EudetData:
             aTrack.trackX = posX_tmp[j*ndata:j*ndata+ndata]           
             aTrack.trackY = posY_tmp[j*ndata:j*ndata+ndata] 
             for index,element in enumerate(aTrack.trackX) :
-#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!                
-                #WARNING!!!! additionnal shift of npix*pitch/2 added by hand
-#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!  
-                aTrack.trackX[index] = aTrack.trackX[index]-npix_X*pitchX/2.+pitchX/2.#+ npix_X*pitchX/2.
-                aTrack.trackY[index] = aTrack.trackY[index]-npix_Y*pitchY/2.+pitchY/2.#+ npix_Y*pitchY/2.   
+                aTrack.trackX[index] = aTrack.trackX[index]-npix_X*pitchX/2.-pitchX/2.
+                aTrack.trackY[index] = aTrack.trackY[index]-npix_Y*pitchY/2.-pitchY/2.   
             aTrack.iden = iden_tmp[j*ndata:j*ndata+ndata]
             aTrack.chi2 = chi2_tmp[j*ndata:j*ndata+ndata]
             aTrack.trackNum = trackNum_tmp[j*ndata:j*ndata+ndata]
@@ -419,7 +416,34 @@ class EudetData:
         
               
 #     def ClusterEvent(self,i,method="QWeighted"):
-    def ClusterEvent(self,i,method="QWeighted",sigma=0.003):
+
+
+    def DoPatternRecognition(self,i,tolerance,scaler=1) :
+        
+        trackDist = []
+        clusterDist = []
+        
+        tmp_track_X = []
+        tmp_track_Y = []       
+        for ind in range(i,i+scaler): 
+            for track in self.AllTracks[ind] :
+                tmp_track_X.append(track.trackX[3])
+                tmp_track_Y.append(track.trackY[3])
+        
+        for major,distX in enumerate(tmp_track_X) :
+            for minor,distY in enumerate(tmp_track_X[major+1:]) :
+                trackDist.append((distX**2 + distY**2)**(0.5))                             
+        print trackDist
+        for index,cluster in enumerate(self.AllClusters[i]):
+            clusterDist_tmp = []
+            for index2,cluster2 in enumerate(self.AllClusters[i]):
+                        if(index2!=index):
+                            clusterDist_tmp.append(((cluster.absX-cluster2.absX)**2 + (cluster.absY-cluster2.absY)**2)**(0.5)) 
+            clusterDist.append(clusterDist_tmp)     
+            print clusterDist_tmp
+            
+            
+    def ClusterEvent(self,i,method="QWeighted",sigma=0.003, scaler=1):
         
         self.getEvent(i) 
         
@@ -479,7 +503,8 @@ class EudetData:
             clusterid+=1
             cluster=0
         
-        self.AllClusters.insert(i,clusters)
+        for ind in range(i,i+scaler):
+            self.AllClusters.insert(ind,clusters)
         clusters=0
         
 
