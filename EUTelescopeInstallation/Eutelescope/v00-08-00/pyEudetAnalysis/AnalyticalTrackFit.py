@@ -28,8 +28,8 @@ def Chi2(x,y,p,eps,N,dx,X0,impulsion) :
 		res += eps[index]*(y[index]-p[index])**2
 		
 	for index in range(1,N-1) : 
-
-		numerator = (A(x,index)+A(x,index-1))*p[i]-A(x,index-1)*p[index-1]-A(x,index)*p[index+1]
+		
+		numerator = (A(x,index)+A(x,index-1))*p[index]-A(x,index-1)*p[index-1]-A(x,index)*p[index+1]		
 		denominator = Theta_scatering(dx,X0,impulsion,index)	
 		res += (numerator/denominator)**2
 
