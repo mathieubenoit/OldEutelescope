@@ -758,7 +758,7 @@ def Perform3StepAlignment(aDataSet,boundary,nevent,skip,cut = 0.1) :
     x_tx = np.array([0.])
     x_ty = np.array([0.])
     xr= np.array([0.,0.,0.])
-    resr = minimize(TotalRotationFunction,xr,[x_tx,aDataSet,nevent,skip,cut],method='BFGS',options={'disp': True})    
+    resr = minimize(TotalRotationFunction,xr,[x_tx,aDataSet,nevent,skip,cut],method='BFGS',options={'disp': True,'eps':0.05,'gtol':5e-4})    
     rest = minimize(TotalMeanFunctionX,x_tx,[resr.x,aDataSet,nevent,skip,cut],method='Nelder-Mead',options={'xtol': 1e-5,'disp': True}) 
     rest2 = minimize(TotalMeanFunctionY,x_ty,[rest.x[0],resr.x,aDataSet,nevent,skip,cut],method='Nelder-Mead',options={'xtol': 1e-5,'disp': True}) 
 
