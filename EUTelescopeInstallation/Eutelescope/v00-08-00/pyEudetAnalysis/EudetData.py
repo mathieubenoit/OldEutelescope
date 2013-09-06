@@ -1,8 +1,9 @@
 from ROOT import *
 import ROOT
 from math import fsum
-from array import array 
+from array import array
 import pyximport; pyximport.install(pyimport=True)
+from ROOT import TFile,TH1D,TH2D
 from Cluster import *
 from Track import  *
 #gROOT.LoadMacro("Track.C+")
@@ -16,27 +17,27 @@ from PersistentList import *
 #        A container for TBTrack Data: contains all the informations about tracks and cluster from data
 #
 ###############################################################################################################################
-   
+
 class EudetData:
     """A container for TBTrack Data """
 
-    tbtrack_file = 0 
+    tbtrack_file = 0
     pixelTree = ROOT.TTree()
     TrackTree = ROOT.TTree()
- 
+
     EnergyCut = 0.
     scale =1.
-    
-#    AllClusters = PersistentList("/home/mbenoit/tmp/cluster",250)
-#    AllTracks = PersistentList("/home/mbenoit/tmp/Track",250)
-    AllClusters = []
-    AllTracks = []
-    
+
+    AllClusters = PersistentList("/home/mbenoit/tmp/cluster",250)
+    AllTracks = PersistentList("/home/mbenoit/tmp/Track",250)
+ #   AllClusters = []
+ #   AllTracks = []
+
     p_nEntries = 0
-    t_nEntries = 0   
+    t_nEntries = 0
     entry = 0
-    
-    #Track Data Holders     
+
+    #Track Data Holders
     t_nTrackParams = 0
     t_euEv= 0
     t_posX = 0
@@ -55,9 +56,9 @@ class EudetData:
 #     t_trackNum = []
 #     t_chi2 = []
 #     t_ndof = []
-    
+
     #Pixel Data holders
-    p_nHits= 0 
+    p_nHits= 0
     p_col= 0
     p_row= 0
     p_tot= 0
@@ -72,23 +73,23 @@ class EudetData:
 #     p_chip = []
 #     p_iden = []
 #     p_euEv = []
-    
+
     #hotpixel firing matrix
     #hit_map = [[0]*npix_Y]*npix_X
     #frequency_map = [[0.0]*npix_Y]*npix_X
-    
-    hit_map =[[0 for x in xrange(npix_X)] for x in xrange(npix_Y)] 
-    frequency_map = [[0 for x in xrange(npix_X)] for x in xrange(npix_Y)] 
+
+    hit_map =[[0 for x in xrange(npix_X)] for x in xrange(npix_Y)]
+    frequency_map = [[0 for x in xrange(npix_X)] for x in xrange(npix_Y)]
     hotpixels = []
-    
+
     def __init__(self,filename,ECut,scale=1.0):
-        
+
         self.scale=scale
         self.tbtrack_file = TFile(filename)
         self.TrackTree = self.tbtrack_file.Get("eutracks")
         self.pixelTree = self.tbtrack_file.Get("zspix")
- 
-        self.p_nEntries = self.pixelTree.GetEntries()       
+
+        self.p_nEntries = self.pixelTree.GetEntries()
         self.t_nEntries = self.TrackTree.GetEntries()
         self.EnergyCut=ECut
         self.frequency_map = [[0.0]*npix_Y]*npix_X
@@ -96,78 +97,78 @@ class EudetData:
             for j in range(len(self.hit_map[0])):
                 self.hit_map[i][j]=0
 
-        
+
     def FilterHotPixel(self,threshold,Nevents=-1,scaler=1.):
-        
+
         # Threshold between [0,1], cut firing frequency of pixels
         # Nevent is how many event for building the frequency Matrix
-        
+
         nevent_tmp =0
-        n_max = 0 
-        
-#        last =0 
+        n_max = 0
+
+#        last =0
 #        now =0
-        
+
 #        counter_tmp=0
-       
+
         histo_frequency = TH1D("freq","Firing Frequency",10000,0,1)
         histo_hotpixel = TH2D("hot","hot pixel map",256,0,255,256,0,255)
-        
+
         if Nevents>self.p_nEntries or Nevents==-1:
             n_max = self.p_nEntries
-        else : 
+        else :
             n_max = Nevents
-        
-        
-        for ii in range(n_max) :            
+
+
+        for ii in range(n_max) :
             self.getEvent(ii)
-            if ii%1000==0 : 
+            if ii%1000==0 :
                 print " [Hot Pixel Finder] Parsing event %i"%ii
             for jj in range(len(self.p_row)) :
-                 
-#                last = self.hit_map[129][20]                                   
-                
+
+#                last = self.hit_map[129][20]
+
                 self.hit_map[self.p_col[jj]][self.p_row[jj]]+=1./scaler
-                
-#                now = self.hit_map[129][20]     
-                
+
+#                now = self.hit_map[129][20]
+
 #                if last != now :
 #                    counter_tmp+=1
-#                    print "adding %i %i , counter = %i %i"%(self.p_col[jj],self.p_row[jj],counter_tmp,self.hit_map[self.p_col[jj]][self.p_row[jj]])    
-                    
+#                    print "adding %i %i , counter = %i %i"%(self.p_col[jj],self.p_row[jj],counter_tmp,self.hit_map[self.p_col[jj]][self.p_row[jj]])
+
             nevent_tmp+=1
-        
-     
-        
+
+
+
         for ii in range(npix_X):
             for jj in range(npix_Y) :
-                
-#                if ii==129 and jj==20 : 
+
+#                if ii==129 and jj==20 :
 #                    print "[DEDUG !!!!!!!!!] %f nevents : %i"%(self.hit_map[ii][jj],nevent_tmp)
                 self.frequency_map[ii][jj]=self.hit_map[ii][jj]*(1.0/float(nevent_tmp))
-#                if ii==129 and jj==20 : 
-#                    print "[DEDUG !!!!!!!!!] %f nevents : %i"%(self.frequency_map[ii][jj],nevent_tmp)                
+#                if ii==129 and jj==20 :
+#                    print "[DEDUG !!!!!!!!!] %f nevents : %i"%(self.frequency_map[ii][jj],nevent_tmp)
                 histo_hotpixel.Fill(ii,jj,self.frequency_map[ii][jj])
-                
+
                 #if(self.frequency_map[ii][jj]>1):
                     #print ii,jj,self.frequency_map[ii][jj]
-               
+
                 histo_frequency.Fill(self.frequency_map[ii][jj])
                 if(self.frequency_map[ii][jj]>threshold):
                     #print "hotpixel %i %i"%(ii,jj)
                     self.hotpixels.append([ii,jj])
-        
+
         print "##### Hot Pixel Report #####"
         print " %i Hot pixel found at  : "%(len(self.hotpixels))
         print self.hotpixels
         print "############################"
         return histo_hotpixel,histo_frequency
-        
-    
+
+
     def getEvent(self,i):
-        
+
         self.entry = self.TrackTree.GetEntry(i)
-         
+
         self.t_nTrackParams = self.TrackTree.nTrackParams
         self.t_euEv= self.TrackTree.euEvt
         self.t_posX = self.TrackTree.xPos
@@ -179,9 +180,9 @@ class EudetData:
         self.t_chi2= self.TrackTree.chi2
         self.t_ndof = self.TrackTree.ndof
 
-        
-        
-        self.entry = self.pixelTree.GetEntry(i)       
+
+
+        self.entry = self.pixelTree.GetEntry(i)
 
         self.p_nHits= self.pixelTree.nPixHits
         self.p_col= self.pixelTree.col
@@ -191,57 +192,57 @@ class EudetData:
         self.p_chip= self.pixelTree.chip
         self.p_iden= self.pixelTree.iden
         self.p_euEv = self.pixelTree.euEvt
-        
+
         for index,totvalue in enumerate(self.p_tot) :
             self.p_tot[index]=float(totvalue)/self.scale
-            
-        
-  
+
+
+
     def DumpClusterTree(self,filename):
-        
+
         outfile = TFile(filename,'recreate')
-        
+
         clusterTree = TTree('clusters','Timepix cluster tree')
-       
+
         maxn = 500
         col = array( 'i', maxn*[ 0 ] )
         row = array( 'i', maxn*[ 0 ] )
         tot = array( 'f', maxn*[ 0. ] )
         sizeX = array( 'i', [ 0 ] )
         sizeY = array( 'i', [ 0 ] )
-        size  = array( 'i', [ 0 ] ) 
+        size  = array( 'i', [ 0 ] )
         totalTOT =array( 'f', [ 0. ] )
         aspectRatio = array( 'f', [ 0. ] )
         relX = array( 'f', [ 0. ] )
-        relY = array( 'f', [ 0. ] ) 
+        relY = array( 'f', [ 0. ] )
         resX = array( 'f', [ 0. ] )
-        resY = array( 'f', [ 0. ] )           
-        
-        clusterTree.Branch( 'size', size, 'size/I' )     
-        clusterTree.Branch( 'sizeX', sizeX, 'sizeX/I' )     
-        clusterTree.Branch( 'sizeY', sizeY, 'sizeY/I' )     
-        clusterTree.Branch( 'totalTOT', totalTOT, 'totalTOT/F' )             
-        clusterTree.Branch( 'aspectRatio', aspectRatio, 'aspectRatio/F' ) 
-        clusterTree.Branch( 'relX', relX, 'relX/F' ) 
-        clusterTree.Branch( 'relY', relY, 'relY/F' ) 
-        clusterTree.Branch( 'resX', resX, 'resX/F' ) 
-        clusterTree.Branch( 'resY', resY, 'resY/F' )          
+        resY = array( 'f', [ 0. ] )
+
+        clusterTree.Branch( 'size', size, 'size/I' )
+        clusterTree.Branch( 'sizeX', sizeX, 'sizeX/I' )
+        clusterTree.Branch( 'sizeY', sizeY, 'sizeY/I' )
+        clusterTree.Branch( 'totalTOT', totalTOT, 'totalTOT/F' )
+        clusterTree.Branch( 'aspectRatio', aspectRatio, 'aspectRatio/F' )
+        clusterTree.Branch( 'relX', relX, 'relX/F' )
+        clusterTree.Branch( 'relY', relY, 'relY/F' )
+        clusterTree.Branch( 'resX', resX, 'resX/F' )
+        clusterTree.Branch( 'resY', resY, 'resY/F' )
         clusterTree.Branch( 'col', col, 'col[size]/I' )
-        clusterTree.Branch( 'row', row, 'row[size]/I' )     
-        clusterTree.Branch( 'tot', tot, 'tot[size]/F' )  
-        
-        
+        clusterTree.Branch( 'row', row, 'row[size]/I' )
+        clusterTree.Branch( 'tot', tot, 'tot[size]/F' )
+
+
         for clusters in self.AllClusters :
             for cluster in clusters :
                 #cluster.Print()
-                
-                for i in range(len(cluster.col)) : 
+
+                for i in range(len(cluster.col)) :
                     col[i]=cluster.col[i]
-                for i in range(len(cluster.row)) : 
+                for i in range(len(cluster.row)) :
                     #print "acessing %d in array length %d"%(i,len(cluster.row))
                     row[i]=cluster.row[i]
-                for i in range(len(cluster.tot)) : 
-                    tot[i]=cluster.tot[i]               
+                for i in range(len(cluster.tot)) :
+                    tot[i]=cluster.tot[i]
                 sizeX[0]=cluster.sizeX
                 sizeY[0]=cluster.sizeY
                 size[0]=cluster.size
@@ -254,12 +255,12 @@ class EudetData:
                 clusterTree.Fill()
         outfile.Write()
         outfile.Close()
-        
-        
-        
-    
-    def ComputeResiduals(self,i,dut=6) :            
-        
+
+
+
+
+    def ComputeResiduals(self,i,dut=6) :
+
         nmatch = 0.
         for track in self.AllTracks[i] :
             for index,cluster in enumerate(self.AllClusters[i]) :
@@ -269,17 +270,17 @@ class EudetData:
                     #print "after match resX : %f resY : %f"%(cluster.resX,cluster.resY)
                     nmatch+=1
         return nmatch
-#     def ComputeResiduals(self,i) :     
-#         for cluster in self.AllClusters[i] : 
+#     def ComputeResiduals(self,i) :
+#         for cluster in self.AllClusters[i] :
 #             cluster.GetResiduals(self.t_posX[3],self.t_posY[3])
-    
-    def PrintResiduals(self,i) : 
+
+    def PrintResiduals(self,i) :
         print "###################### Event : %d ######################"%i
         self.getEvent(i)
-        for cluster in self.AllClusters[i] : 
+        for cluster in self.AllClusters[i] :
             cluster.GetResiduals(self.t_posX[3],self.t_posY[3])
             print "resX = %f resY = %f"%(cluster.resX,cluster.resY)
-        print "#######################################################" 
+        print "#######################################################"
 
     def PrintEvent(self,i):
         self.getEvent(i)
@@ -288,28 +289,28 @@ class EudetData:
         print "posX = %f posY = %f"%(self.t_posX[3],self.t_posY[3])
 
 
-#    for j in self.t_posX : 
+#    for j in self.t_posX :
 #            outstr+="%.3f "%j
-#        print "posX = %s"%outstr        
+#        print "posX = %s"%outstr
 #        outstr =""
-#        for j in self.t_posY : 
+#        for j in self.t_posY :
 #            outstr+="%.3f "%j
-#        print "posY = %s"%outstr 
+#        print "posY = %s"%outstr
         #=======================================================================
-        # outstr =""       
-        # for j in self.t_dxdz : 
+        # outstr =""
+        # for j in self.t_dxdz :
         #    outstr+="%.6e "%j
-        # print "dxdz = %s"%outstr         
-        # outstr =""        
-        # for j in self.t_dydz : 
+        # print "dxdz = %s"%outstr
+        # outstr =""
+        # for j in self.t_dydz :
         #    outstr+="%.6e "%j
-        # print "dydz = %s"%outstr 
+        # print "dydz = %s"%outstr
         #=======================================================================
-        print "#######################################################" 
+        print "#######################################################"
 
-     
-    def GetTrack(self,i) : 
-    
+
+    def GetTrack(self,i) :
+
         self.getEvent(i)
         posX_tmp = []
         posY_tmp = []
@@ -320,10 +321,10 @@ class EudetData:
         ndof_tmp = []
         trackNum_tmp = []
         nTrackParams_tmp = 0
-        
-        
+
+
         tracks = []
-        
+
         #--------------------- self.t_nTrackParams = self.TrackTree.nTrackParams
         #------------------------------------- self.t_euEv= self.TrackTree.euEvt
         #------------------------------------- self.t_posX = self.TrackTree.xPos
@@ -334,34 +335,34 @@ class EudetData:
         #------------------------------ self.t_trackNum= self.TrackTree.trackNum
         #-------------------------------------- self.t_chi2= self.TrackTree.chi2
         #------------------------------------- self.t_ndof = self.TrackTree.ndof
-        
-        for data in self.t_posX : 
-            posX_tmp.append(data)              
-        for data in self.t_posY : 
-            posY_tmp.append(data) 
-        for data in self.t_iden : 
+
+        for data in self.t_posX :
+            posX_tmp.append(data)
+        for data in self.t_posY :
+            posY_tmp.append(data)
+        for data in self.t_iden :
             iden_tmp.append(data)
-        for data in self.t_dxdz : 
-            dxdz_tmp.append(data)              
-        for data in self.t_dydz : 
-            dydz_tmp.append(data)          
-        for data in self.t_chi2 : 
+        for data in self.t_dxdz :
+            dxdz_tmp.append(data)
+        for data in self.t_dydz :
+            dydz_tmp.append(data)
+        for data in self.t_chi2 :
             chi2_tmp.append(data)
-        for data in self.t_ndof : 
-            ndof_tmp.append(data) 
-        for data in self.t_trackNum : 
-            trackNum_tmp.append(data) 
-        
-        nTrackParams_tmp=self.t_nTrackParams               
+        for data in self.t_ndof :
+            ndof_tmp.append(data)
+        for data in self.t_trackNum :
+            trackNum_tmp.append(data)
+
+        nTrackParams_tmp=self.t_nTrackParams
         for j in range(max(trackNum_tmp)+1) :
             aTrack = Track()
             ndata = nTrackParams_tmp/(max(trackNum_tmp)+1)
             #print "nTrackParam : %i len(trackNum %i)"%(nTrackParams_tmp,max(trackNum_tmp)+1)
-            aTrack.trackX = posX_tmp[j*ndata:j*ndata+ndata]           
-            aTrack.trackY = posY_tmp[j*ndata:j*ndata+ndata] 
+            aTrack.trackX = posX_tmp[j*ndata:j*ndata+ndata]
+            aTrack.trackY = posY_tmp[j*ndata:j*ndata+ndata]
             for index,element in enumerate(aTrack.trackX) :
                 aTrack.trackX[index] = aTrack.trackX[index]-npix_X*pitchX/2.-pitchX/2.
-                aTrack.trackY[index] = aTrack.trackY[index]-npix_Y*pitchY/2.-pitchY/2.   
+                aTrack.trackY[index] = aTrack.trackY[index]-npix_Y*pitchY/2.-pitchY/2.
             aTrack.iden = iden_tmp[j*ndata:j*ndata+ndata]
             aTrack.chi2 = chi2_tmp[j*ndata:j*ndata+ndata]
             aTrack.trackNum = trackNum_tmp[j*ndata:j*ndata+ndata]
@@ -369,12 +370,12 @@ class EudetData:
             aTrack.dxdz = dxdz_tmp[j*ndata:j*ndata+ndata]
             aTrack.dydz = dydz_tmp[j*ndata:j*ndata+ndata]
             tracks.append(aTrack)
-            #print aTrack.iden 
+            #print aTrack.iden
         self.AllTracks.append(tracks)
- 
-        
- 
- 
+
+
+
+
     #---------------------------------------------------------------- trackX=[]
     #----------------------------------------------------------------- trackY=[]
     #------------------------------------------------------------------- chi2=0.
@@ -383,17 +384,17 @@ class EudetData:
     #------------------------------------------------------------------- iden=[]
     #--------------------------------------------------------------- trackNum=[]
     #----------------------------------------------------------------- cluster=0
-        
-    def FindMatchedCluster(self,i,r_max,dut=6) :  
-        
-        # i : event number 
+
+    def FindMatchedCluster(self,i,r_max,dut=6) :
+
+        # i : event number
         # r_max_X,Y maximum distance in X,Y between track and cluster
-        # dut = iden of the Device Under Test  
+        # dut = iden of the Device Under Test
 
         clusters_tmp = self.AllClusters[i]
-	        
+
         for track in self.AllTracks[i] :
-            if len(clusters_tmp)!=0 : 
+            if len(clusters_tmp)!=0 :
                 dut_iden = track.iden.index(dut)
                 for cluster in clusters_tmp :
                     cluster.GetResiduals(track.trackX[dut_iden],track.trackY[dut_iden])
@@ -406,145 +407,145 @@ class EudetData:
 #                        track.Print()
                         #clusters_tmp.pop(index)
                         break
-                    else : 
+                    else :
                         track.cluster=-11
 #                        print "Found an unmatched "
 #                        print "resX : %f resY : %f"%(cluster.resX,cluster.resY)
 #                        cluster.Print()
 #                        track.Print()
 #             if(track.cluster!=-11):
-#                 
+#
 #                 print "#### a Match #####"
 #                 self.AllClusters[i][track.cluster].Print()
 #                 track.Print()
 #                 print "#################"
-            
-            
-        
-        
-              
+
+
+
+
+
 #     def ClusterEvent(self,i,method="QWeighted"):
 
 
     def DoPatternRecognition(self,i,tolerance,scale=1) :
-        
-        
-        
+
+
+
         trackDistX = []
         clusterDistX = []
-        
+
         trackDistY = []
-        clusterDistY = []       
-       
+        clusterDistY = []
+
         tmp_track_X = []
         tmp_track_Y = []
-        
+
         allTrack_tmp = []
         allCluster_tmp = []
-        
+
         for tracks in self.AllTracks[i:i+scale] :
-            for track in tracks: 
-                allTrack_tmp.append(track)      
-        
+            for track in tracks:
+                allTrack_tmp.append(track)
+
         allCluster_tmp = self.AllClusters[i]
-        
-        
+
+
         pattern = TH2D("","",14000,-npix_Y*pitchY/2,npix_Y*pitchY/2,len(allCluster_tmp)+len(allTrack_tmp),0,len(allCluster_tmp)+len(allTrack_tmp))
-        
+
         count = 0
-        
+
         for index,cluster in enumerate(allCluster_tmp) :
             pass
-        
-        
-        
+
+
+
 #        # Generate cluster distance lists
 #        for index1,cluster1 in enumerate(allCluster_tmp) :
 #            tmpx = []
 #            tmpy = []
-#            for index2,cluster2 in enumerate(allCluster_tmp) : 
-#                tmpx.append(cluster1.absX-cluster2.absX)      
-#                tmpy.append(cluster1.absY-cluster2.absY) 
+#            for index2,cluster2 in enumerate(allCluster_tmp) :
+#                tmpx.append(cluster1.absX-cluster2.absX)
+#                tmpy.append(cluster1.absY-cluster2.absY)
 #            clusterDistX.append(tmpx)
 #            clusterDistY.append(tmpy)
 #            print "[PR] cluster %i"%index1
-#            
-#            for value in tmpx : 
+#
+#            for value in tmpx :
 #                pattern.Fill(value,count,1)
 #            count=count+1
-#            
+#
 #            tmpx.sort()
 #            tmpy.sort()
-#            
+#
 #            print tmpx
-#            print tmpy                 
-#        
+#            print tmpy
+#
 #        for index1,track1 in enumerate(allTrack_tmp) :
 #            tmpx = []
 #            tmpy = []
 #            if(fabs(track1.trackX[3])<npix_X*pitchX/2 and fabs(track1.trackY[3])<npix_Y*pitchY/2 ):
-#                for index2,track2 in enumerate(allTrack_tmp) : 
+#                for index2,track2 in enumerate(allTrack_tmp) :
 #                    if(fabs(track2.trackX[3])<npix_X*pitchX/2 and fabs(track2.trackY[3])<npix_Y*pitchY/2 ):
-#                        tmpx.append(track1.trackX[3]-track2.trackX[3])      
-#                        tmpy.append(track1.trackY[3]-track2.trackY[3]) 
+#                        tmpx.append(track1.trackX[3]-track2.trackX[3])
+#                        tmpy.append(track1.trackY[3]-track2.trackY[3])
 #                trackDistX.append(tmpx)
-#                trackDistY.append(tmpy)        
-#                print "[PR] Track %i"%index1    
-#                for value in tmpx : 
+#                trackDistY.append(tmpy)
+#                print "[PR] Track %i"%index1
+#                for value in tmpx :
 #                    pattern.Fill(value,count,2)
-#                count=count+1                                  
+#                count=count+1
 #                tmpx.sort()
-#                tmpy.sort()                      
+#                tmpy.sort()
 #                print tmpx
 #                print tmpy
-#        
+#
 #        can=TCanvas()
 #        pattern.Draw("colz")
-#        c=raw_input()   
-                
-                
-                          
-            
+#        c=raw_input()
+
+
+
+
     def ClusterEvent(self,i,method="QWeighted",sigma=0.003, scaler=1):
-        
-        self.getEvent(i) 
-        
+
+        self.getEvent(i)
+
         row_tmp = []
-        col_tmp = []       
+        col_tmp = []
         tot_tmp = []
-        
+
         clusterid=0
-        
+
         row_tmp = [s for s in self.p_row]
-	col_tmp = [s for s in self.p_col]
-	tot_tmp = [s for s in self.p_tot]
+        col_tmp = [s for s in self.p_col]
+        tot_tmp = [s for s in self.p_tot]
 
-	
-#	for index in self.p_row:          
+
+#       for index in self.p_row:
 #            row_tmp.append(index)
-#        for index in self.p_col: 
-#            col_tmp.append(index)        
-#        for index in self.p_tot: 
+#        for index in self.p_col:
+#            col_tmp.append(index)
+#        for index in self.p_tot:
 #            tot_tmp.append(index)
-       
-        hpindex=0
-        
-	if len(self.hotpixels)>0:
-		while(hpindex<len(row_tmp)) : 
-        	    if([col_tmp[hpindex],row_tmp[hpindex]] in self.hotpixels):
-                	#print "Removing hot pixel x: %i y:%i"%(col_tmp[hpindex],row_tmp[hpindex])
-                	col_tmp.pop(hpindex)
-                	row_tmp.pop(hpindex)
-                	tot_tmp.pop(hpindex)
-        	    else :
-                	hpindex+=1 
-    
 
-        
+        hpindex=0
+
+        if len(self.hotpixels)>0:
+            while(hpindex<len(row_tmp)) :
+                if([col_tmp[hpindex],row_tmp[hpindex]] in self.hotpixels):
+                        #print "Removing hot pixel x: %i y:%i"%(col_tmp[hpindex],row_tmp[hpindex])
+                    col_tmp.pop(hpindex)
+                    row_tmp.pop(hpindex)
+                    tot_tmp.pop(hpindex)
+                else :
+                    hpindex+=1
+
+
+
         clusters = []
         while(len(row_tmp)!=0) :
-            
-            cluster = Cluster() 
+
+            cluster = Cluster()
             cluster.addPixel(col_tmp[0], row_tmp[0], tot_tmp[0])
             #print "[DEBUG] adding pixel col=%d row=%d as seed"%(col_tmp[0],row_tmp[0])
             row_tmp.pop(0)
@@ -553,7 +554,7 @@ class EudetData:
             while(self.addNeighbor(cluster, col_tmp, row_tmp, tot_tmp)>0):
                 pass
 
-        
+
             cluster.Statistics()
             if (method=="QWeighted"):
                 cluster.GetQWeightedCentroid()
@@ -562,19 +563,19 @@ class EudetData:
             elif (method=="maxTOT"):
                 cluster.GetMaxTOTCentroid()
             elif (method=="EtaCorrection"):
-#                 cluster.GetEtaCorrectedQWeightedCentroid() 
-                cluster.GetEtaCorrectedQWeightedCentroid(sigma)   
+#                 cluster.GetEtaCorrectedQWeightedCentroid()
+                cluster.GetEtaCorrectedQWeightedCentroid(sigma)
             # to be implemented in the future:
             # digital, maxTOT/maxQ, eta corrected
-            
+
             cluster.id=clusterid
             clusters.append(cluster)
             clusterid+=1
             cluster=0
-        
+
         for ind in range(i,i+scaler):
             self.AllClusters.append(clusters)
-	del clusters        
+        del clusters
 
 
 
@@ -582,48 +583,48 @@ class EudetData:
         counter =0
         i=0
         j=0
-        
+
         len_col=len(col)
-        len_clu_col=len(cluster.col)      
+        len_clu_col=len(cluster.col)
         while(i<len_col):
             j=0
             while(j<len_clu_col):
-                
+
         #for i in xrange(len(col)):
         #    for j in range(len(cluster.col)) :
-               
-            # print "i:%d j:%d len(i):%d len(j):%d"%(i,j,len(col),len(cluster.col))                             
-                
+
+            # print "i:%d j:%d len(i):%d len(j):%d"%(i,j,len(col),len(cluster.col))
+
                 if((col[i]-cluster.col[j])**2>1) :
                     j+=1
                     continue
-                
+
                 if((row[i]-cluster.row[j])**2>1) :
                     j+=1
                     continue
-                
+
                 cluster.addPixel(col[i],row[i],tot[i])
 
             #print "[DEBUG] after adding pixel col=%d row=%d to existing cluster as neighbor to x=%d y=%d "%(col[i],row[i],cluster.col[j],cluster.row[j])
- 
+
                 col.pop(i)
                 row.pop(i)
                 tot.pop(i)
                 counter+=1
-                i+=-1  
+                i+=-1
                 len_col=len(col)
-                len_clu_col=len(cluster.col)                   
+                len_clu_col=len(cluster.col)
                 break
             i+=1
         return counter
-    
+
     def PrintClusters(self,i):
         print "########## Event %d ##########"%i
         for j,c in enumerate(self.AllClusters[i]):
             if(c.totalTOT<self.EnergyCut):
                 print "##### Cluster %d #####"%j
                 c.Print()
-                
+
     def PrintTBranchElement(self):
         for event_i in self.TrackTree :
             print "new event........................"
@@ -638,4 +639,3 @@ class EudetData:
                 print self.TrackTree.trackNum[entry_j]
             print "nTrackParams : "
             print self.TrackTree.nTrackParams
-      
