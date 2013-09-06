@@ -65,10 +65,10 @@ def TGraph_style (h) :
 gStyle.SetOptStat("nemruoi")
 gStyle.SetOptFit(1111)
 
-method_name = "QWeighted"
+# method_name = "QWeighted"
 # method_name = "DigitalCentroid"
 # method_name = "maxTOT"
-# method_name = "EtaCorrection"
+method_name = "EtaCorrection"
 
 
 

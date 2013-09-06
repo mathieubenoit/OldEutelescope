@@ -190,15 +190,27 @@ hClusterSizeCounter_percent.Draw()
 # #resr,rest = PerformAlignement(aDataSet,[[0,360],[0,360],[0,360],[-0.5,0.5],[-0.5,0.5]])
 # 
 # #decomment to perform the alignment in 3 steps
-resr,rest = Perform3StepAlignment(aDataSet,[[0,360],[0,360],[0,360],[-0.5,0.5],[-0.5,0.5]],aDataSet.p_nEntries,1,0.075)
+# ApplyAlignment(aDataSet,[0.97, 0, 0.],[0.0000000000, 0.0000000000,0.0])
+# resr,rest = Perform3StepAlignment(aDataSet,[[0,360],[0,360],[0,360],[-0.5,0.5],[-0.5,0.5]],aDataSet.p_nEntries,10,0.1)
+# ApplyAlignment(aDataSet,rest,resr)
 
-ApplyAlignment(aDataSet,rest,resr)
+# ApplyAlignment(aDataSet,[0.9576875000, 0.0336718750, 0.],[0.0000000000, 0.0000000000,0.3801786871])
+
+#Mathieu's alignment
+ApplyAlignment(aDataSet,[0.97, 0, 0.],[0.0000000000, 0.0000000000,0.0])
+ApplyAlignment(aDataSet,[-0.0133203125,0.0264765625 , 0],[0.0001507365,0.0000010899,0.4010109594])
+
+# ApplyAlignment(aDataSet,[0.97, 0, 0.],[0.0000000000, 0.0000000000,0.0])
+# ApplyAlignment(aDataSet,[-0.0119218750, 0.0176796875 , 0],[-5.9422538921,-0.1461670362,0.3685178101])
+
 # 
 # # ApplyAlignment(aDataSet,[-0.0439218750, -0.0463671875 , 0.],[0.0000000000, 0.0000000000, 0])
 # 
 # for i in range(10000) : 
 for i in range(aDataSet.p_nEntries) :
-    aDataSet.ComputeResiduals(i)
+    aDataSet.FindMatchedCluster(i, 0.350, 0.350,6)
+
+
 #         
 hx,hy = TrackClusterCorrelation(aDataSet)
 #hxc,hyc = TrackClusterCorrelation(aDataSet_calib)
@@ -245,7 +257,7 @@ TOT3.SetLineColor(3)
 TOT4 = TH1D("TOT4","Energy Spectrum, cluster size = 4",5000,0,5000)
 TOT4.SetLineColor(4)
   
-resX = TH1D("resX","Unbiased residual X",600,-0.150,0.150)
+resX = TH1D("resX","Unbiased residual X",600,-7.000,7.000)
 resY = TH1D("resY","Unbiased residual Y",600,-0.150,0.150)
 resX.GetXaxis().SetTitle("X_{track} - X_{Timepix} (mm)")
 resX.GetYaxis().SetTitle("Number of hits")
@@ -669,8 +681,8 @@ can2=TCanvas()
 can2.cd()
 TOT1.Draw()
 TOT2.Draw("sames")
-TOT3.Draw("sames")
-TOT4.Draw("sames")
+# TOT3.Draw("sames")
+# TOT4.Draw("sames")
 gPad.Update()
 st_TOT1 = TOT1.GetListOfFunctions().FindObject("stats")
 st_TOT1.SetX1NDC(0.690)
@@ -686,25 +698,25 @@ st_TOT2.SetX2NDC(0.984)
 st_TOT2.SetY2NDC(0.879)
 st_TOT2.SetOptStat(111111)
 # gPad.Update()
-st_TOT3 = TOT3.GetListOfFunctions().FindObject("stats")
-st_TOT3.SetX1NDC(0.690)
-st_TOT3.SetY1NDC(0.360)
-st_TOT3.SetX2NDC(0.838) 
-st_TOT3.SetY2NDC(0.616)
-st_TOT3.SetOptStat(111111)
-# gPad.Update()
-st_TOT4 = TOT4.GetListOfFunctions().FindObject("stats")
-st_TOT4.SetX1NDC(0.846)
-st_TOT4.SetY1NDC(0.360)
-st_TOT4.SetX2NDC(0.984) 
-st_TOT4.SetY2NDC(0.616)
-st_TOT4.SetOptStat(111111)
+# st_TOT3 = TOT3.GetListOfFunctions().FindObject("stats")
+# st_TOT3.SetX1NDC(0.690)
+# st_TOT3.SetY1NDC(0.360)
+# st_TOT3.SetX2NDC(0.838) 
+# st_TOT3.SetY2NDC(0.616)
+# st_TOT3.SetOptStat(111111)
+# # gPad.Update()
+# st_TOT4 = TOT4.GetListOfFunctions().FindObject("stats")
+# st_TOT4.SetX1NDC(0.846)
+# st_TOT4.SetY1NDC(0.360)
+# st_TOT4.SetX2NDC(0.984) 
+# st_TOT4.SetY2NDC(0.616)
+# st_TOT4.SetOptStat(111111)
 leg2 = TLegend(0.48,0.69,0.68,0.88)
 leg2.SetBorderSize(0)
 leg2.AddEntry(TOT1,"cluster size 1","l")
 leg2.AddEntry(TOT2,"cluster size 2","l")
-leg2.AddEntry(TOT3,"cluster size 3","l")
-leg2.AddEntry(TOT4,"cluster size 4","l")
+# leg2.AddEntry(TOT3,"cluster size 3","l")
+# leg2.AddEntry(TOT4,"cluster size 4","l")
 leg2.SetFillColor(0)
 leg2.SetFillStyle(0)
 leg2.Draw("SAME")
@@ -766,6 +778,8 @@ leg5.SetFillColor(0)
 leg5.SetFillStyle(0)
 leg5.Draw("SAME")
 gPad.Update()
+
+
   
 can6 = TCanvas()
   
@@ -812,7 +826,18 @@ leg6.SetFillColor(0)
 leg6.SetFillStyle(0)
 leg6.Draw("SAME")
 gPad.Update()
- 
+
+# can6bis = TCanvas() 
+# can6bis.cd()
+# resY_cs[1].Draw()
+# leg6bis = TLegend(0.13,0.69,0.33,0.88)
+# leg6bis.SetBorderSize(0)
+# leg6bis.AddEntry(resY_cs[1],"cluster size 2","l")
+# leg6bis.SetFillColor(0)
+# leg6bis.SetFillStyle(0)
+# leg6bis.Draw("SAME")
+# gPad.Update()
+
  
 can7 = TCanvas()
 can7.cd()
@@ -1200,43 +1225,43 @@ elif method_name == "EtaCorrection" :
 #     canvasTest_TOT2.SaveAs("%s/run48/EtaCorrection/TOT2_landaugausFit.pdf"%PlotPath)
 #     canvasTest_TOT4.SaveAs("%s/run48/EtaCorrection/TOT4_landaugausFit.pdf"%PlotPath)
 
-# can_resX_cs_0 = TCanvas()
-# resX_cs[0].Draw()
-# r0 = resX_cs[0].Fit("gaus","","") 
-#     
-# can_resY_cs_0 = TCanvas()
-# resY_cs[0].Draw()
-# r0 = resY_cs[0].Fit("gaus","","") 
-#        
-# can_resX_cs_1 = TCanvas()
-# resX_cs[1].Draw()
-# r0 = resX_cs[1].Fit("gaus","","") 
-#        
-# can_resY_cs_1 = TCanvas()
-# resY_cs[1].Draw()
-# r0 = resY_cs[1].Fit("gaus","","") 
-#        
-#            
-# if method_name == "EtaCorrection" : 
-#     can_resX_cs_1.SaveAs("%s/run48/EtaCorrection/resX_cs_1_fit_EtaCorrection.pdf"%PlotPath)
-#     can_resY_cs_1.SaveAs("%s/run48/EtaCorrection/resY_cs_1_fit_EtaCorrection.pdf"%PlotPath)
-#     can_resX_cs_0.SaveAs("%s/run48/EtaCorrection/resX_cs_0_fit_EtaCorrection.pdf"%PlotPath)
-#     can_resY_cs_0.SaveAs("%s/run48/EtaCorrection/resY_cs_0_fit_EtaCorrection.pdf"%PlotPath)
-# elif method_name == "QWeighted" : 
-#     can_resX_cs_1.SaveAs("%s/run48/QWeighted/resX_cs_1_fit_QWeighted.pdf"%PlotPath)
-#     can_resY_cs_1.SaveAs("%s/run48/QWeighted/resY_cs_1_fit_QWeighted.pdf"%PlotPath)
-#     can_resX_cs_0.SaveAs("%s/run48/QWeighted/resX_cs_0_fit_QWeighted.pdf"%PlotPath)
-#     can_resY_cs_0.SaveAs("%s/run48/QWeighted/resY_cs_0_fit_QWeighted.pdf"%PlotPath)
-# elif method_name == "DigitalCentroid" : 
-#     can_resX_cs_1.SaveAs("%s/run48/DigitalCentroid/resX_cs_1_fit_DigitalCentroid.pdf"%PlotPath)
-#     can_resY_cs_1.SaveAs("%s/run48/DigitalCentroid/resY_cs_1_fit_DigitalCentroid.pdf"%PlotPath)
-#     can_resX_cs_0.SaveAs("%s/run48/DigitalCentroid/resX_cs_0_fit_DigitalCentroid.pdf"%PlotPath)
-#     can_resY_cs_0.SaveAs("%s/run48/DigitalCentroid/resY_cs_0_fit_DigitalCentroid.pdf"%PlotPath)
-# elif method_name == "maxTOT" : 
-#     can_resX_cs_1.SaveAs("%s/run48/maxTOT/resX_cs_1_fit_maxTOT.pdf"%PlotPath)
-#     can_resY_cs_1.SaveAs("%s/run48/maxTOT/resY_cs_1_fit_maxTOT.pdf"%PlotPath)
-#     can_resX_cs_0.SaveAs("%s/run48/maxTOT/resX_cs_0_fit_maxTOT.pdf"%PlotPath)
-#     can_resY_cs_0.SaveAs("%s/run48/maxTOT/resY_cs_0_fit_maxTOT.pdf"%PlotPath)
+can_resX_cs_0 = TCanvas()
+resX_cs[0].Draw()
+r0 = resX_cs[0].Fit("gaus","","") 
+     
+can_resY_cs_0 = TCanvas()
+resY_cs[0].Draw()
+r0 = resY_cs[0].Fit("gaus","","") 
+        
+can_resX_cs_1 = TCanvas()
+resX_cs[1].Draw()
+r0 = resX_cs[1].Fit("gaus","","") 
+        
+can_resY_cs_1 = TCanvas()
+resY_cs[1].Draw()
+r0 = resY_cs[1].Fit("gaus","","") 
+        
+            
+if method_name == "EtaCorrection" : 
+    can_resX_cs_1.SaveAs("%s/run48/EtaCorrection/resX_cs_1_fit_EtaCorrection.pdf"%PlotPath)
+    can_resY_cs_1.SaveAs("%s/run48/EtaCorrection/resY_cs_1_fit_EtaCorrection.pdf"%PlotPath)
+    can_resX_cs_0.SaveAs("%s/run48/EtaCorrection/resX_cs_0_fit_EtaCorrection.pdf"%PlotPath)
+    can_resY_cs_0.SaveAs("%s/run48/EtaCorrection/resY_cs_0_fit_EtaCorrection.pdf"%PlotPath)
+elif method_name == "QWeighted" : 
+    can_resX_cs_1.SaveAs("%s/run48/QWeighted/resX_cs_1_fit_QWeighted.pdf"%PlotPath)
+    can_resY_cs_1.SaveAs("%s/run48/QWeighted/resY_cs_1_fit_QWeighted.pdf"%PlotPath)
+    can_resX_cs_0.SaveAs("%s/run48/QWeighted/resX_cs_0_fit_QWeighted.pdf"%PlotPath)
+    can_resY_cs_0.SaveAs("%s/run48/QWeighted/resY_cs_0_fit_QWeighted.pdf"%PlotPath)
+elif method_name == "DigitalCentroid" : 
+    can_resX_cs_1.SaveAs("%s/run48/DigitalCentroid/resX_cs_1_fit_DigitalCentroid.pdf"%PlotPath)
+    can_resY_cs_1.SaveAs("%s/run48/DigitalCentroid/resY_cs_1_fit_DigitalCentroid.pdf"%PlotPath)
+    can_resX_cs_0.SaveAs("%s/run48/DigitalCentroid/resX_cs_0_fit_DigitalCentroid.pdf"%PlotPath)
+    can_resY_cs_0.SaveAs("%s/run48/DigitalCentroid/resY_cs_0_fit_DigitalCentroid.pdf"%PlotPath)
+elif method_name == "maxTOT" : 
+    can_resX_cs_1.SaveAs("%s/run48/maxTOT/resX_cs_1_fit_maxTOT.pdf"%PlotPath)
+    can_resY_cs_1.SaveAs("%s/run48/maxTOT/resY_cs_1_fit_maxTOT.pdf"%PlotPath)
+    can_resX_cs_0.SaveAs("%s/run48/maxTOT/resX_cs_0_fit_maxTOT.pdf"%PlotPath)
+    can_resY_cs_0.SaveAs("%s/run48/maxTOT/resY_cs_0_fit_maxTOT.pdf"%PlotPath)
 
 
 # print 'test1'
