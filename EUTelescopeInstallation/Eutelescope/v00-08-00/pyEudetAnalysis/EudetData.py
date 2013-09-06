@@ -439,6 +439,10 @@ class EudetData:
 
         tmp_track_X = []
         tmp_track_Y = []
+        for ind in range(i,i+scaler): 
+            for track in self.AllTracks[ind] :
+                tmp_track_X.append(track.trackX[3])
+                tmp_track_Y.append(track.trackY[3])
 
         allTrack_tmp = []
         allCluster_tmp = []

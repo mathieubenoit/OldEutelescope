@@ -2,7 +2,7 @@ import numpy as np
 from scipy.optimize import minimize
 from ROOT import *
 import ROOT
-import pyximport; pyximport.install(pyimport=True)
+from ROOT import TH1,TF1,TROOT,TStyle,TMath
 from math import *
 from array import array
 from EudetData import *
@@ -95,7 +95,7 @@ def CountPixelSize(dataSet):
     hClusterSizeCounter.GetXaxis().SetBinLabel(7,"else")
     hClusterSizeCounter.SetStats(0)
 
-    hClusterSizeCounter_percent = TH1D("ClusterSizeCounter_percent","Number of the clusters for different cluster sizes",7,0.,7.)
+    hClusterSizeCounter_percent = TH1D("ClusterSizeCounter_percent","Percentage of the clusters for different cluster sizes",7,0.,7.)
     hClusterSizeCounter_percent.GetXaxis().SetTitle("cluster size")
     hClusterSizeCounter_percent.GetYaxis().SetTitle("number of events (%)")
 
@@ -432,97 +432,202 @@ def TrackClusterCorrelation(dataSet,dut=6):
 
     for i,tracks in enumerate(dataSet.AllTracks) :
         for track in tracks :
-            for index,cluster in enumerate(dataSet.AllClusters[i]) :
-                    #track.Print()
+            for index,cluster in enumerate(dataSet.AllClusters[i]) :  
                     #cluster.Print()
                 histox.Fill(cluster.absX,track.trackX[track.iden.index(dut)])
-                histoy.Fill(cluster.absY,track.trackY[track.iden.index(dut)])
+                histoy.Fill(cluster.absY,track.trackY[track.iden.index(dut)])                    
     return histox,histoy
 
 
-def TotalMeanFunctionX(Translations,Rotations,aDataDet,nevents,skip,dut=6):
+def TrackClusterCorrelation_Test(dataSet,dut=6):
+     
+    histox_Test = TH2D("corX","corX",(npix_X),-14.,14.,(npix_X),-14.,14.)
+    histoy_Test = TH2D("corY","corY",(npix_Y),-14.,14.,(npix_Y),-14.,14.)
+    hl_Test = [histox_Test,histoy_Test]
+     
+    for h in hl_Test : 
+        h.GetXaxis().SetTitle("Cluster Position (mm)")
+        h.GetYaxis().SetTitle("Track position (mm)")
+ 
+    for i in range(dataSet.p_nEntries) :
+#         print "i: %i"%i   
+#     for i in range(10000) :         
+        for track in dataSet.AllTracks[i] :
+            for index,cluster in enumerate(dataSet.AllClusters[i]) :   
+                histox_Test.Fill(cluster.absX,track.trackX[track.iden.index(dut)])
+                histoy_Test.Fill(cluster.absY,track.trackY[track.iden.index(dut)])                    
+    return histox_Test,histoy_Test
+
+
+def TotalMeanFunctionX(Translations,Rotations,aDataDet,nevents,skip,cut = 0.1,dut=6):
 
     totaldist_evaluator = 0.
 #    htempx = TH1D("x","",6000,-3,3)
 #    htempy = TH1D("y","",6000,-3,3)
     n = 0
-    RotMat =RotationMatrix(Rotations)
+    dist_tmp_x = []
+    dist_tmp_y = []
+    rotationMatrix = RotationMatrix(Rotations)
+    h_dist_x_1 = TH1D("h_dist_x_1","TotalMeanFunctionX: dist_x",8000,-4.,4.)
+    h_dist_y_1 = TH1D("h_dist_y_1","TotalMeanFunctionX: dist_y",8000,-4.,4.)
     for i,clusters in enumerate(aDataDet.AllClusters[0:nevents]) :
         for index,cluster in enumerate(clusters) :
             if i%skip==0 :
                 for track in aDataDet.AllTracks[i] :
-                    tmp=np.dot(RotMat,[track.trackX[track.iden.index(dut)],track.trackY[track.iden.index(dut)],0])
+                    tmp=np.dot(rotationMatrix,[track.trackX[track.iden.index(dut)],track.trackY[track.iden.index(dut)],0])
                     tmp[0] = tmp[0] + Translations[0]
                     tmp[1] = tmp[1]
                     distx=cluster.absX -tmp[0]
-                    disty=cluster.absY -tmp[1]
+                    disty=cluster.absY -tmp[1]     
+                    h_dist_x_1.Fill(distx)
+                    h_dist_y_1.Fill(disty) 
+                    dist_tmp_x.append(distx)
+                    dist_tmp_y.append(disty)  
+    cut2 = cut**2
 
-                    if fabs(distx)<0.1 and fabs(disty)<0.1:
-                        totaldist_evaluator+=distx
                         #htempx.Fill(distx)
                         #htempy.Fill(disty)
                         n+=1
-
-#    can1= TCanvas()
-#    htempx.Draw()
-#    can2= TCanvas()
-#    htempy.Draw()
-#    a=raw_input()
-
+    
+#     c_dist_x_1_tmp = TCanvas()         
+#     c_dist_x_1_tmp.cd()           
+#     h_dist_x_1.Draw()  
+#     c_dist_y_1_tmp = TCanvas() 
+#     c_dist_y_1_tmp.cd()   
+#     h_dist_y_1.Draw()  
+                    
+    maxx_bin = h_dist_x_1.GetMaximumBin()
+    maxx = h_dist_x_1.GetXaxis().GetBinCenter(maxx_bin)
+    maxy_bin = h_dist_y_1.GetMaximumBin()
+    maxy = h_dist_y_1.GetXaxis().GetBinCenter(maxy_bin)   
+ 
+#     for eventx in dist_tmp_x :
+#         if(eventx < (maxx - 2.) or eventx > (maxx + 2.)) :
+#             dist_tmp_x.pop(eventx)
+#              
+#     for eventy in dist_tmp_y :
+#         if(eventy < (maxy - 2.) or event > (maxy + 2.)) :
+#             dist_tmp_y.pop(eventy)    
+            
+    for index,eventx in enumerate(dist_tmp_x) :
+        if((eventx-maxx)**2 < cut2) :
+            totaldist_evaluator+=eventx
+            n+=1    
+                    
+#                     if fabs(distx)<cutx and fabs(disty)<cuty:
+#                         totaldist_evaluator+=distx 
+#                         n+=1
     print "Evaluating for Trans : %.9f %.9f  [mm] metric = %.9f  n = %i"%(Translations[0],0,fabs(totaldist_evaluator/n),n)
     return fabs(totaldist_evaluator/n)
     # return -n
 
 
-def TotalMeanFunctionY(Translations,Tx,Rotations,aDataDet,nevents,skip,dut=6):
+def TotalMeanFunctionY(Translations,Tx,Rotations,aDataDet,nevents,skip,cut = 0.1,dut=6):
 
     totaldist_evaluator = 0.
     n = 0
-    RotMat =RotationMatrix(Rotations)
+    dist_tmp_x = []
+    dist_tmp_y = []
+    rotationMatrix = RotationMatrix(Rotations)
+    h_dist_x_2 = TH1D("h_dist_x_2","TotalMeanFunctionY: dist_x",8000,-4.,4.)
+    h_dist_y_2 = TH1D("h_dist_y_2","TotalMeanFunctionY: dist_y",8000,-4.,4.)
     for i,clusters in enumerate(aDataDet.AllClusters[0:nevents]) :
         for index,cluster in enumerate(clusters) :
             if i%skip==0 :
                 for track in aDataDet.AllTracks[i] :
-                    tmp=np.dot(RotMat,[track.trackX[track.iden.index(dut)],track.trackY[track.iden.index(dut)],0])
+                    tmp=np.dot(rotationMatrix,[track.trackX[track.iden.index(dut)],track.trackY[track.iden.index(dut)],0])
                     tmp[0] = tmp[0] + Tx
                     tmp[1] = tmp[1] + Translations[0]
                     distx=cluster.absX -tmp[0]
-                    disty=cluster.absY -tmp[1]
+                    disty=cluster.absY -tmp[1]  
+                    h_dist_x_2.Fill(distx)
+                    h_dist_y_2.Fill(disty) 
+                    dist_tmp_x.append(distx)
+                    dist_tmp_y.append(disty)
+    cut2 = cut**2
 
-                    if fabs(distx)<0.1 and fabs(disty)<0.1:
-                        totaldist_evaluator+=disty
-                        n+=1
+#     c_dist_x_2_tmp = TCanvas()         
+#     c_dist_x_2_tmp.cd()           
+#     h_dist_x_2.Draw()  
+#     c_dist_y_2_tmp = TCanvas() 
+#     c_dist_y_2_tmp.cd()   
+#     h_dist_y_2.Draw()  
+    
+    maxx_bin = h_dist_x_2.GetMaximumBin()
+    maxx = h_dist_x_2.GetXaxis().GetBinCenter(maxx_bin)
+    maxy_bin = h_dist_y_2.GetMaximumBin()
+    maxy = h_dist_y_2.GetXaxis().GetBinCenter(maxy_bin)              
+
+    for index,eventy in enumerate(dist_tmp_y) :
+        if((eventy-maxy)**2 < cut2) :
+            totaldist_evaluator+=eventy
+            n+=1 
+    
+#                     if fabs(distx)<cutx and fabs(disty)<cuty:    
+#                         totaldist_evaluator+=disty
+#                         n+=1
     print "Evaluating for Trans : %.9f %.9f  [mm] metric = %.9f  n = %i"%(Tx,Translations[0],fabs(totaldist_evaluator/n),n)
     return fabs(totaldist_evaluator/n)
     # return -n
 
 
 
-def TotalRotationFunction(Rotations,Translations,aDataDet,nevents,skip=1,dut=6):
+def TotalRotationFunction(Rotations,Translations,aDataDet,nevents,skip=1,cut = 0.1,dut=6):
 
     totaldist_evaluator = 0.
     n = 0
     dist_tmp_x = []
     dist_tmp_y = []
-    RotMat =RotationMatrix(Rotations)
+    
+    dist_good_x = []
+    dist_good_y = []
+    rotationMatrix = RotationMatrix(Rotations)
+    h_dist_x_3 = TH1D("h_dist_x_3","TotalRotationFunction: dist_x",8000,-4.,4.)
+    h_dist_y_3 = TH1D("h_dist_y_3","TotalRotationFunction: dist_y",8000,-4.,4.)
+  
     for i,clusters in enumerate(aDataDet.AllClusters[0:nevents]) :
         for index,cluster in enumerate(clusters) :
             if i%skip==0 :
                 for track in aDataDet.AllTracks[i] :
 
-                    tmp=np.dot(RotMat,[track.trackX[track.iden.index(dut)],track.trackY[track.iden.index(dut)],0])
+                    tmp=np.dot(rotationMatrix,[track.trackX[track.iden.index(dut)],track.trackY[track.iden.index(dut)],0])
                     tmp[0] = tmp[0] + Translations[0]
                     tmp[1] = tmp[1]
                     distx=cluster.absX -tmp[0]
                     disty=cluster.absY -tmp[1]
 
 
-                    if fabs(distx)<0.075 and fabs(disty)<0.075:
-                        dist_tmp_x.append(distx)
-                        dist_tmp_y.append(disty)
-                        n+=1
+                    dist_tmp_x.append(distx)
+                    dist_tmp_y.append(disty)
+                    h_dist_x_3.Fill(distx)
+                    h_dist_y_3.Fill(disty)
 
-    result=sqrt(rms(dist_tmp_x)**2 + rms(dist_tmp_y)**2)
+#     c_dist_x_3_tmp = TCanvas()         
+#     c_dist_x_3_tmp.cd()           
+#     h_dist_x_3.Draw()  
+#     c_dist_y_3_tmp = TCanvas() 
+#     c_dist_y_3_tmp.cd()   
+#     h_dist_y_3.Draw() 
+    
+    maxx_bin = h_dist_x_3.GetMaximumBin()
+    maxx = h_dist_x_3.GetXaxis().GetBinCenter(maxx_bin)
+#     print'maxx: %f'%maxx
+    maxy_bin = h_dist_y_3.GetMaximumBin()
+    maxy = h_dist_y_3.GetXaxis().GetBinCenter(maxy_bin)
+#     print'maxy: %f'%maxy
+
+    
+    cut2 = cut**2
+    
+    for index,eventx in enumerate(dist_tmp_x) :
+        eventy = dist_tmp_y[index]
+        if((eventx-maxx)**2 + (eventy-maxy)**2 < cut2) :
+            dist_good_x.append(eventx-maxx)
+            dist_good_y.append(eventy-maxy)
+            n+=1
+
+    
+    result=sqrt(rms(dist_good_x)**2 + rms(dist_good_y)**2)
     print "Evaluating for Rotation : %.9f %.9f %.9f [deg] Trans : %f %f  [mm] metric = %.9f  n = %i"%(Rotations[0],Rotations[1],Rotations[2],Translations[0],0,result,n)
     return result
 
@@ -626,7 +731,7 @@ def TotalSigmaFunctionY(sigmaCharge_tmp_Y,dataSet,skip,dut=6):
 
 
 
-def TotalDistanceFunction(parameters,aDataDet,nevents,skip,dut=6):
+def TotalDistanceFunction(parameters,aDataDet,nevents,skip,cutx = 0.1, cuty = 0.1,dut=6):
 
     totaldist_evaluator = 0.
     n = 0
@@ -648,7 +753,7 @@ def TotalDistanceFunction(parameters,aDataDet,nevents,skip,dut=6):
                     distx=cluster.absX -tmp[0]
                     disty=cluster.absY -tmp[1]
 
-                    if(fabs(distx)<0.1 and fabs(disty)<0.1):
+                    if(fabs(distx)<cutx and fabs(disty)<cuty):
                         dist_tmp_x.append(distx)
                         dist_tmp_y.append(disty)
                         totaldist_evaluator+=distx
@@ -670,24 +775,26 @@ def PerformAlignement(aDataSet, boundary) :
     return res.x[0:3],res.x[3:]
 
 
-def Perform3StepAlignment(aDataSet,boundary,nevent,skip) :
+def Perform3StepAlignment(aDataSet,boundary,nevent,skip,cut = 0.1) : 
     x_tx = np.array([0.])
     x_ty = np.array([0.])
     xr= np.array([0.,0.,0.])
-    resr = minimize(TotalRotationFunction,xr,[x_tx,aDataSet,nevent,skip],method='BFGS',options={'disp': True, 'eps' : 0.05, 'gtol': 5e-4})
-    rest = minimize(TotalMeanFunctionX,x_tx,[resr.x,aDataSet,nevent,skip],method='Nelder-Mead',options={'xtol': 1e-5,'disp': True})
-    rest2 = minimize(TotalMeanFunctionY,x_ty,[rest.x[0],resr.x,aDataSet,nevent,skip],method='Nelder-Mead',options={'xtol': 1e-5,'disp': True})
+    resr = minimize(TotalRotationFunction,xr,[x_tx,aDataSet,nevent,skip,cut],method='BFGS',options={'disp': True})    
+    rest = minimize(TotalMeanFunctionX,x_tx,[resr.x,aDataSet,nevent,skip,cut],method='Nelder-Mead',options={'xtol': 1e-5,'disp': True}) 
+    rest2 = minimize(TotalMeanFunctionY,x_ty,[rest.x[0],resr.x,aDataSet,nevent,skip,cut],method='Nelder-Mead',options={'xtol': 1e-5,'disp': True}) 
 
     return resr.x ,[rest.x[0],rest2.x[0],0]
 
-def Perform2StepAlignment(aDataSet,boundary,nevent,skip) :
+def Perform2StepAlignment(aDataSet,boundary,nevent,skip,cut = 0.1) : 
     x_tx = np.array([0.])
     x_ty = np.array([0.])
     xr= np.array([0.,0.,0.])
     #resr = minimize(TotalRotationFunction,xr,[x_tx,aDataSet,nevent,skip],method='Nelder-Mead',options={'xtol': 1e-5,'disp': True})
-    rest = minimize(TotalMeanFunctionX,x_tx,[xr,aDataSet,nevent,skip],method='Nelder-Mead',options={'xtol': 1e-5,'disp': True})
-    rest2 = minimize(TotalMeanFunctionY,x_ty,[rest.x[0],xr,aDataSet,nevent,skip],method='Nelder-Mead',options={'xtol': 1e-5,'disp': True})
-
+        
+    rest = minimize(TotalMeanFunctionX,x_tx,[xr,aDataSet,nevent,skip,cut],method='Nelder-Mead',options={'xtol': 1e-5,'disp': True}) 
+    rest2 = minimize(TotalMeanFunctionY,x_ty,[rest.x[0],xr,aDataSet,nevent,skip,cut],method='Nelder-Mead',options={'xtol': 1e-5,'disp': True}) 
+#     rest = minimize(TotalMeanFunctionX,x_tx,[xr,aDataSet,nevent,skip,cut],method='Nelder-Mead',options={'xtol': 1e-3,'disp': True}) 
+#     rest2 = minimize(TotalMeanFunctionY,x_ty,[rest.x[0],xr,aDataSet,nevent,skip,cut],method='Nelder-Mead',options={'xtol': 1e-3,'disp': True})      
     return xr,[rest.x[0],rest2.x[0],0]
 
 
@@ -746,3 +853,220 @@ def ApplyEtaCorrection(dataSet,ressigmachargeX,ressigmachargeY,dut=6,filename="E
                     aCluster.GetEtaCorrectedQWeightedCentroid(ressigmachargeMean)
         dataSet.FindMatchedCluster(j, 0.350, 0.350,6)
         dataSet.ComputeResiduals(j)
+
+
+
+###############################################################################################################################
+#
+#                        landau * gauss fit tools
+#
+###############################################################################################################################
+
+
+
+# def langaufun(x,par) :
+# 
+#     #Fit parameters:
+#     #par[0]=Width (scale) parameter of Landau density
+#     #par[1]=Most Probable (MP, location) parameter of Landau density
+#     #par[2]=Total area (integral -inf to inf, normalization constant)
+#     #par[3]=Width (sigma) of convoluted Gaussian function
+#     #
+#     #In the Landau distribution (represented by the CERNLIB approximation), 
+#     #the maximum is located at x=-0.22278298 with the location parameter=0.
+#     #This shift is corrected within this function, so that the actual
+#     #maximum is identical to the MP parameter.
+#     
+#     # Numeric constants
+#     invsq2pi = 0.3989422804014   # (2 pi)^(-1/2)
+#     mpshift  = -0.22278298       # Landau maximum location
+#     
+#     # Control constants
+#     np = 100.0      # number of convolution steps
+#     sc =   5.0      # convolution extends to +-sc Gaussian sigmas
+#     
+#     # Variables
+#     sum = 0.0
+#     
+#     
+#     # MP shift correction
+#     mpc = par[1] - mpshift * par[0] 
+#     
+#     # Range of convolution integral
+#     xlow = x - sc * par[3]
+#     xupp = x + sc * par[3]
+# #     xlow = x[0] - sc * par[3]
+# #     xupp = x[0] + sc * par[3]
+#     
+#     step = (xupp-xlow) / np
+#     
+#     # Convolution integral of Landau and Gaussian by sum
+#     #for(i=1.0; i<=np/2; i++) {
+#     for i in range(1,np/2 + 1) :
+#         xx = xlow + (i-.5) * step
+#         fland = TMath.Landau(xx,mpc,par[0]) / par[0]
+#         sum = sum + fland * TMath.Gaus(x[0],xx,par[3])
+#         
+#         xx = xupp - (i-.5) * step;
+#         fland = TMath.Landau(xx,mpc,par[0]) / par[0]
+#         sum = sum + fland * TMath.Gaus(x[0],xx,par[3])
+#     
+#     
+#     return (par[2] * step * sum * invsq2pi / par[3])
+# 
+# 
+# 
+# 
+# def langaufit(his, fitrange,startvalues, parlimitslo, parlimitshi, fitparams, fiterrors, ChiSqr, NDF) :
+# 
+#     # Once again, here are the Landau * Gaussian parameters:
+#     #   par[0]=Width (scale) parameter of Landau density
+#     #   par[1]=Most Probable (MP, location) parameter of Landau density
+#     #   par[2]=Total area (integral -inf to inf, normalization constant)
+#     #   par[3]=Width (sigma) of convoluted Gaussian function
+#     #
+#     # Variables for langaufit call:
+#     #   his             histogram to fit
+#     #   fitrange[2]     lo and hi boundaries of fit range
+#     #   startvalues[4]  reasonable start values for the fit
+#     #   parlimitslo[4]  lower parameter limits
+#     #   parlimitshi[4]  upper parameter limits
+#     #   fitparams[4]    returns the final fit parameters
+#     #   fiterrors[4]    returns the final fit errors
+#     #   ChiSqr          returns the chi square
+#     #   NDF             returns ndf
+#     
+#     
+# #     FunName = "Fitfcn_%s"%his.GetName()
+#     # sprintf(FunName,"Fitfcn_%s",his->GetName());
+#     
+# #     ffitold = gROOT.GetListOfFunctions().FindObject(FunName)
+# #     if (ffitold) :
+# #         ffitold.Delete
+#     
+#     ffit = TF1("ffit",langaufun,fitrange[0],fitrange[1],4)
+#     ffit.SetParameters(startvalues[0],startvalues[1],startvalues[2],startvalues[3])
+#     ffit.SetParNames("Width","MP","Area","GSigma")
+#        
+#     for i in range (0,4) :
+#         ffit.SetParLimits(i, parlimitslo[i], parlimitshi[i])
+#     
+#     
+#     his.Fit("ffit","RB0")   # fit within specified range, use ParLimits, do not plot
+#     
+#     fitparams=ffit.GetParameters()    # obtain fit parameters
+#     for i in range (0,4) :
+#         fiterrors.append(ffit.GetParError(i))     # obtain fit parameter errors
+# #         fiterrors[i] = ffit.GetParError(i)     # obtain fit parameter errors
+#     
+#     ChiSqr = ffit.GetChisquare()   # obtain chi^2
+#     NDF = ffit.GetNDF()           # obtain ndf
+# #     ChiSqr[0] = ffit.GetChisquare()   # obtain chi^2
+# #     NDF[0] = ffit.GetNDF()           # obtain ndf
+#     
+#     return (ffit)              # return fit function
+# 
+# 
+# 
+# 
+# def langaupro(params, maxx, FWHM) :
+# 
+#     # Seaches for the location (x value) at the maximum of the 
+#     # Landau-Gaussian convolute and its full width at half-maximum.
+#     #
+#     # The search is probably not very efficient, but it's a first try.
+#     
+#     i = 0
+#     MAXCALLS = 10000
+# 
+# #for test, to comment after !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!    
+#     params.append(1000)
+#     params.append(1000)
+#     
+#     # Search for maximum
+#     
+#     p = params[1] - 0.1 * params[0]
+#     step = 0.05 * params[0]
+#     lold = -2.0
+#     l    = -1.0
+#     
+#     
+#     while ( (l != lold) and (i < MAXCALLS) ) :
+#         i = i + 1
+#     
+#         lold = l
+#         x = p + step
+#         l = langaufun(x,params)
+#          
+#         if (l < lold) :
+#             step = -step/10
+#          
+#         p = p + step
+#     
+#     
+#     if (i == MAXCALLS) :
+#         return (-1)
+#     
+#     maxx = x
+#     
+#     fy = l/2
+#     
+#     
+#     # Search for right x location of fy
+#     
+#     p = maxx + params[0]
+#     step = params[0]
+#     lold = -2.0
+#     l    = -1e300
+#     i    = 0
+#     
+#     
+#     while ( (l != lold) and (i < MAXCALLS) ) :
+#         i = i + 1
+#         
+#         lold = l
+#         x = p + step
+#         l = Abs(langaufun(x,params) - fy)
+#          
+#         if (l > lold) :
+#             step = -step/10
+#          
+#         p = p + step
+#     
+#     
+#     if (i == MAXCALLS) :
+#         return (-2)
+#     
+#     fxr = x
+#     
+#     
+#     # Search for left x location of fy
+#     
+#     p = maxx - 0.5 * params[0]
+#     step = -params[0]
+#     lold = -2.0
+#     l    = -1e300
+#     i    = 0
+#     
+#     while ( (l != lold) and (i < MAXCALLS) ) :
+#         i = i + 1
+#         
+#         lold = l
+#         x = p + step
+#         l = Abs(langaufun(x,params) - fy)
+#          
+#         if (l > lold) :
+#             step = -step/10
+#          
+#         p = p + step
+#     
+#     
+#     if (i == MAXCALLS) :
+#         return (-3)
+#     
+#     
+#     fxl = x
+#     
+#     FWHM = fxr - fxl
+#     return (0)
+ 
