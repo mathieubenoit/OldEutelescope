@@ -470,6 +470,7 @@ def TotalMeanFunctionX(Translations,Rotations,aDataDet,nevents,skip,cut = 0.1,du
     rotationMatrix = RotationMatrix(Rotations)
     h_dist_x_1 = TH1D("h_dist_x_1","TotalMeanFunctionX: dist_x",8000,-4.,4.)
     h_dist_y_1 = TH1D("h_dist_y_1","TotalMeanFunctionX: dist_y",8000,-4.,4.)
+    cut2 = cut**2
     for i,clusters in enumerate(aDataDet.AllClusters[0:nevents]) :
         for index,cluster in enumerate(clusters) :
             if i%skip==0 :
@@ -483,40 +484,17 @@ def TotalMeanFunctionX(Translations,Rotations,aDataDet,nevents,skip,cut = 0.1,du
                     h_dist_y_1.Fill(disty) 
                     dist_tmp_x.append(distx)
                     dist_tmp_y.append(disty)  
-    cut2 = cut**2
-
-                        #htempx.Fill(distx)
-                        #htempy.Fill(disty)
-                        n+=1
-    
-#     c_dist_x_1_tmp = TCanvas()         
-#     c_dist_x_1_tmp.cd()           
-#     h_dist_x_1.Draw()  
-#     c_dist_y_1_tmp = TCanvas() 
-#     c_dist_y_1_tmp.cd()   
-#     h_dist_y_1.Draw()  
                     
     maxx_bin = h_dist_x_1.GetMaximumBin()
     maxx = h_dist_x_1.GetXaxis().GetBinCenter(maxx_bin)
     maxy_bin = h_dist_y_1.GetMaximumBin()
     maxy = h_dist_y_1.GetXaxis().GetBinCenter(maxy_bin)   
  
-#     for eventx in dist_tmp_x :
-#         if(eventx < (maxx - 2.) or eventx > (maxx + 2.)) :
-#             dist_tmp_x.pop(eventx)
-#              
-#     for eventy in dist_tmp_y :
-#         if(eventy < (maxy - 2.) or event > (maxy + 2.)) :
-#             dist_tmp_y.pop(eventy)    
-            
     for index,eventx in enumerate(dist_tmp_x) :
         if((eventx-maxx)**2 < cut2) :
             totaldist_evaluator+=eventx
             n+=1    
-                    
-#                     if fabs(distx)<cutx and fabs(disty)<cuty:
-#                         totaldist_evaluator+=distx 
-#                         n+=1
+
     print "Evaluating for Trans : %.9f %.9f  [mm] metric = %.9f  n = %i"%(Translations[0],0,fabs(totaldist_evaluator/n),n)
     return fabs(totaldist_evaluator/n)
     # return -n
@@ -531,6 +509,7 @@ def TotalMeanFunctionY(Translations,Tx,Rotations,aDataDet,nevents,skip,cut = 0.1
     rotationMatrix = RotationMatrix(Rotations)
     h_dist_x_2 = TH1D("h_dist_x_2","TotalMeanFunctionY: dist_x",8000,-4.,4.)
     h_dist_y_2 = TH1D("h_dist_y_2","TotalMeanFunctionY: dist_y",8000,-4.,4.)
+    cut2 = cut**2
     for i,clusters in enumerate(aDataDet.AllClusters[0:nevents]) :
         for index,cluster in enumerate(clusters) :
             if i%skip==0 :
@@ -544,7 +523,7 @@ def TotalMeanFunctionY(Translations,Tx,Rotations,aDataDet,nevents,skip,cut = 0.1
                     h_dist_y_2.Fill(disty) 
                     dist_tmp_x.append(distx)
                     dist_tmp_y.append(disty)
-    cut2 = cut**2
+
 
 #     c_dist_x_2_tmp = TCanvas()         
 #     c_dist_x_2_tmp.cd()           

@@ -28,8 +28,8 @@ class EudetData:
     EnergyCut = 0.
     scale =1.
 
-    AllClusters = PersistentList("/home/mbenoit/tmp/cluster",250)
-    AllTracks = PersistentList("/home/mbenoit/tmp/Track",250)
+    AllClusters = PersistentList("cluster",250)
+    AllTracks = PersistentList("Track",250)
  #   AllClusters = []
  #   AllTracks = []
 
