@@ -280,17 +280,17 @@ class Cluster:
                     else :
                         self.relX = (self.col[maxTOTindex1_tmp])*pitchX + shift1 + shift2
                         self.relY = (self.row[maxTOTindex1_tmp])*pitchY + shift1 - shift2
-        
+
         else : #other cluster sizes->using the simple Qweighted centroid
             self.relX=0.
             self.relY=0.
             for index,tot_tmp in enumerate(self.tot) :
-                self.relX+=(self.col[index]*pitchX)*tot_tmp    
-                self.relY+=(self.row[index]*pitchY)*tot_tmp    
+                self.relX+=(self.col[index]*pitchX)*tot_tmp
+                self.relY+=(self.row[index]*pitchY)*tot_tmp
             self.relX/=self.totalTOT
             self.relY/=self.totalTOT
 
-        
+
         #print "relX : %f"%float(self.relX)
         #print "relY : %f"%float(self.relY)
         self.absX=self.relX + pitchX/2. -npix_X*pitchX/2.

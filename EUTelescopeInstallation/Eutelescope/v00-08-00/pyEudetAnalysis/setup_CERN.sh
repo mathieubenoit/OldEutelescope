@@ -7,6 +7,8 @@ export PYTHONPATH="/afs/cern.ch/eng/clic/software/Pixel_TestBeam_Software/pytool
 export PYTHONPATH="/afs/cern.ch/eng/clic/software/Pixel_TestBeam_Software/pytools/scipy/lib/python2.6/site-packages:$PYTHONPATH"
 export PYTHONPATH="/afs/cern.ch/eng/clic/software/Pixel_TestBeam_Software/pytools/sympy/lib/python2.6/site-packages:$PYTHONPATH"
 export PYTHONPATH="/afs/cern.ch/eng/clic/software/Pixel_TestBeam_Software/pytools/matplotlib/lib/python2.6/site-packages:$PYTHONPATH"
+export PYTHONPATH="/afs/cern.ch/eng/clic/software/Pixel_TestBeam_Software/pytools/guppy/lib/python2.6/site-packages:$PYTHONPATH"
+export PYTHONPATH="/afs/cern.ch/eng/clic/software/Pixel_TestBeam_Software/pytools/Cython/lib/python2.6/site-packages:$PYTHONPATH"
 
 #BLAS and LAPACK
 export LD_LIBRARY_PATH=/afs/cern.ch/sw/lcg/external/blas/20110419/x86_64-slc5-gcc43-opt/lib:$LD_LIBRARY_PATH
