@@ -2,6 +2,7 @@ import numpy as np
 from scipy.optimize import minimize
 from ROOT import *
 import ROOT
+import pyximport; pyximport.install(pyimport=True)
 from math import *
 from array import array 
 from EudetData import *
@@ -432,21 +433,25 @@ def TrackClusterCorrelation(dataSet,dut=6):
     for i,tracks in enumerate(dataSet.AllTracks) : 
         for track in tracks :
             for index,cluster in enumerate(dataSet.AllClusters[i]) :
-                    if cluster.totalTOT<500 :
-                        histox.Fill(cluster.absX,track.trackX[track.iden.index(dut)])
-                        histoy.Fill(cluster.absY,track.trackY[track.iden.index(dut)])                    
+	    	    #track.Print()
+		    #cluster.Print()	
+                    histox.Fill(cluster.absX,track.trackX[track.iden.index(dut)])
+                    histoy.Fill(cluster.absY,track.trackY[track.iden.index(dut)])                    
     return histox,histoy
 
 
 def TotalMeanFunctionX(Translations,Rotations,aDataDet,nevents,skip,dut=6):
    
     totaldist_evaluator = 0.
+#    htempx = TH1D("x","",6000,-3,3)
+#    htempy = TH1D("y","",6000,-3,3)   
     n = 0
+    RotMat =RotationMatrix(Rotations)
     for i,clusters in enumerate(aDataDet.AllClusters[0:nevents]) : 
         for index,cluster in enumerate(clusters) :
             if i%skip==0 :     
                 for track in aDataDet.AllTracks[i] : 
-                    tmp=np.dot(RotationMatrix(Rotations),[track.trackX[track.iden.index(dut)],track.trackY[track.iden.index(dut)],0])
+                    tmp=np.dot(RotMat,[track.trackX[track.iden.index(dut)],track.trackY[track.iden.index(dut)],0])
                     tmp[0] = tmp[0] + Translations[0]
                     tmp[1] = tmp[1] 
                     distx=cluster.absX -tmp[0]
@@ -454,8 +459,16 @@ def TotalMeanFunctionX(Translations,Rotations,aDataDet,nevents,skip,dut=6):
     
                     if fabs(distx)<0.1 and fabs(disty)<0.1:
                         totaldist_evaluator+=distx 
+                        #htempx.Fill(distx)
+                        #htempy.Fill(disty)                       
                         n+=1
-    print "n : %i"%n
+    
+#    can1= TCanvas()
+#    htempx.Draw()
+#    can2= TCanvas()
+#    htempy.Draw()
+#    a=raw_input()
+    
     print "Evaluating for Trans : %.9f %.9f  [mm] metric = %.9f  n = %i"%(Translations[0],0,fabs(totaldist_evaluator/n),n)
     return fabs(totaldist_evaluator/n)
     # return -n
@@ -465,11 +478,12 @@ def TotalMeanFunctionY(Translations,Tx,Rotations,aDataDet,nevents,skip,dut=6):
 
     totaldist_evaluator = 0.
     n = 0
+    RotMat =RotationMatrix(Rotations)
     for i,clusters in enumerate(aDataDet.AllClusters[0:nevents]) : 
         for index,cluster in enumerate(clusters) :
             if i%skip==0 : 
                 for track in aDataDet.AllTracks[i] : 
-                    tmp=np.dot(RotationMatrix(Rotations),[track.trackX[track.iden.index(dut)],track.trackY[track.iden.index(dut)],0])
+                    tmp=np.dot(RotMat,[track.trackX[track.iden.index(dut)],track.trackY[track.iden.index(dut)],0])
                     tmp[0] = tmp[0] + Tx
                     tmp[1] = tmp[1] + Translations[0]
                     distx=cluster.absX -tmp[0]
@@ -490,13 +504,13 @@ def TotalRotationFunction(Rotations,Translations,aDataDet,nevents,skip=1,dut=6):
     n = 0
     dist_tmp_x = []
     dist_tmp_y = []
-  
+    RotMat =RotationMatrix(Rotations)
     for i,clusters in enumerate(aDataDet.AllClusters[0:nevents]) : 
         for index,cluster in enumerate(clusters) :
             if i%skip==0 : 
                 for track in aDataDet.AllTracks[i] : 
     
-                    tmp=np.dot(RotationMatrix(Rotations),[track.trackX[track.iden.index(dut)],track.trackY[track.iden.index(dut)],0])
+                    tmp=np.dot(RotMat,[track.trackX[track.iden.index(dut)],track.trackY[track.iden.index(dut)],0])
                     tmp[0] = tmp[0] + Translations[0]
                     tmp[1] = tmp[1] 
                     distx=cluster.absX -tmp[0]
@@ -660,7 +674,7 @@ def Perform3StepAlignment(aDataSet,boundary,nevent,skip) :
     x_tx = np.array([0.])
     x_ty = np.array([0.])
     xr= np.array([0.,0.,0.])
-    resr = minimize(TotalRotationFunction,xr,[x_tx,aDataSet,nevent,skip],method='BFGS',options={'disp': True})    
+    resr = minimize(TotalRotationFunction,xr,[x_tx,aDataSet,nevent,skip],method='BFGS',options={'disp': True, 'eps' : 0.05, 'gtol': 5e-4})    
     rest = minimize(TotalMeanFunctionX,x_tx,[resr.x,aDataSet,nevent,skip],method='Nelder-Mead',options={'xtol': 1e-5,'disp': True}) 
     rest2 = minimize(TotalMeanFunctionY,x_ty,[rest.x[0],resr.x,aDataSet,nevent,skip],method='Nelder-Mead',options={'xtol': 1e-5,'disp': True}) 
       
@@ -695,13 +709,13 @@ def FindSigmaMin(dataSet,nevent,skip) :
 def ApplyAlignment(dataSet,translations,rotations,dut=6,filename="Alignement.txt") :
 
     print "Applying Alignment with  Rotation : %0.10f %0.10f %0.10f [deg] Trans : %0.10f %0.10f  [mm]"%(rotations[0],rotations[1],rotations[2],translations[0],translations[1])
-    
+    RotMat = RotationMatrix(rotations)
     f = open(filename,'w')
     f.write("Rotation : %f %f %f [deg] Trans : %f %f  [mm] \n"%(rotations[0],rotations[1],rotations[2],translations[0],translations[1]))
     f.close()
     for Tracks in dataSet.AllTracks : 
         for index,track in enumerate(Tracks) :
-            tmp=np.dot(RotationMatrix(rotations),[track.trackX[track.iden.index(dut)],track.trackY[track.iden.index(dut)],0])
+            tmp=np.dot(RotMat,[track.trackX[track.iden.index(dut)],track.trackY[track.iden.index(dut)],0])
             track.trackX[track.iden.index(dut)] = tmp[0] + translations[0]
             track.trackY[track.iden.index(dut)] = tmp[1] + translations[1]
 #             track.trackZ[track.iden.index(dut)] = tmp[2] + translations[2]        

@@ -3,11 +3,19 @@ import ROOT
 from ROOT import gStyle
 from ROOT import TMath
 from math import fsum
-from array import array 
-from EudetData import *
+import time
+
 from ToolBox import *
 
-PlotPath = "/afs/cern.ch/work/a/apequegn/public/DESY_TB_DATA_02_07-06-2013_results/pyEudetAnalysisPlots"
+import pyximport; pyximport.install(pyimport=True)
+from EudetData import *
+from array import array 
+
+#from guppy import hpy
+#h = hpy()
+
+
+PlotPath = "/VertexScratch/TB_Data/DESY_TB_DATA_August2013_results/pyEudetAnalysis_plots/Run49"
 
 # global n_sizeX2sizeY2
 
@@ -53,8 +61,13 @@ method_name = "QWeighted"
 #method_name = "EtaCorrection"
 
 
+
 #aDataSet = EudetData("/VertexScratch/TB_Data/DESY_TB_DATA_02_07-06-2013_results/histo/tbtrackrun000062.root",500.0)
-aDataSet = EudetData("/VertexScratch/TB_Data/DESY_TB_DATA_02_07-06-2013_results/histo/tbtrackrun000131.root",500.0,2)
+aDataSet = EudetData("/VertexScratch/TB_Data/DESY_TB_DATA_August2013_results/histo/tbtrackrun000049.root",50000.0,1)
+
+scaler = 1
+#n_proc= aDataSet.p_nEntries
+n_proc= 10000
 
 # aDataSet.PrintTBranchElement()
 
@@ -75,34 +88,60 @@ h1_style(trackX_vs_trackY_plan0)
 
 # Filter Hot Pixels
 # histo_hot,histo_freq = aDataSet.FilterHotPixel(0.005,25000)
-histo_hot,histo_freq = aDataSet.FilterHotPixel(0.001,25000)
+#histo_hot,histo_freq = aDataSet.FilterHotPixel(0.1,5000,15)
 
-canhot = TCanvas()
-histo_hot.Draw("colz")
+#canhot = TCanvas()
+#histo_hot.Draw("colz")
   
-canfreq = TCanvas()
-canfreq.SetLogx()
-canfreq.SetLogy()
-histo_freq.Draw("")
+#canfreq = TCanvas()
+#canfreq.SetLogx()
+#canfreq.SetLogy()
+#histo_freq.Draw("")
 
 n_matched = 0
-for i in range(aDataSet.p_nEntries) : 
-# for i in range(10000) : 
+#for i in range(aDataSet.p_nEntries) :
 
-    aDataSet.ClusterEvent(i,method_name)
-    aDataSet.GetTrack(i)
-    aDataSet.FindMatchedCluster(i, 0.350, 0.350,6)
+last_time=time.time()
+ 
+for i in range(0,n_proc,scaler) : 
+    aDataSet.getEvent(i)
+    aDataSet.ClusterEvent(i,method_name,0.003,scaler)
+    for ind in range(i,i+scaler):
+        aDataSet.GetTrack(ind)
+        #aDataSet.FindMatchedCluster(ind, 0.350, 0.350,6)
+        #n_matched+=aDataSet.ComputeResiduals(i)
+
+        trackX_vs_trackY_plan3.Fill(aDataSet.t_posX[3],aDataSet.t_posY[3])
+        trackX_vs_trackY_plan0.Fill(aDataSet.t_posX[0],aDataSet.t_posY[0])
 #     aDataSet.FindMatchedCluster(i, 2., 2.,6)
     if i%1000 ==0 :
         print "Event %d"%i
+	print "Elapsed time/1000 Event : %f s"%(time.time()-last_time)
+	last_time = time.time()
+	#print h.heap()
     #aDataSet.PrintClusters(i)    
     #aDataSet.PrintEvent(i)
     
-    n_matched+=aDataSet.ComputeResiduals(i)
+
+     
+#aDataSet.DoPatternRecognition(0,0.1,scaler)
     
-    aDataSet.getEvent(i)
-    trackX_vs_trackY_plan3.Fill(aDataSet.t_posX[3],aDataSet.t_posY[3])
-    trackX_vs_trackY_plan0.Fill(aDataSet.t_posX[0],aDataSet.t_posY[0])
+last_time = time.time()
+ApplyAlignment(aDataSet,[0.97, 0, 0.],[0.0000000000, 0.0000000000,0.0])
+ApplyAlignment(aDataSet,[-0.0133203125,0.0264765625 , 0],[0.0001507365,0.0000010899,0.4010109594])
+print "Elapsed time for ApplyAlignment : %f s"%(time.time()-last_time)
+
+
+last_time = time.time()
+for i in range(n_proc) : 
+#for i in range(aDataSet.p_nEntries) :
+    aDataSet.FindMatchedCluster(i,1 ,6)
+    n_matched+=aDataSet.ComputeResiduals(i)
+    if i%1000==0 : 
+    	print "Elapsed time for Matching and Compute Residual , event %i: %f s"%(i,(time.time()-last_time))
+
+print "Elapsed time for Matching and Compute Residual : %f s"%(time.time()-last_time)
+
 
 print "Found %i matched track-cluster binome"%n_matched
 # print "number of clusters with sixe 2 sizeX2 and sizeY2 : %f"%n_sizeX2sizeY2 
@@ -143,25 +182,28 @@ hClusterSizeCounter_percent.Draw()
 #resr,rest = PerformAlignement(aDataSet,[[0,360],[0,360],[0,360],[-0.5,0.5],[-0.5,0.5]])
 
 #decomment to perform the alignment in 3 steps
-resr,rest = Perform2StepAlignment(aDataSet,[[0,360],[0,360],[0,360],[-0.5,0.5],[-0.5,0.5]],aDataSet.p_nEntries,20)
-ApplyAlignment(aDataSet,rest,resr)
+#ApplyAlignment(aDataSet,[0.97, 0, 0.],[0.0000000000, 0.0000000000,0.0])
+##ApplyAlignment(aDataSet,[-0.0119218750, 0.0176796875 , 0],[-5.9422538921,-0.1461670362,0.3685178101])
+##ApplyAlignment(aDataSet,[-0.0119218750, 0.0176796875 , 0],[0,-0.1461670362,0.3685178101])
+#resr,rest = Perform3StepAlignment(aDataSet,[[0,360],[0,360],[0,360],[-0.5,0.5],[-0.5,0.5]],n_proc,10)
+#ApplyAlignment(aDataSet,rest,resr)
 
-# ApplyAlignment(aDataSet,[-0.0439218750, -0.0463671875 , 0.],[0.0000000000, 0.0000000000, 0])
 
-# for i in range(10000) : 
-for i in range(aDataSet.p_nEntries) :
-    aDataSet.ComputeResiduals(i)
-        
+
+last_time = time.time()
 hx,hy = TrackClusterCorrelation(aDataSet)
+print "Elapsed time for Correlation : %f s"%(time.time()-last_time)
+
+
 #hxc,hyc = TrackClusterCorrelation(aDataSet_calib)
 
-if (method_name == "EtaCorrection") :
-    # ressigmachargeX, ressigmachargeY = FindSigmaMin(aDataSet,10000,1)
-    ressigmachargeX, ressigmachargeY = FindSigmaMin(aDataSet,aDataSet.p_nEntries,20)
-    print "ressigmachargeX : %f"%float(ressigmachargeX)
-    print "ressigmachargeY : %f"%float(ressigmachargeY)
-    
-    ApplyEtaCorrection(aDataSet,ressigmachargeX,ressigmachargeY)
+#if (method_name == "EtaCorrection") :
+#    # ressigmachargeX, ressigmachargeY = FindSigmaMin(aDataSet,10000,1)
+#    ressigmachargeX, ressigmachargeY = FindSigmaMin(aDataSet,aDataSet.p_nEntries,20)
+#    print "ressigmachargeX : %f"%float(ressigmachargeX)
+#    print "ressigmachargeY : %f"%float(ressigmachargeY)
+#    
+#    ApplyEtaCorrection(aDataSet,ressigmachargeX,ressigmachargeY)
 
 # for j,tracks in enumerate(aDataSet.AllTracks) : 
 #     for track in tracks : 
@@ -187,18 +229,18 @@ hy.Draw("colz")
 #cancoryc = TCanvas()
 #hyc.Draw("colz")   
      
-allTOT = TH1D("allTOT","Energy Spectrum, all cluster sizes",500,0,500)
-TOT1 = TH1D("TOT1","Energy Spectrum, cluster size = 1",500,0,500)
+allTOT = TH1D("allTOT","Energy Spectrum, all cluster sizes",5000,0,5000)
+TOT1 = TH1D("TOT1","Energy Spectrum, cluster size = 1",5000,0,5000)
 TOT1.SetLineColor(1)
-TOT2 = TH1D("TOT2","Energy Spectrum, cluster size = 2",500,0,500)
+TOT2 = TH1D("TOT2","Energy Spectrum, cluster size = 2",5000,0,5000)
 TOT2.SetLineColor(2)
-TOT3 = TH1D("TOT3","Energy Spectrum, cluster size = 3",500,0,500)
+TOT3 = TH1D("TOT3","Energy Spectrum, cluster size = 3",5000,0,5000)
 TOT3.SetLineColor(3)
-TOT4 = TH1D("TOT4","Energy Spectrum, cluster size = 4",500,0,500)
+TOT4 = TH1D("TOT4","Energy Spectrum, cluster size = 4",5000,0,5000)
 TOT4.SetLineColor(4)
  
-resX = TH1D("resX","Unbiased residual X",600,-0.150,0.150)
-resY = TH1D("resY","Unbiased residual Y",600,-0.150,0.150)
+resX = TH1D("resX","Unbiased residual X",6000,-8.150,8.150)
+resY = TH1D("resY","Unbiased residual Y",6000,-8.150,8.150)
 resX.GetXaxis().SetTitle("X_{track} - X_{Timepix} (mm)")
 resX.GetYaxis().SetTitle("Number of hits")
 resY.GetXaxis().SetTitle("Y_{track} - Y_{Timepix} (mm)")
@@ -245,6 +287,8 @@ h1_style(HitProb_1_correlationY)
 h1_style(HitProb_2_correlationY)
 h1_style(HitProb_3_correlationY)
 h1_style(HitProb_4_correlationY)
+
+
 
 distance = 4 #microns
 print "Compute charge distance..."
@@ -318,6 +362,8 @@ for i in range(1,n_cs+2) : #n_cs+2 excluded
     resX_cs.append(tmpx)
     resY_cs.append(tmpy)
 
+
+
 hClusterSizeXvsSizeY = TH2D("hClusterSizeXvsSizeY","cluster sizes Y as a function of cluster sizes X",4,1,5,4,1,5)
 hClusterSizeXvsSizeY.GetXaxis().SetTitle("Cluster size X")
 hClusterSizeXvsSizeY.GetYaxis().SetTitle("Cluster size Y")
@@ -331,6 +377,8 @@ h1_style(hClusterSizeX)
 h1_style(hClusterSizeY) 
 h1_style(hClusterSize)
 h1_style(hClusterSizeXvsSizeY)
+
+last_time = time.time()
 
 if method_name == "EtaCorrection" :
 #cluster size for the eta correction method
@@ -418,7 +466,8 @@ else :
                     TOT3.Fill(aCluster.totalTOT)
                 if(aCluster.size==4) : 
                     TOT4.Fill(aCluster.totalTOT)     
-     
+print "Elapsed time for Residual, cluster and TOT plots: %f s"%(time.time()-last_time)
+   
 # for clusters in aDataSet.AllClusters : 
 #     for cluster in clusters : 
 #         allTOT.Fill(cluster.totalTOT) 
@@ -441,12 +490,6 @@ else :
 #         if(cluster.size==4) : 
 #             TOT4.Fill(cluster.totalTOT) 		
  
-#for clusters in aDataSet_calib.AllClusters : 
-#    for cluster in clusters : 
-#        if(fabs(cluster.resX)<0.15) : 
-#            resX_calib.Fill(cluster.resX+0.0058-0.0098)
-#        if(fabs(cluster.resY)<0.15) : 
-#            resY_calib.Fill(cluster.resY-0.0069-0.00543)
 
 canvas_resX_s2x2y2 = TCanvas()
 resX_s2x2y2.Draw()
@@ -673,9 +716,11 @@ relX_vs_relY.Draw("colz")
   
 # ApplyAlignment(aDataSet,[0.0154687500 , 0.0205156250 , 0.],[0.0000000000, 0.0000000000, -0.0719150199])  
      
-   
+last_time = time.time()   
 HitProb_1_track_binning1m,HitProb_2_track_binning1m,HitProb_3_track_binning1m,HitProb_4_track_binning1m = TrackHitProb(aDataSet,55,6)
 HitProb_1_track_binning2m,HitProb_2_track_binning2m,HitProb_3_track_binning2m,HitProb_4_track_binning2m = TrackHitProb(aDataSet,28,6)
+print "Elapsed time for hitprob plots : %f s"%(time.time()-last_time)
+
 
 h1_style(HitProb_1_track_binning1m)
 h1_style(HitProb_2_track_binning1m)
@@ -778,7 +823,7 @@ HitProb_4_correlationY.Draw("colz")
 
 if method_name == "QWeighted" :
 #     out = TFile("%s/QWeighted/output_rootfile_QWeighted_firingFreq001_run000131.root"%PlotPath, "recreate")
-    out = TFile("%s/QWeighted/output_rootfile_QWeighted_firingFreq001_run000131_distance%i.root"%(PlotPath,distance), "recreate")
+    out = TFile("%s/QWeighted/output_rootfile_QWeighted_firingFreq001_run00049_distance%i.root"%(PlotPath,distance), "recreate")
     canhot.SaveAs("%s/QWeighted/histo_hot_QWeighted.png"%PlotPath)
     canfreq.SaveAs("%s/QWeighted/histo_freq_QWeighted.png"%PlotPath)
     cancorx.SaveAs("%s/QWeighted/corx_QWeighted.png"%PlotPath)
@@ -1044,148 +1089,148 @@ elif method_name == "maxTOT" :
     can_resY_cs_0.SaveAs("%s/maxTOT/resY_cs_0_fit_maxTOT.png"%PlotPath)
 
  
-# g1 = TF1("m1","gaus",-0.025,pitchX/sqrt(12))
-# g2 = TF1("m2","gaus",0.025,pitchX/sqrt(12))
-#    
-# can_resX_cs_0 = TCanvas()
-# resX_cs[0].Draw()
-# r0 = resX_cs[0].Fit("gaus","","",-0.05,0.05) 
-#    
-# can_resX_cs_1 = TCanvas()
-# resX_cs[1].Draw()
-# r1 = resX_cs[1].Fit(g1,"S","",-0.03,0.0)
-# r1bis = resX_cs[1].Fit(g2,"S+","",0.0,0.030)
-# fitResult_resX_cs_1 = TPaveText(0.13,0.69,0.33,0.88,"NDC")
-# fitResult_resX_cs_1.AddText("mean 1 : %f"%(r1.Parameter(1)))
-# fitResult_resX_cs_1.AddText("sigma 1 : %f"%(r1.Parameter(2)))
-# fitResult_resX_cs_1.AddLine(.0,.5,1.,.5)
-# fitResult_resX_cs_1.AddText("mean 2 : %f"%(r1bis.Parameter(1)))
-# fitResult_resX_cs_1.AddText("sigma 2 : %f"%(r1bis.Parameter(2)))
-# fitResult_resX_cs_1.Draw("same")
-#    
-# can_resX_cs_2 = TCanvas()
-# resX_cs[2].Draw()
-# r2 = resX_cs[2].Fit(g1,"RS")
-# r2bis = resX_cs[2].Fit(g2,"RS+")
-# fitResult_resX_cs_2 = TPaveText(0.13,0.69,0.33,0.88,"NDC")
-# fitResult_resX_cs_2.AddText("mean 1 : %f"%(r2.Parameter(1)))
-# fitResult_resX_cs_2.AddText("sigma 1 : %f"%(r2.Parameter(2)))
-# fitResult_resX_cs_2.AddLine(.0,.5,1.,.5)
-# fitResult_resX_cs_2.AddText("mean 2 : %f"%(r2bis.Parameter(1)))
-# fitResult_resX_cs_2.AddText("sigma 2 : %f"%(r2bis.Parameter(2)))
-# fitResult_resX_cs_2.Draw("same")
-#    
-# can_resY_cs_0 = TCanvas()
-# resY_cs[0].Draw()
-# r0 = resY_cs[0].Fit("gaus","","",-0.05,0.05) 
-#    
-# can_resY_cs_1 = TCanvas()
-# resY_cs[1].Draw()
-# r1 = resY_cs[1].Fit(g1,"RS")
-# r1bis = resY_cs[1].Fit(g2,"RS+")
-# fitResult_resY_cs_1 = TPaveText(0.13,0.69,0.33,0.88,"NDC")
-# fitResult_resY_cs_1.AddText("mean 1 : %f"%(r1.Parameter(1)))
-# fitResult_resY_cs_1.AddText("sigma 1 : %f"%(r1.Parameter(2)))
-# fitResult_resY_cs_1.AddLine(.0,.5,1.,.5)
-# fitResult_resY_cs_1.AddText("mean 2 : %f"%(r1bis.Parameter(1)))
-# fitResult_resY_cs_1.AddText("sigma 2 : %f"%(r1bis.Parameter(2)))
-# fitResult_resY_cs_1.Draw("same")
-#    
-# can_resY_cs_2 = TCanvas()
-# resY_cs[2].Draw()
-# r2 = resY_cs[2].Fit(g1,"RS")
-# r2bis = resY_cs[2].Fit(g2,"RS+")
-# fitResult_resY_cs_2 = TPaveText(0.13,0.69,0.33,0.88,"NDC")
-# fitResult_resY_cs_2.AddText("mean 1 : %f"%(r2.Parameter(1)))
-# fitResult_resY_cs_2.AddText("sigma 1 : %f"%(r2.Parameter(2)))
-# fitResult_resY_cs_2.AddLine(.0,.5,1.,.5)
-# fitResult_resY_cs_2.AddText("mean 2 : %f"%(r2bis.Parameter(1)))
-# fitResult_resY_cs_2.AddText("sigma 2 : %f"%(r2bis.Parameter(2)))
-# fitResult_resY_cs_2.Draw("same")
-#    
-#    
-# if method_name == "QWeighted" :
-#     can_resX_cs_0.SaveAs("%s/QWeighted/resX_cs_0_fit_QWeighted.png"%PlotPath)
-#     can_resX_cs_1.SaveAs("%s/QWeighted/resX_cs_1_fit_QWeighted.png"%PlotPath)
-#     can_resX_cs_2.SaveAs("%s/QWeighted/resX_cs_2_fit_QWeighted.png"%PlotPath)
-#     can_resY_cs_0.SaveAs("%s/QWeighted/resY_cs_0_fit_QWeighted.png"%PlotPath)
-#     can_resY_cs_1.SaveAs("%s/QWeighted/resY_cs_1_fit_QWeighted.png"%PlotPath)
-#     can_resY_cs_2.SaveAs("%s/QWeighted/resY_cs_2_fit_QWeighted.png"%PlotPath)
+## g1 = TF1("m1","gaus",-0.025,pitchX/sqrt(12))
+## g2 = TF1("m2","gaus",0.025,pitchX/sqrt(12))
+##    
+## can_resX_cs_0 = TCanvas()
+## resX_cs[0].Draw()
+## r0 = resX_cs[0].Fit("gaus","","",-0.05,0.05) 
+##    
+## can_resX_cs_1 = TCanvas()
+## resX_cs[1].Draw()
+## r1 = resX_cs[1].Fit(g1,"S","",-0.03,0.0)
+## r1bis = resX_cs[1].Fit(g2,"S+","",0.0,0.030)
+## fitResult_resX_cs_1 = TPaveText(0.13,0.69,0.33,0.88,"NDC")
+## fitResult_resX_cs_1.AddText("mean 1 : %f"%(r1.Parameter(1)))
+## fitResult_resX_cs_1.AddText("sigma 1 : %f"%(r1.Parameter(2)))
+## fitResult_resX_cs_1.AddLine(.0,.5,1.,.5)
+## fitResult_resX_cs_1.AddText("mean 2 : %f"%(r1bis.Parameter(1)))
+## fitResult_resX_cs_1.AddText("sigma 2 : %f"%(r1bis.Parameter(2)))
+## fitResult_resX_cs_1.Draw("same")
+##    
+## can_resX_cs_2 = TCanvas()
+## resX_cs[2].Draw()
+## r2 = resX_cs[2].Fit(g1,"RS")
+## r2bis = resX_cs[2].Fit(g2,"RS+")
+## fitResult_resX_cs_2 = TPaveText(0.13,0.69,0.33,0.88,"NDC")
+## fitResult_resX_cs_2.AddText("mean 1 : %f"%(r2.Parameter(1)))
+## fitResult_resX_cs_2.AddText("sigma 1 : %f"%(r2.Parameter(2)))
+## fitResult_resX_cs_2.AddLine(.0,.5,1.,.5)
+## fitResult_resX_cs_2.AddText("mean 2 : %f"%(r2bis.Parameter(1)))
+## fitResult_resX_cs_2.AddText("sigma 2 : %f"%(r2bis.Parameter(2)))
+## fitResult_resX_cs_2.Draw("same")
+##    
+## can_resY_cs_0 = TCanvas()
+## resY_cs[0].Draw()
+## r0 = resY_cs[0].Fit("gaus","","",-0.05,0.05) 
+##    
+## can_resY_cs_1 = TCanvas()
+## resY_cs[1].Draw()
+## r1 = resY_cs[1].Fit(g1,"RS")
+## r1bis = resY_cs[1].Fit(g2,"RS+")
+## fitResult_resY_cs_1 = TPaveText(0.13,0.69,0.33,0.88,"NDC")
+## fitResult_resY_cs_1.AddText("mean 1 : %f"%(r1.Parameter(1)))
+## fitResult_resY_cs_1.AddText("sigma 1 : %f"%(r1.Parameter(2)))
+## fitResult_resY_cs_1.AddLine(.0,.5,1.,.5)
+## fitResult_resY_cs_1.AddText("mean 2 : %f"%(r1bis.Parameter(1)))
+## fitResult_resY_cs_1.AddText("sigma 2 : %f"%(r1bis.Parameter(2)))
+## fitResult_resY_cs_1.Draw("same")
+##    
+## can_resY_cs_2 = TCanvas()
+## resY_cs[2].Draw()
+## r2 = resY_cs[2].Fit(g1,"RS")
+## r2bis = resY_cs[2].Fit(g2,"RS+")
+## fitResult_resY_cs_2 = TPaveText(0.13,0.69,0.33,0.88,"NDC")
+## fitResult_resY_cs_2.AddText("mean 1 : %f"%(r2.Parameter(1)))
+## fitResult_resY_cs_2.AddText("sigma 1 : %f"%(r2.Parameter(2)))
+## fitResult_resY_cs_2.AddLine(.0,.5,1.,.5)
+## fitResult_resY_cs_2.AddText("mean 2 : %f"%(r2bis.Parameter(1)))
+## fitResult_resY_cs_2.AddText("sigma 2 : %f"%(r2bis.Parameter(2)))
+## fitResult_resY_cs_2.Draw("same")
+##    
+##    
+## if method_name == "QWeighted" :
+##     can_resX_cs_0.SaveAs("%s/QWeighted/resX_cs_0_fit_QWeighted.png"%PlotPath)
+##     can_resX_cs_1.SaveAs("%s/QWeighted/resX_cs_1_fit_QWeighted.png"%PlotPath)
+##     can_resX_cs_2.SaveAs("%s/QWeighted/resX_cs_2_fit_QWeighted.png"%PlotPath)
+##     can_resY_cs_0.SaveAs("%s/QWeighted/resY_cs_0_fit_QWeighted.png"%PlotPath)
+##     can_resY_cs_1.SaveAs("%s/QWeighted/resY_cs_1_fit_QWeighted.png"%PlotPath)
+##     can_resY_cs_2.SaveAs("%s/QWeighted/resY_cs_2_fit_QWeighted.png"%PlotPath)
+##     
+## elif method_name == "DigitalCentroid" :
+##     can_resX_cs_0.SaveAs("%s/DigitalCentroid/resX_cs_0_fit_DigitalCentroid.png"%PlotPath)
+##     can_resX_cs_1.SaveAs("%s/DigitalCentroid/resX_cs_1_fit_DigitalCentroid.png"%PlotPath)
+##     can_resX_cs_2.SaveAs("%s/DigitalCentroid/resX_cs_2_fit_DigitalCentroid.png"%PlotPath)
+##     can_resY_cs_0.SaveAs("%s/DigitalCentroid/resY_cs_0_fit_DigitalCentroid.png"%PlotPath)
+##     can_resY_cs_1.SaveAs("%s/DigitalCentroid/resY_cs_1_fit_DigitalCentroid.png"%PlotPath)
+##     can_resY_cs_2.SaveAs("%s/DigitalCentroid/resY_cs_2_fit_DigitalCentroid.png"%PlotPath)
+##         
+## elif method_name == "maxTOT" : 
+##     can_resX_cs_0.SaveAs("%s/maxTOT/resX_cs_0_fit_maxTOT.png"%PlotPath)
+##     can_resX_cs_1.SaveAs("%s/maxTOT/resX_cs_1_fit_maxTOT.png"%PlotPath)
+##     can_resX_cs_2.SaveAs("%s/maxTOT/resX_cs_2_fit_maxTOT.png"%PlotPath)
+##     can_resY_cs_0.SaveAs("%s/maxTOT/resY_cs_0_fit_maxTOT.png"%PlotPath)
+##     can_resY_cs_1.SaveAs("%s/maxTOT/resY_cs_1_fit_maxTOT.png"%PlotPath)
+##     can_resY_cs_2.SaveAs("%s/maxTOT/resY_cs_2_fit_maxTOT.png"%PlotPath)
+##        
+## elif method_name == "EtaCorrection" : 
+##     can_resX_cs_0.SaveAs("%s/EtaCorrection/resX_cs_0_fit_EtaCorrection.png"%PlotPath)
+##     can_resX_cs_1.SaveAs("%s/EtaCorrection/resX_cs_1_fit_EtaCorrection.png"%PlotPath)
+##     can_resX_cs_2.SaveAs("%s/EtaCorrection/resX_cs_2_fit_EtaCorrection.png"%PlotPath)
+##     can_resY_cs_0.SaveAs("%s/EtaCorrection/resY_cs_0_fit_EtaCorrection.png"%PlotPath)
+##     can_resY_cs_1.SaveAs("%s/EtaCorrection/resY_cs_1_fit_EtaCorrection.png"%PlotPath)
+##     can_resY_cs_2.SaveAs("%s/EtaCorrection/resY_cs_2_fit_EtaCorrection.png"%PlotPath)
 #     
-# elif method_name == "DigitalCentroid" :
-#     can_resX_cs_0.SaveAs("%s/DigitalCentroid/resX_cs_0_fit_DigitalCentroid.png"%PlotPath)
-#     can_resX_cs_1.SaveAs("%s/DigitalCentroid/resX_cs_1_fit_DigitalCentroid.png"%PlotPath)
-#     can_resX_cs_2.SaveAs("%s/DigitalCentroid/resX_cs_2_fit_DigitalCentroid.png"%PlotPath)
-#     can_resY_cs_0.SaveAs("%s/DigitalCentroid/resY_cs_0_fit_DigitalCentroid.png"%PlotPath)
-#     can_resY_cs_1.SaveAs("%s/DigitalCentroid/resY_cs_1_fit_DigitalCentroid.png"%PlotPath)
-#     can_resY_cs_2.SaveAs("%s/DigitalCentroid/resY_cs_2_fit_DigitalCentroid.png"%PlotPath)
-#         
-# elif method_name == "maxTOT" : 
-#     can_resX_cs_0.SaveAs("%s/maxTOT/resX_cs_0_fit_maxTOT.png"%PlotPath)
-#     can_resX_cs_1.SaveAs("%s/maxTOT/resX_cs_1_fit_maxTOT.png"%PlotPath)
-#     can_resX_cs_2.SaveAs("%s/maxTOT/resX_cs_2_fit_maxTOT.png"%PlotPath)
-#     can_resY_cs_0.SaveAs("%s/maxTOT/resY_cs_0_fit_maxTOT.png"%PlotPath)
-#     can_resY_cs_1.SaveAs("%s/maxTOT/resY_cs_1_fit_maxTOT.png"%PlotPath)
-#     can_resY_cs_2.SaveAs("%s/maxTOT/resY_cs_2_fit_maxTOT.png"%PlotPath)
-#        
-# elif method_name == "EtaCorrection" : 
-#     can_resX_cs_0.SaveAs("%s/EtaCorrection/resX_cs_0_fit_EtaCorrection.png"%PlotPath)
-#     can_resX_cs_1.SaveAs("%s/EtaCorrection/resX_cs_1_fit_EtaCorrection.png"%PlotPath)
-#     can_resX_cs_2.SaveAs("%s/EtaCorrection/resX_cs_2_fit_EtaCorrection.png"%PlotPath)
-#     can_resY_cs_0.SaveAs("%s/EtaCorrection/resY_cs_0_fit_EtaCorrection.png"%PlotPath)
-#     can_resY_cs_1.SaveAs("%s/EtaCorrection/resY_cs_1_fit_EtaCorrection.png"%PlotPath)
-#     can_resY_cs_2.SaveAs("%s/EtaCorrection/resY_cs_2_fit_EtaCorrection.png"%PlotPath)
-     
-out.cd()
-hx.Write()
-hy.Write()
-histo_hot.Write()
-histo_freq.Write()
-trackX_vs_trackY_plan3.Write()
-trackX_vs_trackY_plan0.Write()
-allTOT.Write
-relX_vs_relY.Write()
-TOT1.Write()
-TOT2.Write()
-TOT3.Write()
-TOT4.Write()
-resX.Write()
-resY.Write()
-HitProb_1_cluster_binning1m.Write()
-HitProb_2_cluster_binning1m.Write()
-HitProb_3_cluster_binning1m.Write()
-HitProb_4_cluster_binning1m.Write()
-HitProb_1_track_binning1m.Write()
-HitProb_2_track_binning1m.Write()
-HitProb_3_track_binning1m.Write()
-HitProb_4_track_binning1m.Write()
-HitProb_1_cluster_binning2m.Write()
-HitProb_2_cluster_binning2m.Write()
-HitProb_3_cluster_binning2m.Write()
-HitProb_4_cluster_binning2m.Write()
-HitProb_1_track_binning2m.Write()
-HitProb_2_track_binning2m.Write()
-HitProb_3_track_binning2m.Write()
-HitProb_4_track_binning2m.Write()
-graph1.Write()
-QrelWrtMindistance.Write()
-hClusterSizeX.Write() 
-hClusterSizeY.Write() 
-hClusterSize.Write()
-hClusterSizeXvsSizeY.Write()
-HitProb_1_correlationX.Write()
-HitProb_2_correlationX.Write()
-HitProb_3_correlationX.Write()
-HitProb_4_correlationX.Write()
-HitProb_1_correlationY.Write()
-HitProb_2_correlationY.Write()
-HitProb_3_correlationY.Write()
-HitProb_4_correlationY.Write()
-for i in range(1,n_cs+2) :
-    resX_cs[i-1].Write()
-    resY_cs[i-1].Write()
-hClusterSizeCounter_percent.Write()
-hClusterSizeCounter.Write()
-       
+#out.cd()
+#hx.Write()
+#hy.Write()
+#histo_hot.Write()
+#histo_freq.Write()
+#trackX_vs_trackY_plan3.Write()
+#trackX_vs_trackY_plan0.Write()
+#allTOT.Write
+#relX_vs_relY.Write()
+#TOT1.Write()
+#TOT2.Write()
+#TOT3.Write()
+#TOT4.Write()
+#resX.Write()
+#resY.Write()
+#HitProb_1_cluster_binning1m.Write()
+#HitProb_2_cluster_binning1m.Write()
+#HitProb_3_cluster_binning1m.Write()
+#HitProb_4_cluster_binning1m.Write()
+#HitProb_1_track_binning1m.Write()
+#HitProb_2_track_binning1m.Write()
+#HitProb_3_track_binning1m.Write()
+#HitProb_4_track_binning1m.Write()
+#HitProb_1_cluster_binning2m.Write()
+#HitProb_2_cluster_binning2m.Write()
+#HitProb_3_cluster_binning2m.Write()
+#HitProb_4_cluster_binning2m.Write()
+#HitProb_1_track_binning2m.Write()
+#HitProb_2_track_binning2m.Write()
+#HitProb_3_track_binning2m.Write()
+#HitProb_4_track_binning2m.Write()
+#graph1.Write()
+#QrelWrtMindistance.Write()
+#hClusterSizeX.Write() 
+#hClusterSizeY.Write() 
+#hClusterSize.Write()
+#hClusterSizeXvsSizeY.Write()
+#HitProb_1_correlationX.Write()
+#HitProb_2_correlationX.Write()
+#HitProb_3_correlationX.Write()
+#HitProb_4_correlationX.Write()
+#HitProb_1_correlationY.Write()
+#HitProb_2_correlationY.Write()
+#HitProb_3_correlationY.Write()
+#HitProb_4_correlationY.Write()
+#for i in range(1,n_cs+2) :
+#    resX_cs[i-1].Write()
+#    resY_cs[i-1].Write()
+#hClusterSizeCounter_percent.Write()
+#hClusterSizeCounter.Write()
+#       
 #aDataSet.DumpClusterTree("run131_uncalibrated_cluster.root")
 #aDataSet_calib.DumpClusterTree("run131_calibrated_cluster.root")
