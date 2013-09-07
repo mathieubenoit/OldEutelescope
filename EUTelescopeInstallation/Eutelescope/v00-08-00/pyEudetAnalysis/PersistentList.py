@@ -12,7 +12,8 @@ class PersistentList :
 
     theBuffer = []
     buffer_length = 0
-
+    def __init__(self):
+        pass
     def __init__(self,name,sync_count_max=10000,buffer_length=10000):
         os.system("rm -fr %s"%name)
         self.database = shelve.open(name, writeback=True)

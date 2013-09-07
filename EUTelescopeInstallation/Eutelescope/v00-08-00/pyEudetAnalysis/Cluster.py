@@ -7,6 +7,26 @@ from Constant import *
 from ROOT import TMath
 from ToolBox import *
 
+
+
+#
+#Compute the additional shift for the hit position du to the charge sharing (eta correction) when neighbor pixels are on the same raw or the same column (neighbor pixels aligned)
+#first parameter:sigma of the eta correction (charge sharing)
+#second parameter:relative charge i.e. Qrel = (charge of the pixel with the highest energy)/(total charge of the cluster)
+#shiftLat
+def shiftLat(sigma_tmp,Qrel_tmp):
+    return sigma_tmp*TMath.ErfInverse(2.*Qrel_tmp-1.)
+
+#
+#Compute the additional shift for the hit position du to the charge sharing (eta correction) when neighbor pixels are on a diadonal
+#first parameter:sigma of the eta correction (charge sharing)
+#second parameter:relative charge i.e. Qrel = (charge of the pixel with the highest energy)/(total charge of the cluster)
+#
+def shiftDiag(sigma_tmp,Qrel_tmp):
+    return sigma_tmp*TMath.ErfInverse(2.*Qrel_tmp-1.)*1./sqrt(2.)
+    
+    
+
 ###############################################################################################################################
 #
 #        Class for the clusters and their properties
@@ -78,7 +98,7 @@ class Cluster:
             self.relY+=(self.row[index]*pitchY)*tot_tmp
         self.relX/=self.totalTOT
         self.relY/=self.totalTOT
-
+#fIXME Should shifted by pix/2
         self.absX=self.relX + pitchX/2. -npix_X*pitchX/2.
         self.absY=self.relY + pitchY/2. -npix_X*pitchX/2.
         self.absZ=0
@@ -180,8 +200,8 @@ class Cluster:
                     self.relX = (self.col[maxTOTindex_tmp]+1.)*pitchX - shiftLat(sigma,Qrel)
                     self.relY = self.row[maxTOTindex_tmp]*pitchY +pitchY/2.
 #                     print "relX : %f"%float(self.relX)
-#                     print "relY : %f"%float(self.relY)
-            elif(self.sizeX==1 and self.sizeY==2) :
+#                     print "relY : %f"%float(self.relY)          
+	    elif(self.sizeX==1 and self.sizeY==2) :
             #cluster size 1x2
                 if(self.row[maxTOTindex_tmp]>self.row[minTOTindex_tmp]) :
                 #neighbor on the bottom side
@@ -190,8 +210,8 @@ class Cluster:
                 elif(self.row[maxTOTindex_tmp]<self.row[minTOTindex_tmp]) :
                 #neighbor on the top side
                     self.relX = self.col[maxTOTindex_tmp]*pitchX + pitchX/2.
-                    self.relY = (self.row[maxTOTindex_tmp]+1.)*pitchY - shiftLat(sigma,Qrel)
-            elif(self.sizeX==2 and self.sizeY==2) :
+                    self.relY = (self.row[maxTOTindex_tmp]+1.)*pitchY - shiftLat(sigma,Qrel)           
+	    elif(self.sizeX==2 and self.sizeY==2) :
             #cluster size 2 with sizeX = 2 and sizeY = 2 i.e. 2 pixels on a diagonal
                 #print"cluster sizeX : 2 ; sizeY : 2 ; size : 2"
 #                     n_sizeX2sizeY2 = n_sizeX2sizeY2 + 1

@@ -7,6 +7,7 @@ from math import *
 from array import array
 from EudetData import *
 from Constant import *
+import time
 
 ###############################################################################################################################
 #
@@ -15,21 +16,6 @@ from Constant import *
 ###############################################################################################################################
 
 
-#
-#Compute the additional shift for the hit position du to the charge sharing (eta correction) when neighbor pixels are on the same raw or the same column (neighbor pixels aligned)
-#first parameter:sigma of the eta correction (charge sharing)
-#second parameter:relative charge i.e. Qrel = (charge of the pixel with the highest energy)/(total charge of the cluster)
-#
-def shiftLat(sigma_tmp,Qrel_tmp):
-    return sigma_tmp*TMath.ErfInverse(2.*Qrel_tmp-1.)
-
-#
-#Compute the additional shift for the hit position du to the charge sharing (eta correction) when neighbor pixels are on a diadonal
-#first parameter:sigma of the eta correction (charge sharing)
-#second parameter:relative charge i.e. Qrel = (charge of the pixel with the highest energy)/(total charge of the cluster)
-#
-def shiftDiag(sigma_tmp,Qrel_tmp):
-    return sigma_tmp*TMath.ErfInverse(2.*Qrel_tmp-1.)*1./sqrt(2.)
 
 
 #
@@ -45,6 +31,8 @@ def CountPixelSize(dataSet):
     n_s4x2y2 = 0.
     n_else = 0.
 
+    last_time = time.time()
+    
     for i,tracks in enumerate(dataSet.AllTracks) :
         for track in tracks :
             if track.cluster!=-11 :
@@ -62,6 +50,10 @@ def CountPixelSize(dataSet):
                     n_s4x2y2 = n_s4x2y2 + 1.
                 else :
                     n_else = n_else + 1.
+		    
+		if(i%1000==0):
+			print "Elapsed time for Counting Cluster Size , event %i: %f s"%(i,(time.time()-last_time))
+
 
     n_tot = n_s1x1y1 + n_s2x1y2 + n_s2x2y1 + n_s2x2y2 + n_s3x2y2 + n_s4x2y2 + n_else
     allSizes = [n_s1x1y1 ,n_s2x1y2 , n_s2x2y1 , n_s2x2y2 , n_s3x2y2 , n_s4x2y2 , n_else]
@@ -147,11 +139,14 @@ def rms(x):
 #first parameter: a data set (class EudetData)
 #second parameter: position of the device under test in the list of planes (the timepix detector in our case)
 #
-def ComputeDetectorAcceptance(dataSet, dut=6):
+def ComputeDetectorAcceptance(dataSet, dut=6, edges = 0):
     n_tracks_in = 0
+    last_time = time.time()
     for i,tracks in enumerate(dataSet.AllTracks) :
         for track in tracks :
-            if (track.trackX[track.iden.index(dut)]>=-(pitchX*npix_X)/2. and track.trackX[track.iden.index(dut)]<=(pitchX*npix_X)/2.) and (track.trackY[track.iden.index(dut)]>=-(pitchY*npix_Y)/2. and track.trackY[track.iden.index(dut)]<=(pitchY*npix_Y)/2.) :
+	    if (i%1000==0):
+	    	print "Elapsed time for track in acceptance, event %i: %f s"%(i,(time.time()-last_time))
+            if (track.trackX[track.iden.index(dut)]>=(-(pitchX*npix_X)/2.-edges) and track.trackX[track.iden.index(dut)]<=((pitchX*npix_X)/2.+edges)) and (track.trackY[track.iden.index(dut)]>=(-(pitchY*npix_Y)/2.-edges) and track.trackY[track.iden.index(dut)]<=((pitchY*npix_Y)/2.+edges)) :
                 n_tracks_in+=1
     return n_tracks_in
 
@@ -353,7 +348,11 @@ def TrackHitProb(dataSet,nbin,dut=6):
     #HitProb_4_track.GetYaxis().SetRangeUser(0.,0.055)
     HitProb_4_track.GetYaxis().SetTitle("Track Y position within pixel [mm]")
 
+    last_time = time.time()
+    
     for i,tracks in enumerate(dataSet.AllTracks) :
+        if(i%1000==0):
+		print "Elapsed time for Hitprob Calculation , event %i: %f s"%(i,(time.time()-last_time))
         for track in tracks :
             if track.cluster!=-11 :
                 if(dataSet.AllClusters[i][track.cluster].size==1) :
@@ -401,6 +400,8 @@ def ClusterHitProb(dataSet,nbin,dut=6):
     #HitProb_4_cluster.GetYaxis().SetRangeUser(0.,0.055)
     HitProb_4_cluster.GetYaxis().SetTitle("Cluster Y position within pixel [mm]")
 
+ 
+
     for i,tracks in enumerate(dataSet.AllTracks) :
         for track in tracks :
             if track.cluster!=-11 :
@@ -420,7 +421,7 @@ def ClusterHitProb(dataSet,nbin,dut=6):
     return HitProb_1_cluster,HitProb_2_cluster,HitProb_3_cluster,HitProb_4_cluster
 
 
-def TrackClusterCorrelation(dataSet,dut=6):
+def TrackClusterCorrelation(dataSet,dut=6,imax=1000):
 
     histox = TH2D("corX","corX",(npix_X),-(npix_X)*pitchX/2.,(npix_X)*pitchX/2.,(npix_X),-(npix_X)*pitchX/2.,(npix_X)*pitchX/2.)
     histoy = TH2D("corY","corY",(npix_Y),-(npix_Y)*pitchY/2.,(npix_Y)*pitchY/2.,(npix_Y),-(npix_Y)*pitchY/2.,(npix_Y)*pitchY/2.)
@@ -429,9 +430,12 @@ def TrackClusterCorrelation(dataSet,dut=6):
     for h in hl :
         h.GetXaxis().SetTitle("Cluster Position (mm)")
         h.GetYaxis().SetTitle("Track position (mm)")
-
-    for i,tracks in enumerate(dataSet.AllTracks) :
-        for track in tracks :
+    last_time = time.time()
+    for i,tracks in enumerate(dataSet.AllTracks[0:imax]) :
+        if(i%1000==0) :
+		print "Correlation, event %i %f s elapsed"%(i,time.time()-last_time)
+	
+	for track in tracks :
             for index,cluster in enumerate(dataSet.AllClusters[i]) :  
                     #cluster.Print()
                 histox.Fill(cluster.absX,track.trackX[track.iden.index(dut)])
@@ -806,7 +810,19 @@ def ApplyAlignment(dataSet,translations,rotations,dut=6,filename="Alignement.txt
             Tracks[index].trackY[track.iden.index(dut)] = tmp[1] + translations[1]
 #             track.trackZ[track.iden.index(dut)] = tmp[2] + translations[2]
 
+def ApplyAlignment(i,dataSet,translations,rotations,dut=6) :
 
+    #print "Applying Alignment with  Rotation : %0.10f %0.10f %0.10f [deg] Trans : %0.10f %0.10f  [mm]"%(rotations[0],rotations[1],rotations[2],translations[0],translations[1])
+    RotMat = RotationMatrix(rotations)
+    #f = open(filename,'w')
+    #f.write("Rotation : %f %f %f [deg] Trans : %f %f  [mm] \n"%(rotations[0],rotations[1],rotations[2],translations[0],translations[1]))
+    #f.close()
+    for Tracks in dataSet.AllTracks[i:(i+1)] :
+        for index,track in enumerate(Tracks) :
+            tmp=np.dot(RotMat,[Tracks[index].trackX[track.iden.index(dut)],Tracks[index].trackY[track.iden.index(dut)],0])
+            Tracks[index].trackX[track.iden.index(dut)] = tmp[0] + translations[0]
+            Tracks[index].trackY[track.iden.index(dut)] = tmp[1] + translations[1]
+#             track.trackZ[track.iden.index(dut)] = tmp[2] + translations[2]
 
 #
 #apply the eta correction i.e. compute the final residuals with the optimum charge sharing sigma

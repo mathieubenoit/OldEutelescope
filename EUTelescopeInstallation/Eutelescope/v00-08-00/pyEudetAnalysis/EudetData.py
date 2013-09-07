@@ -21,17 +21,14 @@ from PersistentList import *
 class EudetData:
     """A container for TBTrack Data """
 
+    RunNumber = 0
+    
     tbtrack_file = 0
     pixelTree = ROOT.TTree()
     TrackTree = ROOT.TTree()
 
     EnergyCut = 0.
     scale =1.
-
-    AllClusters = PersistentList("cluster",250)
-    AllTracks = PersistentList("Track",250)
- #   AllClusters = []
- #   AllTracks = []
 
     p_nEntries = 0
     t_nEntries = 0
@@ -82,7 +79,14 @@ class EudetData:
     frequency_map = [[0 for x in xrange(npix_X)] for x in xrange(npix_Y)]
     hotpixels = []
 
-    def __init__(self,filename,ECut,scale=1.0):
+    def __init__(self,filename,ECut,scale=1.0, Run = 0):
+
+        self.RunNumber = Run
+        
+        #self.AllClusters = PersistentList("cluster_%i"%self.RunNumber,250)
+        #self.AllTracks = PersistentList("Track_%i"%self.RunNumber,250)
+        self.AllClusters = []
+        self.AllTracks = []      
 
         self.scale=scale
         self.tbtrack_file = TFile(filename)
@@ -362,8 +366,8 @@ class EudetData:
             aTrack.trackY = posY_tmp[j*ndata:j*ndata+ndata]
             for index,element in enumerate(aTrack.trackX) :
 #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
-                aTrack.trackY[index] = aTrack.trackY[index]-npix_Y*pitchY/2.-pitchY/2.
-                aTrack.trackY[index] = aTrack.trackY[index]-npix_Y*pitchY/2.-pitchY/2.+pitchY/2.  
+                aTrack.trackX[index] = aTrack.trackX[index]-npix_X*pitchX/2.-pitchX/2.
+		aTrack.trackY[index] = aTrack.trackY[index]-npix_Y*pitchY/2.-pitchY/2.
             aTrack.iden = iden_tmp[j*ndata:j*ndata+ndata]
             aTrack.chi2 = chi2_tmp[j*ndata:j*ndata+ndata]
             aTrack.trackNum = trackNum_tmp[j*ndata:j*ndata+ndata]
@@ -393,16 +397,19 @@ class EudetData:
         # dut = iden of the Device Under Test
 
         clusters_tmp = self.AllClusters[i]
-
+	good_clusters = []
+	good_cnt =0
         for track in self.AllTracks[i] :
             if len(clusters_tmp)!=0 :
                 dut_iden = track.iden.index(dut)
                 for cluster in clusters_tmp :
                     cluster.GetResiduals(track.trackX[dut_iden],track.trackY[dut_iden])
                     if((cluster.resX**2 + cluster.resY**2)<r_max**2) :
-                        track.cluster=cluster.id
+                        cluster.id=good_cnt
+			track.cluster=cluster.id
                         cluster.tracknum=self.t_trackNum
- #                       print "Found a match"
+			good_clusters.append(cluster)
+ 			good_cnt+=1
 #                        print "resX : %f resY : %f"%(cluster.resX,cluster.resY)
 #                        cluster.Print()
 #                        track.Print()
@@ -414,6 +421,22 @@ class EudetData:
 #                        print "resX : %f resY : %f"%(cluster.resX,cluster.resY)
 #                        cluster.Print()
 #                        track.Print()
+
+#	for u,cl1 in enumerate(good_clusters) : 
+#		for v,cl2 in enumerate(good_clusters[u+1:]) :
+#			if(cl1.tracknum==cl2.tracknum) : 
+#				if((cl1.resX**2 + cl2.resY**2)>=(cl2.resX**2 + cl2.resY**2)) : 
+#					good_clusters.pop(v)
+#					break
+#				else :
+#					good_clusters.pop(u)
+#					break
+
+
+	self.AllClusters[i]=good_clusters
+
+
+
 #             if(track.cluster!=-11):
 #
 #                 print "#### a Match #####"
