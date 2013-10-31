@@ -1,9 +1,9 @@
 from ROOT import *
 import ROOT
-from math import fsum
+from math import fsum,fabs
 from array import array
 import pyximport; pyximport.install(pyimport=True)
-from ROOT import TFile,TH1D,TH2D
+from ROOT import TFile,TH1D,TH2D,TF1
 from Cluster import *
 from Track import  *
 #gROOT.LoadMacro("Track.C+")
@@ -22,11 +22,14 @@ class EudetData:
     """A container for TBTrack Data """
 
     RunNumber = 0
-    
+
     tbtrack_file = 0
     pixelTree = ROOT.TTree()
     TrackTree = ROOT.TTree()
 
+    Chi2 = TH1D()
+    Chi2ndof = TH1D()
+    Chi2_Cut=10000000
     EnergyCut = 0.
     scale =1.
 
@@ -63,6 +66,9 @@ class EudetData:
     p_chip= 0
     p_iden= 0
     p_euEv = 0
+    
+    
+    edge = 0
 #     p_col = []
 #     p_row = []
 #     p_tot = []
@@ -79,14 +85,14 @@ class EudetData:
     frequency_map = [[0 for x in xrange(npix_X)] for x in xrange(npix_Y)]
     hotpixels = []
 
-    def __init__(self,filename,ECut,scale=1.0, Run = 0):
+    def __init__(self,filename,ECut,edge=0,scale=1.0, Run = 0):
 
         self.RunNumber = Run
-        
+        self.edge=edge
         #self.AllClusters = PersistentList("cluster_%i"%self.RunNumber,250)
         #self.AllTracks = PersistentList("Track_%i"%self.RunNumber,250)
         self.AllClusters = []
-        self.AllTracks = []      
+        self.AllTracks = []
 
         self.scale=scale
         self.tbtrack_file = TFile(filename)
@@ -100,6 +106,28 @@ class EudetData:
         for i in range(len(self.hit_map)):
             for j in range(len(self.hit_map[0])):
                 self.hit_map[i][j]=0
+
+    def GetChi2Cut(self,reduction_factor=0.95) :
+
+        self.TrackTree.Draw("chi2 >> chi2plot(1000,0,1000)","","goff")
+        self.Chi2 = gROOT.FindObject("chi2plot")
+
+        self.TrackTree.Draw("chi2/ndof >> chi2ndofplot(1000,0,100)","","goff")
+        self.Chi2ndof = gROOT.FindObject("chi2ndofplot")
+        
+
+        totIntegral = reduction_factor*self.Chi2.Integral()
+
+        aBin = 0
+        while(self.Chi2.Integral(0,aBin)<totIntegral) :
+            aBin+=1
+
+        print "Cutting at Chi2 = %f"%(aBin*self.Chi2.GetBinWidth(0))
+        self.Chi2_Cut = aBin*self.Chi2.GetBinWidth(0)
+        return self.Chi2,self.Chi2ndof
+
+
+
 
 
     def FilterHotPixel(self,threshold,Nevents=-1,scaler=1.):
@@ -260,12 +288,23 @@ class EudetData:
         outfile.Write()
         outfile.Close()
 
+    def IsInEdges(self,track,dut=6):
+        is_in = False
+        
 
+        if(fabs(track.trackX[track.iden.index(dut)])<=(halfChip_X+self.edge) and fabs(track.trackY[track.iden.index(dut)])<=(halfChip_Y+self.edge)):
+            is_in = True
+            if(fabs(track.trackX[track.iden.index(dut)])<=(halfChip_X) and fabs(track.trackY[track.iden.index(dut)])<=(halfChip_Y)):
+                is_in=False
+        return is_in
+        
+        
 
 
     def ComputeResiduals(self,i,dut=6) :
 
         nmatch = 0.
+        nmatch_edge = 0
         for track in self.AllTracks[i] :
             for index,cluster in enumerate(self.AllClusters[i]) :
                 #print "looking at track with id %i and cluster with id %i"%(track.cluster,cluster.id)
@@ -273,7 +312,9 @@ class EudetData:
                     cluster.GetResiduals(track.trackX[track.iden.index(dut)],track.trackY[track.iden.index(dut)])
                     #print "after match resX : %f resY : %f"%(cluster.resX,cluster.resY)
                     nmatch+=1
-        return nmatch
+                    if(self.IsInEdges(track)):
+                        nmatch_edge+=1
+        return nmatch,nmatch_edge
 #     def ComputeResiduals(self,i) :
 #         for cluster in self.AllClusters[i] :
 #             cluster.GetResiduals(self.t_posX[3],self.t_posY[3])
@@ -367,15 +408,18 @@ class EudetData:
             for index,element in enumerate(aTrack.trackX) :
 #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
                 aTrack.trackX[index] = aTrack.trackX[index]-npix_X*pitchX/2.-pitchX/2.
-		aTrack.trackY[index] = aTrack.trackY[index]-npix_Y*pitchY/2.-pitchY/2.
+                aTrack.trackY[index] = aTrack.trackY[index]-npix_Y*pitchY/2.-pitchY/2.
             aTrack.iden = iden_tmp[j*ndata:j*ndata+ndata]
             aTrack.chi2 = chi2_tmp[j*ndata:j*ndata+ndata]
             aTrack.trackNum = trackNum_tmp[j*ndata:j*ndata+ndata]
             aTrack.ndof = ndof_tmp[j*ndata:j*ndata+ndata]
             aTrack.dxdz = dxdz_tmp[j*ndata:j*ndata+ndata]
             aTrack.dydz = dydz_tmp[j*ndata:j*ndata+ndata]
-            tracks.append(aTrack)
-            #print aTrack.iden
+
+            if(aTrack.chi2[0]<self.Chi2_Cut):
+                tracks.append(aTrack)
+
+            #print aTrack.chi2
         self.AllTracks.append(tracks)
 
 
@@ -390,15 +434,15 @@ class EudetData:
     #--------------------------------------------------------------- trackNum=[]
     #----------------------------------------------------------------- cluster=0
 
-    def FindMatchedCluster(self,i,r_max,dut=6) :
+    def FindMatchedCluster(self,i,r_max,dut=6,filter_cluster=True) :
 
         # i : event number
         # r_max_X,Y maximum distance in X,Y between track and cluster
         # dut = iden of the Device Under Test
 
         clusters_tmp = self.AllClusters[i]
-	good_clusters = []
-	good_cnt =0
+        good_clusters = []
+        good_cnt =0
         for track in self.AllTracks[i] :
             if len(clusters_tmp)!=0 :
                 dut_iden = track.iden.index(dut)
@@ -406,10 +450,10 @@ class EudetData:
                     cluster.GetResiduals(track.trackX[dut_iden],track.trackY[dut_iden])
                     if((cluster.resX**2 + cluster.resY**2)<r_max**2) :
                         cluster.id=good_cnt
-			track.cluster=cluster.id
+                        track.cluster=cluster.id
                         cluster.tracknum=self.t_trackNum
-			good_clusters.append(cluster)
- 			good_cnt+=1
+                        good_clusters.append(cluster)
+                        good_cnt+=1
 #                        print "resX : %f resY : %f"%(cluster.resX,cluster.resY)
 #                        cluster.Print()
 #                        track.Print()
@@ -422,18 +466,21 @@ class EudetData:
 #                        cluster.Print()
 #                        track.Print()
 
-#	for u,cl1 in enumerate(good_clusters) : 
-#		for v,cl2 in enumerate(good_clusters[u+1:]) :
-#			if(cl1.tracknum==cl2.tracknum) : 
-#				if((cl1.resX**2 + cl2.resY**2)>=(cl2.resX**2 + cl2.resY**2)) : 
-#					good_clusters.pop(v)
-#					break
-#				else :
-#					good_clusters.pop(u)
-#					break
+#       for u,cl1 in enumerate(good_clusters) :
+#               for v,cl2 in enumerate(good_clusters[u+1:]) :
+#                       if(cl1.tracknum==cl2.tracknum) :
+#                               if((cl1.resX**2 + cl2.resY**2)>=(cl2.resX**2 + cl2.resY**2)) :
+#                                       good_clusters.pop(v)
+#                                       break
+#                               else :
+#                                       good_clusters.pop(u)
+#                                       break
 
 
-	self.AllClusters[i]=good_clusters
+        if(filter_cluster) :
+            self.AllClusters[i]=good_clusters
+        else :
+            self.AllClusters[i]=clusters_tmp
 
 
 
@@ -463,7 +510,7 @@ class EudetData:
 
         tmp_track_X = []
         tmp_track_Y = []
-        for ind in range(i,i+scaler): 
+        for ind in range(i,i+scaler):
             for track in self.AllTracks[ind] :
                 tmp_track_X.append(track.trackX[3])
                 tmp_track_Y.append(track.trackY[3])

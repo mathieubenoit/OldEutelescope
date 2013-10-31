@@ -6778,3 +6778,2311 @@ Plugin ./plugins/filedevdummy.so successfuly loaded.
 mpxmgr:
 Frame 0 was not found.
 
+[Fri Aug  2 13:17:21.9165 2013]
+mpxmgr:
+MpxCtrl message: Number of successfully initialized devices (./hwlibs/libMpxHwUSB2.so): 0 (msg. type: 0).
+
+[Fri Aug  2 13:17:21.9357 2013]
+mpxmgr:
+MpxCtrl message: Number of successfully initialized devices (./hwlibs/libMpxHwUSB.so): 0 (msg. type: 0).
+
+[Fri Aug  2 13:17:21.9358 2013]
+mpxmgr:
+MpxCtrl message: Number of successfully initialized devices (./hwlibs/libMpxHwDummy.so): 0 (msg. type: 0).
+
+[Fri Aug  2 13:17:21.9358 2013]
+mpxmgr:
+MpxCtrl message: Number of successfully initialized devices (FileDevice): 0 (msg. type: 0).
+
+[Fri Aug  2 13:17:21.9552 2013]
+mpxmgr:
+Plugin ./plugins/fcheditor.so successfuly loaded.
+
+[Fri Aug  2 13:17:21.9564 2013]
+mpxmgr:
+Plugin ./plugins/filedevdummy.so successfuly loaded.
+
+[Fri Aug  2 13:17:22.1939 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JFrameBrowser.jar successfully loaded.
+
+[Fri Aug  2 13:17:22.2241 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JDeviceSpecific.jar successfully loaded.
+
+[Fri Aug  2 13:17:22.2568 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JPreview.jar successfully loaded.
+
+[Fri Aug  2 13:17:22.2956 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JFlasher.jar successfully loaded.
+
+[Fri Aug  2 13:17:22.3056 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JEqualization.jar successfully loaded.
+
+[Fri Aug  2 13:17:22.3139 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JDacPanel.jar successfully loaded.
+
+[Fri Aug  2 13:17:22.3190 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JFchEditor.jar successfully loaded.
+
+[Fri Aug  2 13:17:22.3721 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JMpxCtrlUI.jar successfully loaded.
+
+[Fri Aug  2 13:17:22.3851 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/ThsEqualization.jar successfully loaded.
+
+[Fri Aug  2 13:17:22.3966 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/LinuxSpecific.jar successfully loaded.
+
+[Fri Aug  2 13:17:22.3967 2013]
+jmpxloader:
+All plugins have been successfully initialized.
+
+[Fri Aug  2 13:17:22.4542 2013]
+jmpxloader:
+Plugin jframebrowser started.
+
+[Fri Aug  2 13:17:22.4554 2013]
+jmpxloader:
+Plugin jdevicespecific started.
+
+[Fri Aug  2 13:17:22.4555 2013]
+jmpxloader:
+Plugin jpreview started.
+
+[Fri Aug  2 13:17:22.4555 2013]
+jmpxloader:
+Plugin jflasher started.
+
+[Fri Aug  2 13:17:22.4556 2013]
+jmpxloader:
+Plugin jequalization started.
+
+[Fri Aug  2 13:17:22.4559 2013]
+jmpxloader:
+Plugin jdacpanel started.
+
+[Fri Aug  2 13:17:22.4559 2013]
+jmpxloader:
+Plugin jfcheditor started.
+
+[Fri Aug  2 13:17:22.4562 2013]
+jmpxloader:
+Plugin jmpxctrlui started.
+
+[Fri Aug  2 13:17:22.4563 2013]
+jmpxloader:
+Plugin thsequalization started.
+
+[Fri Aug  2 13:17:22.4563 2013]
+jmpxloader:
+Plugin linuxspecific started.
+
+[Fri Aug  2 13:17:22.4564 2013]
+jmpxloader:
+Pixelman started.
+
+[Fri Aug  2 13:18:09.3058 2013]
+mpxmgr:
+MpxCtrl message: Number of successfully initialized devices (./hwlibs/libMpxHwUSB2.so): 0 (msg. type: 0).
+
+[Fri Aug  2 13:18:09.3062 2013]
+mpxmgr:
+MpxCtrl message: Number of successfully initialized devices (./hwlibs/libMpxHwUSB.so): 0 (msg. type: 0).
+
+[Fri Aug  2 13:18:09.3063 2013]
+mpxmgr:
+MpxCtrl message: Number of successfully initialized devices (./hwlibs/libMpxHwDummy.so): 0 (msg. type: 0).
+
+[Fri Aug  2 13:18:09.3063 2013]
+mpxmgr:
+MpxCtrl message: Number of successfully initialized devices (FileDevice): 0 (msg. type: 0).
+
+[Fri Aug  2 13:18:09.3068 2013]
+mpxmgr:
+Plugin ./plugins/fcheditor.so successfuly loaded.
+
+[Fri Aug  2 13:18:09.3070 2013]
+mpxmgr:
+Plugin ./plugins/filedevdummy.so successfuly loaded.
+
+[Fri Aug  2 13:18:09.3989 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JFrameBrowser.jar successfully loaded.
+
+[Fri Aug  2 13:18:09.4165 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JDeviceSpecific.jar successfully loaded.
+
+[Fri Aug  2 13:18:09.4336 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JPreview.jar successfully loaded.
+
+[Fri Aug  2 13:18:09.4369 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JFlasher.jar successfully loaded.
+
+[Fri Aug  2 13:18:09.4445 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JEqualization.jar successfully loaded.
+
+[Fri Aug  2 13:18:09.4525 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JDacPanel.jar successfully loaded.
+
+[Fri Aug  2 13:18:09.4558 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JFchEditor.jar successfully loaded.
+
+[Fri Aug  2 13:18:09.4752 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JMpxCtrlUI.jar successfully loaded.
+
+[Fri Aug  2 13:18:09.4872 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/ThsEqualization.jar successfully loaded.
+
+[Fri Aug  2 13:18:09.4993 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/LinuxSpecific.jar successfully loaded.
+
+[Fri Aug  2 13:18:09.4994 2013]
+jmpxloader:
+All plugins have been successfully initialized.
+
+[Fri Aug  2 13:18:09.5170 2013]
+jmpxloader:
+Plugin jframebrowser started.
+
+[Fri Aug  2 13:18:09.5186 2013]
+jmpxloader:
+Plugin jdevicespecific started.
+
+[Fri Aug  2 13:18:09.5187 2013]
+jmpxloader:
+Plugin jpreview started.
+
+[Fri Aug  2 13:18:09.5187 2013]
+jmpxloader:
+Plugin jflasher started.
+
+[Fri Aug  2 13:18:09.5188 2013]
+jmpxloader:
+Plugin jequalization started.
+
+[Fri Aug  2 13:18:09.5193 2013]
+jmpxloader:
+Plugin jdacpanel started.
+
+[Fri Aug  2 13:18:09.5193 2013]
+jmpxloader:
+Plugin jfcheditor started.
+
+[Fri Aug  2 13:18:09.5200 2013]
+jmpxloader:
+Plugin jmpxctrlui started.
+
+[Fri Aug  2 13:18:09.5203 2013]
+jmpxloader:
+Plugin thsequalization started.
+
+[Fri Aug  2 13:18:09.5204 2013]
+jmpxloader:
+Plugin linuxspecific started.
+
+[Fri Aug  2 13:18:09.5204 2013]
+jmpxloader:
+Pixelman started.
+
+[Fri Aug  2 13:19:59.8358 2013]
+mpxmgr:
+MpxCtrl message: Number of successfully initialized devices (./hwlibs/libMpxHwUSB2.so): 1 (msg. type: 0).
+
+[Fri Aug  2 13:19:59.8459 2013]
+mpxmgr:
+MpxCtrl message: Number of successfully initialized devices (./hwlibs/libMpxHwUSB.so): 0 (msg. type: 0).
+
+[Fri Aug  2 13:19:59.8460 2013]
+mpxmgr:
+MpxCtrl message: Number of successfully initialized devices (./hwlibs/libMpxHwDummy.so): 0 (msg. type: 0).
+
+[Fri Aug  2 13:19:59.8460 2013]
+mpxmgr:
+MpxCtrl message: Number of successfully initialized devices (FileDevice): 0 (msg. type: 0).
+
+[Fri Aug  2 13:19:59.8484 2013]
+mpxmgr:
+Plugin ./plugins/fcheditor.so successfuly loaded.
+
+[Fri Aug  2 13:19:59.8486 2013]
+mpxmgr:
+Plugin ./plugins/filedevdummy.so successfuly loaded.
+
+[Fri Aug  2 13:19:59.9151 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JFrameBrowser.jar successfully loaded.
+
+[Fri Aug  2 13:20:00.0827 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JDeviceSpecific.jar successfully loaded.
+
+[Fri Aug  2 13:20:00.4136 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JPreview.jar successfully loaded.
+
+[Fri Aug  2 13:20:00.4168 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JFlasher.jar successfully loaded.
+
+[Fri Aug  2 13:20:00.4269 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JEqualization.jar successfully loaded.
+
+[Fri Aug  2 13:20:00.5010 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JDacPanel.jar successfully loaded.
+
+[Fri Aug  2 13:20:00.5054 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JFchEditor.jar successfully loaded.
+
+[Fri Aug  2 13:20:00.7557 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JMpxCtrlUI.jar successfully loaded.
+
+[Fri Aug  2 13:20:00.9322 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/ThsEqualization.jar successfully loaded.
+
+[Fri Aug  2 13:20:00.9407 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/LinuxSpecific.jar successfully loaded.
+
+[Fri Aug  2 13:20:00.9408 2013]
+jmpxloader:
+All plugins have been successfully initialized.
+
+[Fri Aug  2 13:20:00.9573 2013]
+jmpxloader:
+Plugin jframebrowser started.
+
+[Fri Aug  2 13:20:01.0172 2013]
+jmpxloader:
+Plugin jdevicespecific started.
+
+[Fri Aug  2 13:20:02.0634 2013]
+jmpxloader:
+Plugin jpreview started.
+
+[Fri Aug  2 13:20:02.0635 2013]
+jmpxloader:
+Plugin jflasher started.
+
+[Fri Aug  2 13:20:02.0635 2013]
+jmpxloader:
+Plugin jequalization started.
+
+[Fri Aug  2 13:20:02.5100 2013]
+jmpxloader:
+Plugin jdacpanel started.
+
+[Fri Aug  2 13:20:02.5101 2013]
+jmpxloader:
+Plugin jfcheditor started.
+
+[Fri Aug  2 13:20:02.8971 2013]
+jmpxloader:
+Plugin jmpxctrlui started.
+
+[Fri Aug  2 13:20:02.8972 2013]
+jmpxloader:
+Plugin thsequalization started.
+
+[Fri Aug  2 13:20:02.8972 2013]
+jmpxloader:
+Plugin linuxspecific started.
+
+[Fri Aug  2 13:20:02.8972 2013]
+jmpxloader:
+Pixelman started.
+
+[Fri Aug  2 13:26:41.8708 2013]
+jmpxloader:
+Plugin jframebrowser unloaded.
+
+[Fri Aug  2 13:26:41.8719 2013]
+jmpxloader:
+Plugin jdevicespecific unloaded.
+
+[Fri Aug  2 13:26:41.8738 2013]
+jmpxloader:
+Plugin jpreview unloaded.
+
+[Fri Aug  2 13:26:41.8738 2013]
+jmpxloader:
+Plugin jflasher unloaded.
+
+[Fri Aug  2 13:26:41.8749 2013]
+jmpxloader:
+Plugin jequalization unloaded.
+
+[Fri Aug  2 13:26:41.8760 2013]
+jmpxloader:
+Plugin jdacpanel unloaded.
+
+[Fri Aug  2 13:26:41.8763 2013]
+jmpxloader:
+Plugin jfcheditor unloaded.
+
+[Fri Aug  2 13:26:41.8775 2013]
+jmpxloader:
+Plugin jmpxctrlui unloaded.
+
+[Fri Aug  2 13:26:41.8796 2013]
+jmpxloader:
+Plugin thsequalization unloaded.
+
+[Fri Aug  2 13:26:41.8796 2013]
+jmpxloader:
+Plugin linuxspecific unloaded.
+
+[Fri Aug  2 13:26:41.8796 2013]
+jmpxloader:
+All Java plugins unloaded.
+
+[Fri Aug  2 13:26:41.9396 2013]
+mpxmgr:
+Plugin fcheditor unloaded.
+
+[Fri Aug  2 13:26:41.9397 2013]
+mpxmgr:
+Plugin filedevdummy unloaded.
+
+[Fri Aug  2 13:28:22.1807 2013]
+mpxmgr:
+MpxCtrl message: Number of successfully initialized devices (./hwlibs/libMpxHwUSB2.so): 1 (msg. type: 0).
+
+[Fri Aug  2 13:28:22.1907 2013]
+mpxmgr:
+MpxCtrl message: Number of successfully initialized devices (./hwlibs/libMpxHwUSB.so): 0 (msg. type: 0).
+
+[Fri Aug  2 13:28:22.1908 2013]
+mpxmgr:
+MpxCtrl message: Number of successfully initialized devices (./hwlibs/libMpxHwDummy.so): 0 (msg. type: 0).
+
+[Fri Aug  2 13:28:22.1908 2013]
+mpxmgr:
+MpxCtrl message: Number of successfully initialized devices (FileDevice): 0 (msg. type: 0).
+
+[Fri Aug  2 13:28:22.1918 2013]
+mpxmgr:
+Plugin ./plugins/fcheditor.so successfuly loaded.
+
+[Fri Aug  2 13:28:22.1920 2013]
+mpxmgr:
+Plugin ./plugins/filedevdummy.so successfuly loaded.
+
+[Fri Aug  2 13:28:22.2482 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JFrameBrowser.jar successfully loaded.
+
+[Fri Aug  2 13:28:22.3414 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JDeviceSpecific.jar successfully loaded.
+
+[Fri Aug  2 13:28:22.5785 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JPreview.jar successfully loaded.
+
+[Fri Aug  2 13:28:22.5816 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JFlasher.jar successfully loaded.
+
+[Fri Aug  2 13:28:22.5914 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JEqualization.jar successfully loaded.
+
+[Fri Aug  2 13:28:22.6645 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JDacPanel.jar successfully loaded.
+
+[Fri Aug  2 13:28:22.6678 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JFchEditor.jar successfully loaded.
+
+[Fri Aug  2 13:28:22.8674 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JMpxCtrlUI.jar successfully loaded.
+
+[Fri Aug  2 13:28:23.0274 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/ThsEqualization.jar successfully loaded.
+
+[Fri Aug  2 13:28:23.0412 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/LinuxSpecific.jar successfully loaded.
+
+[Fri Aug  2 13:28:23.0413 2013]
+jmpxloader:
+All plugins have been successfully initialized.
+
+[Fri Aug  2 13:28:23.0519 2013]
+jmpxloader:
+Plugin jframebrowser started.
+
+[Fri Aug  2 13:28:23.0991 2013]
+jmpxloader:
+Plugin jdevicespecific started.
+
+[Fri Aug  2 13:28:23.3080 2013]
+jmpxloader:
+Plugin jpreview started.
+
+[Fri Aug  2 13:28:23.3081 2013]
+jmpxloader:
+Plugin jflasher started.
+
+[Fri Aug  2 13:28:23.3081 2013]
+jmpxloader:
+Plugin jequalization started.
+
+[Fri Aug  2 13:28:23.4853 2013]
+jmpxloader:
+Plugin jdacpanel started.
+
+[Fri Aug  2 13:28:23.4854 2013]
+jmpxloader:
+Plugin jfcheditor started.
+
+[Fri Aug  2 13:28:23.8598 2013]
+jmpxloader:
+Plugin jmpxctrlui started.
+
+[Fri Aug  2 13:28:23.8599 2013]
+jmpxloader:
+Plugin thsequalization started.
+
+[Fri Aug  2 13:28:23.8599 2013]
+jmpxloader:
+Plugin linuxspecific started.
+
+[Fri Aug  2 13:28:23.8599 2013]
+jmpxloader:
+Pixelman started.
+
+[Fri Aug  2 13:28:34.6153 2013]
+mpxmgr:
+MpxCtrl message: Acquisition aborted. (msg. type: -152).
+
+[Fri Aug  2 13:29:41.6836 2013]
+mpxmgr:
+MpxCtrl message: Acquisition aborted. (msg. type: -152).
+
+[Fri Aug  2 13:30:00.5422 2013]
+mpxmgr:
+MpxCtrl message: Acquisition aborted. (msg. type: -152).
+
+[Fri Aug  2 13:30:26.1214 2013]
+mpxmgr:
+MpxCtrl message: Acquisition aborted. (msg. type: -152).
+
+[Fri Aug  2 13:32:21.8900 2013]
+mpxmgr:
+MpxCtrl message: Acquisition aborted. (msg. type: -152).
+
+[Fri Aug  2 13:32:42.5847 2013]
+mpxmgr:
+MpxCtrl message: Acquisition aborted. (msg. type: -152).
+
+[Mon Aug  5 08:26:53.8158 2013]
+mpxmgr:
+MpxCtrl message: Acquisition aborted. (msg. type: -152).
+
+[Mon Aug  5 08:41:25.1619 2013]
+mpxmgr:
+MpxCtrl message: Acquisition aborted. (msg. type: -152).
+
+[Mon Aug  5 08:41:34.8627 2013]
+mpxmgr:
+MpxCtrl message: Acquisition aborted. (msg. type: -152).
+
+[Mon Aug  5 08:41:43.9512 2013]
+mpxmgr:
+MpxCtrl message: Acquisition aborted. (msg. type: -152).
+
+[Mon Aug  5 09:02:31.5755 2013]
+jmpxloader:
+Plugin jframebrowser unloaded.
+
+[Mon Aug  5 09:02:31.8170 2013]
+jmpxloader:
+Plugin jdevicespecific unloaded.
+
+[Mon Aug  5 09:02:31.8336 2013]
+jmpxloader:
+Plugin jpreview unloaded.
+
+[Mon Aug  5 09:02:31.8336 2013]
+jmpxloader:
+Plugin jflasher unloaded.
+
+[Mon Aug  5 09:02:31.8354 2013]
+jmpxloader:
+Plugin jequalization unloaded.
+
+[Mon Aug  5 09:02:31.8369 2013]
+jmpxloader:
+Plugin jdacpanel unloaded.
+
+[Mon Aug  5 09:02:31.8375 2013]
+jmpxloader:
+Plugin jfcheditor unloaded.
+
+[Mon Aug  5 09:02:31.8719 2013]
+jmpxloader:
+Plugin jmpxctrlui unloaded.
+
+[Mon Aug  5 09:02:31.8849 2013]
+jmpxloader:
+Plugin thsequalization unloaded.
+
+[Mon Aug  5 09:02:31.8849 2013]
+jmpxloader:
+Plugin linuxspecific unloaded.
+
+[Mon Aug  5 09:02:31.8849 2013]
+jmpxloader:
+All Java plugins unloaded.
+
+[Mon Aug  5 09:02:32.3290 2013]
+mpxmgr:
+Plugin fcheditor unloaded.
+
+[Mon Aug  5 09:02:32.3291 2013]
+mpxmgr:
+Plugin filedevdummy unloaded.
+
+[Mon Aug  5 09:12:59.9135 2013]
+mpxmgr:
+MpxCtrl message: Number of successfully initialized devices (./hwlibs/libMpxHwUSB2.so): 1 (msg. type: 0).
+
+[Mon Aug  5 09:12:59.9236 2013]
+mpxmgr:
+MpxCtrl message: Number of successfully initialized devices (./hwlibs/libMpxHwUSB.so): 0 (msg. type: 0).
+
+[Mon Aug  5 09:12:59.9236 2013]
+mpxmgr:
+MpxCtrl message: Number of successfully initialized devices (./hwlibs/libMpxHwDummy.so): 0 (msg. type: 0).
+
+[Mon Aug  5 09:12:59.9237 2013]
+mpxmgr:
+MpxCtrl message: Number of successfully initialized devices (FileDevice): 0 (msg. type: 0).
+
+[Mon Aug  5 09:12:59.9252 2013]
+mpxmgr:
+Plugin ./plugins/fcheditor.so successfuly loaded.
+
+[Mon Aug  5 09:12:59.9558 2013]
+mpxmgr:
+Plugin ./plugins/filedevdummy.so successfuly loaded.
+
+[Mon Aug  5 09:13:00.4495 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JFrameBrowser.jar successfully loaded.
+
+[Mon Aug  5 09:13:01.5947 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JDeviceSpecific.jar successfully loaded.
+
+[Mon Aug  5 09:13:02.0447 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JPreview.jar successfully loaded.
+
+[Mon Aug  5 09:13:02.0503 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JFlasher.jar successfully loaded.
+
+[Mon Aug  5 09:13:02.0624 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JEqualization.jar successfully loaded.
+
+[Mon Aug  5 09:13:02.1470 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JDacPanel.jar successfully loaded.
+
+[Mon Aug  5 09:13:02.1540 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JFchEditor.jar successfully loaded.
+
+[Mon Aug  5 09:13:02.8960 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JMpxCtrlUI.jar successfully loaded.
+
+[Mon Aug  5 09:13:03.7119 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/ThsEqualization.jar successfully loaded.
+
+[Mon Aug  5 09:13:03.7266 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/LinuxSpecific.jar successfully loaded.
+
+[Mon Aug  5 09:13:03.7267 2013]
+jmpxloader:
+All plugins have been successfully initialized.
+
+[Mon Aug  5 09:13:03.7419 2013]
+jmpxloader:
+Plugin jframebrowser started.
+
+[Mon Aug  5 09:13:03.9012 2013]
+jmpxloader:
+Plugin jdevicespecific started.
+
+[Mon Aug  5 09:13:04.2696 2013]
+jmpxloader:
+Plugin jpreview started.
+
+[Mon Aug  5 09:13:04.2697 2013]
+jmpxloader:
+Plugin jflasher started.
+
+[Mon Aug  5 09:13:04.2698 2013]
+jmpxloader:
+Plugin jequalization started.
+
+[Mon Aug  5 09:13:04.4489 2013]
+jmpxloader:
+Plugin jdacpanel started.
+
+[Mon Aug  5 09:13:04.4490 2013]
+jmpxloader:
+Plugin jfcheditor started.
+
+[Mon Aug  5 09:13:04.6032 2013]
+jmpxloader:
+Plugin jmpxctrlui started.
+
+[Mon Aug  5 09:13:04.6033 2013]
+jmpxloader:
+Plugin thsequalization started.
+
+[Mon Aug  5 09:13:04.6034 2013]
+jmpxloader:
+Plugin linuxspecific started.
+
+[Mon Aug  5 09:13:04.6034 2013]
+jmpxloader:
+Pixelman started.
+
+[Mon Aug  5 09:13:19.0183 2013]
+mpxmgr:
+MpxCtrl message: Acquisition aborted. (msg. type: -152).
+
+[Mon Aug  5 09:14:42.8172 2013]
+mpxmgr:
+MpxCtrl message: Acquisition aborted. (msg. type: -152).
+
+[Mon Aug  5 10:06:01.5631 2013]
+mpxmgr:
+MpxCtrl message: Acquisition aborted. (msg. type: -152).
+
+[Mon Aug  5 10:07:59.3050 2013]
+mpxmgr:
+MpxCtrl message: Acquisition aborted. (msg. type: -152).
+
+[Mon Aug  5 10:09:58.7560 2013]
+mpxmgr:
+MpxCtrl message: Acquisition aborted. (msg. type: -152).
+
+[Mon Aug  5 10:12:10.1660 2013]
+mpxmgr:
+MpxCtrl message: Acquisition aborted. (msg. type: -152).
+
+[Mon Aug  5 10:13:37.2199 2013]
+mpxmgr:
+MpxCtrl message: Acquisition aborted. (msg. type: -152).
+
+[Mon Aug  5 10:14:20.2062 2013]
+mpxmgr:
+MpxCtrl message: Acquisition aborted. (msg. type: -152).
+
+[Mon Aug  5 10:16:24.4250 2013]
+mpxmgr:
+MpxCtrl message: Acquisition aborted. (msg. type: -152).
+
+[Mon Aug  5 10:20:42.9018 2013]
+mpxmgr:
+MpxCtrl message: Acquisition aborted. (msg. type: -152).
+
+[Mon Aug  5 10:23:44.6710 2013]
+mpxmgr:
+MpxCtrl message: Acquisition aborted. (msg. type: -152).
+
+[Mon Aug  5 10:24:31.6060 2013]
+mpxmgr:
+MpxCtrl message: Acquisition aborted. (msg. type: -152).
+
+[Mon Aug  5 10:27:37.8140 2013]
+mpxmgr:
+MpxCtrl message: Acquisition aborted. (msg. type: -152).
+
+[Mon Aug  5 10:30:34.7751 2013]
+mpxmgr:
+MpxCtrl message: Acquisition aborted. (msg. type: -152).
+
+[Mon Aug  5 10:30:34.7754 2013]
+jthsequalization:
+Equalization: acquisition failed, aborting operation.
+
+[Mon Aug  5 10:33:00.9117 2013]
+mpxmgr:
+MpxCtrl message: Number of successfully initialized devices (./hwlibs/libMpxHwUSB2.so): 1 (msg. type: 0).
+
+[Mon Aug  5 10:33:00.9216 2013]
+mpxmgr:
+MpxCtrl message: Number of successfully initialized devices (./hwlibs/libMpxHwUSB.so): 0 (msg. type: 0).
+
+[Mon Aug  5 10:33:00.9217 2013]
+mpxmgr:
+MpxCtrl message: Number of successfully initialized devices (./hwlibs/libMpxHwDummy.so): 0 (msg. type: 0).
+
+[Mon Aug  5 10:33:00.9217 2013]
+mpxmgr:
+MpxCtrl message: Number of successfully initialized devices (FileDevice): 0 (msg. type: 0).
+
+[Mon Aug  5 10:33:00.9611 2013]
+mpxmgr:
+Plugin ./plugins/fcheditor.so successfuly loaded.
+
+[Mon Aug  5 10:33:00.9615 2013]
+mpxmgr:
+Plugin ./plugins/filedevdummy.so successfuly loaded.
+
+[Mon Aug  5 10:33:01.1566 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JFrameBrowser.jar successfully loaded.
+
+[Mon Aug  5 10:33:01.3360 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JDeviceSpecific.jar successfully loaded.
+
+[Mon Aug  5 10:33:01.6601 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JPreview.jar successfully loaded.
+
+[Mon Aug  5 10:33:01.6658 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JFlasher.jar successfully loaded.
+
+[Mon Aug  5 10:33:01.6803 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JEqualization.jar successfully loaded.
+
+[Mon Aug  5 10:33:01.7651 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JDacPanel.jar successfully loaded.
+
+[Mon Aug  5 10:33:01.7696 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JFchEditor.jar successfully loaded.
+
+[Mon Aug  5 10:33:02.0720 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JMpxCtrlUI.jar successfully loaded.
+
+[Mon Aug  5 10:33:02.4648 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/ThsEqualization.jar successfully loaded.
+
+[Mon Aug  5 10:33:02.4823 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/LinuxSpecific.jar successfully loaded.
+
+[Mon Aug  5 10:33:02.4824 2013]
+jmpxloader:
+All plugins have been successfully initialized.
+
+[Mon Aug  5 10:33:02.5009 2013]
+jmpxloader:
+Plugin jframebrowser started.
+
+[Mon Aug  5 10:33:02.5591 2013]
+jmpxloader:
+Plugin jdevicespecific started.
+
+[Mon Aug  5 10:33:02.8537 2013]
+jmpxloader:
+Plugin jpreview started.
+
+[Mon Aug  5 10:33:02.8538 2013]
+jmpxloader:
+Plugin jflasher started.
+
+[Mon Aug  5 10:33:02.8538 2013]
+jmpxloader:
+Plugin jequalization started.
+
+[Mon Aug  5 10:33:03.0491 2013]
+jmpxloader:
+Plugin jdacpanel started.
+
+[Mon Aug  5 10:33:03.0491 2013]
+jmpxloader:
+Plugin jfcheditor started.
+
+[Mon Aug  5 10:33:03.1991 2013]
+jmpxloader:
+Plugin jmpxctrlui started.
+
+[Mon Aug  5 10:33:03.1992 2013]
+jmpxloader:
+Plugin thsequalization started.
+
+[Mon Aug  5 10:33:03.1992 2013]
+jmpxloader:
+Plugin linuxspecific started.
+
+[Mon Aug  5 10:33:03.1993 2013]
+jmpxloader:
+Pixelman started.
+
+[Mon Aug  5 10:33:26.3803 2013]
+mpxmgr:
+MpxCtrl message: Acquisition aborted. (msg. type: -152).
+
+[Mon Aug  5 10:42:07.6296 2013]
+mpxmgr:
+MpxCtrl message: Acquisition aborted. (msg. type: -152).
+
+[Mon Aug  5 10:43:19.3511 2013]
+mpxmgr:
+MpxCtrl message: Acquisition aborted. (msg. type: -152).
+
+[Mon Aug  5 10:46:25.1424 2013]
+mpxmgr:
+MpxCtrl message: Acquisition aborted. (msg. type: -152).
+
+[Mon Aug  5 10:46:43.8931 2013]
+mpxmgr:
+MpxCtrl message: Acquisition aborted. (msg. type: -152).
+
+[Mon Aug  5 10:59:45.0512 2013]
+mpxmgr:
+MpxCtrl message: Number of successfully initialized devices (./hwlibs/libMpxHwUSB2.so): 1 (msg. type: 0).
+
+[Mon Aug  5 10:59:45.0610 2013]
+mpxmgr:
+MpxCtrl message: Number of successfully initialized devices (./hwlibs/libMpxHwUSB.so): 0 (msg. type: 0).
+
+[Mon Aug  5 10:59:45.0611 2013]
+mpxmgr:
+MpxCtrl message: Number of successfully initialized devices (./hwlibs/libMpxHwDummy.so): 0 (msg. type: 0).
+
+[Mon Aug  5 10:59:45.0611 2013]
+mpxmgr:
+MpxCtrl message: Number of successfully initialized devices (FileDevice): 0 (msg. type: 0).
+
+[Mon Aug  5 10:59:45.0833 2013]
+mpxmgr:
+Plugin ./plugins/fcheditor.so successfuly loaded.
+
+[Mon Aug  5 10:59:45.0835 2013]
+mpxmgr:
+Plugin ./plugins/filedevdummy.so successfuly loaded.
+
+[Mon Aug  5 10:59:45.1415 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JFrameBrowser.jar successfully loaded.
+
+[Mon Aug  5 10:59:45.2505 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JDeviceSpecific.jar successfully loaded.
+
+[Mon Aug  5 10:59:45.4979 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JPreview.jar successfully loaded.
+
+[Mon Aug  5 10:59:45.5009 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JFlasher.jar successfully loaded.
+
+[Mon Aug  5 10:59:45.5100 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JEqualization.jar successfully loaded.
+
+[Mon Aug  5 10:59:45.5797 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JDacPanel.jar successfully loaded.
+
+[Mon Aug  5 10:59:45.5830 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JFchEditor.jar successfully loaded.
+
+[Mon Aug  5 10:59:45.8419 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JMpxCtrlUI.jar successfully loaded.
+
+[Mon Aug  5 10:59:46.0330 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/ThsEqualization.jar successfully loaded.
+
+[Mon Aug  5 10:59:46.0527 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/LinuxSpecific.jar successfully loaded.
+
+[Mon Aug  5 10:59:46.0529 2013]
+jmpxloader:
+All plugins have been successfully initialized.
+
+[Mon Aug  5 10:59:46.0690 2013]
+jmpxloader:
+Plugin jframebrowser started.
+
+[Mon Aug  5 10:59:46.1165 2013]
+jmpxloader:
+Plugin jdevicespecific started.
+
+[Mon Aug  5 10:59:46.4029 2013]
+jmpxloader:
+Plugin jpreview started.
+
+[Mon Aug  5 10:59:46.4030 2013]
+jmpxloader:
+Plugin jflasher started.
+
+[Mon Aug  5 10:59:46.4030 2013]
+jmpxloader:
+Plugin jequalization started.
+
+[Mon Aug  5 10:59:46.5889 2013]
+jmpxloader:
+Plugin jdacpanel started.
+
+[Mon Aug  5 10:59:46.5889 2013]
+jmpxloader:
+Plugin jfcheditor started.
+
+[Mon Aug  5 10:59:46.7338 2013]
+jmpxloader:
+Plugin jmpxctrlui started.
+
+[Mon Aug  5 10:59:46.7338 2013]
+jmpxloader:
+Plugin thsequalization started.
+
+[Mon Aug  5 10:59:46.7339 2013]
+jmpxloader:
+Plugin linuxspecific started.
+
+[Mon Aug  5 10:59:46.7339 2013]
+jmpxloader:
+Pixelman started.
+
+[Mon Aug  5 11:01:06.8679 2013]
+mpxmgr:
+MpxCtrl message: Number of successfully initialized devices (./hwlibs/libMpxHwUSB2.so): 1 (msg. type: 0).
+
+[Mon Aug  5 11:01:06.8778 2013]
+mpxmgr:
+MpxCtrl message: Number of successfully initialized devices (./hwlibs/libMpxHwUSB.so): 0 (msg. type: 0).
+
+[Mon Aug  5 11:01:06.8779 2013]
+mpxmgr:
+MpxCtrl message: Number of successfully initialized devices (./hwlibs/libMpxHwDummy.so): 0 (msg. type: 0).
+
+[Mon Aug  5 11:01:06.8779 2013]
+mpxmgr:
+MpxCtrl message: Number of successfully initialized devices (FileDevice): 0 (msg. type: 0).
+
+[Mon Aug  5 11:01:06.8789 2013]
+mpxmgr:
+Plugin ./plugins/fcheditor.so successfuly loaded.
+
+[Mon Aug  5 11:01:06.8791 2013]
+mpxmgr:
+Plugin ./plugins/filedevdummy.so successfuly loaded.
+
+[Mon Aug  5 11:01:06.9350 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JFrameBrowser.jar successfully loaded.
+
+[Mon Aug  5 11:01:07.0450 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JDeviceSpecific.jar successfully loaded.
+
+[Mon Aug  5 11:01:07.2664 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JPreview.jar successfully loaded.
+
+[Mon Aug  5 11:01:07.2695 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JFlasher.jar successfully loaded.
+
+[Mon Aug  5 11:01:07.2788 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JEqualization.jar successfully loaded.
+
+[Mon Aug  5 11:01:07.3492 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JDacPanel.jar successfully loaded.
+
+[Mon Aug  5 11:01:07.3539 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JFchEditor.jar successfully loaded.
+
+[Mon Aug  5 11:01:07.5643 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JMpxCtrlUI.jar successfully loaded.
+
+[Mon Aug  5 11:01:07.7193 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/ThsEqualization.jar successfully loaded.
+
+[Mon Aug  5 11:01:07.7328 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/LinuxSpecific.jar successfully loaded.
+
+[Mon Aug  5 11:01:07.7329 2013]
+jmpxloader:
+All plugins have been successfully initialized.
+
+[Mon Aug  5 11:01:07.7428 2013]
+jmpxloader:
+Plugin jframebrowser started.
+
+[Mon Aug  5 11:01:07.7923 2013]
+jmpxloader:
+Plugin jdevicespecific started.
+
+[Mon Aug  5 11:01:08.0840 2013]
+jmpxloader:
+Plugin jpreview started.
+
+[Mon Aug  5 11:01:08.0841 2013]
+jmpxloader:
+Plugin jflasher started.
+
+[Mon Aug  5 11:01:08.0841 2013]
+jmpxloader:
+Plugin jequalization started.
+
+[Mon Aug  5 11:01:08.2530 2013]
+jmpxloader:
+Plugin jdacpanel started.
+
+[Mon Aug  5 11:01:08.2531 2013]
+jmpxloader:
+Plugin jfcheditor started.
+
+[Mon Aug  5 11:01:08.4008 2013]
+jmpxloader:
+Plugin jmpxctrlui started.
+
+[Mon Aug  5 11:01:08.4008 2013]
+jmpxloader:
+Plugin thsequalization started.
+
+[Mon Aug  5 11:01:08.4009 2013]
+jmpxloader:
+Plugin linuxspecific started.
+
+[Mon Aug  5 11:01:08.4009 2013]
+jmpxloader:
+Pixelman started.
+
+[Mon Aug  5 11:20:13.7913 2013]
+mpxmgr:
+MpxCtrl message: Acquisition aborted. (msg. type: -152).
+
+[Mon Aug  5 11:21:36.8809 2013]
+mpxmgr:
+MpxCtrl message: Acquisition aborted. (msg. type: -152).
+
+[Mon Aug  5 11:22:41.2880 2013]
+mpxmgr:
+MpxCtrl message: Acquisition aborted. (msg. type: -152).
+
+[Mon Aug  5 11:23:58.3727 2013]
+mpxmgr:
+MpxCtrl message: Acquisition aborted. (msg. type: -152).
+
+[Mon Aug  5 11:25:28.5827 2013]
+mpxmgr:
+MpxCtrl message: Acquisition aborted. (msg. type: -152).
+
+[Mon Aug  5 11:26:58.0113 2013]
+mpxmgr:
+MpxCtrl message: Acquisition aborted. (msg. type: -152).
+
+[Mon Aug  5 11:27:47.5867 2013]
+mpxmgr:
+MpxCtrl message: Acquisition aborted. (msg. type: -152).
+
+[Mon Aug  5 11:27:47.5871 2013]
+jthsequalization:
+Equalization: acquisition failed, aborting operation.
+
+[Mon Aug  5 11:31:11.6157 2013]
+mpxmgr:
+MpxCtrl message: Acquisition aborted. (msg. type: -152).
+
+[Mon Aug  5 11:31:11.6173 2013]
+jthsequalization:
+Equalization: acquisition failed, aborting operation.
+
+[Mon Aug  5 11:33:38.5927 2013]
+mpxmgr:
+MpxCtrl message: Acquisition aborted. (msg. type: -152).
+
+[Mon Aug  5 11:33:38.5931 2013]
+jthsequalization:
+Equalization: acquisition failed, aborting operation.
+
+[Mon Aug  5 11:34:55.1013 2013]
+mpxmgr:
+MpxCtrl message: Acquisition aborted. (msg. type: -152).
+
+[Mon Aug  5 11:34:55.1017 2013]
+jthsequalization:
+Equalization: acquisition failed, aborting operation.
+
+[Mon Aug  5 11:36:04.2022 2013]
+mpxmgr:
+MpxCtrl message: Number of successfully initialized devices (./hwlibs/libMpxHwUSB2.so): 1 (msg. type: 0).
+
+[Mon Aug  5 11:36:04.2122 2013]
+mpxmgr:
+MpxCtrl message: Number of successfully initialized devices (./hwlibs/libMpxHwUSB.so): 0 (msg. type: 0).
+
+[Mon Aug  5 11:36:04.2123 2013]
+mpxmgr:
+MpxCtrl message: Number of successfully initialized devices (./hwlibs/libMpxHwDummy.so): 0 (msg. type: 0).
+
+[Mon Aug  5 11:36:04.2123 2013]
+mpxmgr:
+MpxCtrl message: Number of successfully initialized devices (FileDevice): 0 (msg. type: 0).
+
+[Mon Aug  5 11:36:04.2132 2013]
+mpxmgr:
+Plugin ./plugins/fcheditor.so successfuly loaded.
+
+[Mon Aug  5 11:36:04.2134 2013]
+mpxmgr:
+Plugin ./plugins/filedevdummy.so successfuly loaded.
+
+[Mon Aug  5 11:36:04.2728 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JFrameBrowser.jar successfully loaded.
+
+[Mon Aug  5 11:36:04.3719 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JDeviceSpecific.jar successfully loaded.
+
+[Mon Aug  5 11:36:04.6124 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JPreview.jar successfully loaded.
+
+[Mon Aug  5 11:36:04.6161 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JFlasher.jar successfully loaded.
+
+[Mon Aug  5 11:36:04.6264 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JEqualization.jar successfully loaded.
+
+[Mon Aug  5 11:36:04.6994 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JDacPanel.jar successfully loaded.
+
+[Mon Aug  5 11:36:04.7058 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JFchEditor.jar successfully loaded.
+
+[Mon Aug  5 11:36:04.9294 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JMpxCtrlUI.jar successfully loaded.
+
+[Mon Aug  5 11:36:05.1709 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/ThsEqualization.jar successfully loaded.
+
+[Mon Aug  5 11:36:05.1864 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/LinuxSpecific.jar successfully loaded.
+
+[Mon Aug  5 11:36:05.1866 2013]
+jmpxloader:
+All plugins have been successfully initialized.
+
+[Mon Aug  5 11:36:05.1978 2013]
+jmpxloader:
+Plugin jframebrowser started.
+
+[Mon Aug  5 11:36:05.2508 2013]
+jmpxloader:
+Plugin jdevicespecific started.
+
+[Mon Aug  5 11:36:05.5348 2013]
+jmpxloader:
+Plugin jpreview started.
+
+[Mon Aug  5 11:36:05.5349 2013]
+jmpxloader:
+Plugin jflasher started.
+
+[Mon Aug  5 11:36:05.5350 2013]
+jmpxloader:
+Plugin jequalization started.
+
+[Mon Aug  5 11:36:05.7018 2013]
+jmpxloader:
+Plugin jdacpanel started.
+
+[Mon Aug  5 11:36:05.7019 2013]
+jmpxloader:
+Plugin jfcheditor started.
+
+[Mon Aug  5 11:36:05.8773 2013]
+jmpxloader:
+Plugin jmpxctrlui started.
+
+[Mon Aug  5 11:36:05.8774 2013]
+jmpxloader:
+Plugin thsequalization started.
+
+[Mon Aug  5 11:36:05.8774 2013]
+jmpxloader:
+Plugin linuxspecific started.
+
+[Mon Aug  5 11:36:05.8774 2013]
+jmpxloader:
+Pixelman started.
+
+[Mon Aug  5 11:36:17.4180 2013]
+mpxmgr:
+MpxCtrl message: Acquisition aborted. (msg. type: -152).
+
+[Mon Aug  5 11:36:24.3633 2013]
+mpxmgr:
+MpxCtrl message: Acquisition aborted. (msg. type: -152).
+
+[Mon Aug  5 11:46:28.1013 2013]
+mpxmgr:
+MpxCtrl message: Acquisition aborted. (msg. type: -152).
+
+[Mon Aug  5 11:47:25.4395 2013]
+mpxmgr:
+MpxCtrl message: Acquisition aborted. (msg. type: -152).
+
+[Mon Aug  5 11:47:42.1204 2013]
+mpxmgr:
+Frame 14273 was not found.
+
+[Mon Aug  5 11:47:45.7741 2013]
+mpxmgr:
+Frame 14273 was not found.
+
+[Mon Aug  5 11:47:46.5970 2013]
+mpxmgr:
+Frame 14273 was not found.
+
+[Mon Aug  5 11:52:49.3600 2013]
+mpxmgr:
+MpxCtrl message: Acquisition aborted. (msg. type: -152).
+
+[Mon Aug  5 11:52:49.3603 2013]
+jthsequalization:
+Equalization: acquisition failed, aborting operation.
+
+[Mon Aug  5 12:53:39.7737 2013]
+mpxmgr:
+MpxCtrl message: Acquisition aborted. (msg. type: -152).
+
+[Mon Aug  5 12:57:33.6715 2013]
+mpxmgr:
+MpxCtrl message: Acquisition aborted. (msg. type: -152).
+
+[Mon Aug  5 13:01:56.8820 2013]
+mpxmgr:
+MpxCtrl message: Acquisition aborted. (msg. type: -152).
+
+[Mon Aug  5 13:02:29.6330 2013]
+mpxmgr:
+MpxCtrl message: Acquisition aborted. (msg. type: -152).
+
+[Mon Aug  5 13:04:04.9911 2013]
+mpxmgr:
+MpxCtrl message: Acquisition aborted. (msg. type: -152).
+
+[Mon Aug  5 13:05:10.6773 2013]
+mpxmgr:
+MpxCtrl message: Acquisition aborted. (msg. type: -152).
+
+[Mon Aug  5 13:05:18.0048 2013]
+mpxmgr:
+MpxCtrl message: Acquisition aborted. (msg. type: -152).
+
+[Mon Aug  5 13:05:18.0051 2013]
+jthsequalization:
+Equalization: acquisition failed, aborting operation.
+
+[Mon Aug  5 13:05:33.6119 2013]
+mpxmgr:
+MpxCtrl message: Number of successfully initialized devices (./hwlibs/libMpxHwUSB2.so): 1 (msg. type: 0).
+
+[Mon Aug  5 13:05:33.6218 2013]
+mpxmgr:
+MpxCtrl message: Number of successfully initialized devices (./hwlibs/libMpxHwUSB.so): 0 (msg. type: 0).
+
+[Mon Aug  5 13:05:33.6219 2013]
+mpxmgr:
+MpxCtrl message: Number of successfully initialized devices (./hwlibs/libMpxHwDummy.so): 0 (msg. type: 0).
+
+[Mon Aug  5 13:05:33.6219 2013]
+mpxmgr:
+MpxCtrl message: Number of successfully initialized devices (FileDevice): 0 (msg. type: 0).
+
+[Mon Aug  5 13:05:33.6403 2013]
+mpxmgr:
+Plugin ./plugins/fcheditor.so successfuly loaded.
+
+[Mon Aug  5 13:05:33.6405 2013]
+mpxmgr:
+Plugin ./plugins/filedevdummy.so successfuly loaded.
+
+[Mon Aug  5 13:05:33.6968 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JFrameBrowser.jar successfully loaded.
+
+[Mon Aug  5 13:05:33.7923 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JDeviceSpecific.jar successfully loaded.
+
+[Mon Aug  5 13:05:34.0138 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JPreview.jar successfully loaded.
+
+[Mon Aug  5 13:05:34.0169 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JFlasher.jar successfully loaded.
+
+[Mon Aug  5 13:05:34.0375 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JEqualization.jar successfully loaded.
+
+[Mon Aug  5 13:05:34.1110 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JDacPanel.jar successfully loaded.
+
+[Mon Aug  5 13:05:34.1146 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JFchEditor.jar successfully loaded.
+
+[Mon Aug  5 13:05:34.3549 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JMpxCtrlUI.jar successfully loaded.
+
+[Mon Aug  5 13:05:34.5535 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/ThsEqualization.jar successfully loaded.
+
+[Mon Aug  5 13:05:34.5678 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/LinuxSpecific.jar successfully loaded.
+
+[Mon Aug  5 13:05:34.5679 2013]
+jmpxloader:
+All plugins have been successfully initialized.
+
+[Mon Aug  5 13:05:34.5801 2013]
+jmpxloader:
+Plugin jframebrowser started.
+
+[Mon Aug  5 13:05:34.6433 2013]
+jmpxloader:
+Plugin jdevicespecific started.
+
+[Mon Aug  5 13:05:34.9486 2013]
+jmpxloader:
+Plugin jpreview started.
+
+[Mon Aug  5 13:05:34.9487 2013]
+jmpxloader:
+Plugin jflasher started.
+
+[Mon Aug  5 13:05:34.9487 2013]
+jmpxloader:
+Plugin jequalization started.
+
+[Mon Aug  5 13:05:35.1260 2013]
+jmpxloader:
+Plugin jdacpanel started.
+
+[Mon Aug  5 13:05:35.1261 2013]
+jmpxloader:
+Plugin jfcheditor started.
+
+[Mon Aug  5 13:05:35.2771 2013]
+jmpxloader:
+Plugin jmpxctrlui started.
+
+[Mon Aug  5 13:05:35.2772 2013]
+jmpxloader:
+Plugin thsequalization started.
+
+[Mon Aug  5 13:05:35.2772 2013]
+jmpxloader:
+Plugin linuxspecific started.
+
+[Mon Aug  5 13:05:35.2772 2013]
+jmpxloader:
+Pixelman started.
+
+[Mon Aug  5 13:06:21.8739 2013]
+mpxmgr:
+MpxCtrl message: Acquisition aborted. (msg. type: -152).
+
+[Mon Aug  5 13:06:21.8744 2013]
+jthsequalization:
+Equalization: acquisition failed, aborting operation.
+
+[Mon Aug  5 13:07:56.0577 2013]
+mpxmgr:
+MpxCtrl message: Number of successfully initialized devices (./hwlibs/libMpxHwUSB2.so): 1 (msg. type: 0).
+
+[Mon Aug  5 13:07:56.0677 2013]
+mpxmgr:
+MpxCtrl message: Number of successfully initialized devices (./hwlibs/libMpxHwUSB.so): 0 (msg. type: 0).
+
+[Mon Aug  5 13:07:56.0677 2013]
+mpxmgr:
+MpxCtrl message: Number of successfully initialized devices (./hwlibs/libMpxHwDummy.so): 0 (msg. type: 0).
+
+[Mon Aug  5 13:07:56.0678 2013]
+mpxmgr:
+MpxCtrl message: Number of successfully initialized devices (FileDevice): 0 (msg. type: 0).
+
+[Mon Aug  5 13:07:56.0688 2013]
+mpxmgr:
+Plugin ./plugins/fcheditor.so successfuly loaded.
+
+[Mon Aug  5 13:07:56.0690 2013]
+mpxmgr:
+Plugin ./plugins/filedevdummy.so successfuly loaded.
+
+[Mon Aug  5 13:07:56.1313 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JFrameBrowser.jar successfully loaded.
+
+[Mon Aug  5 13:07:56.2308 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JDeviceSpecific.jar successfully loaded.
+
+[Mon Aug  5 13:07:56.4560 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JPreview.jar successfully loaded.
+
+[Mon Aug  5 13:07:56.4590 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JFlasher.jar successfully loaded.
+
+[Mon Aug  5 13:07:56.4683 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JEqualization.jar successfully loaded.
+
+[Mon Aug  5 13:07:56.5384 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JDacPanel.jar successfully loaded.
+
+[Mon Aug  5 13:07:56.5415 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JFchEditor.jar successfully loaded.
+
+[Mon Aug  5 13:07:56.7445 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JMpxCtrlUI.jar successfully loaded.
+
+[Mon Aug  5 13:07:56.8988 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/ThsEqualization.jar successfully loaded.
+
+[Mon Aug  5 13:07:56.9124 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/LinuxSpecific.jar successfully loaded.
+
+[Mon Aug  5 13:07:56.9125 2013]
+jmpxloader:
+All plugins have been successfully initialized.
+
+[Mon Aug  5 13:07:56.9227 2013]
+jmpxloader:
+Plugin jframebrowser started.
+
+[Mon Aug  5 13:07:56.9871 2013]
+jmpxloader:
+Plugin jdevicespecific started.
+
+[Mon Aug  5 13:07:57.2896 2013]
+jmpxloader:
+Plugin jpreview started.
+
+[Mon Aug  5 13:07:57.2897 2013]
+jmpxloader:
+Plugin jflasher started.
+
+[Mon Aug  5 13:07:57.2897 2013]
+jmpxloader:
+Plugin jequalization started.
+
+[Mon Aug  5 13:07:57.4780 2013]
+jmpxloader:
+Plugin jdacpanel started.
+
+[Mon Aug  5 13:07:57.4781 2013]
+jmpxloader:
+Plugin jfcheditor started.
+
+[Mon Aug  5 13:07:57.6289 2013]
+jmpxloader:
+Plugin jmpxctrlui started.
+
+[Mon Aug  5 13:07:57.6290 2013]
+jmpxloader:
+Plugin thsequalization started.
+
+[Mon Aug  5 13:07:57.6291 2013]
+jmpxloader:
+Plugin linuxspecific started.
+
+[Mon Aug  5 13:07:57.6291 2013]
+jmpxloader:
+Pixelman started.
+
+[Mon Aug  5 13:08:41.0057 2013]
+mpxmgr:
+MpxCtrl message: Acquisition aborted. (msg. type: -152).
+
+[Mon Aug  5 13:08:41.0061 2013]
+jthsequalization:
+Equalization: acquisition failed, aborting operation.
+
+[Mon Aug  5 13:08:52.1872 2013]
+mpxmgr:
+MpxCtrl message: Acquisition aborted. (msg. type: -152).
+
+[Mon Aug  5 13:08:52.1876 2013]
+jthsequalization:
+Equalization: acquisition failed, aborting operation.
+
+[Mon Aug  5 13:09:02.0874 2013]
+mpxmgr:
+MpxCtrl message: Acquisition aborted. (msg. type: -152).
+
+[Mon Aug  5 13:09:02.0877 2013]
+jthsequalization:
+Equalization: acquisition failed, aborting operation.
+
+[Mon Aug  5 13:09:09.9826 2013]
+mpxmgr:
+MpxCtrl message: Acquisition aborted. (msg. type: -152).
+
+[Mon Aug  5 13:09:09.9830 2013]
+jthsequalization:
+Equalization: acquisition failed, aborting operation.
+
+[Mon Aug  5 13:09:21.8660 2013]
+mpxmgr:
+MpxCtrl message: Acquisition aborted. (msg. type: -152).
+
+[Mon Aug  5 13:09:21.8665 2013]
+jthsequalization:
+Equalization: acquisition failed, aborting operation.
+
+[Mon Aug  5 13:09:36.1556 2013]
+mpxmgr:
+MpxCtrl message: Acquisition aborted. (msg. type: -152).
+
+[Mon Aug  5 13:09:36.1560 2013]
+jthsequalization:
+Equalization: acquisition failed, aborting operation.
+
+[Mon Aug  5 13:09:43.5768 2013]
+mpxmgr:
+MpxCtrl message: Acquisition aborted. (msg. type: -152).
+
+[Mon Aug  5 13:09:43.5772 2013]
+jthsequalization:
+Equalization: acquisition failed, aborting operation.
+
+[Mon Aug  5 13:11:39.3983 2013]
+mpxmgr:
+MpxCtrl message: Number of successfully initialized devices (./hwlibs/libMpxHwUSB2.so): 1 (msg. type: 0).
+
+[Mon Aug  5 13:11:39.4083 2013]
+mpxmgr:
+MpxCtrl message: Number of successfully initialized devices (./hwlibs/libMpxHwUSB.so): 0 (msg. type: 0).
+
+[Mon Aug  5 13:11:39.4084 2013]
+mpxmgr:
+MpxCtrl message: Number of successfully initialized devices (./hwlibs/libMpxHwDummy.so): 0 (msg. type: 0).
+
+[Mon Aug  5 13:11:39.4084 2013]
+mpxmgr:
+MpxCtrl message: Number of successfully initialized devices (FileDevice): 0 (msg. type: 0).
+
+[Mon Aug  5 13:11:39.4093 2013]
+mpxmgr:
+Plugin ./plugins/fcheditor.so successfuly loaded.
+
+[Mon Aug  5 13:11:39.4095 2013]
+mpxmgr:
+Plugin ./plugins/filedevdummy.so successfuly loaded.
+
+[Mon Aug  5 13:11:39.4650 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JFrameBrowser.jar successfully loaded.
+
+[Mon Aug  5 13:11:39.5600 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JDeviceSpecific.jar successfully loaded.
+
+[Mon Aug  5 13:11:39.7838 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JPreview.jar successfully loaded.
+
+[Mon Aug  5 13:11:39.7868 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JFlasher.jar successfully loaded.
+
+[Mon Aug  5 13:11:39.7961 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JEqualization.jar successfully loaded.
+
+[Mon Aug  5 13:11:39.8677 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JDacPanel.jar successfully loaded.
+
+[Mon Aug  5 13:11:39.8723 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JFchEditor.jar successfully loaded.
+
+[Mon Aug  5 13:11:40.0770 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JMpxCtrlUI.jar successfully loaded.
+
+[Mon Aug  5 13:11:40.2320 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/ThsEqualization.jar successfully loaded.
+
+[Mon Aug  5 13:11:40.2457 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/LinuxSpecific.jar successfully loaded.
+
+[Mon Aug  5 13:11:40.2458 2013]
+jmpxloader:
+All plugins have been successfully initialized.
+
+[Mon Aug  5 13:11:40.2561 2013]
+jmpxloader:
+Plugin jframebrowser started.
+
+[Mon Aug  5 13:11:40.3138 2013]
+jmpxloader:
+Plugin jdevicespecific started.
+
+[Mon Aug  5 13:11:40.5560 2013]
+jmpxloader:
+Plugin jpreview started.
+
+[Mon Aug  5 13:11:40.5561 2013]
+jmpxloader:
+Plugin jflasher started.
+
+[Mon Aug  5 13:11:40.5561 2013]
+jmpxloader:
+Plugin jequalization started.
+
+[Mon Aug  5 13:11:40.7088 2013]
+jmpxloader:
+Plugin jdacpanel started.
+
+[Mon Aug  5 13:11:40.7089 2013]
+jmpxloader:
+Plugin jfcheditor started.
+
+[Mon Aug  5 13:11:40.8548 2013]
+jmpxloader:
+Plugin jmpxctrlui started.
+
+[Mon Aug  5 13:11:40.8549 2013]
+jmpxloader:
+Plugin thsequalization started.
+
+[Mon Aug  5 13:11:40.8549 2013]
+jmpxloader:
+Plugin linuxspecific started.
+
+[Mon Aug  5 13:11:40.8549 2013]
+jmpxloader:
+Pixelman started.
+
+[Mon Aug  5 13:12:30.4501 2013]
+mpxmgr:
+MpxCtrl message: Number of successfully initialized devices (./hwlibs/libMpxHwUSB2.so): 1 (msg. type: 0).
+
+[Mon Aug  5 13:12:30.4601 2013]
+mpxmgr:
+MpxCtrl message: Number of successfully initialized devices (./hwlibs/libMpxHwUSB.so): 0 (msg. type: 0).
+
+[Mon Aug  5 13:12:30.4602 2013]
+mpxmgr:
+MpxCtrl message: Number of successfully initialized devices (./hwlibs/libMpxHwDummy.so): 0 (msg. type: 0).
+
+[Mon Aug  5 13:12:30.4602 2013]
+mpxmgr:
+MpxCtrl message: Number of successfully initialized devices (FileDevice): 0 (msg. type: 0).
+
+[Mon Aug  5 13:12:30.4612 2013]
+mpxmgr:
+Plugin ./plugins/fcheditor.so successfuly loaded.
+
+[Mon Aug  5 13:12:30.4613 2013]
+mpxmgr:
+Plugin ./plugins/filedevdummy.so successfuly loaded.
+
+[Mon Aug  5 13:12:30.5161 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JFrameBrowser.jar successfully loaded.
+
+[Mon Aug  5 13:12:30.6115 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JDeviceSpecific.jar successfully loaded.
+
+[Mon Aug  5 13:12:30.8333 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JPreview.jar successfully loaded.
+
+[Mon Aug  5 13:12:30.8363 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JFlasher.jar successfully loaded.
+
+[Mon Aug  5 13:12:30.8456 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JEqualization.jar successfully loaded.
+
+[Mon Aug  5 13:12:30.9145 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JDacPanel.jar successfully loaded.
+
+[Mon Aug  5 13:12:30.9177 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JFchEditor.jar successfully loaded.
+
+[Mon Aug  5 13:12:31.1213 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JMpxCtrlUI.jar successfully loaded.
+
+[Mon Aug  5 13:12:31.2761 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/ThsEqualization.jar successfully loaded.
+
+[Mon Aug  5 13:12:31.2906 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/LinuxSpecific.jar successfully loaded.
+
+[Mon Aug  5 13:12:31.2907 2013]
+jmpxloader:
+All plugins have been successfully initialized.
+
+[Mon Aug  5 13:12:31.3017 2013]
+jmpxloader:
+Plugin jframebrowser started.
+
+[Mon Aug  5 13:12:31.3805 2013]
+jmpxloader:
+Plugin jdevicespecific started.
+
+[Mon Aug  5 13:12:31.6859 2013]
+jmpxloader:
+Plugin jpreview started.
+
+[Mon Aug  5 13:12:31.6860 2013]
+jmpxloader:
+Plugin jflasher started.
+
+[Mon Aug  5 13:12:31.6861 2013]
+jmpxloader:
+Plugin jequalization started.
+
+[Mon Aug  5 13:12:31.8652 2013]
+jmpxloader:
+Plugin jdacpanel started.
+
+[Mon Aug  5 13:12:31.8653 2013]
+jmpxloader:
+Plugin jfcheditor started.
+
+[Mon Aug  5 13:12:32.0175 2013]
+jmpxloader:
+Plugin jmpxctrlui started.
+
+[Mon Aug  5 13:12:32.0176 2013]
+jmpxloader:
+Plugin thsequalization started.
+
+[Mon Aug  5 13:12:32.0177 2013]
+jmpxloader:
+Plugin linuxspecific started.
+
+[Mon Aug  5 13:12:32.0177 2013]
+jmpxloader:
+Pixelman started.
+
+[Mon Aug  5 13:24:25.5738 2013]
+mpxmgr:
+MpxCtrl message: Acquisition aborted. (msg. type: -152).
+
+[Mon Aug  5 13:24:44.6705 2013]
+mpxmgr:
+MpxCtrl message: Acquisition aborted. (msg. type: -152).
+
+[Mon Aug  5 13:28:18.6155 2013]
+mpxmgr:
+MpxCtrl message: Acquisition aborted. (msg. type: -152).
+
+[Mon Aug  5 13:28:25.7298 2013]
+mpxmgr:
+MpxCtrl message: Acquisition aborted. (msg. type: -152).
+
+[Mon Aug  5 13:28:58.5653 2013]
+mpxmgr:
+MpxCtrl message: Acquisition aborted. (msg. type: -152).
+
+[Mon Aug  5 13:29:07.9615 2013]
+mpxmgr:
+MpxCtrl message: Acquisition aborted. (msg. type: -152).
+
+[Mon Aug  5 13:30:21.7208 2013]
+mpxmgr:
+MpxCtrl message: Acquisition aborted. (msg. type: -152).
+
+[Mon Aug  5 13:30:30.1223 2013]
+mpxmgr:
+MpxCtrl message: Acquisition aborted. (msg. type: -152).
+
+[Mon Aug  5 13:31:39.9647 2013]
+mpxmgr:
+MpxCtrl message: Acquisition aborted. (msg. type: -152).
+
+[Mon Aug  5 13:34:18.1754 2013]
+mpxmgr:
+MpxCtrl message: Number of successfully initialized devices (./hwlibs/libMpxHwUSB2.so): 1 (msg. type: 0).
+
+[Mon Aug  5 13:34:18.1853 2013]
+mpxmgr:
+MpxCtrl message: Number of successfully initialized devices (./hwlibs/libMpxHwUSB.so): 0 (msg. type: 0).
+
+[Mon Aug  5 13:34:18.1854 2013]
+mpxmgr:
+MpxCtrl message: Number of successfully initialized devices (./hwlibs/libMpxHwDummy.so): 0 (msg. type: 0).
+
+[Mon Aug  5 13:34:18.1854 2013]
+mpxmgr:
+MpxCtrl message: Number of successfully initialized devices (FileDevice): 0 (msg. type: 0).
+
+[Mon Aug  5 13:34:18.1863 2013]
+mpxmgr:
+Plugin ./plugins/fcheditor.so successfuly loaded.
+
+[Mon Aug  5 13:34:18.1870 2013]
+mpxmgr:
+Plugin ./plugins/filedevdummy.so successfuly loaded.
+
+[Mon Aug  5 13:34:18.2711 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JFrameBrowser.jar successfully loaded.
+
+[Mon Aug  5 13:34:18.3844 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JDeviceSpecific.jar successfully loaded.
+
+[Mon Aug  5 13:34:18.6222 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JPreview.jar successfully loaded.
+
+[Mon Aug  5 13:34:18.6268 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JFlasher.jar successfully loaded.
+
+[Mon Aug  5 13:34:18.6388 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JEqualization.jar successfully loaded.
+
+[Mon Aug  5 13:34:18.7175 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JDacPanel.jar successfully loaded.
+
+[Mon Aug  5 13:34:18.7220 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JFchEditor.jar successfully loaded.
+
+[Mon Aug  5 13:34:18.9494 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JMpxCtrlUI.jar successfully loaded.
+
+[Mon Aug  5 13:34:19.1232 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/ThsEqualization.jar successfully loaded.
+
+[Mon Aug  5 13:34:19.1398 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/LinuxSpecific.jar successfully loaded.
+
+[Mon Aug  5 13:34:19.1399 2013]
+jmpxloader:
+All plugins have been successfully initialized.
+
+[Mon Aug  5 13:34:19.1507 2013]
+jmpxloader:
+Plugin jframebrowser started.
+
+[Mon Aug  5 13:34:19.1984 2013]
+jmpxloader:
+Plugin jdevicespecific started.
+
+[Mon Aug  5 13:34:19.5052 2013]
+jmpxloader:
+Plugin jpreview started.
+
+[Mon Aug  5 13:34:19.5053 2013]
+jmpxloader:
+Plugin jflasher started.
+
+[Mon Aug  5 13:34:19.5053 2013]
+jmpxloader:
+Plugin jequalization started.
+
+[Mon Aug  5 13:34:19.6817 2013]
+jmpxloader:
+Plugin jdacpanel started.
+
+[Mon Aug  5 13:34:19.6818 2013]
+jmpxloader:
+Plugin jfcheditor started.
+
+[Mon Aug  5 13:34:19.8543 2013]
+jmpxloader:
+Plugin jmpxctrlui started.
+
+[Mon Aug  5 13:34:19.8544 2013]
+jmpxloader:
+Plugin thsequalization started.
+
+[Mon Aug  5 13:34:19.8544 2013]
+jmpxloader:
+Plugin linuxspecific started.
+
+[Mon Aug  5 13:34:19.8544 2013]
+jmpxloader:
+Pixelman started.
+
+[Mon Aug  5 13:34:28.7786 2013]
+mpxmgr:
+MpxCtrl message: Acquisition aborted. (msg. type: -152).
+
+[Mon Aug  5 13:34:35.3717 2013]
+mpxmgr:
+MpxCtrl message: Acquisition aborted. (msg. type: -152).
+
+[Mon Aug  5 13:34:46.2492 2013]
+mpxmgr:
+MpxCtrl message: Acquisition aborted. (msg. type: -152).
+
+[Mon Aug  5 13:47:20.6280 2013]
+mpxmgr:
+MpxCtrl message: Acquisition aborted. (msg. type: -152).
+
+[Mon Aug  5 13:47:46.3064 2013]
+mpxmgr:
+MpxCtrl message: Acquisition aborted. (msg. type: -152).
+
+[Mon Aug  5 13:48:25.2478 2013]
+mpxmgr:
+Frame 10279 was not found.
+
+[Mon Aug  5 13:49:40.4568 2013]
+mpxmgr:
+MpxCtrl message: Acquisition aborted. (msg. type: -152).
+
+[Mon Aug  5 13:52:02.9656 2013]
+mpxmgr:
+MpxCtrl message: Acquisition aborted. (msg. type: -152).
+
+[Mon Aug  5 13:52:52.7383 2013]
+mpxmgr:
+MpxCtrl message: Acquisition aborted. (msg. type: -152).
+
+[Mon Aug  5 13:53:40.8450 2013]
+mpxmgr:
+MpxCtrl message: Acquisition aborted. (msg. type: -152).
+
+[Mon Aug  5 13:54:07.5114 2013]
+mpxmgr:
+MpxCtrl message: Number of successfully initialized devices (./hwlibs/libMpxHwUSB2.so): 1 (msg. type: 0).
+
+[Mon Aug  5 13:54:07.5212 2013]
+mpxmgr:
+MpxCtrl message: Number of successfully initialized devices (./hwlibs/libMpxHwUSB.so): 0 (msg. type: 0).
+
+[Mon Aug  5 13:54:07.5213 2013]
+mpxmgr:
+MpxCtrl message: Number of successfully initialized devices (./hwlibs/libMpxHwDummy.so): 0 (msg. type: 0).
+
+[Mon Aug  5 13:54:07.5213 2013]
+mpxmgr:
+MpxCtrl message: Number of successfully initialized devices (FileDevice): 0 (msg. type: 0).
+
+[Mon Aug  5 13:54:07.5223 2013]
+mpxmgr:
+Plugin ./plugins/fcheditor.so successfuly loaded.
+
+[Mon Aug  5 13:54:07.5224 2013]
+mpxmgr:
+Plugin ./plugins/filedevdummy.so successfuly loaded.
+
+[Mon Aug  5 13:54:07.5821 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JFrameBrowser.jar successfully loaded.
+
+[Mon Aug  5 13:54:07.6871 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JDeviceSpecific.jar successfully loaded.
+
+[Mon Aug  5 13:54:07.9391 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JPreview.jar successfully loaded.
+
+[Mon Aug  5 13:54:07.9422 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JFlasher.jar successfully loaded.
+
+[Mon Aug  5 13:54:07.9533 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JEqualization.jar successfully loaded.
+
+[Mon Aug  5 13:54:08.0301 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JDacPanel.jar successfully loaded.
+
+[Mon Aug  5 13:54:08.0354 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JFchEditor.jar successfully loaded.
+
+[Mon Aug  5 13:54:08.2643 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JMpxCtrlUI.jar successfully loaded.
+
+[Mon Aug  5 13:54:08.4407 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/ThsEqualization.jar successfully loaded.
+
+[Mon Aug  5 13:54:08.4552 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/LinuxSpecific.jar successfully loaded.
+
+[Mon Aug  5 13:54:08.4553 2013]
+jmpxloader:
+All plugins have been successfully initialized.
+
+[Mon Aug  5 13:54:08.4659 2013]
+jmpxloader:
+Plugin jframebrowser started.
+
+[Mon Aug  5 13:54:08.5210 2013]
+jmpxloader:
+Plugin jdevicespecific started.
+
+[Mon Aug  5 13:54:08.8183 2013]
+jmpxloader:
+Plugin jpreview started.
+
+[Mon Aug  5 13:54:08.8184 2013]
+jmpxloader:
+Plugin jflasher started.
+
+[Mon Aug  5 13:54:08.8184 2013]
+jmpxloader:
+Plugin jequalization started.
+
+[Mon Aug  5 13:54:09.0256 2013]
+jmpxloader:
+Plugin jdacpanel started.
+
+[Mon Aug  5 13:54:09.0257 2013]
+jmpxloader:
+Plugin jfcheditor started.
+
+[Mon Aug  5 13:54:09.2166 2013]
+jmpxloader:
+Plugin jmpxctrlui started.
+
+[Mon Aug  5 13:54:09.2167 2013]
+jmpxloader:
+Plugin thsequalization started.
+
+[Mon Aug  5 13:54:09.2167 2013]
+jmpxloader:
+Plugin linuxspecific started.
+
+[Mon Aug  5 13:54:09.2168 2013]
+jmpxloader:
+Pixelman started.
+
+[Mon Aug  5 13:55:41.0401 2013]
+mpxmgr:
+MpxCtrl message: Acquisition aborted. (msg. type: -152).
+
+[Tue Aug  6 09:56:52.7215 2013]
+mpxmgr:
+MpxCtrl message: Number of successfully initialized devices (./hwlibs/libMpxHwUSB2.so): 1 (msg. type: 0).
+
+[Tue Aug  6 09:56:52.7543 2013]
+mpxmgr:
+MpxCtrl message: Number of successfully initialized devices (./hwlibs/libMpxHwUSB.so): 0 (msg. type: 0).
+
+[Tue Aug  6 09:56:52.7544 2013]
+mpxmgr:
+MpxCtrl message: Number of successfully initialized devices (./hwlibs/libMpxHwDummy.so): 0 (msg. type: 0).
+
+[Tue Aug  6 09:56:52.7545 2013]
+mpxmgr:
+MpxCtrl message: Number of successfully initialized devices (FileDevice): 0 (msg. type: 0).
+
+[Tue Aug  6 09:56:52.7967 2013]
+mpxmgr:
+Plugin ./plugins/fcheditor.so successfuly loaded.
+
+[Tue Aug  6 09:56:52.8066 2013]
+mpxmgr:
+Plugin ./plugins/filedevdummy.so successfuly loaded.
+
+[Tue Aug  6 09:56:53.0886 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JFrameBrowser.jar successfully loaded.
+
+[Tue Aug  6 09:56:53.3624 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JDeviceSpecific.jar successfully loaded.
+
+[Tue Aug  6 09:56:53.7738 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JPreview.jar successfully loaded.
+
+[Tue Aug  6 09:56:53.7802 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JFlasher.jar successfully loaded.
+
+[Tue Aug  6 09:56:53.8203 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JEqualization.jar successfully loaded.
+
+[Tue Aug  6 09:56:53.9962 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JDacPanel.jar successfully loaded.
+
+[Tue Aug  6 09:56:54.0015 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JFchEditor.jar successfully loaded.
+
+[Tue Aug  6 09:56:54.5503 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/JMpxCtrlUI.jar successfully loaded.
+
+[Tue Aug  6 09:56:55.0221 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/ThsEqualization.jar successfully loaded.
+
+[Tue Aug  6 09:56:55.0472 2013]
+jmpxloader:
+Plugin /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/eudaq/trunk/TimepixProducer/Pixelman_SCL_2011_12_07/jplugins/LinuxSpecific.jar successfully loaded.
+
+[Tue Aug  6 09:56:55.0473 2013]
+jmpxloader:
+All plugins have been successfully initialized.
+
+[Tue Aug  6 09:56:55.0990 2013]
+jmpxloader:
+Plugin jframebrowser started.
+
+[Tue Aug  6 09:56:55.1598 2013]
+jmpxloader:
+Plugin jdevicespecific started.
+
+[Tue Aug  6 09:56:55.5755 2013]
+jmpxloader:
+Plugin jpreview started.
+
+[Tue Aug  6 09:56:55.5756 2013]
+jmpxloader:
+Plugin jflasher started.
+
+[Tue Aug  6 09:56:55.5757 2013]
+jmpxloader:
+Plugin jequalization started.
+
+[Tue Aug  6 09:56:55.8275 2013]
+jmpxloader:
+Plugin jdacpanel started.
+
+[Tue Aug  6 09:56:55.8276 2013]
+jmpxloader:
+Plugin jfcheditor started.
+
+[Tue Aug  6 09:56:55.9741 2013]
+jmpxloader:
+Plugin jmpxctrlui started.
+
+[Tue Aug  6 09:56:55.9742 2013]
+jmpxloader:
+Plugin thsequalization started.
+
+[Tue Aug  6 09:56:55.9742 2013]
+jmpxloader:
+Plugin linuxspecific started.
+
+[Tue Aug  6 09:56:55.9743 2013]
+jmpxloader:
+Pixelman started.
+
+[Tue Aug  6 09:58:30.9082 2013]
+mpxmgr:
+MpxCtrl message: Acquisition aborted. (msg. type: -152).
+
+[Tue Aug  6 09:58:30.9091 2013]
+jthsequalization:
+Equalization: acquisition failed, aborting operation.
+
+[Tue Aug  6 09:59:38.8785 2013]
+mpxmgr:
+MpxCtrl message: Acquisition aborted. (msg. type: -152).
+
+[Tue Aug  6 09:59:38.8793 2013]
+jthsequalization:
+Equalization: acquisition failed, aborting operation.
+
+[Tue Aug  6 10:00:16.4527 2013]
+mpxmgr:
+MpxCtrl message: Acquisition aborted. (msg. type: -152).
+
+[Tue Aug  6 10:00:16.4535 2013]
+jthsequalization:
+Equalization: acquisition failed, aborting operation.
+

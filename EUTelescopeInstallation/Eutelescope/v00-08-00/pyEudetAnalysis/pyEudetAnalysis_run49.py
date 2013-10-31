@@ -8,6 +8,44 @@ from ToolBox import *
 import pyximport; pyximport.install(pyimport=True)
 from EudetData import *
 from array import array
+
+from optparse import OptionParser
+
+parser = OptionParser()
+parser.add_option("-r", "--run",
+                  help="Run Number", dest="RUN")
+
+parser.add_option("-n", "--nevent",
+                  help="Number of events to process", dest="NEVENT")
+
+parser.add_option("-m", "--method",
+                  help="Position Reconstruction Method, QWeighted,  DigitalCentroid, maxTOT, EtaCorrection", dest="METHOD", default="QWeighted")
+
+parser.add_option("-d", "--data",
+                  help="tbtrack Input Folder", dest="INPUT")
+parser.add_option("-o", "--output",
+                  help="Histrgrams and results output folder", dest="OUTPUT", default=".")
+
+(options, args) = parser.parse_args()
+
+
+RunNumber = int(options.RUN)
+
+if(options.METHOD) :
+    method_name=options.METHOD
+else:
+    method_name = "QWeighted"
+
+# method_name = "QWeighted"
+# method_name = "DigitalCentroid"
+# method_name = "maxTOT"
+#method_name = "EtaCorrection"
+
+if(options.INPUT):
+    input_folder=options.INPUT
+
+if(options.OUTPUT):
+    PlotPath=options.OUTPUT
 #
 ###############################################################################################################################
 # first compile the code in ROOT using ACLIC: (testLangauFit.C)
@@ -23,7 +61,7 @@ from array import array
 
 ###############################################################################################################################
 
-PlotPath = "/VertexScratch/TB_Data/DESY_TB_DATA_August2013_results/pyEudetAnalysis_plots"
+#PlotPath = "/VertexScratch/TB_Data/DESY_TB_DATA_August2013_results/pyEudetAnalysis_plots"
 
 # global n_sizeX2sizeY2
 
@@ -63,22 +101,21 @@ def TGraph_style (h) :
 gStyle.SetOptStat("nemruoi")
 gStyle.SetOptFit(1111)
 
-# method_name = "QWeighted"
-# method_name = "DigitalCentroid"
-# method_name = "maxTOT"
-method_name = "EtaCorrection"
 
-
-RunNumber = 49
 
 
 #aDataSet = EudetData("/VertexScratch/TB_Data/DESY_TB_DATA_02_07-06-2013_results/histo/tbtrackrun000062.root",500.0)
-aDataSet = EudetData("/VertexScratch/TB_Data/DESY_TB_DATA_August2013_results/histo/tbtrackrun%06i.root"%RunNumber,50000.0,1)
+aDataSet = EudetData("%s/tbtrackrun00048-51.root"%(input_folder),50000.0,1)
 
 scaler = 1
-n_proc= aDataSet.p_nEntries
 #n_proc= 25000
 
+if(options.NEVENT):
+    n_proc= int(options.NEVENT)
+else :
+    n_proc= aDataSet.t_nEntries
+
+print "Running on run %i, with Method %s, on %i Events"%(RunNumber,method_name,n_proc)
 # aDataSet.PrintTBranchElement()
 
 trackX_vs_trackY_plan3 = TH2D("trackX_vs_trackY_plan3","track_posX[3] wrt track_posY[3]",300,-20.,20.,300,-20.,20.)
@@ -119,31 +156,31 @@ for i in range(0,n_proc,scaler) :
     aDataSet.ClusterEvent(i,method_name,0.003,scaler)
     #print "Event %i"%i
     for ind in range(i,i+scaler):
-    	#print "copying to event %i"%ind
+    #print "copying to event %i"%ind
         aDataSet.GetTrack(ind)
         trackX_vs_trackY_plan3.Fill(aDataSet.t_posX[3],aDataSet.t_posY[3])
         trackX_vs_trackY_plan0.Fill(aDataSet.t_posX[0],aDataSet.t_posY[0])
-	ApplyAlignment(ind,aDataSet,[0.97, 0, 0.],[0.0000000000, 0.0000000000,0.0])
-	ApplyAlignment(ind,aDataSet,[-0.0133203125,0.0264765625 , 0],[0.0001507365,0.0000010899,0.4010109594])
-    	aDataSet.FindMatchedCluster(ind,0.3 ,6)
-	n_matched+=aDataSet.ComputeResiduals(ind)
-	if ind%1000 ==0 :
-       		print "Event %d"%ind
-        	print "Elapsed time/1000 Event : %f s"%(time.time()-last_time)
-        	last_time = time.time()
-        	#print h.heap()
-    
+        ApplyAlignment(ind,aDataSet,[0.97, 0, 0.],[0.0000000000, 0.0000000000,0.0])
+        ApplyAlignment(ind,aDataSet,[-0.0133203125,0.0264765625 , 0],[0.0001507365,0.0000010899,0.4010109594])
+        aDataSet.FindMatchedCluster(ind,0.3 ,6)
+        n_matched+=aDataSet.ComputeResiduals(ind)
+        if ind%1000 ==0 :
+            print "Event %d"%ind
+            print "Elapsed time/1000 Event : %f s"%(time.time()-last_time)
+            last_time = time.time()
+            #print h.heap()
+
     #aDataSet.PrintClusters(i)
     #aDataSet.PrintEvent(i)
 
 
- 
-#for i,clusters in enumerate(aDataSet.AllClusters[0:100]): 
-#	print "event %i	"%i
-#	for cluster in clusters : 
-#		if(cluster.id==1):
-#			cluster.Print()
-			
+
+#for i,clusters in enumerate(aDataSet.AllClusters[0:100]):
+#       print "event %i "%i
+#       for cluster in clusters :
+#               if(cluster.id==1):
+#                       cluster.Print()
+
 
 
 
@@ -220,13 +257,15 @@ print "Elapsed time for Correlation : %f s"%(time.time()-last_time)
 
 #hxc,hyc = TrackClusterCorrelation(aDataSet_calib)
 
-#if (method_name == "EtaCorrection") :
-#    # ressigmachargeX, ressigmachargeY = FindSigmaMin(aDataSet,10000,1)
-#    ressigmachargeX, ressigmachargeY = FindSigmaMin(aDataSet,aDataSet.p_nEntries,20)
-#    print "ressigmachargeX : %f"%float(ressigmachargeX)
-#    print "ressigmachargeY : %f"%float(ressigmachargeY)
-#
-#    ApplyEtaCorrection(aDataSet,ressigmachargeX,ressigmachargeY)
+if (method_name == "EtaCorrection") :
+    # ressigmachargeX, ressigmachargeY = FindSigmaMin(aDataSet,10000,1)
+    ressigmachargeX, ressigmachargeY = FindSigmaMin(aDataSet,aDataSet.p_nEntries,20)
+    print "ressigmachargeX : %f"%float(ressigmachargeX)
+    print "ressigmachargeY : %f"%float(ressigmachargeY)
+
+    ApplyEtaCorrection(aDataSet,ressigmachargeX,ressigmachargeY)
+
+
 
 # for j,tracks in enumerate(aDataSet.AllTracks) :
 #     for track in tracks :
@@ -549,8 +588,8 @@ allTOT.Draw()
 #
 #                        landau * gauss fit, allTOT
 #
-################################################################################################################################ 
- 
+################################################################################################################################
+
 # #langaufit(allTOT,fr_allTOT,sv_allTOT,pllo_allTOT,plhi_allTOT,fp_allTOT,fpe_allTOT,chisqr_allTOT,ndf_allTOT)
 # #
 # # allTOT : his               histogram to fit
@@ -560,27 +599,27 @@ allTOT.Draw()
 # # plhi_allTOT : parlimitshi  upper parameter limits
 # # fp_allTOT : fitparams      returns the final fit parameters
 # # fpe_allTOT : fiterrors     returns the final fit errors
-#  
-#  
+#
+#
 # fr_allTOT = array('d',[0.2*TOT2.GetMean(),3.0*TOT2.GetMean()])
-# sv_allTOT = array('d',[1.8,20.0,50000.0,3.0]) 
+# sv_allTOT = array('d',[1.8,20.0,50000.0,3.0])
 # pllo_allTOT = array('d',[0.5,5.0,1.0,0.4])
-# plhi_allTOT = array('d',[5.0,50.0,1000000.0,5.0]) 
-# fp_allTOT = array('d',[0.]) 
-# fpe_allTOT = array('d',[0.]) 
-#  
+# plhi_allTOT = array('d',[5.0,50.0,1000000.0,5.0])
+# fp_allTOT = array('d',[0.])
+# fpe_allTOT = array('d',[0.])
+#
 # chisqr_allTOT = array('d',[0.])
 # ndf_allTOT = array('i',[0])
-# allTOTPeak = ROOT.Double(0.) 
-# allTOTFWHM = ROOT.Double(0.) 
-#  
-#  
+# allTOTPeak = ROOT.Double(0.)
+# allTOTFWHM = ROOT.Double(0.)
+#
+#
 # fitallTOT = langaufit(allTOT,fr_allTOT,sv_allTOT,pllo_allTOT,plhi_allTOT,fp_allTOT,fpe_allTOT,chisqr_allTOT,ndf_allTOT)
 # langaupro(fp_allTOT,allTOTPeak,allTOTFWHM)
-#  
+#
 # print"Fitting done\nPlotting results...\n"
-#  
-#  
+#
+#
 # canvasTest_allTOT = TCanvas()
 # canvasTest_allTOT.cd()
 # allTOT.Draw()
@@ -592,9 +631,9 @@ allTOT.Draw()
 
 ###############################################################################################################################
 #
-#                        landau * gauss fit, TOT2 
+#                        landau * gauss fit, TOT2
 #
-################################################################################################################################ 
+################################################################################################################################
 
 # #langaufit(TOT2,fr_TOT2,sv_TOT2,pllo_TOT2,plhi_TOT2,fp_TOT2,fpe_TOT2,chisqr_TOT2,ndf_TOT2)
 # #
@@ -605,26 +644,26 @@ allTOT.Draw()
 # # plhi_TOT2 : parlimitshi  upper parameter limits
 # # fp_TOT2 : fitparams      returns the final fit parameters
 # # fpe_TOT2 : fiterrors     returns the final fit errors
-#  
+#
 # fr_TOT2 = array('d',[0.2*TOT2.GetMean(),3.0*TOT2.GetMean()])
-# sv_TOT2 = array('d',[1.8,20.0,50000.0,3.0]) 
+# sv_TOT2 = array('d',[1.8,20.0,50000.0,3.0])
 # pllo_TOT2 = array('d',[0.5,5.0,1.0,0.4])
-# plhi_TOT2 = array('d',[5.0,50.0,1000000.0,5.0]) 
-# fp_TOT2 = array('d',[0.]) 
-# fpe_TOT2 = array('d',[0.]) 
-#  
+# plhi_TOT2 = array('d',[5.0,50.0,1000000.0,5.0])
+# fp_TOT2 = array('d',[0.])
+# fpe_TOT2 = array('d',[0.])
+#
 # chisqr_TOT2 = array('d',[0.])
 # ndf_TOT2 = array('i',[0])
-# TOT2Peak = ROOT.Double(0.) 
-# TOT2FWHM = ROOT.Double(0.) 
-#  
-#  
+# TOT2Peak = ROOT.Double(0.)
+# TOT2FWHM = ROOT.Double(0.)
+#
+#
 # fitTOT2 = langaufit(TOT2,fr_TOT2,sv_TOT2,pllo_TOT2,plhi_TOT2,fp_TOT2,fpe_TOT2,chisqr_TOT2,ndf_TOT2)
 # langaupro(fp_TOT2,TOT2Peak,TOT2FWHM)
-#  
+#
 # print"Fitting done\nPlotting results...\n"
-#  
-#  
+#
+#
 # canvasTest_TOT2 = TCanvas()
 # canvasTest_TOT2.cd()
 # TOT2.Draw()
@@ -636,7 +675,7 @@ allTOT.Draw()
 
 ###############################################################################################################################
 #
-#                        landau * gauss fit, TOT4 
+#                        landau * gauss fit, TOT4
 #
 ###############################################################################################################################
 
@@ -649,26 +688,26 @@ allTOT.Draw()
 # # plhi_TOT4 : parlimitshi  upper parameter limits
 # # fp_TOT4 : fitparams      returns the final fit parameters
 # # fpe_TOT4 : fiterrors     returns the final fit errors
-#   
+#
 # fr_TOT4 = array('d',[0.2*TOT4.GetMean(),3.0*TOT4.GetMean()])
-# sv_TOT4 = array('d',[1.8,20.0,50000.0,3.0]) 
+# sv_TOT4 = array('d',[1.8,20.0,50000.0,3.0])
 # pllo_TOT4 = array('d',[0.5,5.0,1.0,0.4])
-# plhi_TOT4 = array('d',[5.0,50.0,1000000.0,5.0]) 
-# fp_TOT4 = array('d',[0.]) 
-# fpe_TOT4 = array('d',[0.]) 
-#   
+# plhi_TOT4 = array('d',[5.0,50.0,1000000.0,5.0])
+# fp_TOT4 = array('d',[0.])
+# fpe_TOT4 = array('d',[0.])
+#
 # chisqr_TOT4 = array('d',[0.])
 # ndf_TOT4 = array('i',[0])
-# TOT4Peak = ROOT.Double(0.) 
-# TOT4FWHM = ROOT.Double(0.) 
-#   
-#   
+# TOT4Peak = ROOT.Double(0.)
+# TOT4FWHM = ROOT.Double(0.)
+#
+#
 # fitTOT4 = langaufit(TOT4,fr_TOT4,sv_TOT4,pllo_TOT4,plhi_TOT4,fp_TOT4,fpe_TOT4,chisqr_TOT4,ndf_TOT4)
 # langaupro(fp_TOT4,TOT4Peak,TOT4FWHM)
-#   
+#
 # print"Fitting done\nPlotting results...\n"
-#   
-#   
+#
+#
 # canvasTest_TOT4 = TCanvas()
 # canvasTest_TOT4.cd()
 # TOT4.Draw()
@@ -1013,7 +1052,7 @@ if method_name == "QWeighted" :
     can12bis.SaveAs("%s/Run%i/QWeighted/HitProb_1_track_binning2m_QWeighted.pdf"%(PlotPath,RunNumber))
     can13bis.SaveAs("%s/Run%i/QWeighted/HitProb_2_track_binning2m_QWeighted.pdf"%(PlotPath,RunNumber))
     can14bis.SaveAs("%s/Run%i/QWeighted/HitProb_3_track_binning2m_QWeighted.pdf"%(PlotPath,RunNumber))
-    can15bis.SaveAs("%s/QWeighted/HitProb_4_track_binning2m_QWeighted.png"%(PlotPath,RunNumber))
+    can15bis.SaveAs("%s/Run%i/QWeighted/HitProb_4_track_binning2m_QWeighted.png"%(PlotPath,RunNumber))
     can16.SaveAs("%s/Run%i/QWeighted/trackX_vs_trackY_plan3_QWeighted.pdf"%(PlotPath,RunNumber))
     can17.SaveAs("%s/Run%i/QWeighted/trackX_vs_trackY_plan0_QWeighted.pdf"%(PlotPath,RunNumber))
     can18.SaveAs("%s/Run%i/QWeighted/ClusterSizeX_QWeighted.pdf"%(PlotPath,RunNumber))
@@ -1057,7 +1096,7 @@ elif method_name == "DigitalCentroid" :
     can4.SaveAs("%s/Run%i/DigitalCentroid/resY_DigitalCentroid.pdf"%(PlotPath,RunNumber))
     can5.SaveAs("%s/Run%i/DigitalCentroid/resX_cs_DigitalCentroid.pdf"%(PlotPath,RunNumber))
     can6.SaveAs("%s/Run%i/DigitalCentroid/resY_cs_DigitalCentroid.pdf"%(PlotPath,RunNumber))
-    can7.SaveAs("%/Run%is/DigitalCentroid/HitProb_1_cluster_binning1m_DigitalCentroid.pdf"%(PlotPath,RunNumber))
+    can7.SaveAs("%/Run%i/DigitalCentroid/HitProb_1_cluster_binning1m_DigitalCentroid.pdf"%(PlotPath,RunNumber))
     can8.SaveAs("%s/Run%i/DigitalCentroid/HitProb_2_cluster_binning1m_DigitalCentroid.pdf"%(PlotPath,RunNumber))
     can9.SaveAs("%s/Run%i/DigitalCentroid/HitProb_3_cluster_binning1m_DigitalCentroid.pdf"%(PlotPath,RunNumber))
     can10.SaveAs("%s/Run%i/DigitalCentroid/HitProb_4_cluster_binning1m_DigitalCentroid.pdf"%(PlotPath,RunNumber))
@@ -1073,7 +1112,7 @@ elif method_name == "DigitalCentroid" :
     can12bis.SaveAs("%s/Run%i/DigitalCentroid/HitProb_1_track_binning2m_DigitalCentroid.pdf"%(PlotPath,RunNumber))
     can13bis.SaveAs("%s/Run%i/DigitalCentroid/HitProb_2_track_binning2m_DigitalCentroid.pdf"%(PlotPath,RunNumber))
     can14bis.SaveAs("%s/Run%i/DigitalCentroid/HitProb_3_track_binning2m_DigitalCentroid.pdf"%(PlotPath,RunNumber))
-    can15bis.SaveAs("%s/DigitalCentroid/HitProb_4_track_binning2m_DigitalCentroid.png"%(PlotPath,RunNumber))
+    can15bis.SaveAs("%s/Run%i/DigitalCentroid/HitProb_4_track_binning2m_DigitalCentroid.png"%(PlotPath,RunNumber))
     can16.SaveAs("%s/Run%i/DigitalCentroid/trackX_vs_trackY_plan3_DigitalCentroid.pdf"%(PlotPath,RunNumber))
     can17.SaveAs("%s/Run%i/DigitalCentroid/trackX_vs_trackY_plan0_DigitalCentroid.pdf"%(PlotPath,RunNumber))
     can18.SaveAs("%s/Run%i/DigitalCentroid/ClusterSizeX_DigitalCentroid.pdf"%(PlotPath,RunNumber))
@@ -1134,7 +1173,7 @@ elif method_name == "maxTOT" :
     can12bis.SaveAs("%s/Run%i/maxTOT/HitProb_1_track_binning2m_maxTOT.pdf"%(PlotPath,RunNumber))
     can13bis.SaveAs("%s/Run%i/maxTOT/HitProb_2_track_binning2m_maxTOT.pdf"%(PlotPath,RunNumber))
     can14bis.SaveAs("%s/Run%i/maxTOT/HitProb_3_track_binning2m_maxTOT.pdf"%(PlotPath,RunNumber))
-    can15bis.SaveAs("%s/maxTOT/HitProb_4_track_binning2m_maxTOT.png"%(PlotPath,RunNumber))
+    can15bis.SaveAs("%s/Run%i/maxTOT/HitProb_4_track_binning2m_maxTOT.png"%(PlotPath,RunNumber))
     can16.SaveAs("%s/Run%i/maxTOT/trackX_vs_trackY_plan3_maxTOT.pdf"%(PlotPath,RunNumber))
     can17.SaveAs("%s/Run%i/maxTOT/trackX_vs_trackY_plan0_maxTOT.pdf"%(PlotPath,RunNumber))
     can18.SaveAs("%s/Run%i/maxTOT/ClusterSizeX_maxTOT.pdf"%(PlotPath,RunNumber))
@@ -1161,7 +1200,7 @@ elif method_name == "maxTOT" :
     canvas_resY_s2x1y2.SaveAs("%s/Run%i/maxTOT/resY_s2x1y2.pdf"%(PlotPath,RunNumber))
     canvas_resX_s4x2y2.SaveAs("%s/Run%i/maxTOT/resX_s4x2y2.pdf"%(PlotPath,RunNumber))
     canvas_resY_s4x2y2.SaveAs("%s/maxTOT/resY_s4x2y2.png"%(PlotPath,RunNumber))
-    canvasTest_allTOT.SaveAs("%s/Run%i/maxTOT/allTOT_landaugausFit.pdf"%(PlotPath,RunNumber)) 
+    canvasTest_allTOT.SaveAs("%s/Run%i/maxTOT/allTOT_landaugausFit.pdf"%(PlotPath,RunNumber))
     canvasTest_TOT2.SaveAs("%s/Run%i/maxTOT/TOT2_landaugausFit.pdf"%(PlotPath,RunNumber))
     canvasTest_TOT4.SaveAs("%s/Run%i/maxTOT/TOT4_landaugausFit.pdf"%(PlotPath,RunNumber))
 
@@ -1194,7 +1233,7 @@ elif method_name == "EtaCorrection" :
     can12bis.SaveAs("%s/Run%i/EtaCorrection/HitProb_1_track_binning2m_EtaCorrection.pdf"%(PlotPath,RunNumber))
     can13bis.SaveAs("%s/Run%i/EtaCorrection/HitProb_2_track_binning2m_EtaCorrection.pdf"%(PlotPath,RunNumber))
     can14bis.SaveAs("%s/Run%i/EtaCorrection/HitProb_3_track_binning2m_EtaCorrection.pdf"%(PlotPath,RunNumber))
-    can15bis.SaveAs("%s/EtaCorrection/HitProb_4_track_binning2m_EtaCorrection.png"%(PlotPath,RunNumber))
+    can15bis.SaveAs("%s/Run%i/EtaCorrection/HitProb_4_track_binning2m_EtaCorrection.png"%(PlotPath,RunNumber))
     can16.SaveAs("%s/Run%i/EtaCorrection/trackX_vs_trackY_plan3_EtaCorrection.pdf"%(PlotPath,RunNumber))
     can17.SaveAs("%s/Run%i/EtaCorrection/trackX_vs_trackY_plan0_EtaCorrection.pdf"%(PlotPath,RunNumber))
     can18.SaveAs("%s/Run%i/EtaCorrection/ClusterSizeX_EtaCorrection.pdf"%(PlotPath,RunNumber))

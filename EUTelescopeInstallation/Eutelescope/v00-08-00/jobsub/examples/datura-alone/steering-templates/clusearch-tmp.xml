@@ -23,7 +23,7 @@ Version: $Id: clusearch-tmp.xml,v 1.9 2009-08-01 10:41:44 bulgheroni Exp $
       <processor name="Mimosa26EUTelAutoPedestalNoiseProcessor"/>
       <processor name="LoadHotPixelDB"/>
       <processor name="Clustering"/>
-      <processor name="Correlator"/>
+      <--processor name="Correlator"/>
     <processor name="Save"/>
   </execute>
 

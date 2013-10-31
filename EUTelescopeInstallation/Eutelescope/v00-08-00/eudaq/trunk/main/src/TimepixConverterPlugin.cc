@@ -43,6 +43,72 @@ inline void unpack (vector <unsigned char >& src, int index, T& data) {
     copy (&src[index], &src[index + sizeof (T)], &data);
 }
 
+class mimtlu_exception : public std::runtime_error
+{
+public:
+  mimtlu_exception(const std::string& message)
+    : std::runtime_error(message)
+  { };
+};
+
+struct mimtlu_event
+{
+  unsigned long int timestamp;
+  unsigned char track;
+  unsigned int tlu;
+  unsigned char txt[17];
+  mimtlu_event(unsigned long int _timestamp,unsigned char _track,  unsigned int _tlu)
+  {
+    timestamp=_timestamp;
+    track=_track;
+    tlu=_tlu;
+    txt[16]=0;
+  }
+  mimtlu_event(const unsigned char *buf)
+  {
+    from_string(buf);
+  }
+
+  mimtlu_event(const std::vector<unsigned char> &buf)
+  {
+    from_vector(buf);
+  }
+  
+  void from_string(const unsigned char* buf){
+//    if (strlen((char*)buf)!=16)
+//      throw mimtlu_exception("MIMTLU event parssing error");
+    strncpy((char*)txt,&((char*)buf)[0],16);
+    txt[16]=0;
+
+    char tmp[16];
+    //timestamp
+    strncpy((char*)tmp,&((char*)buf)[0],10);
+    tmp[10]=0;
+    sscanf(tmp, "%lx", &timestamp);
+    //track
+    unsigned int tmpint;
+    strncpy((char*)tmp,&((char*)buf)[10],2);
+    tmp[2]=0;
+    sscanf(tmp, "%x", &tmpint);
+    track=tmpint&0xff;
+    //tlu
+    strncpy((char*)tmp,&((char*)buf)[12],4);
+    tmp[4]=0;
+    sscanf(tmp, "%x", &tlu);
+    return;
+  }
+
+  const unsigned char * to_char(void)
+  {
+    return txt;
+  }
+  
+  void from_vector(const std::vector<unsigned char> &buf)
+  {
+     from_string(&buf[0]);
+  }
+};
+
 
 namespace eudaq {
   
@@ -56,18 +122,18 @@ namespace eudaq {
   class TimepixConverterPlugin : public DataConverterPlugin {
   
   private: 
-  	TFile *f ;
+	TFile *f ;
 	TTree *t;
 	double A[256][256];
-  	double B[256][256];   
-  	double C[256][256];
-  	double D[256][256];  
+	double B[256][256];   
+	double C[256][256];
+	double D[256][256];  
 
-        double Aerr[256][256];
-   	double Berr[256][256];   
-  	double Cerr[256][256];
-  	double Derr[256][256];  
-        double Chi2ndf[256][256];
+	double Aerr[256][256];
+	double Berr[256][256];   
+	double Cerr[256][256];
+	double Derr[256][256];  
+	double Chi2ndf[256][256];
 	double meanA,meanB,meanC,meanD;
 
   public:
@@ -81,88 +147,88 @@ namespace eudaq {
       (void)cnf; // just to suppress a warning about unused parameter cnf
       
         
-	char* path= getenv("EUDAQ");
-	TString str= TString::Format("%s/TimepixProducer/FitParameters_2stepFit_v7-I10_W015.root",path);
-	cout << "Reading calibration file at " << str << endl;
-	f = TFile::Open(str,"open");
-      	t =(TTree*)f->Get("fitPara");
-
-        Float_t At;
-	Float_t Bt;
-	Float_t Ct;
-	Float_t Dt;
-	
-	Int_t Xt;
-	Int_t Yt;
-	
-	Float_t At_err;
-	Float_t Bt_err;
-	Float_t Ct_err;
-	Float_t Dt_err;
-	Float_t Chi;	
-	
-		
-	t->SetBranchAddress("pixx",&Xt);
-	t->SetBranchAddress("pixy",&Yt);
-	t->SetBranchAddress("a",&At);
-	t->SetBranchAddress("b",&Bt);
-	t->SetBranchAddress("c",&Ct);	
-	t->SetBranchAddress("d",&Dt);
-	
-	t->SetBranchAddress("a_err",&At_err);
-	t->SetBranchAddress("b_err",&Bt_err);
-	t->SetBranchAddress("c_err",&Ct_err);	
-	t->SetBranchAddress("d_err",&Dt_err);
-
-	t->SetBranchAddress("chi2ndf",&Chi);	
-	
-	meanA=0;
-	meanB=0;
-	meanC=0;
-	meanD=0;	
-	
-	
-	for(unsigned int i=0;i<256;i++){
-		for(unsigned int j=0;j<256;j++){
-		
-		A[i][j]=0;
-		B[i][j]=0;
-		C[i][j]=0;
-		D[i][j]=0;
-	
-	}};
-	
-				
-	int nevents = t->GetEntries();
-	
-	for (int i =0 ; i<nevents; i++){
-	
-		t->GetEntry(i);
-		A[Xt][Yt]=At;
-		B[Xt][Yt]=Bt;		
-		C[Xt][Yt]=Ct;
-		D[Xt][Yt]=Dt;
-		
-		Aerr[Xt][Yt]=At_err;
-		Berr[Xt][Yt]=Bt_err;		
-		Cerr[Xt][Yt]=Ct_err;
-		Derr[Xt][Yt]=Dt_err;
-		
-		Chi2ndf[Xt][Yt]=Chi;
-		
-		meanA+=At;
-		meanB+=Bt;
-		meanC+=Ct;
-		meanD+=Dt;			
-						
-		}
-
-	meanA/=nevents;
-	meanB/=nevents;
-	meanC/=nevents;
-	meanD/=nevents;
-	
-	f->Close();
+//	char* path= getenv("EUDAQ");
+//	TString str= TString::Format("%s/TimepixProducer/FitParameters_2stepFit_v7-I10_W015.root",path);
+//	cout << "Reading calibration file at " << str << endl;
+//	f = TFile::Open(str,"open");
+//      	t =(TTree*)f->Get("fitPara");
+//
+//    Float_t At;
+//	Float_t Bt;
+//	Float_t Ct;
+//	Float_t Dt;
+//
+//	Int_t Xt;
+//	Int_t Yt;
+//
+//	Float_t At_err;
+//	Float_t Bt_err;
+//	Float_t Ct_err;
+//	Float_t Dt_err;
+//	Float_t Chi;
+//
+//
+//	t->SetBranchAddress("pixx",&Xt);
+//	t->SetBranchAddress("pixy",&Yt);
+//	t->SetBranchAddress("a",&At);
+//	t->SetBranchAddress("b",&Bt);
+//	t->SetBranchAddress("c",&Ct);
+//	t->SetBranchAddress("d",&Dt);
+//
+//	t->SetBranchAddress("a_err",&At_err);
+//	t->SetBranchAddress("b_err",&Bt_err);
+//	t->SetBranchAddress("c_err",&Ct_err);
+//	t->SetBranchAddress("d_err",&Dt_err);
+//
+//	t->SetBranchAddress("chi2ndf",&Chi);
+//
+//	meanA=0;
+//	meanB=0;
+//	meanC=0;
+//	meanD=0;
+//
+//
+//	for(unsigned int i=0;i<256;i++){
+//		for(unsigned int j=0;j<256;j++){
+//
+//		A[i][j]=0;
+//		B[i][j]=0;
+//		C[i][j]=0;
+//		D[i][j]=0;
+//
+//	}};
+//
+//
+//	int nevents = t->GetEntries();
+//
+//	for (int i =0 ; i<nevents; i++){
+//
+//		t->GetEntry(i);
+//		A[Xt][Yt]=At;
+//		B[Xt][Yt]=Bt;
+//		C[Xt][Yt]=Ct;
+//		D[Xt][Yt]=Dt;
+//
+//		Aerr[Xt][Yt]=At_err;
+//		Berr[Xt][Yt]=Bt_err;
+//		Cerr[Xt][Yt]=Ct_err;
+//		Derr[Xt][Yt]=Dt_err;
+//
+//		Chi2ndf[Xt][Yt]=Chi;
+//
+//		meanA+=At;
+//		meanB+=Bt;
+//		meanC+=Ct;
+//		meanD+=Dt;
+//
+//		}
+//
+//	meanA/=nevents;
+//	meanB/=nevents;
+//	meanC/=nevents;
+//	meanD/=nevents;
+//
+//	f->Close();
 
     }
 
@@ -171,26 +237,20 @@ namespace eudaq {
     // This should return the trigger ID (as provided by the TLU)
     // if it was read out, otherwise it can either return (unsigned)-1,
     // or be left undefined as there is already a default version.
-    virtual unsigned GetTriggerID(const Event & ev) const {
+	virtual unsigned GetTriggerID(const Event & ev) const 
+	{
+		const RawDataEvent * rev = dynamic_cast<const RawDataEvent *> (&ev);
+		if(rev->NumBlocks()==2)
+		{
+			vector<unsigned char> tlu  = rev->GetBlock(1);
+			mimtlu_event tluev(tlu);
+			//cout << tluev.tlu << endl;
+			return tluev.tlu;	
+		};
 
-/*       const RawDataEvent * rev = dynamic_cast<const RawDataEvent *> (&ev);
-      vector<unsigned char> data = rev->GetBlock(1);
-      
-      cout << "[Number of blocks] " << rev->NumBlocks() << endl;
-      cout << "vector has size : " << data.size() << endl;
+		return 0;
+	}
 
-      size_t offset = 0;
-      unsigned int TLUevt=0;
-      
-      for(unsigned int j=0;j<data.size();j++){
-	  	//printf("%x",dataTOT[offset2+j]);
-		TLUevt =TLUevt | (data[offset+j] << j*8);
-		} */
-      
-      return 0;
-	
-
-    }
 
     // Here, the data from the RawDataEvent is extracted into a StandardEvent.
     // The return value indicates whether the conversion was successful.
@@ -244,7 +304,7 @@ namespace eudaq {
       
 //      cout << "break here" << endl;
 
-      plane.SetSizeZS(width,height,MATRIX_SIZE,1,1);
+      plane.SetSizeZS(width,height,0,1,1);
       // plane.SetSizeRaw(width, height);
       // Set the trigger ID
       plane.SetTLUEvent(TLUevt);
@@ -294,7 +354,8 @@ namespace eudaq {
 
     bool ConvertLCIO(lcio::LCEvent & result, const Event & source) const {
         //TrackerRawDataImpl *rawMatrix;
-        TrackerDataImpl *zsFrame;
+        
+	TrackerDataImpl *zsFrame;
 
         if (source.IsBORE()) {
           // shouldn't happen
@@ -367,15 +428,15 @@ namespace eudaq {
 
     	  offset+=sizeof(aWord);
 	  
-	  double Energy;
-	  if(A[pixx][pixy]!=0 and B[pixx][pixy] and C[pixx][pixy] and D[pixx][pixy]){
-	  	 Energy = (D[pixx][pixy]*A[pixx][pixy] + aWord - B[pixx][pixy] + sqrt((B[pixx][pixy]+D[pixx][pixy]*A[pixx][pixy]-aWord)*(B[pixx][pixy]+D[pixx][pixy]*A[pixx][pixy]-aWord)+4*A[pixx][pixy]*C[pixx][pixy]))/(2*A[pixx][pixy]);
-		}
-	  else {
-	  	 Energy = (meanD*meanA + aWord - meanB + sqrt((meanB+meanD*meanA-aWord)*(meanB+meanD*meanA-aWord)+4*meanA*meanC))/(2*meanA);
-
-	  }
-    	  ZSDataTOT.push_back(Energy);
+//	  double Energy;
+//	  if(A[pixx][pixy]!=0 and B[pixx][pixy] and C[pixx][pixy] and D[pixx][pixy]){
+//	  	 Energy = (D[pixx][pixy]*A[pixx][pixy] + aWord - B[pixx][pixy] + sqrt((B[pixx][pixy]+D[pixx][pixy]*A[pixx][pixy]-aWord)*(B[pixx][pixy]+D[pixx][pixy]*A[pixx][pixy]-aWord)+4*A[pixx][pixy]*C[pixx][pixy]))/(2*A[pixx][pixy]);
+//		}
+//	  else {
+//	  	 Energy = (meanD*meanA + aWord - meanB + sqrt((meanB+meanD*meanA-aWord)*(meanB+meanD*meanA-aWord)+4*meanA*meanC))/(2*meanA);
+//
+//	  }
+    	  	ZSDataTOT.push_back(aWord);
 
 	    	  //cout << "[DATA] " << ZSDataX[i] << " " << ZSDataY[i] << " " << ZSDataTOT[i] << endl;
 	      }
@@ -399,7 +460,7 @@ namespace eudaq {
       	  // prepare a new TrackerData for the ZS data
           zsFrame= new TrackerDataImpl;
           currentDetector->setMode( mode );
-          zsDataEncoder["sensorID"] = plane.ID();
+          zsDataEncoder["sensorID"] = 6;
       	  zsDataEncoder["sparsePixelType"] = eutelescope::kEUTelSimpleSparsePixel;
       	  zsDataEncoder.setCellID( zsFrame );
 

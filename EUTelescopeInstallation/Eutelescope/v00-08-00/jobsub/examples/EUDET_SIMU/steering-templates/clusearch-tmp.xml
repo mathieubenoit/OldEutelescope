@@ -20,10 +20,10 @@ Version: $Id: clusearch-tmp.xml,v 1.9 2009-08-01 10:41:44 bulgheroni Exp $
 
   <execute>
     <processor name="AIDA"/>
-      <processor name="TPLoadHotPixelDB"/> 
-      <processor name="LoadHotPixelDB"/>
       <processor name="Mimosa26EUTelAutoPedestalNoiseProcessor"/>
-      <processor name="TimepixEUTelAutoPedestalNoiseProcessor"/>       
+      <processor name="LoadHotPixelDB"/>
+      <processor name="TimepixEUTelAutoPedestalNoiseProcessor"/>
+      <--processor name="TPLoadHotPixelDB"/>      
       <processor name="Clustering"/>
       <processor name="TPClustering"/>
       <--processor name="Correlator"/>
@@ -132,7 +132,7 @@ Version: $Id: clusearch-tmp.xml,v 1.9 2009-08-01 10:41:44 bulgheroni Exp $
     <!--parameter name="DataFileHandler" type="StringVec" value="conditionsName"/-->
     <!--Initialization of a simple conditions file handler-->
     <!-- suppress only the Mimosa26 pixels --> 
-    <parameter name="SimpleFileHandler" type="StringVec"> hotpixel_tp  @DBPath@/run@HotPixelRunNumber@-hotpixel-tp-db.slcio hotpixel_tp </parameter>
+    <parameter name="SimpleFileHandler" type="StringVec"> hotpixel_tp  @DBPath@/run@HotPixelRunNumber@-hotpixel-db.slcio hotpixel_tp </parameter>
   </processor>
 
 
@@ -274,11 +274,6 @@ Version: $Id: clusearch-tmp.xml,v 1.9 2009-08-01 10:41:44 bulgheroni Exp $
     <!--Maximum allowed cluster size along y (only odd numbers)-->
     <parameter name="FFClusterSizeY" type="int" value="5"/>
 
-
-
-    <!--Maximum Charge per cluster-->
-    <parameter name="EmaxCut" type="int" value="5"/>
-
     <!--
         SPARSECLUSTER and SPARSECLUSTER2 (use with care!)
         
@@ -305,13 +300,38 @@ Version: $Id: clusearch-tmp.xml,v 1.9 2009-08-01 10:41:44 bulgheroni Exp $
     <!--This is the name of the histogram information file-->
     <parameter name="HistoInfoFileName" type="string" value="@HistoInfoPath@/@HistoInfo@"/>
     <!--The list of cluster N to be filled.For example 7 means filling the cluster spectra with the 7 most significant pixels-->
-    <parameter name="ClusterN" type="IntVec" value="1 2 3 4 5 6 8 9"/>
+    <parameter name="ClusterN" type="IntVec" value="4 6 8 9"/>
     <!--The list of cluster NxN to be filled.For example 3 means filling the 3x3 histogram spectrum-->
-    <parameter name="ClusterNxN" type="IntVec" value="1 2 3 4 5 6"/>
+    <parameter name="ClusterNxN" type="IntVec" value="3"/>
 
   </processor>
   
   
+  <processor name="HotPixelKiller" type="EUTelHotPixelKiller">
+    <!--EUTelHotPixelKiller periodically check for pixel singing loud too often and remove them from the analysis-->
+    <!--Pixel status collection-->
+    <parameter name="StatusCollectionName" type="string" lcioInType="TrackerRawData"> m26_status </parameter>
+    <!--This float number [0,1] represents the maximum allowed firing frequency
+        within the selected number of event per cycle-->
+    <parameter name="MaxAllowedFiringFreq" type="float" value="0.01"/>
+    <!--The number of events to be considered for each update cycle-->
+    <parameter name="NoOfEventPerCycle" type="int" value="1000"/>
+    <!--The total number of hot pixel cycle-->
+  </processor>
+  
+  
+    <processor name="TPHotPixelKiller" type="EUTelHotPixelKiller">
+    <!--EUTelHotPixelKiller periodically check for pixel singing loud too often and remove them from the analysis-->
+    <!--Pixel status collection-->
+    <parameter name="StatusCollectionName" type="string" lcioInType="TrackerRawData"> tp_status </parameter>
+    <!--This float number [0,1] represents the maximum allowed firing frequency
+        within the selected number of event per cycle-->
+    <parameter name="MaxAllowedFiringFreq" type="float" value="0.01"/>
+    <!--The number of events to be considered for each update cycle-->
+    <parameter name="NoOfEventPerCycle" type="int" value="1000"/>
+    <!--The total number of hot pixel cycle-->
+    <parameter name="TotalNoOfCycle" type="int" value="0"/>
+  </processor>
 
   <processor name="Correlator" type="EUTelCorrelator">
     <!--EUTelCorrelator fills histograms with correlation plots-->

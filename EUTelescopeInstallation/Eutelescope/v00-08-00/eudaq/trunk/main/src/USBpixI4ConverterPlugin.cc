@@ -28,6 +28,10 @@
 using eutelescope::EUTELESCOPE;
 #endif
 
+
+#define UGLY_HACK_AUGUST
+
+	
 namespace eudaq {
   // The event type for which this converter plugin will be registered
   // Modify this to match your actual event type (from the Producer)
@@ -305,9 +309,28 @@ namespace eudaq {
           }
 
           std::list<eutelescope::EUTelAPIXSparsePixel*> tmphits;
+	  int tmp_id = 0;
+#ifdef UGLY_HACK_AUGUST
+	  std::ifstream idFile("/afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/jobsub/ramdisk/id.txt");
 
-          zsDataEncoder["sensorID"] = ev_raw.GetID(chip) + chip_id_offset + first_sensor_id; // formerly 14
+	  idFile >> tmp_id; 
+	  idFile.close();
+	  system("rm /afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/jobsub/ramdisk/id.txt");
+	  std::ofstream idAgain("/afs/cern.ch/user/m/mbenoit/TestBeam_Analysis/LCD/EUTelescopeInstallation/Eutelescope/v00-08-00/jobsub/ramdisk/id.txt");
+	  
+	  if(tmp_id==1) { 
+	  	
+	 	idAgain << 0 << std::endl;
+		}
+	  else { 
+		idAgain << 1 << std::endl;	
+		}  	
+	  idAgain.close();
+#endif	  
+	  zsDataEncoder["sensorID"] = ev_raw.GetID(chip) + chip_id_offset + first_sensor_id + tmp_id; // formerly 14
           zsDataEncoder["sparsePixelType"] = eutelescope::kEUTelAPIXSparsePixel;
+	  
+	  //std::cout << "Assigning id : " << zsDataEncoder["sensorID"] << std::endl;
 
           // prepare a new TrackerData object for the ZS data
           // it contains all the hits for a particular sensor in one event

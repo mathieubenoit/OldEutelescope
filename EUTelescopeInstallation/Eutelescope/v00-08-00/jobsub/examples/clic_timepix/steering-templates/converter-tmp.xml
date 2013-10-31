@@ -24,7 +24,7 @@ Version: $Id: converter-tmp.xml,v 1.2 2009-05-14 18:25:21 bulgheroni Exp $
       <processor name="Mimosa26EUTelAutoPedestalNoiseProcessor"/>
       <processor name="TimepixEUTelAutoPedestalNoiseProcessor"/>
       <processor name="HotPixelKiller"/>
-      <--processor name="TPHotPixelKiller"/>     
+      <processor name="TPHotPixelKiller"/>     
       <processor name="Save"/>
    </execute>
 
@@ -157,7 +157,7 @@ Version: $Id: converter-tmp.xml,v 1.2 2009-05-14 18:25:21 bulgheroni Exp $
  <processor name="TPHotPixelKiller" type="EUTelHotPixelKiller">
  
     <!--This is the name of the LCIO file name with the input/output hot pixel collection  (add .slcio)-->
-    <parameter name="HotPixelDBFile" type="string" value="@DBPath@/run@HotPixelRunNumber@-hotpixel-db.slcio"/>
+    <parameter name="HotPixelDBFile" type="string" value="@DBPath@/run@HotPixelRunNumber@-hotpixel-tp.slcio"/>
     <!--write mode for output file:  WRITE_APPEND or WRITE_NEW, default: WRITE_APPEND-->
     <parameter name="LCIOWriteMode" type="string" value="WRITE_NEW"/>
     <parameter name="HotPixelCollectionName" type="string" value="hotpixel_tp" />
@@ -181,7 +181,7 @@ Version: $Id: converter-tmp.xml,v 1.2 2009-05-14 18:25:21 bulgheroni Exp $
 
     <!--This float number [0,1] represents the maximum allowed firing frequency
         within the selected number of event per cycle-->
-    <parameter name="MaxAllowedFiringFreq" type="float" value="0.50"/>
+    <parameter name="MaxAllowedFiringFreq" type="float" value="0.01"/>
     <!--The number of events to be considered for each update cycle-->
     <parameter name="NoOfEventPerCycle" type="int" value="9999"/>
     <!--The total number of hot pixel cycle-->
@@ -191,7 +191,7 @@ Version: $Id: converter-tmp.xml,v 1.2 2009-05-14 18:25:21 bulgheroni Exp $
  <processor name="Save" type="EUTelOutputProcessor">
  <!--Writes the current event to the specified LCIO outputfile. Eventually it adds a EORE at the of the file if it was missing Needs to be the last ActiveProcessor.-->
   <!--drops the named collections from the event-->
-  <parameter name="DropCollectionNames" type="StringVec"> firstFrame secondFrame thirdFrame </parameter>
+  <parameter name="DropCollectionNames" type="StringVec"> firstFrame secondFrame thirdFrame  @RunNumber@ </parameter>
   <!--drops all collections of the given type from the event-->
   <!--parameter name="DropCollectionTypes" type="StringVec"> SimTrackerHit SimCalorimeterHit </parameter-->
   <!-- write complete objects in subset collections to the file (i.e. ignore subset flag)-->

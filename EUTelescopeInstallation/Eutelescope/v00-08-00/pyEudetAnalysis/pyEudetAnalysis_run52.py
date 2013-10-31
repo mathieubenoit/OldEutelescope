@@ -535,8 +535,8 @@ allTOT.Draw()
 #
 #                        landau * gauss fit, allTOT
 #
-################################################################################################################################ 
- 
+################################################################################################################################
+
 # #langaufit(allTOT,fr_allTOT,sv_allTOT,pllo_allTOT,plhi_allTOT,fp_allTOT,fpe_allTOT,chisqr_allTOT,ndf_allTOT)
 # #
 # # allTOT : his               histogram to fit
@@ -546,27 +546,27 @@ allTOT.Draw()
 # # plhi_allTOT : parlimitshi  upper parameter limits
 # # fp_allTOT : fitparams      returns the final fit parameters
 # # fpe_allTOT : fiterrors     returns the final fit errors
-#  
-#  
+#
+#
 # fr_allTOT = array('d',[0.2*TOT2.GetMean(),3.0*TOT2.GetMean()])
-# sv_allTOT = array('d',[1.8,20.0,50000.0,3.0]) 
+# sv_allTOT = array('d',[1.8,20.0,50000.0,3.0])
 # pllo_allTOT = array('d',[0.5,5.0,1.0,0.4])
-# plhi_allTOT = array('d',[5.0,50.0,1000000.0,5.0]) 
-# fp_allTOT = array('d',[0.]) 
-# fpe_allTOT = array('d',[0.]) 
-#  
+# plhi_allTOT = array('d',[5.0,50.0,1000000.0,5.0])
+# fp_allTOT = array('d',[0.])
+# fpe_allTOT = array('d',[0.])
+#
 # chisqr_allTOT = array('d',[0.])
 # ndf_allTOT = array('i',[0])
-# allTOTPeak = ROOT.Double(0.) 
-# allTOTFWHM = ROOT.Double(0.) 
-#  
-#  
+# allTOTPeak = ROOT.Double(0.)
+# allTOTFWHM = ROOT.Double(0.)
+#
+#
 # fitallTOT = langaufit(allTOT,fr_allTOT,sv_allTOT,pllo_allTOT,plhi_allTOT,fp_allTOT,fpe_allTOT,chisqr_allTOT,ndf_allTOT)
 # langaupro(fp_allTOT,allTOTPeak,allTOTFWHM)
-#  
+#
 # print"Fitting done\nPlotting results...\n"
-#  
-#  
+#
+#
 # canvasTest_allTOT = TCanvas()
 # canvasTest_allTOT.cd()
 # allTOT.Draw()
@@ -578,9 +578,9 @@ allTOT.Draw()
 
 ###############################################################################################################################
 #
-#                        landau * gauss fit, TOT2 
+#                        landau * gauss fit, TOT2
 #
-################################################################################################################################ 
+################################################################################################################################
 
 # #langaufit(TOT2,fr_TOT2,sv_TOT2,pllo_TOT2,plhi_TOT2,fp_TOT2,fpe_TOT2,chisqr_TOT2,ndf_TOT2)
 # #
@@ -591,26 +591,26 @@ allTOT.Draw()
 # # plhi_TOT2 : parlimitshi  upper parameter limits
 # # fp_TOT2 : fitparams      returns the final fit parameters
 # # fpe_TOT2 : fiterrors     returns the final fit errors
-#  
+#
 # fr_TOT2 = array('d',[0.2*TOT2.GetMean(),3.0*TOT2.GetMean()])
-# sv_TOT2 = array('d',[1.8,20.0,50000.0,3.0]) 
+# sv_TOT2 = array('d',[1.8,20.0,50000.0,3.0])
 # pllo_TOT2 = array('d',[0.5,5.0,1.0,0.4])
-# plhi_TOT2 = array('d',[5.0,50.0,1000000.0,5.0]) 
-# fp_TOT2 = array('d',[0.]) 
-# fpe_TOT2 = array('d',[0.]) 
-#  
+# plhi_TOT2 = array('d',[5.0,50.0,1000000.0,5.0])
+# fp_TOT2 = array('d',[0.])
+# fpe_TOT2 = array('d',[0.])
+#
 # chisqr_TOT2 = array('d',[0.])
 # ndf_TOT2 = array('i',[0])
-# TOT2Peak = ROOT.Double(0.) 
-# TOT2FWHM = ROOT.Double(0.) 
-#  
-#  
+# TOT2Peak = ROOT.Double(0.)
+# TOT2FWHM = ROOT.Double(0.)
+#
+#
 # fitTOT2 = langaufit(TOT2,fr_TOT2,sv_TOT2,pllo_TOT2,plhi_TOT2,fp_TOT2,fpe_TOT2,chisqr_TOT2,ndf_TOT2)
 # langaupro(fp_TOT2,TOT2Peak,TOT2FWHM)
-#  
+#
 # print"Fitting done\nPlotting results...\n"
-#  
-#  
+#
+#
 # canvasTest_TOT2 = TCanvas()
 # canvasTest_TOT2.cd()
 # TOT2.Draw()
@@ -622,7 +622,7 @@ allTOT.Draw()
 
 ###############################################################################################################################
 #
-#                        landau * gauss fit, TOT4 
+#                        landau * gauss fit, TOT4
 #
 ###############################################################################################################################
 
@@ -635,26 +635,26 @@ allTOT.Draw()
 # # plhi_TOT4 : parlimitshi  upper parameter limits
 # # fp_TOT4 : fitparams      returns the final fit parameters
 # # fpe_TOT4 : fiterrors     returns the final fit errors
-#   
+#
 # fr_TOT4 = array('d',[0.2*TOT4.GetMean(),3.0*TOT4.GetMean()])
-# sv_TOT4 = array('d',[1.8,20.0,50000.0,3.0]) 
+# sv_TOT4 = array('d',[1.8,20.0,50000.0,3.0])
 # pllo_TOT4 = array('d',[0.5,5.0,1.0,0.4])
-# plhi_TOT4 = array('d',[5.0,50.0,1000000.0,5.0]) 
-# fp_TOT4 = array('d',[0.]) 
-# fpe_TOT4 = array('d',[0.]) 
-#   
+# plhi_TOT4 = array('d',[5.0,50.0,1000000.0,5.0])
+# fp_TOT4 = array('d',[0.])
+# fpe_TOT4 = array('d',[0.])
+#
 # chisqr_TOT4 = array('d',[0.])
 # ndf_TOT4 = array('i',[0])
-# TOT4Peak = ROOT.Double(0.) 
-# TOT4FWHM = ROOT.Double(0.) 
-#   
-#   
+# TOT4Peak = ROOT.Double(0.)
+# TOT4FWHM = ROOT.Double(0.)
+#
+#
 # fitTOT4 = langaufit(TOT4,fr_TOT4,sv_TOT4,pllo_TOT4,plhi_TOT4,fp_TOT4,fpe_TOT4,chisqr_TOT4,ndf_TOT4)
 # langaupro(fp_TOT4,TOT4Peak,TOT4FWHM)
-#   
+#
 # print"Fitting done\nPlotting results...\n"
-#   
-#   
+#
+#
 # canvasTest_TOT4 = TCanvas()
 # canvasTest_TOT4.cd()
 # TOT4.Draw()
@@ -1140,7 +1140,7 @@ elif method_name == "maxTOT" :
     canvas_resY_s2x1y2.SaveAs("%s/Run52/maxTOT/resY_s2x1y2.pdf"%PlotPath)
     canvas_resX_s4x2y2.SaveAs("%s/Run52/maxTOT/resX_s4x2y2.pdf"%PlotPath)
     canvas_resY_s4x2y2.SaveAs("%s/maxTOT/resY_s4x2y2.png"%PlotPath)
-    canvasTest_allTOT.SaveAs("%s/Run52/maxTOT/allTOT_landaugausFit.pdf"%PlotPath) 
+    canvasTest_allTOT.SaveAs("%s/Run52/maxTOT/allTOT_landaugausFit.pdf"%PlotPath)
     canvasTest_TOT2.SaveAs("%s/Run52/maxTOT/TOT2_landaugausFit.pdf"%PlotPath)
     canvasTest_TOT4.SaveAs("%s/Run52/maxTOT/TOT4_landaugausFit.pdf"%PlotPath)
 

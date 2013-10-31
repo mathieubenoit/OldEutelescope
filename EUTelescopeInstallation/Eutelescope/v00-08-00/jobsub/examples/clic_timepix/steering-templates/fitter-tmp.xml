@@ -19,18 +19,18 @@ Version: $Id: fitter-tmp.xml,v 1.7 2009-08-01 13:59:45 bulgheroni Exp $
 
    <execute>
       <processor name="AIDA"/>
-      <--processor name="LoadPreAlignment"/>
-      <--processor name="ApplyPreAlignment"/>
+      <processor name="LoadPreAlignment"/>
+      <processor name="ApplyPreAlignment"/>
       <processor name="LoadAlignment"/>
-      <processor name="LoadAlignment2"/>
+      <--processor name="LoadAlignment2"/>
       <processor name="ApplyAlignment"/>
-      <processor name="ApplyAlignment2"/>
+      <--processor name="ApplyAlignment2"/>
       
       <processor name="LoadRefHitDB"/>
 
       <processor name="Fitter"/>     
       <--processor name="KalmanFitter"/>
-      <--processor name="APIXTbTrack"/>
+      <processor name="APIXTbTrack"/>
       <--group name="APIXDUTHisto"/>
 
       <!-- processor name="FitterHisto"/ -->
@@ -73,7 +73,7 @@ Version: $Id: fitter-tmp.xml,v 1.7 2009-08-01 13:59:45 bulgheroni Exp $
 
   <processor name="LoadPreAlignment" type="ConditionsProcessor">
     <parameter name="DBInit" type="string" value="localhost:lccd_test:align:tel"/>
-    <parameter name="SimpleFileHandler" type="StringVec"> prealign @DBPath@/@Output@-prealign-db.slcio        alignment </parameter>
+    <parameter name="SimpleFileHandler" type="StringVec"> prealign @PreAlignmentFile@   alignment </parameter>
   </processor>
 
   <processor name="ApplyPreAlignment" type="EUTelApplyAlignmentProcessor">
@@ -100,7 +100,7 @@ Version: $Id: fitter-tmp.xml,v 1.7 2009-08-01 13:59:45 bulgheroni Exp $
   <!--Initialization of a data file handler-->
   <!--parameter name="DataFileHandler" type="StringVec" value="conditionsName"/-->
   <!--Initialization of a simple conditions file handler-->
-  <parameter name="SimpleFileHandler" type="StringVec"> alignment1 @AlignmentFile@ alignment </parameter>
+  <parameter name="SimpleFileHandler" type="StringVec"> alignment @AlignmentFile@ alignment </parameter>
  </processor>
 
  <processor name="LoadAlignment2" type="ConditionsProcessor">
@@ -114,7 +114,7 @@ Version: $Id: fitter-tmp.xml,v 1.7 2009-08-01 13:59:45 bulgheroni Exp $
   <!--Initialization of a data file handler-->
   <!--parameter name="DataFileHandler" type="StringVec" value="conditionsName"/-->
   <!--Initialization of a simple conditions file handler-->
-  <parameter name="SimpleFileHandler" type="StringVec"> alignment2 @AlignmentFile2@ alignment </parameter>
+  <parameter name="SimpleFileHandler" type="StringVec"> alignment2 @RunNumber@ alignment </parameter>
  </processor>
 
  <processor name="ApplyAlignment" type="EUTelApplyAlignmentProcessor">
@@ -122,16 +122,16 @@ Version: $Id: fitter-tmp.xml,v 1.7 2009-08-01 13:59:45 bulgheroni Exp $
   <!--Alignment constant from the condition file-->
   <parameter name="AlignmentConstantName" type="string" lcioInType="LCGenericObject"> alignment  </parameter>
   <!--The name of the input hit collection-->
-  <parameter name="InputHitCollectionName" type="string" lcioInType="TrackerHit"> hit </parameter>
+  <parameter name="InputHitCollectionName" type="string" lcioInType="TrackerHit"> PreAlignedHit </parameter>
   <!--The name of the output hit collection-->
-  <parameter name="OutputHitCollectionName" type="string" lcioOutType="TrackerHit"> alignedHit1</parameter>
+  <parameter name="OutputHitCollectionName" type="string" lcioOutType="TrackerHit"> alignedHit </parameter>
   <!--Available methods are:
     0 -> shift only 
     1 -> rotation first 
     2 -> shift first -->
   <parameter name="CorrectionMethod" type="int" value="1"/>
   <!-- List of alignment collections that were applied to the DUT -->
-  <parameter name="alignmentCollectionNames"> alignment1 </parameter>
+  <parameter name="alignmentCollectionNames"> alignment </parameter>
   <!-- Implement geometry shifts and rotations as described in alignmentCollectionName -->
   <parameter name="DoAlignCollection" type="bool" value="true"/>
   <!--Enable or disable histograms-->
@@ -232,7 +232,7 @@ Version: $Id: fitter-tmp.xml,v 1.7 2009-08-01 13:59:45 bulgheroni Exp $
  
  <processor name="Fitter" type="EUTelTestFitter">
   <!--Analytical track fitting processor for EUDET telescope--> 
-  <parameter name="alignmentCollectionNames" type="vec" >   alignment1 alignment2 </parameter>
+  <parameter name="alignmentCollectionNames" type="vec" >   prealign alignment  </parameter>
   <!--Name of the input TrackerHit collection-->
   <parameter name="InputCollectionName" type="string" lcioInType="TrackerHit"> alignedHit </parameter>
   <!--Collection name for corrected particle positions-->
@@ -240,7 +240,7 @@ Version: $Id: fitter-tmp.xml,v 1.7 2009-08-01 13:59:45 bulgheroni Exp $
   <!--Collection name for fitted particle hits (positions)-->
   <parameter name="OutputHitCollectionName" type="string" lcioOutType="TrackerHit"> fithits </parameter>
   <!--Collection name for fitted tracks-->
-  <parameter name="OutputTrackCollectionName" type="string" lcioOutType="Track"> track </parameter>
+  <parameter name="OutputTrackCollectionName" type="string" lcioOutType="Track"> fittracks </parameter>
  <!--Ids of layers for which alignment corrections are given-->
   <!--parameter name="AlignLayerIDs" type="IntVec"> </parameter-->
   <!--Rotation around Z for layer alignment-->
@@ -286,25 +286,35 @@ Version: $Id: fitter-tmp.xml,v 1.7 2009-08-01 13:59:45 bulgheroni Exp $
   <!--Lower mask edge in Y-->
   <!--parameter name="MaskMinY" type="FloatVec"> </parameter-->
   <!--Maximum number of considered hits per plane-->
+  
   <parameter name="MaxPlaneHits" type="int" value="100"/>
   <!--Chi2 penalty for missing hit in the track-->
+  
   <parameter name="MissingHitPenalty" type="double" value="@MissingHitPenalty@"/>
   <!--Flag for storing output (fitted) hits in track-->
+  
   <parameter name="OutputHitsInTrack" type="bool" value="true"/>
   <!--Ids of layers which should be treated as passive in the fit-->
+  
   <parameter name="PassiveLayerIDs" type="IntVec"> @PassiveLayerIDs@ </parameter>
   <!--Flag for searching multiple tracks in events with multiple hits-->
+  
   <parameter name="SearchMultipleTracks" type="bool" value="true"/>
   <!--Chi2 penalty for removing hit from the track-->
+  
   <parameter name="SkipHitPenalty" type="double" value="@SkipHitPenalty@"/>
   <!--Ids of layers which should NOT be included in the fit-->
   <!--parameter name="SkipLayerIDs" type="IntVec"> </parameter-->
+  
   <!--Flag for using beam direction constraint in the fit-->
-  <parameter name="UseBeamConstraint" type="bool" value="true"/> <!-- DP -->
+  <parameter name="UseBeamConstraint" type="bool" value="false"/> <!-- DP -->
+  
   <!--Flag for including DUT measurement in the fit-->
   <parameter name="UseDUT" type="bool" value="false"/>
-  <!--Flag for using nominal resolution instead of position errors-->
+  
+  <!--Flag for using nominal resolution instead of position errors-->  
   <parameter name="UseNominalResolution" type="bool" value="false"/>
+  
   <!--Ids of layers for which position window cut are applied-->
   <!--parameter name="WindowLayerIDs" type="IntVec"> </parameter-->
   <!--Upper window edge in X-->
@@ -315,6 +325,10 @@ Version: $Id: fitter-tmp.xml,v 1.7 2009-08-01 13:59:45 bulgheroni Exp $
   <!--parameter name="WindowMinX" type="FloatVec"> </parameter-->
   <!--Lower window edge in Y-->
   <!--parameter name="WindowMinY" type="FloatVec"> </parameter-->
+  
+  <!--parameter name="ResolutionX" type="FloatVec"> @ResolutionX@ </parameter-->
+  <!--parameter name="ResolutionY" type="FloatVec"> @ResolutionY@ </parameter-->
+
 </processor>
 
  <processor name="APIXTbTrack" type="EUTelAPIXTbTrackTuple">
@@ -322,17 +336,19 @@ Version: $Id: fitter-tmp.xml,v 1.7 2009-08-01 13:59:45 bulgheroni Exp $
     <!--Name of the input Track collection-->
     <parameter name="InputCollectionName" type="string" lcioInType="Track"> fittracks </parameter>
     <!--Name of the input cluster collections-->
-    <parameter name="InputTrackerHitCollectionName" type="string" value="alignedHit1"/>  
+    <parameter name="InputTrackerHitCollectionName" type="string" value="alignedHit"/>  
     <parameter name="InputDutPulseCollectionName" type="string" value="cluster_timepix"/>
     <parameter name="InputTelPulseCollectionName" type="string" value="cluster_m26"/>
     <!--Name of the zs hit collection-->
     <parameter name="TelZsColName" type="string" value="zsdata_m26"/>
     <parameter name="DutZsColName" type="string" value="zsdata_timepix"/>
     <!-- Alignment constants-->
-    <parameter name="AlignmentCollectionNames"> alignment1  </parameter>
+    <parameter name="AlignmentCollectionNames"> prealign alignment  </parameter>
     <parameter name="DoScales" type="bool" value="false"/>
     <parameter name="ReferenceCollection" type="string" > refhit </parameter>
     <parameter name="ApplyToReferenceCollection" type="bool" value="1"/>
+    <parameter name="doReverseAlign" type="bool" value="true"/>    
+
   </processor>
  
  
@@ -343,7 +359,7 @@ Version: $Id: fitter-tmp.xml,v 1.7 2009-08-01 13:59:45 bulgheroni Exp $
 	<!-- ------------------------------------ -->
   <!--Analysis of DUT performance based on the analytic track fit results-->
   <!--Name of the input DUT hit collection-->
-  <parameter name="InputHitCollectionName" type="string" lcioInType="TrackerHit">alignedHit </parameter>
+  <parameter name="InputHitCollectionName" type="string" lcioInType="TrackerHit"> alignedHit </parameter>
   <!--Name of the input Track collection-->
   <parameter name="InputTrackCollectionName" type="string" lcioInType="Track"> fittracks </parameter>
   <!--Alignment corrections for DUT: shift (in mm) in X, Y and rotation around Z-->

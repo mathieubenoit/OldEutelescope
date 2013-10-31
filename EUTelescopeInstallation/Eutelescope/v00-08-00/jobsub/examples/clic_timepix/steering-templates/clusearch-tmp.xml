@@ -23,7 +23,7 @@ Version: $Id: clusearch-tmp.xml,v 1.9 2009-08-01 10:41:44 bulgheroni Exp $
       <processor name="Mimosa26EUTelAutoPedestalNoiseProcessor"/>
       <processor name="LoadHotPixelDB"/>
       <processor name="TimepixEUTelAutoPedestalNoiseProcessor"/>
-      <--processor name="TPLoadHotPixelDB"/>      
+      <processor name="TPLoadHotPixelDB"/>      
       <processor name="Clustering"/>
       <processor name="TPClustering"/>
       <--processor name="Correlator"/>
@@ -132,7 +132,7 @@ Version: $Id: clusearch-tmp.xml,v 1.9 2009-08-01 10:41:44 bulgheroni Exp $
     <!--parameter name="DataFileHandler" type="StringVec" value="conditionsName"/-->
     <!--Initialization of a simple conditions file handler-->
     <!-- suppress only the Mimosa26 pixels --> 
-    <parameter name="SimpleFileHandler" type="StringVec"> hotpixel_tp  @DBPath@/run@HotPixelRunNumber@-hotpixel-db.slcio hotpixel_tp </parameter>
+    <parameter name="SimpleFileHandler" type="StringVec"> hotpixel_tp  @DBPath@/run@RunNumber@-hotpixel-tp.slcio hotpixel_tp </parameter>
   </processor>
 
 
@@ -213,7 +213,7 @@ Version: $Id: clusearch-tmp.xml,v 1.9 2009-08-01 10:41:44 bulgheroni Exp $
         HISTOGRAMMING
     -->
     <!--Switch on or off the histogram filling-->
-    <parameter name="HistogramFilling" type="bool" value="false"/>
+    <parameter name="HistogramFilling" type="bool" value="true"/>
     <!--This is the name of the histogram information file-->
     <parameter name="HistoInfoFileName" type="string" value="@HistoInfoPath@/@HistoInfo@"/>
     <!--The list of cluster N to be filled.For example 7 means filling the cluster spectra with the 7 most significant pixels-->
@@ -303,6 +303,9 @@ Version: $Id: clusearch-tmp.xml,v 1.9 2009-08-01 10:41:44 bulgheroni Exp $
     <parameter name="ClusterN" type="IntVec" value="4 6 8 9"/>
     <!--The list of cluster NxN to be filled.For example 3 means filling the 3x3 histogram spectrum-->
     <parameter name="ClusterNxN" type="IntVec" value="3"/>
+    
+    <parameter name="EmaxCut" type="float" value="5000"/>
+
 
   </processor>
   
@@ -342,7 +345,7 @@ Version: $Id: clusearch-tmp.xml,v 1.9 2009-08-01 10:41:44 bulgheroni Exp $
     <!-- -->
     <parameter name="HotPixelCollectionName" type="string" lcioInType="TrackerHit"> hotpixel_m26 </parameter>
     <!-- -->
-    <parameter name="ClusterChargeMinimum" type="int" value="2"/>
+    <parameter name="ClusterChargeMinimum" type="int" value="1"/>
     <!-- -->
     <parameter name="Events" type="int" value="1000000"/>
     <!-- -->
