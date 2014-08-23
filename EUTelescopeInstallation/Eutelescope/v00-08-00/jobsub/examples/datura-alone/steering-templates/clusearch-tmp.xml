@@ -21,7 +21,7 @@ Version: $Id: clusearch-tmp.xml,v 1.9 2009-08-01 10:41:44 bulgheroni Exp $
   <execute>
     <processor name="AIDA"/>
       <processor name="Mimosa26EUTelAutoPedestalNoiseProcessor"/>
-      <processor name="LoadHotPixelDB"/>
+      <--processor name="LoadHotPixelDB"/>
       <processor name="Clustering"/>
       <--processor name="Correlator"/>
     <processor name="Save"/>
@@ -41,8 +41,7 @@ Version: $Id: clusearch-tmp.xml,v 1.9 2009-08-01 10:41:44 bulgheroni Exp $
     <!-- compression of output file 0: false >0: true (default) -->
     <parameter name="Compress" type="int" value="1"/>
     <!-- filename without extension-->
-    <parameter name="FileName" type="string" value=
-    "@HistoPath@/run@RunNumber@-clu-histo"/>
+    <parameter name="FileName" type="string" value="@HistoPath@/run@RunNumber@-clu-histo"/>
     <!-- type of output file xml (default) or root ( only OpenScientist)-->
     <parameter name="FileType" type="string" value="root"/>
   </processor>
@@ -163,7 +162,7 @@ Version: $Id: clusearch-tmp.xml,v 1.9 2009-08-01 10:41:44 bulgheroni Exp $
         HISTOGRAMMING
     -->
     <!--Switch on or off the histogram filling-->
-    <parameter name="HistogramFilling" type="bool" value="false"/>
+    <parameter name="HistogramFilling" type="bool" value="true"/>
     <!--This is the name of the histogram information file-->
     <parameter name="HistoInfoFileName" type="string" value="@HistoInfoPath@/@HistoInfo@"/>
     <!--The list of cluster N to be filled.For example 7 means filling the cluster spectra with the 7 most significant pixels-->

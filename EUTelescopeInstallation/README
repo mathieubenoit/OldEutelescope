@@ -1,12 +1,14 @@
 To install the EUTelescope reconstruction software package :
 
+create the folder build in Eutelescope/v00-08-00/
+
 Run, from the EUTelescopeInstallation folder: 
 
 /afs/cern.ch/eng/clic/software/x86_64-slc5-gcc41/ILCSOFT/ilcsoftinstall/v01-16/ilcsoft-install Eutel_With_Existing_ILCSoft.cfg
 
-Make sure there are no errors and only eutelescope with be installed, and that the installation path is correct
+Make sure there are no errors and only eutelescope with be installed, and that the installation path (ilcsoft_install_dir) is correct
 
-source init_ilcsoft.sh and then run : 
+source init_ilcsoft.sh (or ILCsoft_v01-16.sh)and then run : 
 
 /afs/cern.ch/eng/clic/software/x86_64-slc5-gcc41/ILCSOFT/ilcsoftinstall/v01-16/ilcsoft-install -i Eutel_With_Existing_ILCSoft.cfg
 
@@ -15,6 +17,9 @@ If, from the computer you are running on, you never connected to DESY database, 
 
 
 There should be a init_ilcsoft.sh  and ILCSoft_v01-16.sh in the folder, where Eutelescope was installed, do this in the shell : 
+
+
+edit setup_eutelescope.sh to point to your installation path, then 
 
 source setup_eutelescope.sh
 cd Eutelescope/v00-08-00/jobsub

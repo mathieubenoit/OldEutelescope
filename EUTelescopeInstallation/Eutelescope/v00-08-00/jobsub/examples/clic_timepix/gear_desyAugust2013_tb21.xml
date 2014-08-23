@@ -71,13 +71,13 @@
 	<!--Timepix -->	
 	<layer>
           <ladder         ID="6"
-                          positionX="-0.73"        positionY="-2.48"        positionZ="340.5"
+                          positionX="0.0"        positionY="0.0"        positionZ="340.5"
                           rotationZY="0.00"       rotationZX="0.0"        rotationXY="0.0" 
                           sizeX="14.08"            sizeY="14.08"            thickness="1.690"
                           radLength="142.0"
                           />
           <sensitive      ID="6"
-                          positionX="-0.73"        positionY="-2.48"        positionZ="340.5" 
+                          positionX="0.0"        positionY="0.0"        positionZ="340.5" 
                           sizeX="14.08"            sizeY="14.08"            thickness="0.650"
                           npixelX="256"          npixelY="256" 
                           pitchX="0.055"    pitchY="0.055"    resolution="0.0045" 
